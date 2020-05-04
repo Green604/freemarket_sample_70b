@@ -12,9 +12,9 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  pool: 5.1.10
+  pool: 5
   username: root
-  password: 
+  password: freemarket70b
   socket: /tmp/mysql.sock
 
 development:
@@ -51,6 +51,6 @@ production:
   <<: *default
   database: freemarket_sample_70b_production
   username: root
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  password: freemarket70b
   socket: /var/lib/mysql/mysql.sock
 
