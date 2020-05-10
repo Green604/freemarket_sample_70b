@@ -14,13 +14,13 @@
 |birthday       |date|null: false|
 
 ### Association
-- has_one :shipping_address
-- has_one :payment
-- has_many :favorites
+- has_one :shipping_address, dependent: :destroy
+- has_one :payment, dependent: :destroy
+- has_many :favorites, dependent: :destroy
 - has_many  :items,  through:  :favorites
-- has_many :sellers
-- has_many :buyers
-- has_many :comments
+- has_many :sellers, dependent: :destroy
+- has_many :buyers, dependent: :destroy
+- has_many :comments, dependent: :destroy
 - has_many  :items,  through:  :comments
 
 ## shipping_addressesテーブル
@@ -79,9 +79,9 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_many :chats
+- has_many :chats, dependent: :destroy
 - has_many  :buyers,  through:  :chats
-- has_one :selling_status
+- has_one :selling_status, dependent: :destroy
 
 
 ## buyersテーブル
@@ -94,7 +94,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_many :chats
+- has_many :chats, dependent: :destroy
 - has_many  :sellers,  through:  :chats
 
 ## commentsテーブル
@@ -134,14 +134,14 @@
 |shipping_id       |integer|null: false, foreign_key: true|
 
 ### Association
-- has_one :seller
+- has_one :seller, dependent: :destroy
 - has_one :buyer
-- has_one :selling_status
-- has_many :favorites
+- has_one :selling_status, dependent: :destroy
+- has_many :favorites, dependent: :destroy
 - has_many  :users,  through:  :favorites
-- has_many :comments
+- has_many :comments, dependent: :destroy
 - has_many  :users,  through:  :comments
-- has_many :images
+- has_many :images, dependent: :destroy
 - belongs_to :brand
 - belongs_to :category
 - belongs_to :shipping
