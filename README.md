@@ -128,12 +128,10 @@
 |item_name         |string|null: false, index: true|
 |description       |text|null: false|
 |price             |integer|null: false|
+|condition         |integer|null: false, enum|
 |brand_id          |integer|foreign_key: true|
 |category_id       |integer|null: false, foreign_key: true|
-|item_condition_id |integer|null: false, foreign_key: true|
-|shipping_area_id  |integer|null: false, foreign_key: true|
-|shipping_day_id   |integer|null: false, foreign_key: true|
-|shipping_fee_id   |integer|null: false, foreign_key: true|
+|shipping_id       |integer|null: false, foreign_key: true|
 
 ### Association
 - has_one :seller
@@ -146,10 +144,7 @@
 - has_many :images
 - belongs_to :brand
 - belongs_to :category
-- belongs_to :item_condition
-- belongs_to :shipping_area
-- belongs_to :shipping_day
-- belongs_to :shipping_fee
+- belongs_to :shipping
 
 ## selling_statusテーブル
 
@@ -177,7 +172,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|brand_name |string||
+|name |string||
 
 ### Association
 - has_many :items
@@ -186,45 +181,19 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|category_name|string|null: false|
+|name|string|null: false|
 
 ### Association
 - has_many :items
 - has_ancestry
 
-## item_conditionテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|item_condition |string|null: false|
-
-### Association
-- has_many :items
-
-## shipping_areasテーブル
+## shippingsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |shipping_area |string|null: false|
+|shipping_day  |string|null: false|
+|shipping_fee  |integer|null: false|
 
 ### Association
 - has_many :items
-
-## shipping_daysテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|shipping_day |string|null: false|
-
-### Association
-- has_many :items
-
-## shipping_feesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|shipping_fee |integer|null: false|
-
-### Association
-- has_many :items
-
