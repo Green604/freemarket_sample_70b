@@ -1,9 +1,9 @@
 class CreateSellingStatuses < ActiveRecord::Migration[5.2]
   def change
-    create_table :selling_statuses do |t|
+    create_table :selling_statuses, id: :integer do |t|
       t.string     :status, null: false
-      t.references :item,   foreign_key: true
-      t.references :seller, foreign_key: true
+      t.integer :item_id,   foreign_key: true
+      t.integer :seller_id, foreign_key: true
       t.timestamps
     end
   end
