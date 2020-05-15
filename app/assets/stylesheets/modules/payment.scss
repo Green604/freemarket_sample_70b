@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+}
+
+.mypage-card-contents{
+  height: 100%;
+  background-color: rgb(240, 240, 240);
+  padding: 40px;
+  .user-card {
+    height: 380px;
+    width: 600px;
+    background-color: white;
+    margin: 0 auto;
+    
+    &__head {
+      height: 50px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 50px;
+      border-bottom: solid 1px lightgray;
+    }
+    &__main {
+
+      .card-list {
+        height: 200px;
+        padding: 40px 40px;
+        background-color: white;
+        &__head {
+          width: 100%;
+          &__text {
+            width: 300px;
+            margin: 0 auto;
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+        &__main {
+          border-bottom: solid 1px lightgray;
+          &__info {
+          height: 60%;
+          width: 300px;
+          margin: 20px auto;
+          position: relative;
+            &__delete {
+              position: absolute;
+              top: 0;
+              right: 0;
+              padding: 4px;
+              border: solid 1px mediumturquoise;
+              border-radius: 3px;
+              background-color: white;
+              color: mediumturquoise;
+              text-decoration: none;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      &__card-help {
+        height: 20px;
+        color: lightskyblue;
+        text-align: right;
+        padding: 20px 40px 0;
+      }
+    }
+  }
+}
+
