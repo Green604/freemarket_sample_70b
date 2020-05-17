@@ -17,11 +17,12 @@
         = form_with model: @item, local: true do |f|
           %section.exhibition__image
             .exhibition__image__form
-              %label 出品画像
+              = f.label :image, '出品画像'
               %span.required 必須
             %p.image_upper_limit 最大10枚までアップロードできます
             .image_upload
-              %input.image_upload_file{:autocomplete => "off", :multiple => "multiple", :style => "display: none;", :tabindex => "-1", :type => "file"}/
+              = f.fields_for :images do |i|
+                = i.file_field :image
               %p.image_icon
                 %i.fas.fa-camera.fa-lg
               %p.image_upload_instruction

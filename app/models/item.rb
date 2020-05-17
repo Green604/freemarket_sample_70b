@@ -20,4 +20,7 @@ class Item < ApplicationRecord
   # validates :brand, presence: true
 
   enum condition: [ :brand_new, :no_use, :clean, :litte_dirty, :dirty, :bad ]
+  
+  # mount_uploader :image, ImageUploader
+  accepts_nested_attributes_for :images
 end
