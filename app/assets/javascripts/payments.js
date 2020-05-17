@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function(){
       number: $('#card_number').val(),
       cvc: $('#cvc').val(),
       exp_month: $('#exp_month').val(),
-      exo_year: $('#exp_year').val(),
+      exp_year: $('#exp_year').val(),
     };
 
     Payjp.createToken(card, function(status, response) {

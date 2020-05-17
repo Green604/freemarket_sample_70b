@@ -7,7 +7,7 @@
         支払い方法
 
       .card-registration__main__container__form
-        = form_with model: @payment, id: "card-form" do |f|
+        = form_with model: @payment, url: {controller: 'payments', action: 'create' }, id: "card-form" do |f|
           .card-form__content
             .card-form__content__group
               = f.label :カード番号  
