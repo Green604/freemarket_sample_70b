@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   validates :condition, presence: true
   validates :category, presence: true
   validates :shipping, presence: true
-  validates :brand, presence: true
+  # validates :brand, presence: true
 
   enum condition: [ :brand_new, :no_use, :clean, :litte_dirty, :dirty, :bad ]
 end

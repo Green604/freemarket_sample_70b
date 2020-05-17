@@ -14,7 +14,7 @@
         %img.furima_logo{:alt => "FURIMAのロゴ", :src => ""}/
     .container
       .exhibition
-        %form{:action => "#"}
+        = form_with model: @item, local: true do |f|
           %section.exhibition__image
             .exhibition__image__form
               %label 出品画像
@@ -31,74 +31,63 @@
           %section.exhibition__description
             .exhibition__name
               .exhibition_name__label
-                %label{:for => "name"} 商品名
+                = f.label :name, '商品名'
                 %span.required 必須
               .exhibition_name__form
                 .exhibition_name__form__input
-                  %input#name{:autocomplete => "off", :placeholder => "40文字まで", :type => "text", :value => ""}/
+                  = f.text_field :name, autocomplete: "off", placeholder: "40文字まで"
+                  
             / labelとinputを紐づけるためにidを指定する labeタグにはfor属性をつける
             .exhibition__explanation
               .exhibition__explanation__label
                 .exhibition__explanation__label_style
-                  %label{:for => "explanation"} 商品の説明
+                  = f.label :description, '商品の説明'
                   %span.required 必須
                   / 複数行の入力フォームはtextareaを使う。閉じタグが必要となる
-              %textarea.exhibition__explanation_textarea{:name => "description", :placeholder => "商品の説明（必須 1,000文字以内）\n  （色、素材、重さ、定価、注意点など）\n            \n  例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", :rows => "7"}
+              = f.text_area :description,class: "exhibition__explanation_textarea", placeholder: "商品の説明（必須 1,000文字以内）\n  （色、素材、重さ、定価、注意点など）\n            \n  例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。",  size: "30x7"
+
               .exhibition__explanation_textarea_limit
                 %span 0/1000
           %section.exhibition__detail
             .exhibition__category
               %p.exhibition__category_headline 商品の詳細
               .exhibition__category_label
-                %label カテゴリー
+                = f.label :category_id, 'カテゴリー'
+
                 %span.required 必須
             .exhibition__category_tab
               .exhibition__category_choice
-                %select{:name => "categoryID"}
-                  %option{"aria-selected" => "true", :label => "選択してください", :selected => "selected", :value => ""} 選択してください
-                  %option{"aria-selected" => "false", :label => "レディース", :value => "1"} レディース
-                  %option{"aria-selected" => "false", :label => "メンズ", :value => "2"} メンズ
-                  %option{"aria-selected" => "false", :label => "ベビー・キッズ", :value => "3"} ベビー・キッズ
-                  %option{"aria-selected" => "false", :label => "インテリア・住まい・小物", :value => "4"} インテリア・住まい・小物
-                  %option{"aria-selected" => "false", :label => "本・音楽・ゲーム", :value => "5"} 本・音楽・ゲーム
-                  %option{"aria-selected" => "false", :label => "おもちゃ・ホビー・グッズ", :value => "1328"} おもちゃ・ホビー・グッズ
-                  %option{"aria-selected" => "false", :label => "コスメ・香水・美容", :value => "6"} コスメ・香水・美容
-                  %option{"aria-selected" => "false", :label => "家電・スマホ・カメラ", :value => "7"} 家電・スマホ・カメラ
-                  %option{"aria-selected" => "false", :label => "スポーツ・レジャー", :value => "8"} スポーツ・レジャー
-                  %option{"aria-selected" => "false", :label => "ハンドメイド", :value => "9"} ハンドメイド
-                  %option{"aria-selected" => "false", :label => "チケット", :value => "1027"} チケット
-                  %option{"aria-selected" => "false", :label => "自動車・オートバイ", :value => "1318"} 自動車・オートバイ
-                  %option{"aria-selected" => "false", :label => "その他", :value => "10"} その他
+                = f.select :category_id, 
+                [ ["レディース",1], ["メンズ", 2], ["ベビー・キッズ", 3 ] ,["インテリア・住まい・小物", 4], ["本・音楽・ゲーム", 5], ["おもちゃ・ホビー・グッズ", 1328], ["コスメ・香水・美容", 6], ["家電・スマホ・カメラ", 7], ["スポーツ・レジャー", 8], ["ハンドメイド", 9], ["チケット", 1027], ["自動車・オートバイ", 1318], ["その他", 10] ], prompt: "選択してください"
                 %svg.exhibition__category__svg{"aria-hidden" => "true", :fill => "888888", "fill-rule" => "evenodd", :height => "24", :viewbox => "0 0 24 24", :width => "24"}
                   %path{:d => "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
             .exhibition__brand
               .exhibittion_brand__box
                 .exhibition__brand__label
-                  %label ブランド
+                  = f.label :brand_id, 'ブランド'
                   %span.any 任意
                 .exhibition__brand__inputbox
                   .exhibition__brand__input
-                    %input{:autocomplete => "off", :name => "brandName", :placeholder => "例）シャネル", :type => "text", :value => ""}/
+                    = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
+
             .exhibition__condition
               .exhibition__condition_name
                 %div{:name => "itemCondition"}
                   .exhibition__condition_label
-                    %label 商品の状態
+                    = f.label :condition, '商品の状態'
+
                     %span.required 必須
                 .exhibition__condition_box
                   .exhibition__condition_selectarea
-                    %select{:id => "", :name => "itemCondition"}
-                      %option{"aria-selected" => "true", :label => "選択してください", :selected => "selected", :value => ""} 選択してください
-                      %option{"aria-selected" => "false", :label => "新品、未使用", :value => "1"} 新品、未使用
-                      %option{"aria-selected" => "false", :label => "未使用に近い", :value => "2"} 未使用に近い
-                      %option{"aria-selected" => "false", :label => "目立った傷や汚れなし", :value => "3"} 目立った傷や汚れなし
-                      %option{"aria-selected" => "false", :label => "やや傷や汚れあり", :value => "4"} やや傷や汚れあり
-                      %option{"aria-selected" => "false", :label => "傷や汚れあり", :value => "5"} 傷や汚れあり
-                      %option{"aria-selected" => "false", :label => "全体的に状態が悪い", :value => "6"} 全体的に状態が悪い
+                    = f.select :condition, Item.conditions.keys.map {|k| [k, k]}, prompt: "選択してください"
+                  
+
                     %svg.exhibition__condition__svg{"aria-hidden" => "true", :fill => "888888", "fill-rule" => "evenodd", :height => "24", :view => "0 0 24 24", :width => "24"}
                       %path{:d => "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
           %section.exhibition__shipping
             %p.exhibition__shipping_about
+            
+              = f.number_field :shipping_id, placeholder: "0", autocomplete: "off"
               配送について
               %a{:href => "#", :rel => "noopener noreferrer", :target => "_blank"}
                 %svg.exhibition__shipping_about_svg{"aria-hidden" => "true", :fill => "#222222", "fill-rule" => "evenodd", :height => "24", :viewbox => "0 0 24 24", :width => "24"}
@@ -205,12 +194,13 @@
               .exhibition__
                 .exhibition__price__three
                   .exhibition__price__four
-                    %label 販売価格
+                    = f.label :price, '販売価格'
                     %span.required 必須
                   %span.exhibition__price__yenmark ¥
                 .exhibition__price__box
                   .exhibition__price__inputarea
-                    %input{:autocomplete => "off", :name => "price", :placeholder => "0", :type => "number", :value => ""}/
+                    = f.number_field :price, placeholder: "0", autocomplete: "off"
+
                 .exhibition__price__fee
                   .exhibition__datatest{"data-test" => "fee-value"}
                     %div 販売手数料（10%）
@@ -220,7 +210,7 @@
                   .exhibition__profit_title 販売利益
                   %span{"data-test" => "total-value"} -
                 .exhibition-button
-                  %button.exhibition-button-red{:tabindex => "0", :type => "submit"} 出品する
+                  = f.submit "出品する", class: "exhibition-button-red", tabindex: "0"
                   %button.exhibition-button-grey{:tabindex => "0", :type => "submit"} 下書きに保存
                   %a.exhibition-button-under{:href => "#"} もどる
                 .exhibition-attention
@@ -248,3 +238,6 @@
       %a.furima-mark{:href => "#"}
         %img{:alt => "フリマのロゴ", :src => "#"}/
       %p.furima-company ©︎FURIMA, Inc.
+
+
+
