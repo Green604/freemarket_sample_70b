@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.images.new
+
   end
 
   def edit
@@ -50,7 +51,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :category_id, :shipping_id, images_attributes: [:image])
+    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :category_id, :shipping_id, images_attributes: [:image], shipping_attributes: [:shipping_area, :shipping_day, :shipping_fee])
   end
 
 end
