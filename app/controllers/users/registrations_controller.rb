@@ -5,15 +5,42 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @user = User.new
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(sign_up_params)
+    unless @user.valid?
+      flash.now[:alert] = @user.errors.full_messages
+      render :new and return
+    end
+    session["devise.regist_data"] = {user: @user.attributes}
+    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    @shipping_address = @user.build_shipping_address
+    render :new_shipping_address
+  end
 
+  def create_shipping_address
+    @user = User.new(session["devise.regist_data"]["user"])
+    @shipping_address = ShippingAddress.new(shipping_address_params)
+    unless @shipping_address.valid?
+      flash.now[:alert] = @shipping_address.errors.full_messages
+      render :new_shipping_address and return
+    end
+    @user.build_shipping_address(@shipping_address.attributes)
+    @user.save
+    session["devise.regist_data"]["user"].clear
+    sign_in(:user, @user)
+    redirect_to root_path
+  end
+
+    protected
+
+    def shipping_address_params
+      params.require(:shipping_address).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :zipcode, :prefecture, :city, :house_number, :building, :phone_number)
+    end
   # GET /resource/edit
   # def edit
   #   super

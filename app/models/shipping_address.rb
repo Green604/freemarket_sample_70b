@@ -1,5 +1,5 @@
 class ShippingAddress < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -10,5 +10,5 @@ class ShippingAddress < ApplicationRecord
   validates :city, presence: true
   validates :house_number, presence: true
   validates :phone_number, presence: true, uniqueness: true
-  validates :user_id, presence: true, foreign_key: true
+  # validates :user_id, presence: true, foreign_key: true
 end

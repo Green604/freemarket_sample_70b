@@ -1,11 +1,22 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title FreemarketSample70b
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
+    %body
+    %header.header
+      .header__bar.row
+        %h1.grid-6
+          %a{:href => "/"} FURIMA
+        - if user_signed_in?
+          .user_nav.grid-6
+            マイページ
+        - else
+          .grid-6
+            ログイン
+            新規登録
+    = render 'layouts/notifications'
     = yield
