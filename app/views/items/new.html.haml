@@ -101,7 +101,7 @@
                       %span.required 必須
                 .exhibition__shipping_people
                   .exhibition__shipping_people_fee
-                    = s.select :shipping_fee , [ ["送料込み（出品者負担）",1], ["着払い（購入者負担）", 2],  ["2〜3日で発送", 3] ], prompt: "選択してください"
+                    = s.select :shipping_fee , [ ["送料込み（出品者負担）", "送料込み（出品者負担）"], ["着払い（購入者負担）", "着払い（購入者負担）"] ], prompt: "選択してください"
                     %svg.exhibition__shipping_people__svg{"aria-hidden" => "true", :fill => "888888", "fill-rule" => "evenodd", :height => "24", :viewbox => "0 0 24 24", :width => "24"}
                       %path{:d => "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
               .exhibition__shipping_area
@@ -112,7 +112,7 @@
                     %span.required 必須
                   .exhibition__shipping_area_choice
                     .exhibition__shipping_area_box
-                      = s.select :shipping_area, [ ["北海道",1], ["青森県", 2],  ["岩手県", 4] ], prompt: "選択してください"
+                      = s.select :shipping_area, [ ["北海道", "北海道"], ["青森県", "青森県"],  ["岩手県", "岩手県"] ], prompt: "選択してください"
                       %select{:name => "shippingFromArea"}
                         %option{"aria-selected" => "true", :label => "選択してください", :selected => "selected", :value => ""} 選択してください
                         %option{"aria-selected" => "false", :label => "北海道", :value => "1"} 北海道
@@ -172,7 +172,7 @@
                     %span.required 必須
                 .exhibition__shipping_days_choice
                   .exhibition__shipping_days_choice_under
-                    = s.select :shipping_day , [ ["1〜2日で発送",1], ["2〜3日で発送", 2], ["4〜7日で発送", 3] ], prompt: "選択してください"
+                    = s.select :shipping_day , [ ["1〜2日で発送", "1〜2日で発送"], ["2〜3日で発送", "2〜3日で発送"], ["4〜7日で発送", "4〜7日で発送"] ], prompt: "選択してください"
                     %svg.exhibition__shipping_area_svg{"aria-hidden" => "true", :fill => "#888888", "fill-rule" => "evenodd", :height => "24", :viewbox => "0 0 24 24", :witdh => "24"}
                       %path{:m12 => ""}
             %section.exhibition__price
