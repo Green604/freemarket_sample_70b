@@ -36,11 +36,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-    protected
+  protected
 
-    def shipping_address_params
-      params.require(:shipping_address).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :zipcode, :prefecture, :city, :house_number, :building, :phone_number)
-    end
+  def shipping_address_params
+    params.require(:shipping_address).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :zipcode, :prefecture, :city, :house_number, :building, :phone_number)
+  end
   # GET /resource/edit
   # def edit
   #   super
