@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', ()=> {
+$(function() {
   // 画像用のinputを生成する関数
   const buildFileField = (index)=> {
     const html = `<div data-index="${index}" class="js-file_group">
@@ -13,6 +13,7 @@ $(document).on('turbolinks:load', ()=> {
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
 
+
   $('#image-box').on('change', '.js-file', function(e) {
     // fileIndexの先頭の数字を使ってinputを作る
     $('#image-box').append(buildFileField(fileIndex[0]));
@@ -22,7 +23,6 @@ $(document).on('turbolinks:load', ()=> {
   });
 
   $('#image-box').on('click', '.js-remove', function() {
-    console.log("あああ");
     $(this).parent().remove();
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
