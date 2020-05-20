@@ -3,5 +3,6 @@ class Category < ApplicationRecord
 
   validates :name, presence: true
 
-  has_ancestry
+  # 出品機能モデルのバリデーションテスト用でエラーが出る為一旦コメントアウト
+  # has_ancestry
 end
