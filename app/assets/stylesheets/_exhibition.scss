@@ -1,0 +1,307 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: rgb(51, 51, 51);
+  background-color: rgb(245, 245, 245);
+  header {
+    text-align: center;
+    position: relative;
+  }
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    .exhibition {
+      position: relative;
+      display: block;
+      background-color: white;
+      section {
+        padding: 40px;
+        vertical-align: baseline;
+        border-width: 0px;
+        border-style: initial;
+        border-color: initial;
+        border-image: initial;
+        font: inherit;
+        border-bottom: 1px solid whitesmoke;
+        .image_upper_limit {
+          margin-top: 16px;
+          font-size: 14px;
+          line-height: 1.4em;
+        }
+        .image_upload {
+          align-content: center;
+          -webkit-box-align: center;
+          align-items: center;
+          background-color: rgb(245, 245, 245);
+          cursor: pointer;
+          display: flex;
+          height: 100%;
+          flex-wrap: wrap;
+          -webkit-box-pack: center;
+          justify-content: center;
+          position: relative;
+          border-width: 1px;
+          border-style: dashed;
+          border-color: rgb(204, 204,204);
+          border-image: initial;
+          transition: all 0.5s ease-out 0s;
+        }
+        
+          .image_icon {
+            height: 24px;
+            margin-bottom: 8px;
+            width: 24px;
+          }
+          .image_upload_instruction {
+            font-size: 12px;
+            line-height: 1.4em;
+            text-align:center;
+            width: 100%;
+          }
+  
+
+          .item-name {
+            .label-group {
+              @include label-group;
+              & label {
+                @include label-group__label ();
+              }
+              &__required {
+                @include label-group__required ();
+              }
+            }
+            &__form {
+              margin-top: 16px;
+              align-items: center;
+              display: inline-flex;
+              width: 100%;
+              &__input{
+                display: inline-block;
+                position: relative;
+                width: inherit;
+              }
+            }
+          }
+
+          @mixin margin-top {
+            margin: 0;
+            margin-top: 32px;
+          }
+          
+          .item-explanation {
+            @include margin-top;
+            .label-group {
+              @include label-group;
+              & label {
+                @include label-group__label ();
+              }
+              &__required {
+                @include label-group__required ();
+              }
+            }
+          }
+
+            .detail {
+              @include label-group__label(#888888);
+            }
+            
+            .label-group {
+              @include label-group;
+              & label {
+                @include label-group__label ();
+              }
+              &__required {
+                @include label-group__required ();
+              }
+            }
+            .category {
+              .category-2 {
+                margin-top: 16px;
+                font-family: Arial,æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“,YuGothic,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,sans-serif;
+                align-items: center;
+                display: inline-flex;
+                width: 100%;
+                .select {
+                  display: inline-block;
+                  position: relative;
+                  width: inherit;
+                  & select {
+                    @include select;
+                  }
+                  &.category-svg {
+                    @include category-svg;
+                  }
+                }
+              }
+            }
+            .item-brand {
+              @include margin-top;
+              .label-group {
+                @include label-group;
+                & label {
+                  @include label-group__label ();
+                }
+                &__required {
+                  @include label-group__required (#BFBFBF);
+                }
+              }
+            }
+            .item-condition {
+              @include margin-top;
+              .label-group {
+                @include label-group;
+                & label {
+                  @include label-group__label ();
+                }
+                &__required {
+                  @include label-group__required ();
+                }
+              }
+            }
+
+
+          .item-shipping-about {
+            @include label-group__label(#888888);
+          }
+          .shipping-fee {
+            .shipping-fee-2 {
+              .shipping-fee-3 {
+                .label-group {
+                  @include label-group;
+                  & label {
+                    @include label-group__label ();
+                  }
+                  &__required {
+                    @include label-group__required ();
+                  }
+                }
+              }
+            }
+          }
+
+          .shipping-area {
+            .shipping-area-2 {
+              .shipping-area-3 {
+                .label-group {
+                  @include label-group;
+                  & label {
+                    @include label-group__label ();
+                  }
+                  &__required {
+                    @include label-group__required ();
+                  }
+                }
+              }
+            }
+          }
+
+          .shipping-day {
+            .shipping-day-2 {
+              .shipping-day-3 {
+                .label-group {
+                  @include label-group;
+                  & label {
+                    @include label-group__label ();
+                  }
+                  &__required {
+                    @include label-group__required ();
+                  }
+                }
+              }
+            }
+          }
+
+          .price {
+            @include label-group__label(#888888);
+          }
+          
+          .selling-price {
+            .selling-price-2 {
+              .selling-price-3 {
+                .label-group {
+                  @include label-group;
+                  & label {
+                    @include label-group__label ();
+                  }
+                  &__required {
+                    @include label-group__required ();
+                  }
+                }
+              }
+            }
+          }
+
+          .selling-fee {
+            .selling-fee-2 {
+              .selling-fee-3 {
+                @include label-group__label ();
+                font-weight: 100;
+              }
+            }
+          }
+
+          .profit {
+            .profit-2 {
+              @include label-group__label ();
+              font-weight: 100;
+            }
+          }
+
+          .button {
+            .button-lightblue {
+              @include button-lightblue;
+            }
+            .button-gray {
+              @include button-gray;
+            }
+          }
+
+          .exhibition__explanation_textarea {
+            margin: 0;
+            margin-top: 16px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: #222;
+            font-size: 16px;
+            outline: none;
+            padding: 13px 16px;
+            resize: vertical;
+            vertical-align: middle;
+          }
+          .exhibition__explanation_textarea_limit {
+            margin-top: 16px;
+            text-align: right;
+            color: #888;
+            font-size: 10px;
+            line-height: 1.4em;
+          }
+            
+            input {
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              font-family: inherit;
+              font-size: inherit;
+              height: 48px;
+              margin: 0;
+              outline: none;
+              padding: 0 16px;
+              width: inherit;
+            }
+            .exhibition__explanation__label_style {
+              align-items: center;
+              display: flex;
+            }
+
+
+      }
+    }
+  }
+}

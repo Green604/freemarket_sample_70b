@@ -3,5 +3,7 @@
 @import "modules/item";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "./exhibition-item";
+@import "mixin/label";
+@import "mixin/button";
+@import "./exhibition";
 @import "modules/flash";
