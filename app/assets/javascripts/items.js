@@ -15,6 +15,7 @@ $(function() {
 
 
   $('#image-box').on('change', '.js-file', function(e) {
+    // console.log("hello world!");
     // fileIndexの先頭の数字を使ってinputを作る
     $('#image-box').append(buildFileField(fileIndex[0]));
     fileIndex.shift();

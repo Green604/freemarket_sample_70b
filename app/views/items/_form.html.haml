@@ -1,7 +1,6 @@
-\%#
-%link{:href => "js/index.js", :rel => "stylesheet", :type => "text/js"}
-  %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css", :rel => "stylesheet"}
-    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"}
-    %script{:src => "./main.js"}
-    = succeed "\u2029" do
-      %script{:src => "script.js"}
+#image-box
+  = f.fields_for :images do |image|
+    .js-file_group{"data-index" => "#{image.index}"}
+      = image.file_field :src, class: 'js-file'
+      %br/
+      %span.js-remove 削除
