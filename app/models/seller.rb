@@ -5,6 +5,7 @@ class Seller < ApplicationRecord
   has_many :buyers, through: :chats
   has_one :selling_status, dependent: :destroy
 
-  validates :user_id presence:true
-  validates :item_id presence:true
+  # 出品機の実装中、sellimng_statusへの登録時エラー出るので一旦コメントアウト
+  # validates :user_id presence:true
+  # validates :item_id presence:true
 end
