@@ -19,7 +19,14 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path
+      selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
+      binding.pry
+      if selling_status.save
+        redirect_to root_path
+      else
+        flash.now[:alert] = 'エラーが発生しました。'
+        render :new
+      end
     else
       flash.now[:alert] = '入力されていない項目があります。'
       render :new
