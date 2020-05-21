@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_143432) do
+ActiveRecord::Schema.define(version: 2020_05_21_110735) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -117,9 +117,10 @@ ActiveRecord::Schema.define(version: 2020_05_13_143432) do
   create_table "shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "shipping_area", null: false
     t.string "shipping_day", null: false
-    t.integer "shipping_fee", null: false
+    t.string "shipping_fee", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shippingway_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
