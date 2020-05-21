@@ -1,0 +1,69 @@
+%h2 送付先住所登録
+
+= form_for(@shipping_address, url: shipping_addresses_path) do |f| 
+  = render "devise/shared/error_messages", resource: @shipping_address 
+  
+  .field
+    = f.label :first_name
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :first_name, placeholder: "全角で入力して下さい", autofocus: true, autocomplete: "first_name"
+  .field
+    = f.label :last_name
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :last_name, placeholder: "全角で入力して下さい", autofocus: true, autocomplete: "last_name"
+  .field
+    = f.label :first_name_kana
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :first_name_kana, placeholder: "全角ひらがなで入力して下さい", autofocus: true, autocomplete: "first_name_kana"
+  .field
+    = f.label :last_name_kana
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :last_name_kana, placeholder: "全角ひらがなで入力して下さい", autofocus: true, autocomplete: "last_name_kana"
+  .field
+    = f.label :zipcode
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :zipcode, autofocus: true, autocomplete: "zipcode"
+  .field
+    = f.label :prefecture
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :prefecture, autofocus: true, autocomplete: "prefecture"
+  .field
+    = f.label :city
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :city, autofocus: true, autocomplete: "city"
+  .field
+    = f.label :house_number
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :house_number, autofocus: true, autocomplete: "house_number"
+  .field
+    = f.label :building
+    %span.class_form-require
+      任意
+    %br/
+    = f.text_field :building, autofocus: true, autocomplete: "building"
+  .field
+    = f.label :phone_number
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :phone_number, autofocus: true, autocomplete: "phone_number"
+  .actions
+    = f.submit "Sign up"
+      
+= render "devise/shared/links"
