@@ -1,0 +1,54 @@
+.account-page {
+  width: 60%;
+  margin: 0 auto;
+  .account-page__header {
+    border: 1px solid lightgray;;
+    height: 100px;
+  }
+  .account-page__inner {
+    border: 1px solid lightgray;
+    &--title {
+      text-align: center;
+      line-height: 100px;
+      border-bottom: 1px solid lightgray;
+    }
+    &--box {
+      padding: 50px 200px;
+      &--user-form {
+      .field {
+        .field-label {
+          .form-require {
+            background-color: blue;
+            color: white;
+            padding: 2px 4px;
+            font-size: 12px;
+          }
+        }
+        .field-input {
+          margin-bottom: 32px;
+          input {
+            width: 90%;
+            margin: 8px 0 0;
+            height: 48px;
+            padding: 10px 16px 8px;
+          }
+          select {
+            width: 30%;
+            margin: 8px 0 0;
+            height: 48px;
+            padding: 10px 16px 8px;
+          }
+        }
+      }
+      .actions {
+        input {
+          background-color: blue;
+          width: 100%;
+          color: white;
+          line-height: 48px;
+        }
+      }
+      }
+    }
+  }
+}

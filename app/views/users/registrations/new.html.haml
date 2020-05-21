@@ -1,65 +1,80 @@
-%h2 ユーザー情報登録
-
-= form_for(@user, url: user_registration_path) do |f| 
-  = render "devise/shared/error_messages", resource: @user 
-  .field
-    = f.label :nickname
-    %span.class_form-require
-      必須
-    %br/
-    = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
-  .field
-    = f.label :email
-    %span.class_form-require
-      必須
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %span.class_form-require
-      必須
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %span.class_form-require
-      必須
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :first_name
-    %span.class_form-require
-      必須
-    %br/
-    = f.text_field :first_name, placeholder: "全角で入力して下さい", autofocus: true, autocomplete: "first_name"
-  .field
-    = f.label :last_name
-    %span.class_form-require
-      必須
-    %br/
-    = f.text_field :last_name, placeholder: "全角で入力して下さい", autofocus: true, autocomplete: "last_name"
-  .field
-    = f.label :first_name_kana
-    %span.class_form-require
-      必須
-    %br/
-    = f.text_field :first_name_kana, placeholder: "全角ひらがなで入力して下さい", autofocus: true, autocomplete: "first_name_kana"
-  .field
-    = f.label :last_name_kana
-    %span.class_form-require
-      必須
-    %br/
-    = f.text_field :last_name_kana, placeholder: "全角ひらがなで入力して下さい", autofocus: true, autocomplete: "last_name_kana"
-  .field
-    = f.label :birthday, "Birthday"
-    %span.class_form-require
-      必須
-    %br/
-    = f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1)
-  .actions
-    = f.submit "Next"
-    
-= render "users/shared/links"
+.account-page
+  .account-page__header
+    %h2 フリマのロゴ　と　ウィザード形式の絵
+  .account-page__inner
+    .account-page__inner--title
+      %h2 会員情報入力
+    .account-page__inner--box
+      .account-page__inner--box--user-form
+        = form_for(@user, url: user_registration_path) do |f| 
+          = render "devise/shared/error_messages", resource: @user 
+          .field
+            .field-label
+              = f.label :nickname
+              %span.form-require
+                必須
+            .field-input
+              = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
+          .field
+            .field-label
+              = f.label :email
+              %span.form-require
+                必須
+            .field-input
+              = f.email_field :email, autofocus: true, autocomplete: "email"
+          .field
+            .field-label
+              = f.label :password
+              %span.form-require
+                必須
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} characters minimum)
+            .field-input
+              = f.password_field :password, autocomplete: "new-password"
+          .field
+            .field-label
+              = f.label :password_confirmation
+              %span.form-require
+                必須
+            .field-input
+              = f.password_field :password_confirmation, autocomplete: "new-password"
+          .field
+            .field-label
+              = f.label :first_name
+              %span.form-require
+                必須
+            .field-input
+              = f.text_field :first_name, placeholder: "全角で入力して下さい", autofocus: true, autocomplete: "first_name"
+          .field
+            .field-label
+              = f.label :last_name
+              %span.form-require
+                必須
+            .field-input
+              = f.text_field :last_name, placeholder: "全角で入力して下さい", autofocus: true, autocomplete: "last_name"
+          .field
+            .field-label
+              = f.label :first_name_kana
+              %span.form-require
+                必須
+            .field-input
+              = f.text_field :first_name_kana, placeholder: "全角ひらがなで入力して下さい", autofocus: true, autocomplete: "first_name_kana"
+          .field
+            .field-label
+              = f.label :last_name_kana
+              %span.form-require
+                必須
+            .field-input
+              = f.text_field :last_name_kana, placeholder: "全角ひらがなで入力して下さい", autofocus: true, autocomplete: "last_name_kana"
+          .field
+            .field-label
+              = f.label :birthday, "Birthday"
+              %span.form-require
+                必須
+            .field-input
+              = f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1)
+          .actions
+            = f.submit "Next"
+            
+        = render "users/shared/links"
