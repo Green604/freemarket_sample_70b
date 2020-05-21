@@ -20,7 +20,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
-      binding.pry
       if selling_status.save
         redirect_to root_path
       else
