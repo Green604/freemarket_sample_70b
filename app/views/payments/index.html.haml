@@ -9,15 +9,19 @@
           %h3.card-list__head__text
             クレジットカード一覧
         .card-list__main
-          .card-list__main__info
-            .card-list__main__info__brand
-              VISA
-            .card-list__main__info__num
-              ********2100
-            .card-list__main__info__num
-              07/24
-            %button.card-list__main__info__delete
-              削除する
+          - if @card.present?
+            .card-list__main__info
+              .card-list__main__info__brand
+                = icon("fab", "#{@card_image}")
+              .card-list__main__info__num
+                = "************" + @card_info.last4
+              .card-list__main__info__num
+                = "#{@card_month}" + " / " + "#{@card_year}"
+              %button.card-list__main__info__delete
+                削除する
+          - else
+            .card-list__main__new
+              カードを追加する
       .user-card__main__card-help
         支払い方法について
   .mypage-card-contents__footer
