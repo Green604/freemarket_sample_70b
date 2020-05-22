@@ -364,6 +364,17 @@ body {
           .shipping {
             .shipping-about {
               @include label-group__label(#888888);
+              &__mark {
+                color: inherit;
+                text-decoration: none;
+                .shipping-about-svg {
+                  fill: rgb(0, 149, 238);
+                  height: 16px;
+                  margin-left: 4px;
+                  vertical-align: -3px;
+                  width: 16px;
+                }
+              } 
             }
           }
 
