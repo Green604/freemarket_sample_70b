@@ -48,5 +48,17 @@ class PaymentsController < ApplicationController
     end
 
   end
+
+  def destroy
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    @card = Payment.where(user_id: current_user).first
+    customer = Payjp::Customer.retrieve(@card.payjp_id)
+    customer.delete
+      if @card.destroy
+        redirect_to action: "index"
+      else
+        redirect_to action: "index", alert: "削除できませんでした"
+      end
+  end
   
 end
