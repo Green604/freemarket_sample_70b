@@ -41,7 +41,7 @@
   width: 100%;
 }
 
-@mixin category-svg {
+@mixin svg {
   bottom: 0;
   margin: auto;
   pointer-events: none;
@@ -50,3 +50,44 @@
   top: 0;
 }
 
+@mixin input-group {
+  display: inline-block;
+  position: relative;
+  width: inherit;
+}
+
+@mixin input {
+  margin-top: 16px;
+  align-items: center;
+  display: inline-flex;
+  width: 100%;
+  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+  color: #222;
+  font-size: 16px;
+}
+
+@mixin input-group-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  height: 48px;
+  margin: 0;
+  outline: none;
+  padding: 0 16px;
+  width: inherit;
+}
+
+@mixin pulldown {
+  margin-top: 16px;
+  align-items: center;
+  display: inline-flex;
+  width: 100%;
+}
+
+@mixin xxx-select {
+  display: inline-block;
+  position: relative;
+  width: inherit;
+}

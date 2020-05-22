@@ -197,99 +197,13 @@ body {
               }
             }
           }
-      
-    
-              .item-name {
-                .label-group {
-                  @include label-group;
-                  & label {
-                    @include label-group__label ($black);
-                  }
-                  &__required {
-                    @include label-group__required ($sky_blue);
-                  }
-                }
-                &__form {
-                  margin-top: 16px;
-                  align-items: center;
-                  display: inline-flex;
-                  width: 100%;
-                  &__input{
-                    display: inline-block;
-                    position: relative;
-                    width: inherit;
-                  }
-                }
-              }
-    
-              @mixin margin-top {
-                margin: 0;
-                margin-top: 32px;
-              }
-              
-              .content
-                .box
-                  .item
-                    .item-explanation {
-                      @include margin-top;
-                      .label-group {
-                        @include label-group;
-                        & label {
-                          @include label-group__label ($black);
-                        }
-                        &__required {
-                          @include label-group__required ($sky_blue);
-                        }
-                      }
-                    }
-    
-                .detail {
-                  @include label-group__label(#888888);
-                }
-                
-                .label-group {
-                  @include label-group;
-                  & label {
-                    @include label-group__label ($black);
-                  }
-                  &__required {
-                    @include label-group__required ($sky_blue);
-                  }
-                }
-                .category {
-                  .category-2 {
-                    margin-top: 16px;
-                    font-family: Arial,æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“,YuGothic,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,sans-serif;
-                    align-items: center;
-                    display: inline-flex;
-                    width: 100%;
-                    .select {
-                      display: inline-block;
-                      position: relative;
-                      width: inherit;
-                      & select {
-                        @include select;
-                      }
-                      &.category-svg {
-                        @include category-svg;
-                      }
-                    }
-                  }
-                }
-                .item-brand {
-                  @include margin-top;
-                  .label-group {
-                    @include label-group;
-                    & label {
-                      @include label-group__label ($black);
-                    }
-                    &__required {
-                      @include label-group__required (#BFBFBF);
-                    }
-                  }
-                }
-                .item-condition {
-                  @include margin-top;
+          // ここから概要セクション
+          .description {
+            .item-name {
+              margin: 0;
+              .item-name-box {
+                &__name {
+                  margin: 0!important;
                   .label-group {
                     @include label-group;
                     & label {
@@ -300,11 +214,160 @@ body {
                     }
                   }
                 }
-    
-    
-              .item-shipping-about {
-                @include label-group__label(#888888);
+                &__input {
+                  @include input;
+                  .input-group {
+                    @include input-group;
+                    .input-group input {
+                      @include input-group-input;
+                    }
+                  }
+                }
               }
+            }
+            .item-explanation {
+              margin: 0;
+              margin-top: 32px;
+              .item-explanation-flame {
+                .item-explanation-box {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                  &__textarea {
+                    font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+                    width: 100%;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    color: #222;
+                    font-size: 16px;
+                    margin: 0;
+                    margin-top: 16px;
+                    outline: none;
+                    padding: 13px 16px;
+                    resize: vertical;
+                    vertical-align: middle;
+                  }
+                  &__counter {
+                    margin-top: 16px;
+                    text-align: right;
+                    font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+                    color: #888;
+                    font-size: 12px;
+                    line-height: 1.4em;
+                  }
+                }
+              }
+            }
+          }
+          // ここから詳細セクション
+          .detail {
+            .item-detail {
+              @include label-group__label(#888888);
+            }
+            .category {
+              margin: 0;
+              margin-top: 32px;
+              .category-section {
+                &__name {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .category-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .category-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .brand {
+              margin: 0;
+              margin-top: 32px;
+              .brand-section {
+                &__name {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required (#BFBFBF);
+                    }
+                  }
+                }
+                &__input {
+                  @include input;
+                  .input-group {
+                    @include input-group;
+                    .input-group input {
+                      @include input-group-input;
+                    }
+                  }
+                }
+              }
+            }
+            .condition {
+              margin: 0;
+              margin-top: 32px;
+              .condition-section {
+                &__name {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .condition-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .condition-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // ここから配送情報セクション
+          .shipping {
+            .shipping-about {
+              @include label-group__label(#888888);
+            }
+          }
+
+        
               .shipping-fee {
                 .shipping-fee-2 {
                   .shipping-fee-3 {
