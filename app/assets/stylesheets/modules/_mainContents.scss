@@ -191,21 +191,30 @@
       line-height: 1.4;
       font-weight: bold;
     }
-    .itembox {      
-      &__itemHeader {
+    .itemBox { 
+      .itemHeader {
         text-align: center;
         color: #3CCACE;
         font-size: 24px;
       }
-      &__itmeLists {
+      .itemLists {
         width: 780px;
         margin: 26px auto;
         display: flex;
         justify-content: space-around;
-        &__itmeList {
+        .itemList {
           width: 220px;
           display: inline-block;
-          
+          &__box {
+            &--image {
+              .image {
+                height: 100px;
+                width: 100px;
+              }
+            }
+
+          }
+
           a {
             background-color: #fff;
             display: inline-block;

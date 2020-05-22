@@ -83,16 +83,22 @@
 %section.pickup
   %h2.header
     ピックアップカテゴリー
-    .itmeBox
+    .itemBox
       .itemHeader
         新規投稿商品
-      .itemLists
-        .itemList
-          item1
-        .itemList
-          item2
-        .itemList
-          item3
+      %ul.itemLists
+        - @items.last(3).each do |item|
+          = link_to "/items/#{item.id}", method: :get, class:"itemList" do
+            %li.itemList__box
+              .itemList__box--image
+                = image_tag item.images.first.image, class: "image"
+              .itemList__box--name
+                = item.name
+                %br
+                  = "#{item.price} 円"
+                  %br
+                    （税込）
+
 
 %section.pickup
   %h2.header
@@ -101,9 +107,12 @@
       .itemHeader
         アーカイバ
       .itemLists
-        .itemList
-          item4
-        .itemList
-          item5
-        .itemList
-          item6
+/        - @items.last(3).each do |item|
+/          = link_to items_path(item), method: :get, class:"itemList" do
+/            - if item.selling_status.status.present?
+/              %li.itemList__box
+/              .itemList__box--image
+/                = item.images.first
+/                .itemList__box--name
+/                  = @items.item_name
+/                  = @items.price
