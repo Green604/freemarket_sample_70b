@@ -17,11 +17,13 @@
                 = "************" + @card_info.last4
               .card-list__main__info__num
                 = "#{@card_month}" + " / " + "#{@card_year}"
-              %button.card-list__main__info__delete
-                削除する
+              .card-list__main__info__delete
+                = link_to '削除する', payment_path(current_user.id), method: :delete, class: "card-list__main__info__delete__btn"
           - else
             .card-list__main__new
-              カードを追加する
+              = link_to new_payment_path, class: "card-list__main__new__btn" do
+                %i.fas.fa-credit-card
+                クレジットカードを追加する
       .user-card__main__card-help
         支払い方法について
   .mypage-card-contents__footer
