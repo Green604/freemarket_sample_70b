@@ -1,16 +1,31 @@
 %p#notice= notice
+
 %p
-  %strong Title:
-  = @item.title
+  出品者:
+  = @item.name
+
 %p
-  %strong String:
-  = @item.string
+  カテゴリー:
+  = @item.category
 %p
-  %strong Text:
-  = @item.text
+  ブランド:
+  -# = @item.description
 %p
-  %strong Text:
-  = @item.text
-= link_to 'Edit', edit_item_path(@item)
-|
-= link_to 'Back', items_path
+  商品の状態:
+  = @item.condition
+%p
+  配送料の負担:
+  = @item.shipping
+
+%p
+  発送元の地域:
+  = @item.shippingarea
+
+%p
+  発送日の目安:
+  = @item.shippingday
+
+
+-# = link_to 'Edit', edit_item_path(@item)
+-# |
+-# = link_to 'Back', items_path

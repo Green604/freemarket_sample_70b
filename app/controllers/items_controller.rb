@@ -1,27 +1,25 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  # before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.all
   end
 
-  def show
-  end
-
+  
   def new
     @item = Item.new
     @item.images.new
   end
-
+  
   def edit
   end
-
+  
   def create
     @item = Item.new(item_params)
     if @item.save
       selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
       if selling_status.save
-        redirect_to root_path
+        redirect_to item_path (@item.id)
       else
         flash.now[:alert] = 'エラーが発生しました。'
         render :new
@@ -30,7 +28,11 @@ class ItemsController < ApplicationController
       flash.now[:alert] = '入力されていない項目があります。'
       render :new
     end
-
+    
+  end
+  
+  def show
+    @item = Item.find(params[:id])
   end
 
   def update
@@ -44,7 +46,7 @@ class ItemsController < ApplicationController
       end
     end
   end
-
+  
   def destroy
     @item.destroy
     respond_to do |format|
