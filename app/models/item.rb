@@ -7,8 +7,7 @@ class Item < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :users, through: :comments
   has_many :images, dependent: :destroy
-  accepts_nested_attributes_for :images
-  belongs_to :brand
+  belongs_to :brand, optional: true
   belongs_to :category
   belongs_to :shipping
 
@@ -18,7 +17,15 @@ class Item < ApplicationRecord
   validates :condition, presence: true
   validates :category, presence: true
   validates :shipping, presence: true
-  validates :brand, presence: true
 
-  enum condition: [:"新品", :"未使用", :"美品", :"多少傷あり", :"傷あり", :"悪い"]
+  validates_associated :images
+  validates :images, presence: true
+
+
+  enum condition: [ :brand_new, :no_use, :clean, :litte_dirty, :dirty, :bad ]
+
+  # mount_uploader :image, ImageUploader
+  accepts_nested_attributes_for :images, allow_destroy: true
+  accepts_nested_attributes_for :shipping
+
 end

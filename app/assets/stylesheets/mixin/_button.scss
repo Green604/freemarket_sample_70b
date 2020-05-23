@@ -1,0 +1,49 @@
+@mixin button-lightblue {
+  background-color: #3ccace;
+  color: #fff;
+  font-family: Arial,æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“,YuGothic,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,sans-serif;
+  width: 100%;
+  font-size: 17px;
+  min-height: 48px;
+  padding: 0 24px;
+  transition-timing-function: ease-in-out;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  transition-property: background-color,border-color,color;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-break: break-word;
+}
+
+@mixin button-gray {
+  margin-top: 24px;
+  background-color: #ccc;
+  border-color: transparent;
+  color: #222;
+  font-family: Arial,æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“,YuGothic,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,sans-serif;
+  width: 100%;
+  font-size: 17px;
+  min-height: 48px;
+  padding: 0 24px;
+  transition-timing-function: ease-in-out;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  transition-property: background-color,border-color,color;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-break: break-word;
+}
