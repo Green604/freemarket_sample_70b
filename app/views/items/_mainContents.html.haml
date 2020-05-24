@@ -8,9 +8,10 @@
       %br/
       フリマアプリです
     .intApp
-      %a{:href => "https://apps.apple.com/jp/app/itunes-store/id915061235?mt=8", :style => "display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2016-06-01&kind=iossoftware&bubble=ios_apps) no-repeat;width:135px;height:40px;"}
-      %a{:href => "http://play.google.com/store/#?pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"}
-      %img{:alt => "Google Play で手に入れよう", :src => "https://play.google.com/intl/en_us/badges/images/generic/ja_badge_web_generic.png", :width => "160px"}/
+      = link_to "https://www.apple.com/ios/app-store/" do
+        =image_tag "https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2016-06-01&kind=iossoftware&bubble=ios_apps", width: "160"
+      = link_to "http://play.google.com/store/#?pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" do
+        = image_tag "https://play.google.com/intl/en_us/badges/images/generic/ja_badge_web_generic.png", width: "160"
 
 %section.reason
   %h2.reasonTitle
@@ -53,9 +54,10 @@
       %br/
       ほしかったあの商品に出会えるかもしれません。
     .pointApp
-      %a{:href => "https://apps.apple.com/jp/app/itunes-store/id915061235?mt=8", :style => "display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2016-06-01&kind=iossoftware&bubble=ios_apps) no-repeat;width:135px;height:40px;"}
-        %a{:href => "http://play.google.com/store/#?pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"}
-        %img{:alt => "Google Play で手に入れよう", :src => "https://play.google.com/intl/en_us/badges/images/generic/ja_badge_web_generic.png", :width => "160px"}/
+      = link_to "https://www.apple.com/ios/app-store/" do
+        =image_tag "https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2016-06-01&kind=iossoftware&bubble=ios_apps", width: "160"
+      = link_to "http://play.google.com/store/#?pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" do
+        = image_tag "https://play.google.com/intl/en_us/badges/images/generic/ja_badge_web_generic.png", width: "160"
 
 %section.mainfeatures
   %h2.featureTitle
