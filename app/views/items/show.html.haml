@@ -1,4 +1,10 @@
 %p#notice= notice
+%p
+- if user_signed_in?
+  ログイン中ユーザー:
+  = current_user.nickname
+- else 
+  未ログイン
 
 %p
   商品名:
@@ -32,14 +38,15 @@
 %p
   発送日の目安:
   = @item.shipping.shipping_day
+  
+- if user_signed_in?
+  - unless user_signed_in? && current_user.id == @item.seller.user.id
+    .li
+      = link_to '購入', "#"
 
-- unless user_signed_in? && current_user.id == @item.seller.user.id
-  .li
-    = link_to '購入', "#"
-
-- if user_signed_in? && current_user.id == @item.seller.user.id
-  .li
-    = link_to '編集', "#"
-  .li
-    = link_to '削除', "#"
+  - if user_signed_in? && current_user.id == @item.seller.user.id
+    .li
+      = link_to '編集', "#"
+    .li
+      = link_to '削除', "#"
 
