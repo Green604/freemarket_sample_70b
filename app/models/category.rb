@@ -1,8 +1,7 @@
 class Category < ApplicationRecord
   has_many :items
+  has_ancestry
 
   validates :name, presence: true
 
-  # 出品機能モデルのバリデーションテスト用でエラーが出る為一旦コメントアウト
-  # has_ancestry
 end
