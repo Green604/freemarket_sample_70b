@@ -109,12 +109,3 @@
       .itemHeader
         アーカイバ
       .itemLists
-/        - @items.last(3).each do |item|
-/          = link_to items_path(item), method: :get, class:"itemList" do
-/            - if item.selling_status.status.present?
-/              %li.itemList__box
-/              .itemList__box--image
-/                = item.images.first
-/                .itemList__box--name
-/                  = @items.item_name
-/                  = @items.price
