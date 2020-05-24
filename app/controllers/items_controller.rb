@@ -18,7 +18,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
-      if selling_status.save
+      seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
+      if selling_status.save && seller.save
         redirect_to item_path (@item.id)
       else
         flash.now[:alert] = 'エラーが発生しました。'
