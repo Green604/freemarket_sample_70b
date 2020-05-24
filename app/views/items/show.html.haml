@@ -1,16 +1,95 @@
+.main
+  .showMain
+    .topContent
+      .itemBox
+        .itemBox__name
+          %h2 
+            product3
+        .item__body
+          .ul
+            .li 
+            .ul
+              .li
+        .itemBox__price
+          %span 
+            ¥30000
+          .itemBox__price-detail
+            %span 
+              (税込)
+            %span 
+              送料込み
+        .itemDetail
+          =@item.description
+        .table
+          %table
+            %tbody
+              %tr
+                %th 
+                  出品者
+                %td 
+                  hoge
+              %tr
+                %th 
+                  カテゴリー
+                %td
+                  ベビー・キッズ
+                  ベビー服（男女兼用） ~95cm
+                  アウター
+              %tr
+                %th 
+                  ブランド
+                %td 
+                  hoge
+              %tr
+                %th 
+                  商品のサイズ
+                %td 
+              %tr
+                %th 
+                  商品の状態
+                %td 
+                  未使用に近い
+              %tr
+                %th 
+                  配送料の負担
+                %td 
+                  送料込み（出品者負担）
+              %tr
+                %th 
+                  発送元の地域
+                %td 
+                  岩手県
+              %tr
+                %th 
+                  発送日の目安
+                %td 
+                  4-7日で発送
+        .optionalArea
+          .ul
+            .li
+              お気に入り
+          .ul 
+            .li 
+              不適切な商品の通報
+        .commentBox
+          .ul 
+            -# = form_for [@item, @comment] do |f|
+            -#   = f.text_field :content, class: 'new__comment'
+            -#   %p 
+            -#     相手のことを考え丁寧なコメントを心がけましょう
+            -#     %br
+            -#       不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            -#   = f.submit 'コメントする', class: 'commentBtn'
+    .ul
+      .li
+        前の商品
+      .li
+        後ろの商品
+    .relatedItems
+      ベビー・キッズをもっと見る
+      .productLists
+
+
 %p#notice= notice
 %p
   %strong Title:
-  = @item.item_name
-%p
-  %strong Image:
-  = @item.images.(image:[:id])
-%p
-  %strong Text:
-  = @item.text
-%p
-  %strong Text:
-  = @item.text
-= link_to 'Edit', edit_item_path(@item)
-|
-= link_to 'Back', items_path
