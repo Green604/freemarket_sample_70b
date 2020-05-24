@@ -1,16 +1,51 @@
 %p#notice= notice
 %p
-  %strong Title:
-  = @item.item_name
+- if user_signed_in?
+  ログイン中ユーザー:
+  = current_user.nickname
+- else 
+  未ログイン
 %p
-  %strong Image:
-  = @item.images.(image:[:id])
+  商品名:
+  = @item.name
 %p
-  %strong Text:
-  = @item.text
+  - @item.images.each do |image|
+    = image_tag image.image.url
+
 %p
-  %strong Text:
-  = @item.text
-= link_to 'Edit', edit_item_path(@item)
-|
-= link_to 'Back', items_path
+  出品者:
+  = @item.seller.user.nickname
+
+%p
+  カテゴリー:
+  = @item.category.name
+%p
+  ブランド:
+  - if @item.brand.present?
+    = @item.brand.name 
+%p
+  商品の状態:
+  = @item.condition
+%p
+  配送料の負担:
+  = @item.shipping.shipping_fee
+
+%p
+  発送元の地域:
+  = @item.shipping.shippingarea.name
+
+%p
+  発送日の目安:
+  = @item.shipping.shipping_day
+  
+- if user_signed_in?
+  - unless user_signed_in? && current_user.id == @item.seller.user.id
+    .li
+      = link_to '購入', "#"
+
+  - if user_signed_in? && current_user.id == @item.seller.user.id
+    .li
+      = link_to '編集', "#"
+    .li
+      = link_to '削除', "#"
+
