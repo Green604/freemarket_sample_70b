@@ -1,31 +1,45 @@
 %p#notice= notice
 
 %p
-  出品者:
+  商品名:
   = @item.name
+%p
+  - @item.images.each do |image|
+    = image_tag image.image.url
+
+%p
+  出品者:
+  = @item.seller.user.nickname
 
 %p
   カテゴリー:
-  = @item.category
+  = @item.category.name
 %p
   ブランド:
-  -# = @item.description
+  - if @item.brand.present?
+    = @item.brand.name 
 %p
   商品の状態:
   = @item.condition
 %p
   配送料の負担:
-  = @item.shipping
+  = @item.shipping.shipping_fee
 
 %p
   発送元の地域:
-  = @item.shippingarea
+  = @item.shipping.shippingarea.name
 
 %p
   発送日の目安:
-  = @item.shippingday
+  = @item.shipping.shipping_day
 
+- unless user_signed_in? && current_user.id == @item.seller.user.id
+  .li
+    = link_to '購入', "#"
 
--# = link_to 'Edit', edit_item_path(@item)
--# |
--# = link_to 'Back', items_path
+- if user_signed_in? && current_user.id == @item.seller.user.id
+  .li
+    = link_to '編集', "#"
+  .li
+    = link_to '削除', "#"
+
