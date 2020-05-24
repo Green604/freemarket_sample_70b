@@ -1,0 +1,24 @@
+.insideHeader
+  .mainHeader
+    %h1.logo
+      = link_to "#" 
+
+    .searchBox
+      キーワードから探す
+  .navBar
+    %ul.leftList
+      %li.list
+        = link_to "カテゴリー"
+        .menue
+      %li.list
+        = link_to "ブランド"
+        .menue
+    %ul.rightList
+      %li.btn
+        = link_to "ログイン", new_user_session_path, class: 'actions'
+      %li.btn
+        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'actions'
+      %li.btn
+        = link_to "新規会員登録", new_user_registration_path, class: 'actions'
+      %li.btn
+        = link_to '出品', new_item_path
