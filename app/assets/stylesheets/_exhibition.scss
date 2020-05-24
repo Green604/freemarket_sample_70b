@@ -197,7 +197,6 @@ body {
               }
             }
           }
-          // ここから概要セクション
           .description {
             .item-name {
               margin: 0;
@@ -249,14 +248,12 @@ body {
                     color: #222;
                     font-size: 16px;
                     margin: 0;
-                    margin-top: 16px;
                     outline: none;
                     padding: 13px 16px;
                     resize: vertical;
                     vertical-align: middle;
                   }
                   &__counter {
-                    margin-top: 16px;
                     text-align: right;
                     font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
                     color: #888;
@@ -360,11 +357,10 @@ body {
               }
             }
           }
-          // ここから配送情報セクション
           .shipping {
             .shipping-about {
-              @include label-group__label(#888888);
-              &__mark {
+              @include label-group__label ($light_gray);
+              a {
                 color: inherit;
                 text-decoration: none;
                 .shipping-about-svg {
@@ -376,60 +372,146 @@ body {
                 }
               } 
             }
+            .shippingfee {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingfee-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingfee-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingway {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingway-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingway-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingarea {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingarea-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingarea-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingday {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingday-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingday-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .exhibition-price {
+            .price {
+              @include label-group__label($light_gray);
+              a {
+                color: inherit;
+                text-decoration: none;
+                .price-svg {
+                  fill: rgb(0, 149, 238);
+                  height: 16px;
+                  margin-left: 4px;
+                  vertical-align: -3px;
+                  width: 16px;
+                }
+              } 
+            }
           }
 
-        
-              .shipping-fee {
-                .shipping-fee-2 {
-                  .shipping-fee-3 {
-                    .label-group {
-                      @include label-group;
-                      & label {
-                        @include label-group__label ($black);
-                      }
-                      &__required {
-                        @include label-group__required ($sky_blue);
-                      }
-                    }
-                  }
-                }
-              }
+              
     
-              .shipping-area {
-                .shipping-area-2 {
-                  .shipping-area-3 {
-                    .label-group {
-                      @include label-group;
-                      & label {
-                        @include label-group__label ($black);
-                      }
-                      &__required {
-                        @include label-group__required ($sky_blue);
-                      }
-                    }
-                  }
-                }
-              }
+              
     
-              .shipping-day {
-                .shipping-day-2 {
-                  .shipping-day-3 {
-                    .label-group {
-                      @include label-group;
-                      & label {
-                        @include label-group__label ($black);
-                      }
-                      &__required {
-                        @include label-group__required ($sky_blue);
-                      }
-                    }
-                  }
-                }
-              }
     
-              .price {
-                @include label-group__label(#888888);
-              }
+              
               
               .selling-price {
                 .selling-price-2 {
