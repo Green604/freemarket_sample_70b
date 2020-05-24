@@ -1,19 +1,7 @@
-%p#notice= notice
-%h1 Items
-%table
-  %thead
-    %tr
-      %th Title
-      %th String
-      %th Text
-      %th Text
-      %th{:colspan => "3"}
-  %tbody
-    表示できました
-%br/
-= link_to 'New Item', new_item_path
-- if user_signed_in?
-  = link_to edit_user_path(current_user) do
-    = icon('fas', 'cog', class: 'icon')
-
-= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'actions'
+%body
+  %header.topContent
+    =render "topContents"
+  .mainContent
+    =render "mainContents"
+  .bottomeContent
+    =render "bottomContents"
