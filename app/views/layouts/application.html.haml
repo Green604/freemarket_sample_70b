@@ -20,7 +20,8 @@
             マイページ
         - else
           .grid-6
-            ログイン
-            新規登録
+            = link_to "ログイン", new_user_session_path, method: :get
+            = link_to "新規登録", new_user_registration_path, method: :get
+
     = render 'layouts/notifications'
     = yield
