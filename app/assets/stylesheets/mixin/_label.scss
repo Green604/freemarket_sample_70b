@@ -1,0 +1,93 @@
+@mixin label-group {
+  font-family: Arial,æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“,YuGothic,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,sans-serif;
+  align-items: center;
+  display: flex;
+}
+
+@mixin label-group__label ($color) {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4em;
+  color: $color;
+}
+
+@mixin label-group__required ($bgcolor){
+  font-size: 12px;
+  margin-left: 4px;
+  padding: 0 4px;
+  font-family: Arial, sans-serif ;
+  background-color: $bgcolor;
+  color: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4em;
+}
+
+@mixin select {
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  height: 48px;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 0 56px 0 16px;
+  width: 100%;
+}
+
+@mixin svg {
+  bottom: 0;
+  margin: auto;
+  pointer-events: none;
+  position: absolute;
+  right: 16px;
+  top: 0;
+}
+
+@mixin input-group {
+  display: inline-block;
+  position: relative;
+  width: inherit;
+}
+
+@mixin input {
+  margin-top: 16px;
+  align-items: center;
+  display: inline-flex;
+  width: 100%;
+  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+  color: #222;
+  font-size: 16px;
+}
+
+@mixin input-group-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  height: 48px;
+  margin: 0;
+  outline: none;
+  padding: 0 16px;
+  width: inherit;
+}
+
+@mixin pulldown {
+  margin-top: 16px;
+  align-items: center;
+  display: inline-flex;
+  width: 100%;
+}
+
+@mixin xxx-select {
+  display: inline-block;
+  position: relative;
+  width: inherit;
+}

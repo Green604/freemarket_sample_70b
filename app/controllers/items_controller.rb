@@ -1,44 +1,41 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, except: [:index, :show]
 
-  # GET /items
-  # GET /items.json
   def index
-    # @items = Item.all
+    @items = Item.all
   end
 
-  # GET /items/1
-  # GET /items/1.json
-  def show
-  end
-
-  # GET /items/new
+  
   def new
     @item = Item.new
+    @item.images.new
   end
-
-  # GET /items/1/edit
+  
   def edit
   end
-
-  # POST /items
-  # POST /items.json
+  
   def create
     @item = Item.new(item_params)
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
+    if @item.save
+      selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
+      seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
+      if selling_status.save && seller.save
+        redirect_to item_path (@item.id)
       else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        flash.now[:alert] = 'エラーが発生しました。'
+        render :new
       end
+    else
+      flash.now[:alert] = '入力されていない項目があります。'
+      render :new
     end
+    
+  end
+  
+  def show
+    @item = Item.find(params[:id])
   end
 
-  # PATCH/PUT /items/1
-  # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
       if @item.update(item_params)
@@ -50,9 +47,7 @@ class ItemsController < ApplicationController
       end
     end
   end
-
-  # DELETE /items/1
-  # DELETE /items/1.json
+  
   def destroy
     @item.destroy
     respond_to do |format|
@@ -62,13 +57,11 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  def item_params
+    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :category_id, :shipping_id, images_attributes: [:image], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def item_params
-      params.require(:item).permit(:title, :string, :text, :text)
-    end
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
 end

@@ -1,0 +1,65 @@
+%h2 ユーザー情報登録
+
+= form_for(@user, url: user_registration_path) do |f| 
+  = render "devise/shared/error_messages", resource: @user 
+  .field
+    = f.label :nickname
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
+  .field
+    = f.label :email
+    %span.class_form-require
+      必須
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password
+    %span.class_form-require
+      必須
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br/
+    = f.password_field :password, autocomplete: "new-password"
+  .field
+    = f.label :password_confirmation
+    %span.class_form-require
+      必須
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+  .field
+    = f.label :first_name
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :first_name, placeholder: "全角で入力して下さい", autofocus: true, autocomplete: "first_name"
+  .field
+    = f.label :last_name
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :last_name, placeholder: "全角で入力して下さい", autofocus: true, autocomplete: "last_name"
+  .field
+    = f.label :first_name_kana
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :first_name_kana, placeholder: "全角ひらがなで入力して下さい", autofocus: true, autocomplete: "first_name_kana"
+  .field
+    = f.label :last_name_kana
+    %span.class_form-require
+      必須
+    %br/
+    = f.text_field :last_name_kana, placeholder: "全角ひらがなで入力して下さい", autofocus: true, autocomplete: "last_name_kana"
+  .field
+    = f.label :birthday, "Birthday"
+    %span.class_form-require
+      必須
+    %br/
+    = f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1)
+  .actions
+    = f.submit "Next"
+    
+= render "users/shared/links"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_143432) do
+ActiveRecord::Schema.define(version: 2020_05_22_092820) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 2020_05_13_143432) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
   create_table "shipping_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -115,11 +124,12 @@ ActiveRecord::Schema.define(version: 2020_05_13_143432) do
   end
 
   create_table "shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "shipping_area", null: false
     t.string "shipping_day", null: false
-    t.integer "shipping_fee", null: false
+    t.string "shipping_fee", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shippingway_id"
+    t.integer "shippingarea_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
