@@ -1,8 +1,3 @@
-%h1 Editing Item
-= render 'form', item: @item
-= link_to 'Show', @item
-|
-= link_to 'Back', items_path
 %body
   .overall
     %header
@@ -110,117 +105,107 @@
             %hr.border
             
             %section.shipping
-            = f.fields_for 'shipping_attributes', @item.shipping do |s|
-              %p.shipping-about
-                配送について
-                %a
+              = f.fields_for 'shipping_attributes', @item.shipping do |s|
+                %p.shipping-about
+                  配送について
                   = link_to root_path do
                     %svg.shipping-about-svg{"aria-hidden": "true", fill: "#222222", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
                       %path{d: "M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18.6A8.6,8.6,0,1,1,20.6,12,8.61,8.61,0,0,1,12,20.6Z"}
                       %path{d: "M14.18,7.52A2.72,2.72,0,0,0,13.25,7a3.16,3.16,0,0,0-1.17-.2A3.12,3.12,0,0,0,10,7.43,2.92,2.92,0,0,0,9,9.27c0,.12,0,.18.12.19l1.4.22c.09,0,.15,0,.17-.13a1.63,1.63,0,0,1,.44-.91A1.2,1.2,0,0,1,12,8.31a1.17,1.17,0,0,1,.88.33,1.15,1.15,0,0,1,.33.83,1.62,1.62,0,0,1-.12.61,3.46,3.46,0,0,1-.41.67l-1.23,1.67a2.53,2.53,0,0,0-.31.58,2.51,2.51,0,0,0-.09.75v.63a.14.14,0,0,0,.16.16h1.44a.14.14,0,0,0,.16-.16v-.45a1.7,1.7,0,0,1,.07-.56,1.31,1.31,0,0,1,.24-.42l1.22-1.67A2.93,2.93,0,0,0,15,9.46a2.62,2.62,0,0,0-.22-1.09A2.43,2.43,0,0,0,14.18,7.52Z"}
                       %circle{cx: "12", cy: "16.24", r: "1"}
-
-              .shipping-fee
-                .shipping-fee-2
-                  .shipping-fee-3
-                    .label-group
-                      = s.label :condition, '配送料の負担'
-                      %span.label-group__required 必須
-                  .exhibition__shipping_people
-                    .exhibition__shipping_people_fee
-                      = s.select :shipping_fee , [ ["送料込み（出品者負担）", "送料込み（出品者負担）"], ["着払い（購入者負担）", "着払い（購入者負担）"] ], prompt: "選択してください"
-                      %svg.exhibition__shipping_people__svg{"aria-hidden": "true", fill: "888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
-                        %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
-                
+                .shippingfee
+                  .shippingfee-section
+                    .shippingfee-section__name
+                      .label-group
+                        = s.label :condition, '配送料の負担'
+                        %span.label-group__required 必須
+                    .shippingfee-section__pulldown
+                      .shippingfee-select
+                        = s.select :shipping_fee , [ ["送料込み（出品者負担）", "送料込み（出品者負担）"], ["着払い（購入者負担）", "着払い（購入者負担）"] ], prompt: "選択してください"
+                        %svg.shippingfee-svg{"aria-hidden": "true", fill: "888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
+                          %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
                 .shippingway
-                  = s.collection_select :shippingway_id, Shippingway.all, :id, :name
-
-                -# .shippingarea
-                -#   = s.collection_select :shippingarea_id, Shippingarea.all, :id, :name
-
-                .shipping-area
-                  .shipping-area-2
-                    .shipping-area-3
+                  .shippingway-section
+                    .shippingway-section__name
+                      .label-group
+                        = s.label :condition, '配送方法'
+                        %span.label-group__required 必須
+                    .shippingway-section__pulldown
+                      .shippingway-select
+                        = s.collection_select :shippingway_id, Shippingway.all, :id, :name, prompt: "選択してください"
+                        %svg.shippingway-svg{"aria-hidden": "true", fill: "888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
+                          %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
+                .shippingarea
+                  .shippingarea-section
+                    .shippingarea-section__name
                       .label-group
                         = s.label :shipping_area, '配送元の地域'
                         %span.label-group__required 必須
-                    .exhibition__shipping_area_choice
-                      .exhibition__shipping_area_box
-                        = s.collection_select :shippingarea_id, Shippingarea.all, :id, :name
-                        -# = s.select :shipping_area, [ ["北海道", "北海道"], ["青森県", "青森県"], ["岩手県", "岩手県"] , ["宮城県", "宮城県"], ["秋田県", "秋田県"], ["山形県", "山形県"], ["福島県", "福島県"], ["茨城県", "茨城県"], ["栃木県", "栃木県"], ["群馬県", "群馬県"], ["千葉県", "千葉県"], ["東京都", "東京都"], ["神奈川県", "神奈川県"], ["新潟県", "新潟県"], ["富山県", "富山県"], ["石川県", "石川県"], ["福井県", "福井県"], ["山梨県", "山梨県"], ["長野県", "長野県"], ["岐阜県", "岐阜県"], ["静岡県", "静岡県"], ["愛知県", "愛知県"], ["三重県", "三重県"], ["滋賀県", "滋賀県"], ["京都府", "京都府"], ["大阪府", "大阪府"], ["兵庫県", "兵庫県"], ["奈良県", "奈良県"], ["和歌山県", "和歌山県"], ["鳥取県", "鳥取県"], ["島根県", "島根県"], ["岡山県", "岡山県"], ["広島県", "広島県"], ["山口県", "山口県"], ["徳島県", "徳島県"], ["香川県", "香川県"], ["愛媛県", "愛媛県"], ["高知県", "高知県"], ["福岡県", "福岡県"], ["佐賀県", "佐賀県"], ["長崎県", "長崎県"], ["熊本県", "熊本県"], ["大分県", "大分県"], ["宮崎県", "宮崎県"], ["鹿児島県", "鹿児島県"], ["沖縄県", "沖縄県"], ["未定", "未定"] ],  prompt: "選択してください"
-                .shipping-day
-                  .shipping-day-2
-                    .shipping-day-3
+                    .shippingarea-section__pulldown
+                      .shippingarea-select
+                        = s.collection_select :shippingarea_id, Shippingarea.all, :id, :name, prompt: "選択してください"
+                        %svg.shippingarea-svg{"aria-hidden": "true", fill: "888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
+                          %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
+                .shippingday
+                  .shippingday-section
+                    .shippingday-section__name
                       .label-group
                         = s.label :shipping_day, '配送までの日数'
                         %span.label-group__required 必須
-                  .exhibition__shipping_days_choice
-                    .exhibition__shipping_days_choice_under
+                  .shippingday-section__pulldown
+                    .shippingday-select
                       = s.select :shipping_day , [ ["1〜2日で発送", "1〜2日で発送"], ["2〜3日で発送", "2〜3日で発送"], ["4〜7日で発送", "4〜7日で発送"] ], prompt: "選択してください"
-                      %svg.exhibition__shipping_area_svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", witdh: "24"}
-                        %path{m12: ""}
+                      %svg.shippingday-svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", witdh: "24"}
+                        %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
 
             %hr.border
 
-              %section.exhibition__price
-                .price
+              %section.exhibition-price
+                %p.price
                   価格（¥300〜9,999,999）
-                  %a
-                    = link_to root_path do
-                      %svg.exhibition__shipping_about_svg{"aria-hidden": "true", fill: "#222222", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
-                        %path{d: "M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18.6A8.6,8.6,0,1,1,20.6,12,8.61,8.61,0,0,1,12,20.6Z"}
-                        %path{d: "M14.18,7.52A2.72,2.72,0,0,0,13.25,7a3.16,3.16,0,0,0-1.17-.2A3.12,3.12,0,0,0,10,7.43,2.92,2.92,0,0,0,9,9.27c0,.12,0,.18.12.19l1.4.22c.09,0,.15,0,.17-.13a1.63,1.63,0,0,1,.44-.91A1.2,1.2,0,0,1,12,8.31a1.17,1.17,0,0,1,.88.33,1.15,1.15,0,0,1,.33.83,1.62,1.62,0,0,1-.12.61,3.46,3.46,0,0,1-.41.67l-1.23,1.67a2.53,2.53,0,0,0-.31.58,2.51,2.51,0,0,0-.09.75v.63a.14.14,0,0,0,.16.16h1.44a.14.14,0,0,0,.16-.16v-.45a1.7,1.7,0,0,1,.07-.56,1.31,1.31,0,0,1,.24-.42l1.22-1.67A2.93,2.93,0,0,0,15,9.46a2.62,2.62,0,0,0-.22-1.09A2.43,2.43,0,0,0,14.18,7.52Z"}
-                        %circle{cx: "12", cy: "16.24", r: "1"}
+                  = link_to root_path do
+                    %svg.price-svg{"aria-hidden": "true", fill: "#222222", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
+                      %path{d: "M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18.6A8.6,8.6,0,1,1,20.6,12,8.61,8.61,0,0,1,12,20.6Z"}
+                      %path{d: "M14.18,7.52A2.72,2.72,0,0,0,13.25,7a3.16,3.16,0,0,0-1.17-.2A3.12,3.12,0,0,0,10,7.43,2.92,2.92,0,0,0,9,9.27c0,.12,0,.18.12.19l1.4.22c.09,0,.15,0,.17-.13a1.63,1.63,0,0,1,.44-.91A1.2,1.2,0,0,1,12,8.31a1.17,1.17,0,0,1,.88.33,1.15,1.15,0,0,1,.33.83,1.62,1.62,0,0,1-.12.61,3.46,3.46,0,0,1-.41.67l-1.23,1.67a2.53,2.53,0,0,0-.31.58,2.51,2.51,0,0,0-.09.75v.63a.14.14,0,0,0,.16.16h1.44a.14.14,0,0,0,.16-.16v-.45a1.7,1.7,0,0,1,.07-.56,1.31,1.31,0,0,1,.24-.42l1.22-1.67A2.93,2.93,0,0,0,15,9.46a2.62,2.62,0,0,0-.22-1.09A2.43,2.43,0,0,0,14.18,7.52Z"}
+                      %circle{cx: "12", cy: "16.24", r: "1"}
                 .selling-price
-                  .selling-price-2
-                    .selling-price-3
+                  .selling-price-box
+                    .selling-price-box__label
                       .label-group
                         = f.label :price, '販売価格'
                         %span.label-group__required 必須
-                      %span.exhibition__price__yenmark ¥
-                    .exhibition__price__box
-                      .exhibition__price__inputarea
+                    %span.selling-price-box__yenmark ¥
+                    .selling-price-box__input
+                      .price-input
                         = f.number_field :price, placeholder: "0", autocomplete: "off"
-
                   .selling-fee
-                    .selling-fee-2{"data-test": "fee-value"}
-                      .selling-fee-3
+                    .selling-fee__label
+                      .selling-fee-10
                         販売手数料（10%）
-                      %span.exhibition__datatest_under{"data-test": "fee-value"} -
-                    %hr.exhibition__price__underbar/
+                    %span.selling-fee__value —
+                  %hr.selling-fee-underbar
                   .profit
-                    .profit-2
-                      販売利益
-                    %span{"data-test": "total-value"} -
+                    .profit__label
+                      .profit__label-name
+                        販売利益
+                    %span.profit__value —
                   .button
                     = f.submit "出品する", class: "button-lightblue", tabindex: "0"
                     = f.submit "下書きに保存", class: "button-gray", tabindex: "0"
-                    -# %button.exhibition-button-grey{:tabindex => "0", :type => "submit"} 下書きに保存
-                    %a.button-back
-                      = link_to root_path do
-                        もどる
-                  .exhibition-attention
-                    %p.exhibition-attention-p
+                    = link_to 'もどる', root_path, class: "button-back"
+
+                  .attention
+                    %p.attention-sentence
                       禁止されている
-                      %a.exhibition-attention-action
-                        = link_to root_path do
-                          行為
+                      = link_to '行為', '#', class: "attention__prohibit"
                       および
-                      %a.exhibition-attention-object
-                        = link_to root_path do
-                          出品物
+                      = link_to '出品物', '#', class: "attention__object"
                       を必ずご確認ください。
-                      %a.exhibition-attention-fake
-                        = link_to root_path do
-                          偽ブランド品
+                      = link_to '偽ブランド品', '#', class: "attention__fake"
                       や
-                      %a.exhibition-attention-stolen 
-                        = link_to root_path do
-                          盗品物
+                      = link_to '盗品物', '#', class: "attention__stolen"
                       などの販売は犯罪であり、法律により処罰される可能性があります。また、出品物をもちまして
-                      %a.exhibition-attention-rule
-                        = link_to root_path do
-                          加盟店規約
+                      = link_to '加盟店規約', '#', class: "attention__rule"
                       に同意したことになります。
     %footer
       .footer-body
