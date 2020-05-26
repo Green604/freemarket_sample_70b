@@ -38,17 +38,24 @@ class ItemsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      flash.now[:alert] = 'エラーが発生しました。'
+      render :edit
+      # respond_to do |format|
+    #   if @item.update(item_params)
+    #     format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @item }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @item.errors, status: :unprocessable_entity }
+    #   end
+    # end
     end
   end
-  
+
   def destroy
     @item.destroy
     respond_to do |format|

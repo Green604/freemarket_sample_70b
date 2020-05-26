@@ -27,22 +27,24 @@
                     .label-group
                       = f.label :image, '出品画像'
                       %span.label-group__required 必須
-                  %p.image-box__limit 最大10枚までアップロードできます
+                  %p.image-box__limit 
                   .image-box__upload
                     .image-container
                       .image-capsule
-                        .image-folder#image-box
-                          = f.fields_for :images do |image|
-                            .js-file_group{"data-index": "#{image.index}" }
-                              = image.file_field :image, class: 'js-file'
-                              %br/
-                              %span.js-remove 削除
-                          %p.image-folder__icon
-                            %i.fas.fa-camera.fa-lg
-                          %p.image-folder__instruction
-                          ドラッグアンドドロップ
-                          %br/
-                          またはクリックしてファイルをアップロード
+                        - @item.images.each do |i|
+                          = image_tag i.image.url, class: "image"
+                        -# .image-folder#image-box
+                        -#   = f.fields_for :images do |image|
+                        -#     .js-file_group{"data-index": "#{image.index}" }
+                        -#       = image.file_field :image, class: 'js-file'
+                        -#       %br/
+                        -#       %span.js-remove 削除
+                        -#   %p.image-folder__icon
+                        -#     %i.fas.fa-camera.fa-lg
+                        -#   %p.image-folder__instruction
+                        -#   ドラッグアンドドロップ
+                        -#   %br/
+                        -#   またはクリックしてファイルをアップロード
             %hr.border
 
             %section.description
