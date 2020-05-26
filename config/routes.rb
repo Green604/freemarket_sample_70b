@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
 
   root "items#index"
-  resources :items, except: [:edit]
+  resources :items
   
 end

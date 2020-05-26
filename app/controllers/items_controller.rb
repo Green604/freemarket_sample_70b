@@ -11,9 +11,6 @@ class ItemsController < ApplicationController
     @item.images.new
   end
   
-  def edit
-  end
-  
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -33,6 +30,10 @@ class ItemsController < ApplicationController
   end
   
   def show
+    @item = Item.find(params[:id])
+  end
+
+  def edit
     @item = Item.find(params[:id])
   end
 
