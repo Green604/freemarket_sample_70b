@@ -82,7 +82,7 @@ hr {
 
 @media (min-width: 768px) {
   .attention {
-    margin: 0px 40px 64px;
+    margin: 0px 0px 20px;
   }
 }
 
@@ -153,6 +153,7 @@ body {
                         -webkit-box-align: center;
                         align-items: center;
                         background-color: rgb(245, 245, 245);
+                        position: relative;
                         cursor: pointer;
                         display: flex;
                         height: 100%;
@@ -167,34 +168,45 @@ body {
                         transition: all 0.5s ease-out 0s;
                         .js-file_group {
                           // display: none;
-                          // font-family: inherit;
-                          // font-size: 100%;
-                          // -webkit-appearance: initial;
-                          // background-color: initial;
-                          // align-items: baseline;
-                          // color: inherit;
-                          // text-align: start !important;
-                          // padding: initial;
-                          // border: initial;
-                          // letter-spacing: normal;
-                          // word-spacing: normal;
-                          // text-transform: none;
-                          // text-indent: 0px;
-                          // text-shadow: none;
-                          // -webkit-writing-mode: horizontal-tb !important;
-                          // text-rendering: auto;
-                          // -webkit-rtl-ordering: logical;
-                          // margin: 0em;
-                          // font: 400 11px system-ui;
+                          font-family: inherit;
+                          font-size: 100%;
+                          -webkit-appearance: initial;
+                          background-color: initial;
+                          align-items: baseline;
+                          color: inherit;
+                          text-align: start !important;
+                          padding: initial;
+                          border: initial;
+                          letter-spacing: normal;
+                          word-spacing: normal;
+                          text-transform: none;
+                          text-indent: 0px;
+                          text-shadow: none;
+                          -webkit-writing-mode: horizontal-tb !important;
+                          text-rendering: auto;
+                          -webkit-rtl-ordering: logical;
+                          margin: 0em;
+                          font: 400 11px system-ui;
+                          .icon {
+                            position: absolute;
+                            width: 620px;
+                            height: 150px;
+                            font-size: large;
+                            top: 0;
+                            left: 0;
+                            .fa-camera:before {
+                              margin-top: 50px;
+                            }
+                          }
                         }
-                        &__icon {
-                          fill: rgb(34, 34, 34);
-                          height: 24px;
-                          margin-bottom: 8px;
-                          width: 24px;
-                          fill-rule: evenodd;
-                          overflow: hidden;
-                        }
+                        // &__icon {
+                        //   fill: rgb(34, 34, 34);
+                        //   height: 24px;
+                        //   margin-bottom: 8px;
+                        //   width: 24px;
+                        //   fill-rule: evenodd;
+                        //   overflow: hidden;
+                        // }
                         &___instruction {
                           font-size: 12px !important;
                           line-height: 1.4em;
@@ -657,11 +669,10 @@ body {
                 }
               }
               .attention {
-                margin: 0px 40px 64px;
+                margin: 0px 16px 48px;
                 display: block;
                 &-sentence {
                   vertical-align: baseline;
-                  margin: 0px;
                   padding: 0px;
                   border-width: 0px;
                   border-style: initial;
@@ -676,6 +687,7 @@ body {
                   font-size: 12px;
                   line-height: 1.4em;
                   box-sizing: border-box;
+                  margin: 0px;
                 }
                 &__prohibit {
                   @include word-link;
@@ -757,7 +769,7 @@ body {
           &__item {
             display: inline-block;
             margin: 16px 0px 0px 16px;
-            .name {
+            &-link{
               font-size: 12px;
               color: inherit;
               text-decoration: none;
@@ -768,12 +780,6 @@ body {
       .logo {
         color: inherit;
         text-decoration: none;
-        &__image {
-          height: 65px;
-          margin-bottom: 8px;
-          width: 80px;
-          vertical-align: middle;
-        }
       }
       .company {
         font-size: 12px;
