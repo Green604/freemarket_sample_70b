@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_145730) do
+ActiveRecord::Schema.define(version: 2020_05_24_093559) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_145730) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
   end
 
   create_table "chats", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_145730) do
     t.text "description", null: false
     t.integer "price", null: false
     t.integer "condition", null: false
+    t.integer "parent_category_id"
     t.integer "brand_id"
     t.integer "category_id"
     t.integer "shipping_id"
@@ -124,11 +126,12 @@ ActiveRecord::Schema.define(version: 2020_05_17_145730) do
   end
 
   create_table "shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "shipping_area", null: false
     t.string "shipping_day", null: false
-    t.integer "shipping_fee", null: false
+    t.string "shipping_fee", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shippingway_id"
+    t.integer "shippingarea_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

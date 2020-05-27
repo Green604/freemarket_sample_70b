@@ -1,9 +1,25 @@
 .account-page {
   width: 60%;
   margin: 0 auto;
+  background-color: #f8f8f8;
   .account-page__header {
-    border: 1px solid lightgray;;
-    height: 100px;
+    border: 1px solid lightgray;
+    height: 70px;
+    border-bottom: none;
+    padding: 30px 10%;
+    display: flex;
+    &--progress-bar {
+      text-align: center;
+      margin-left: 25%;
+      margin-top: 10px;
+      ul {
+        color: gray;
+        display: flex;
+        .progress-status {
+          color: blue;
+        }
+      }
+    }
   }
   .account-page__inner {
     border: 1px solid lightgray;
@@ -11,14 +27,21 @@
       text-align: center;
       line-height: 100px;
       border-bottom: 1px solid lightgray;
+      font-size: 30px;
     }
     &--box {
-      padding: 50px 200px;
+      padding: 50px 20%;
       &--user-form {
       .field {
         .field-label {
           .form-require {
             background-color: blue;
+            color: white;
+            padding: 2px 4px;
+            font-size: 12px;
+          }
+          .form-any {
+            background-color:gray;
             color: white;
             padding: 2px 4px;
             font-size: 12px;
@@ -45,7 +68,7 @@
           background-color: blue;
           width: 100%;
           color: white;
-          line-height: 48px;
+          line-height: 60px;
         }
       }
       }
