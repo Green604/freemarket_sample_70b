@@ -1,16 +1,24 @@
 %p#notice= notice
 %p
   %strong Title:
-  = @item.item_name
+  = @item.name
 %p
   %strong Image:
-  = @item.images.(image:[:id])
+  -# = @item.images.(image:[:id])
 %p
   %strong Text:
-  = @item.text
+  = @item.description
 %p
   %strong Text:
-  = @item.text
-= link_to 'Edit', edit_item_path(@item)
+  = @item.price
+%p
+  %strong parent_category_id:
+  -# = @categories.name
+%p
+  %strong category_id:
+  = @item.category.name
+
+
+-# = link_to 'Edit', edit_item_path(@item)
 |
-= link_to 'Back', items_path
+= link_to 'Back', root_path
