@@ -78,16 +78,8 @@
                       %span.category-select--require 必須
                       .category-select-wrapper
                         .category-select-wrapper__box
-                          = f.select :category_id, @category_parent_array, {}, {class: 'category-select-wrapper__box--select', id: 'parent_category'}
+                          = f.collection_select :parent_category_id, Category.where(ancestry: nil), :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
                           %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
-
-                      -#  = f.select :category_id, [ [@parents.first.name, 1], ["メンズ", 200], [@parents.name, 346], [@parents.name, 481], [@parents.name, 625], [@parents.name, 685], [@parents.name, 798], [@parents.name, 898], [@parents.name, 798], [@parents.name, 984],], prompt: "選択してください"
-                      -# -# [ ["レディース",1], ["メンズ", 200], ["ベビー・キッズ", 346] ,["インテリア・住まい・小物", 481], ["本・音楽・ゲーム", 625], ["おもちゃ・ホビー・グッズ", 685], ["コスメ・香水・美容", 798], ["家電・スマホ・カメラ", 898], ["スポーツ・レジャー", 984], ["ハンドメイド", 984], ["チケット", ???1027], ["自動車・オートバイ", ???1318], ["その他", ???10] ], prompt: "選択してください"
-                      -# -# = f.select :category_id, Item.categories.keys.map {|k| [I18n.t("enums.item.category.#{k}"), k]}, prompt: "選択してください"
-                      -# -# [ ["レディース",1], ["メンズ", 2], ["ベビー・キッズ", 3 ] ,["インテリア・住まい・小物", 4], ["本・音楽・ゲーム", 5], ["おもちゃ・ホビー・グッズ", 1328], ["コスメ・香水・美容", 6], ["家電・スマホ・カメラ", 7], ["スポーツ・レジャー", 8], ["ハンドメイド", 9], ["チケット", 1027], ["自動車・オートバイ", 1318], ["その他", 10] ], prompt: "選択してください"
-                      -# %svg.category-svg{"aria-hidden": "true", fill: "888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
-                      -#   %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
-
               .brand
                 .brand-section
                   .brand-section__name
