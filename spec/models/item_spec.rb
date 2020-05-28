@@ -122,3 +122,33 @@ describe Item do
     end
   end
 end
+
+describe Item do
+  describe '#create' do
+    it "商品名がない場合は登録できないこと" do
+      binding.pry
+      category = create(:category)
+      shipping = create(:shipping)
+      brand = create(:brand)
+      image = create(:image)
+      # item = create(:item)
+      item = build(:item, name: "", category_id: category.id, shipping_id: shipping.id, brand_id: brand.id)
+      item.valid?
+      expect(item.errors[:name]).to include("を入力してください")
+    end
+  end
+end
+
+describe Item do
+  describe '#create' do
+    it "商品名がない場合は登録できないこと" do
+      category = create(:category)
+      shipping = create(:shipping)
+      brand = create(:brand)
+      image = create(:image)
+      item = build(:item, name: "", category_id: category.id, shipping_id: shipping.id, brand_id: brand.id)
+      item.valid?
+      expect(item.errors[:name]).to include("を入力してください")
+    end
+  end
+end
