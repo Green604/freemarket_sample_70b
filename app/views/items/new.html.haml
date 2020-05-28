@@ -80,6 +80,9 @@
                         .category-select-wrapper__box
                           = f.collection_select :parent_category_id, Category.where(ancestry: nil), :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
                           %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+                        -# 親カテゴリーIDを取得し、parent_category_idカラムに入れる
+                        -# セレクトボックスにid=parent_categoryを付与し、JSで子カテゴリー表示の起点とする
+
               .brand
                 .brand-section
                   .brand-section__name
@@ -88,7 +91,7 @@
                       %span.label-group__required 任意
                   .brand-section__input
                     .input-group
-                      -# = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
+                      = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
               .condition
                 .condition-section
                   .condition-section__name

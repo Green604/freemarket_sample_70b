@@ -4,7 +4,6 @@
   = @item.name
 %p
   %strong Image:
-  -# = @item.images.(image:[:id])
 %p
   %strong Text:
   = @item.description
@@ -12,13 +11,13 @@
   %strong Text:
   = @item.price
 %p
-  %strong parent_category_id:
-  -# = @categories.name
+  %strong カテゴリー:
 %p
-  %strong category_id:
+  = @category.name
+%p
+  = @category_child.name
+%p
   = @item.category.name
 
 
--# = link_to 'Edit', edit_item_path(@item)
-|
 = link_to 'Back', root_path

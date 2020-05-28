@@ -67,8 +67,9 @@ ActiveRecord::Schema.define(version: 2020_05_24_093559) do
     t.text "description", null: false
     t.integer "price", null: false
     t.integer "condition", null: false
-    t.integer "parent_category_id"
     t.integer "brand_id"
+    t.integer "parent_category_id"
+    t.integer "child_category_id"
     t.integer "category_id"
     t.integer "shipping_id"
     t.datetime "created_at", null: false
