@@ -148,7 +148,6 @@ end
 describe Item do
   describe '#create' do
     it "商品名がない場合は登録できないこと" do
-      binding.pry
       category = create(:category)
       shipping = create(:shipping)
       brand = create(:brand)

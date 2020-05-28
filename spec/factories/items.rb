@@ -14,22 +14,13 @@
 #     end  
 #   end
 
-# 画像なし用のクラス
-#   factory :item_no_image, class: Item do
-#     name                  {"Yシャツ"}
-#     description           {"新品のYシャツです。"}
-#     price                 {10000000}
-#     condition             {:"新品・未使用"}}
-#     category_id           {}
-#     shipping_id           {}
-#     brand_id              {}
-#   end
+
 
 # end
 
 FactoryBot.define do
   factory :item do
-    name                  {""}
+    name                  {"Tシャツ"}
     description           {"これはナイキのTシャツです。"}
     price                 {"3000"}
     brand_id              {"1"}
@@ -46,6 +37,17 @@ FactoryBot.define do
     after(:build) do |item|                           
       item.images << build(:image, item: item) 
     end 
+  end
+
+  # 画像なし用のクラス
+  factory :item_no_image, class: Item do
+    name                  {"Yシャツ"}
+    description           {"新品のYシャツです。"}
+    price                 {10000000}
+    condition             {:"新品・未使用"}
+    category_id           {}
+    shipping_id           {}
+    brand_id              {}
   end
 
 end
