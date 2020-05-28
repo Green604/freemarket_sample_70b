@@ -24,8 +24,7 @@ class Item < ApplicationRecord
   validates :images, presence: true
 
 
-  enum condition: [ :brand_new, :no_use, :clean, :litte_dirty, :dirty, :bad ]
-
+  enum condition: [ :"新品・未使用", :"未使用に近い", :"目立った傷や汚れなし", :"やや傷や汚れあり", :"傷や汚れあり", :"全体的に状態が悪い" ]
   # mount_uploader :image, ImageUploader
   accepts_nested_attributes_for :images, allow_destroy: true
   accepts_nested_attributes_for :shipping

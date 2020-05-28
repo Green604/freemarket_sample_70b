@@ -19,7 +19,7 @@
       .exhibition
         .exhibition-form
           = form_with model: @item, local: true do |f|
-            = hidden_field_tag :user_id, 1
+            = hidden_field_tag :user_id, current_user.id
             %section.image
               .image-flame
                 .image-box
@@ -100,7 +100,7 @@
                       %span.label-group__required 必須
                   .condition-section__pulldown
                     .condition-select
-                      = f.select :condition, Item.conditions.keys.map {|k| [I18n.t("enums.item.condition.#{k}"), k]}, prompt: "選択してください"
+                      = f.select :condition, Item.conditions.keys.map {|k| [(k), k]}, prompt: "選択してください"
                       %svg.condition-svg{"aria-hidden": "true", fill: "888888", "fill-rule": "evenodd", height: "24", view: "0 0 24 24", width: "24"}
                         %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
             %hr.border
