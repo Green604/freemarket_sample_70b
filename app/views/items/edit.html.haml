@@ -31,20 +31,30 @@
                   .image-box__upload
                     .image-container
                       .image-capsule
-                        - @item.images.each do |i|
-                          = image_tag i.image.url, class: "image"
-                        -# .image-folder#image-box
-                        -#   = f.fields_for :images do |image|
-                        -#     .js-file_group{"data-index": "#{image.index}" }
-                        -#       = image.file_field :image, class: 'js-file'
-                        -#       %br/
-                        -#       %span.js-remove 削除
-                        -#   %p.image-folder__icon
-                        -#     %i.fas.fa-camera.fa-lg
-                        -#   %p.image-folder__instruction
-                        -#   ドラッグアンドドロップ
-                        -#   %br/
-                        -#   またはクリックしてファイルをアップロード
+                        -# - @item.images.each do |i|
+                        -#   = image_tag i.image.url, class: "image"
+                        .image-folder#image-box
+                          #previews
+                            - if @item.persisted?
+                              - @item.images.each_with_index do |image, i|
+                                = image_tag image.image.url, data: { index: i }, width: "50", height: '50'
+                          = f.fields_for :images do |image|
+                            .js-file_group{"data-index": "#{image.index}" }
+                              = image.file_field :image, class: 'js-file'
+                              %br/
+                              %span.js-remove 削除
+                            - if @item.persisted?
+                              = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+                          - if @item.persisted?
+                            .js-file_group{"data-index": "#{@item.images.count}"}
+                              = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
+                              .js-remove 削除
+                          %p.image-folder__icon
+                            %i.fas.fa-camera.fa-lg
+                          %p.image-folder__instruction
+                          ドラッグアンドドロップ
+                          %br/
+                          またはクリックしてファイルをアップロード
             %hr.border
 
             %section.description
