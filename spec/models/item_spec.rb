@@ -14,13 +14,6 @@ describe Item do
       @item = create(:item, category_id: @category.id, shipping_id: @shipping.id, brand_id: @brand.id)
     end
 
-    it "商品名を変えて再登録が出来る" do
-      item = create(:item, name: "くつした") 
-      item.valid?
-      expect(item).to be_valid
-      binding.pry
-    end
-
     it "説明を変えて再登録が出来る" do
       @item.update(description: "黒色のくつしたです。")
       @item.valid?
@@ -77,6 +70,56 @@ describe Item do
       @item.valid?
       expect(@item).to be_valid
     end 
+
+    it "商品名を変えて再登録が出来る" do
+      item = create(:item, name: "くつした") 
+      item.valid?
+      expect(item).to be_valid
+    end
+
+    it "説明を変えて再登録が出来る" do
+      item = create(:item, description: "これはシャネルのTシャツです。") 
+      item.valid?
+      expect(item).to be_valid
+    end
+    
+    it "価格を変えて再登録が出来る" do
+      item = create(:item, price: "1000000") 
+      item.valid?
+      expect(item).to be_valid
+    end
+
+    it "category_idを変えて再登録が出来る" do
+      # デフォルトは546(メンズ)だったのが576(レディース)に変更できていることが確認できた
+      item = create(:item, category_id: "576") 
+      item.valid?
+      expect(item).to be_valid
+    end
+
+    it "shipping_idを変えて再登録が出来る" do
+      # デフォルトは427だったのが433レディースに変更できていることが確認できた
+      item = create(:item, shipping_id: "433") 
+      item.valid?
+      expect(item).to be_valid
+    end
+
+    it "shipping_dayを変えて再登録が出来る" do
+      # デフォルトからshipping_id=433に変更し、さらにそのうちのshipping_dayだけ変更することが確認できた
+      item = create(:item, shipping_id: "433") 
+      item.shipping.update(shipping_day: "4〜7日で発送")
+      item.valid?
+      expect(item).to be_valid
+    end
+
+    it "shipping_dayを変えて再登録が出来る" do
+      # デフォルトからshipping_id=433に変更し、さらにそのうちのshipping_feeだけ変更することが確認できた
+      item = create(:item, shipping_id: "433") 
+      item.shipping.update(shipping_fee: "着払い（購入者負担）")
+      item.valid?
+      expect(item).to be_valid
+      binding.pry
+    end
+
   end
 
 
@@ -171,17 +214,3 @@ describe Item do
     end
   end
 end
-
-# RSpec.describe Item, type: :model do
-#   describe 'create' do
-#     it "商品名がない場合は登録できないこと" do
-#       category = create(:category)
-#       shipping = create(:shipping)
-#       brand = create(:brand)
-#       image = create(:image)
-#       item = create(:item, name: "", description: "これはナイキのTシャツです", price: "3000", category_id: category.id, shipping_id: shipping.id, brand_id: brand.id)
-#       item.valid?
-#       expect(item.errors[:name]).to include("を入力してください")
-#     end
-#   end
-# end
