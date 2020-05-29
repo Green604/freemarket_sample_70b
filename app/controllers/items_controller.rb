@@ -56,11 +56,9 @@ class ItemsController < ApplicationController
   end
   
   def destroy
-    @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to root_path
   end
 
   def get_category_children
