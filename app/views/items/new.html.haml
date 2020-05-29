@@ -29,8 +29,8 @@
                       %span.label-group__required 必須
                   %p.image-box__limit 最大10枚までアップロードできます
                   .image-box__upload
-                    .image-container
-                      .image-capsule
+                    .image-container{"data-test": "sell-upload-container"}
+                      .image-capsule{tabindex: 0}
                         .image-folder#image-box
                           %label{for: "js-file", class: 'input-box__image'}
                             = f.fields_for :images do |image|
