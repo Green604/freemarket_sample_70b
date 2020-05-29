@@ -8,8 +8,16 @@
   .navBar
     %ul.leftList
       %li.list
-        = link_to "カテゴリー"
-        .menue
+        - @parents.each do |parent|
+          %p 
+            = parent.name
+          - parent.children.each do |child|
+            %p
+              = child.name    
+            - child.children.each do |grandchild|
+              %p
+                = grandchild.name
+
       %li.list
         = link_to "ブランド"
         .menue

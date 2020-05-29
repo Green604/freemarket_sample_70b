@@ -15,6 +15,8 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :condition, presence: true
+  validates :parent_category_id, presence: true
+  validates :child_category_id, presence: true
   validates :category, presence: true
   validates :shipping, presence: true
 

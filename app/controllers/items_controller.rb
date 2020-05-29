@@ -1,11 +1,22 @@
 class ItemsController < ApplicationController
+
   before_action :move_to_index, except: [:index, :show]
+
 
   def index
     @items = Item.all
+    @parents = Category.all.order("id ASC").limit(13)
   end
 
-  
+  def show
+    @item = Item.find(params[:id])
+    @item.images.find(params[:id])
+    category_parent = @item.parent_category_id
+    @category = Category.find(category_parent)
+    category_child = @item.child_category_id
+    @category_child = Category.find(category_child)
+  end
+
   def new
     @item = Item.new
     @item.images.new
@@ -31,10 +42,6 @@ class ItemsController < ApplicationController
     end
     
   end
-  
-  def show
-    @item = Item.find(params[:id])
-  end
 
   def update
     respond_to do |format|
@@ -56,9 +63,17 @@ class ItemsController < ApplicationController
     end
   end
 
+  def get_category_children
+    @category_children = Category.find(params[:parent_id]).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id]).children
+  end
+
   private
   def item_params
-    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :category_id, :shipping_id, images_attributes: [:image], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id])
+    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :parent_category_id, :child_category_id, :category_id, :shipping_id, images_attributes: [:image], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id])
   end
 
   def move_to_index

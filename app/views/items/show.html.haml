@@ -11,13 +11,17 @@
 %p
   - @item.images.each do |image|
     = image_tag image.image.url
-
 %p
   出品者:
   = @item.seller.user.nickname
 
 %p
-  カテゴリー:
+  %strong カテゴリー:
+%p
+  = @category.name
+%p
+  = @category_child.name
+%p
   = @item.category.name
 %p
   ブランド:
@@ -29,15 +33,13 @@
 %p
   配送料の負担:
   = @item.shipping.shipping_fee
-
 %p
   発送元の地域:
   = @item.shipping.shippingarea.name
-
 %p
   発送日の目安:
   = @item.shipping.shipping_day
-  
+
 - if user_signed_in?
   - unless user_signed_in? && current_user.id == @item.seller.user.id
     .li
@@ -48,4 +50,6 @@
       = link_to '編集', "#"
     .li
       = link_to '削除', "#"
+
+= link_to 'Back', root_path
 
