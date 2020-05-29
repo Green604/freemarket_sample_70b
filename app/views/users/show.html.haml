@@ -1,7 +1,7 @@
 .contents_row
   %p
     = "#{@nickname}さんの出品一覧"
-    
+
   - @items.each do |item|
     = link_to "/items/#{item.id}", method: :get, class:"itemList" do
       %li.itemList__box
@@ -13,3 +13,6 @@
             = "#{item.price} 円"
             %br
               （税込）
+
+  = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'actions'
+  = link_to "クレジットカード登録", "#", class: 'actions'
