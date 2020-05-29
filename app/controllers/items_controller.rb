@@ -44,10 +44,6 @@ class ItemsController < ApplicationController
     end
     
   end
-  
-  def show
-    @item = Item.find(params[:id])
-  end
 
   def update
     respond_to do |format|
