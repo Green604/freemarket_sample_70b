@@ -47,5 +47,5 @@
     .li
       = link_to '編集', "#"
     .li
-      = link_to '削除', "#"
+      = link_to '削除', "/items/#{@item.id}", method: :delete
 
