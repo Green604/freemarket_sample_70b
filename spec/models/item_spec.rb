@@ -3,40 +3,41 @@ require 'rails_helper'
 # テスト行う際にはcategory.rbのhas_ancestryはコメントアウトしてください
 
 describe Item do
-    describe 'validations#update' do
-      before do
-        # Factorybotでcategory,shipping,brand,imageテスト用データ作成
-        @category = create(:category)
-        @shipping = create(:shipping) 
-        @brand = create(:brand)
-        @image = create(:image)
-        # 上で作成したテスト用データを使ってitemデータを作成
-        @item = create(:item, category_id: @category.id, shipping_id: @shipping.id, brand_id: @brand.id)
-      end
+  describe 'validations#update' do
+    before do
+      # Factorybotでcategory,shipping,brand,imageテスト用データ作成
+      @category = create(:category)
+      @shipping = create(:shipping) 
+      @brand = create(:brand)
+      @image = create(:image)
+      # 上で作成したテスト用データを使ってitemデータを作成
+      @item = create(:item, category_id: @category.id, shipping_id: @shipping.id, brand_id: @brand.id)
+    end
 
-      it "商品名を変えて再登録が出来る" do
-        item = build(:item, name: "くつした", description: "aaa", price: "123", category_id: @category.id, shipping_id: @shipping.id)
-        item.valid?
-        expect(item).to be_valid
-      end
+    it "商品名を変えて再登録が出来る" do
+      item = create(:item, name: "くつした") 
+      item.valid?
+      expect(item).to be_valid
+      binding.pry
+    end
 
-      it "説明を変えて再登録が出来る" do
-        @item.update(description: "黒色のくつしたです。")
-        @item.valid?
-        expect(@item).to be_valid
-      end
+    it "説明を変えて再登録が出来る" do
+      @item.update(description: "黒色のくつしたです。")
+      @item.valid?
+      expect(@item).to be_valid
+    end
 
-      it "値段を変えて再登録が出来る" do
-        @item.update(price: 1)
-        @item.valid?
-        expect(@item).to be_valid
-      end
+    it "値段を変えて再登録が出来る" do
+      @item.update(price: 1)
+      @item.valid?
+      expect(@item).to be_valid
+    end
 
-      it "商品状態を変えて再登録が出来る" do
-        @item.update(condition: :"傷や汚れあり")
-        @item.valid?
-        expect(@item).to be_valid
-      end
+    it "商品状態を変えて再登録が出来る" do
+      @item.update(condition: :"傷や汚れあり")
+      @item.valid?
+      expect(@item).to be_valid
+    end
 
     it "shippingテーブルのshippingarea_idを変更して再登録が出来る" do
       # shippingテーブルのshippingarea_idを"1"から"2"に変更(update)
@@ -57,7 +58,6 @@ describe Item do
       @item.shipping.update(shipping_day: "2〜3日で発送")
       @item.valid?
       expect(@item).to be_valid
-     
     end
 
     it "category_idを変更して再登録が出来る" do
@@ -77,7 +77,6 @@ describe Item do
       @item.valid?
       expect(@item).to be_valid
     end 
-  
   end
 
 
@@ -114,7 +113,7 @@ describe Item do
       expect(item.errors[:condition]).to include("を入力してください")
     end
 
-   it "商品の配送情報がない場合は登録できないこと" do
+    it "商品の配送情報がない場合は登録できないこと" do
       item = build(:item, category_id: @category.id, shipping_id: "", brand_id: @brand.id)
       item.valid?
       expect(item.errors[:shipping]).to include("を入力してください")
@@ -152,7 +151,6 @@ describe Item do
       shipping = create(:shipping)
       brand = create(:brand)
       image = create(:image)
-      # item = create(:item)
       item = build(:item, name: "", category_id: category.id, shipping_id: shipping.id, brand_id: brand.id)
       item.valid?
       expect(item.errors[:name]).to include("を入力してください")
@@ -173,3 +171,17 @@ describe Item do
     end
   end
 end
+
+# RSpec.describe Item, type: :model do
+#   describe 'create' do
+#     it "商品名がない場合は登録できないこと" do
+#       category = create(:category)
+#       shipping = create(:shipping)
+#       brand = create(:brand)
+#       image = create(:image)
+#       item = create(:item, name: "", description: "これはナイキのTシャツです", price: "3000", category_id: category.id, shipping_id: shipping.id, brand_id: brand.id)
+#       item.valid?
+#       expect(item.errors[:name]).to include("を入力してください")
+#     end
+#   end
+# end
