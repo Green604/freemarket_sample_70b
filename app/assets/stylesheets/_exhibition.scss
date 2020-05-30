@@ -61,6 +61,31 @@ hr {
   }
 }
 
+@media (min-width: 768px) {
+  .selling-price {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .selling-price-box__input {
+    max-width: 285px;
+  }
+}
+
+@media (min-width: 768px) {
+  .button {
+    width: 360px;
+    margin: 0px auto 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .attention {
+    margin: 0px 40px 64px;
+  }
+}
+
 body {
   position: relative;
   min-height: 100%;
@@ -197,7 +222,6 @@ body {
               }
             }
           }
-          // ここから概要セクション
           .description {
             .item-name {
               margin: 0;
@@ -249,14 +273,12 @@ body {
                     color: #222;
                     font-size: 16px;
                     margin: 0;
-                    margin-top: 16px;
                     outline: none;
                     padding: 13px 16px;
                     resize: vertical;
                     vertical-align: middle;
                   }
                   &__counter {
-                    margin-top: 16px;
                     text-align: right;
                     font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
                     color: #888;
@@ -267,7 +289,6 @@ body {
               }
             }
           }
-          // ここから詳細セクション
           .detail {
             .item-detail {
               @include label-group__label(#888888);
@@ -360,11 +381,10 @@ body {
               }
             }
           }
-          // ここから配送情報セクション
           .shipping {
             .shipping-about {
-              @include label-group__label(#888888);
-              &__mark {
+              @include label-group__label ($light_gray);
+              a {
                 color: inherit;
                 text-decoration: none;
                 .shipping-about-svg {
@@ -376,101 +396,305 @@ body {
                 }
               } 
             }
+            .shippingfee {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingfee-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingfee-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingway {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingway-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingway-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingarea {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingarea-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingarea-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingday {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingday-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingday-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
           }
-
-        
-              .shipping-fee {
-                .shipping-fee-2 {
-                  .shipping-fee-3 {
-                    .label-group {
-                      @include label-group;
-                      & label {
-                        @include label-group__label ($black);
-                      }
-                      &__required {
-                        @include label-group__required ($sky_blue);
-                      }
+          .exhibition-price {
+            .price {
+              @include label-group__label($light_gray);
+              a {
+                color: inherit;
+                text-decoration: none;
+                .price-svg {
+                  fill: rgb(0, 149, 238);
+                  height: 16px;
+                  margin-left: 4px;
+                  vertical-align: -3px;
+                  width: 16px;
+                }
+              } 
+            }
+            .selling-price {
+              &-box {
+                padding-top: 0px;
+                padding: 12px 0px;
+                -webkit-box-align: center;
+                align-items: center;
+                box-sizing: content-box;
+                display: flex;
+                height: 46px;
+                &__label {
+                  margin-right: auto;
+                  white-space: nowrap;
+                  vertical-align: baseline;
+                  margin: 0px;
+                  padding: 0px;
+                  border-width: 0px;
+                  border-style: initial;
+                  border-color: initial;
+                  border-image: initial;
+                  font: inherit;
+                  margin-right: auto;
+                  white-space: nowrap;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__yenmark {
+                  vertical-align: baseline;
+                  margin: 0px;
+                  padding: 0px;
+                  border-width: 0px;
+                  border-style: initial;
+                  border-color: initial;
+                  border-image: initial;
+                  font-size: 14px;
+                  margin-right: 8px;
+                }
+                &__input {
+                  align-items: center;
+                  display: inline-flex;
+                  width: 100%;
+                  color: #222;
+                  font-size: 16px;
+                  .price-input {
+                    display: inline-block;
+                    position: relative;
+                    width: inherit;
+                    input {
+                      @include input-group-input;
+                      text-align: right;
                     }
                   }
                 }
               }
-    
-              .shipping-area {
-                .shipping-area-2 {
-                  .shipping-area-3 {
-                    .label-group {
-                      @include label-group;
-                      & label {
-                        @include label-group__label ($black);
-                      }
-                      &__required {
-                        @include label-group__required ($sky_blue);
-                      }
-                    }
-                  }
-                }
-              }
-    
-              .shipping-day {
-                .shipping-day-2 {
-                  .shipping-day-3 {
-                    .label-group {
-                      @include label-group;
-                      & label {
-                        @include label-group__label ($black);
-                      }
-                      &__required {
-                        @include label-group__required ($sky_blue);
-                      }
-                    }
-                  }
-                }
-              }
-    
-              .price {
-                @include label-group__label(#888888);
-              }
-              
-              .selling-price {
-                .selling-price-2 {
-                  .selling-price-3 {
-                    .label-group {
-                      @include label-group;
-                      & label {
-                        @include label-group__label ($black);
-                      }
-                      &__required {
-                        @include label-group__required ($sky_blue);
-                      }
-                    }
-                  }
-                }
-              }
-    
               .selling-fee {
-                .selling-fee-2 {
-                  .selling-fee-3 {
+                -webkit-box-align: center;
+                align-items: center;
+                box-sizing: content-box;
+                display: flex;
+                height: 46px;
+                padding: 12px 0px;
+                &__label {
+                  margin-right: auto;
+                  white-space: nowrap;
+                  .selling-fee-10 {
                     @include label-group__label ($black);
                     font-weight: 100;
                   }
                 }
-              }
-    
-              .profit {
-                .profit-2 {
-                  @include label-group__label ($black);
-                  font-weight: 100;
+                &__value {
+                  font-size: 14px;
                 }
               }
-    
+              .selling-fee-underbar {
+                border-top-width: 1px;
+                border-top-color: #efefef;
+                border-left: 0 solid #efefef;
+                border-bottom: 0 solid #efefef;
+                border-right: 0 solid #efefef;
+                border-top-style: solid;
+                margin: 0;
+              }
+              .profit {
+                -webkit-box-align: center;
+                align-items: center;
+                box-sizing: content-box;
+                display: flex;
+                height: 46px;
+                padding: 12px 0px;
+                &__label {
+                  margin-right: auto;
+                  white-space: nowrap;
+                  &-name {
+                    @include label-group__label ($black);
+                    font-weight: 100;
+                  }
+                }
+                &__value {
+                  font-size: 14px;
+                }
+              }
               .button {
-                .button-lightblue {
+                &-lightblue {
                   @include button-lightblue;
                 }
-                .button-gray {
+                &-gray {
                   @include button-gray;
                 }
+                &-back {
+                  margin-top: 24px;
+                  color: #0095ee;
+                  display: flex;
+                  width: 100%;
+                  height: 20px;
+                  -webkit-box-pack: center;
+                  justify-content: center;
+                  -webkit-box-align: center;
+                  align-items: center;
+                  text-decoration: none;
+                  word-break: keep-all;
+                }
               }
+              .attention {
+                margin: 0px 40px 64px;
+                display: block;
+                &-sentence {
+                  vertical-align: baseline;
+                  margin: 0px;
+                  padding: 0px;
+                  border-width: 0px;
+                  border-style: initial;
+                  border-color: initial;
+                  border-image: initial;
+                  font: inherit;
+                  display: block;
+                  margin-block-start: 1em;
+                  margin-block-end: 1em;
+                  margin-inline-start: 0px;
+                  margin-inline-end: 0px;
+                  font-size: 12px;
+                  line-height: 1.4em;
+                  box-sizing: border-box;
+                }
+                &__prohibit {
+                  @include word-link;
+                }
+                &__object {
+                  @include word-link;
+                }
+                &__fake {
+                  @include word-link;
+                }
+                &__stolen {
+                  @include word-link;
+                }
+              }
+            }    
+          } 
+              
+    
+              
     
               .exhibition__explanation_textarea {
                 margin: 0;

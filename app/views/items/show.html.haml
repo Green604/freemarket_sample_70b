@@ -47,7 +47,7 @@
 
   - if user_signed_in? && current_user.id == @item.seller.user.id
     .li
-      = link_to '編集', "#"
+      = link_to '編集', edit_item_path
     .li
       = link_to '削除', item_path, method: :delete
 

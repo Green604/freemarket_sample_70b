@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
 
   before_action :move_to_index, except: [:index, :show]
+  # ログインユーザー≠出品者のときに、直接URL指定にてedit,update,desytoyへアクセスされた場合も制限するため追記
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
 
   def index
@@ -22,9 +24,6 @@ class ItemsController < ApplicationController
     @item.images.new
   end
   
-  def edit
-  end
-  
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -43,18 +42,29 @@ class ItemsController < ApplicationController
     
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      flash.now[:alert] = 'エラーが発生しました。'
+      render :edit
+      # respond_to do |format|
+    #   if @item.update(item_params)
+    #     format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @item }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @item.errors, status: :unprocessable_entity }
+    #   end
+    # end
     end
   end
-  
+
   def destroy
     item = Item.find(params[:id])
     item.destroy
@@ -69,9 +79,17 @@ class ItemsController < ApplicationController
     @category_grandchildren = Category.find(params[:child_id]).children
   end
 
+  def ensure_correct_user
+    @item = Item.find(params[:id])
+    if @current_user.id != @item.seller.user.id
+      flash[:notice] = "権限がありません"
+      redirect_to item_path (@item.id)
+    end
+  end
+
   private
   def item_params
-    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :parent_category_id, :child_category_id, :category_id, :shipping_id, images_attributes: [:image], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id])
+    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :parent_category_id, :child_category_id, :category_id, :shipping_id, images_attributes: [:image, :_destroy, :id], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id])
   end
 
   def move_to_index
