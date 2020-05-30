@@ -40,6 +40,12 @@
   発送日の目安:
   = @item.shipping.shipping_day
 
+.comment 
+  - if current_user?
+    = form_with model: @item, local: true do |f|
+      = f.text_area :text, placeholder: "コメントする", rows: "2"
+      = f.submit "SEND"
+
 - if user_signed_in?
   - unless user_signed_in? && current_user.id == @item.seller.user.id
     .li
