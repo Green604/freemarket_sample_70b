@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  # ログインユーザー≠出品者のときに、直接URL指定にてedit,update,desytoyへアクセスされた場合も制限するため追記
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
   def index
     @items = Item.all
@@ -61,6 +63,14 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def ensure_correct_user
+    @item = Item.find(params[:id])
+    if @current_user.id != @item.seller.user.id
+      flash[:notice] = "権限がありません"
+      redirect_to item_path (@item.id)
     end
   end
 
