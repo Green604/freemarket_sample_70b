@@ -16,7 +16,6 @@ class ItemsController < ApplicationController
   end
   
   def create
-    binding.pry
     @item = Item.new(item_params)
     if @item.save
       selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
@@ -36,11 +35,12 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item.images.find(params[:id])
     category_parent = @item.parent_category_id
     @category = Category.find(category_parent)
     category_child = @item.child_category_id
     @category_child = Category.find(category_child)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user).order("created_at DESC")
   end
   
   def edit
