@@ -189,4 +189,130 @@ body, html {
     background-color: rgb(240, 240, 240);
   } 
 }
+// 購入確認画面
+.purchase-confirmation-contents {
+  background-color: rgb(240, 240, 240);
+  .purchase-confirmation-contents__header {
+    height: 120px;
+    background-color: rgb(240, 240, 240);
+  }
+  .purchase-confirmation-contents__main{
+    height: 100%;
+    &__container {
+      width: 650px;
+      margin: 0 auto;
+      background-color: white;
+      &__head {
+        height: 80px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 100px;
+        // border-bottom: solid 1px rgb(240, 240, 240);
+      }
+      .purchase-content {
+        border-top: solid 1px rgb(240, 240, 240);
+        &__inner {
+          margin: 30px auto;
+          width: 400px;
+          .purchase-item {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            &__image {
+              padding: 0 0 0 30px;
+            }
+            &__detail {
+              padding-left: 20px;
+              &__title {
+                margin-bottom: 10px;
+              }
+              &__price {
+                font-weight: 600;
+              }
+            }
+          }
+          .purchase-form {
+            &__item-price {
+              height: 110px;
+              display: flex;
+              justify-content: space-between;
+              border-bottom: solid 1px rgb(240, 240, 240);
+              &__logo {
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 110px;
+              }
+              &__number {
+                font-weight: 600;
+                font-size: 25px;
+                line-height: 110px;
+              }
+            }
+            &__user-card {
+              height: 160px;
+              border-bottom: solid 1px rgb(240, 240, 240);
+              padding: 30px 0;
+              position: relative;
+              &__logo {
+                font-weight: 600;
+                margin-bottom: 5px;
+              }
+              .card-list__main__info {
+                .card-list__main__info__change {
+                  position: absolute;
+                  right: 0px;
+                  top: 30px;
+                }
+              }
+              &__registration {
+                a {
+                  text-decoration: none;
+                  color: lightskyblue;
+                }
+              }
+            }
+            &__user-adress {
+              height: 150px;
+              border-bottom: solid 1px rgb(240, 240, 240);
+              padding: 30px 0;
+              position: relative;
+              &__logo {
+                font-weight: 600;
+              }
+              &__change {
+                position: absolute;
+                right: 0px;
+                top: 30px;
+                a {
+                  text-decoration: none;
+                  color: lightskyblue;
+                }
+              }
+            }
+            &__button {
+              height: 120px;
+              border-bottom: solid 1px rgb(240, 240, 240);
+              
+              .buy-button {
+                margin: 30px 0;
+                background-color: mediumturquoise;
+                width: 100%;
+                height: 50px;
+                color: white;
+                border: none;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .purchase-confirmation-contents__footer{
+    height: 120px;
+    background-color: rgb(240, 240, 240);
+  }
+}
+
 

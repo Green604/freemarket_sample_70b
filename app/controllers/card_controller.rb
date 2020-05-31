@@ -58,10 +58,11 @@ end
   #     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   #     customer = Payjp::Customer.retrieve(card.customer_id)
   #     @default_card_information = customer.cards.retrieve(card.card_id)
-  #     @card_brand = @default_card_information .brand
-  #     @card_month = @default_card_information .exp_month
-  #     @card_year = @default_card_information .exp_year % 1000
-  
+  #     @card_brand = @default_card_information.brand
+  #     @card_month = @default_card_information.exp_month
+  #     @card_year = @default_card_information.exp_year % 1000
+
+        # カード会社画像表示ための分岐
   #     case @card_brand
   #     when "Visa" then
   #       @card_image = "cc-visa fa-2x"
