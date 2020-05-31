@@ -25,8 +25,14 @@ class PurchaseController < ApplicationController
     :amount => @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
     :customer => card.customer_id, #顧客ID
     :currency => 'jpy', #日本円
-  )
-  redirect_to action: 'done' #完了画面に移動
+    )
+    buyer = Buyer.new(item_id: @item.id, user_id: current_user.id)
+    if buyer.save
+      redirect_to action: 'done' #完了画面に移動
+    else
+      flash.now[:alert] = 'エラーが発生しました。'
+      render :index
+    end
   end
 
   def set_item
