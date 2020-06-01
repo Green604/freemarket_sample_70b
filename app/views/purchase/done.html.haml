@@ -1,5 +1,17 @@
-%h2 購入が完了しました！
-%p 
-  = @item.name
-%p 
-  = "¥#{@item.price}(送料込み)"
+.purchase-confirmation-contents
+  .purchase-confirmation-contents__header
+  .purchase-confirmation-contents__main
+    .purchase-confirmation-contents__main__container
+
+      .purchase-confirmation-contents__main__container__head
+        %h1 購入が完了しました！
+      .purchase-content
+        .purchase-content__inner
+          .purchase-item
+            .purchase-item__image
+              = image_tag @item.images.first.image.url, width: "100", height: '100'
+            .purchase-item__detail
+              .purchase-item__detail__title
+                = @item.name
+              .purchase-item__detail__price
+                = "¥#{@item.price}" + "   (税込み)   " + "#{@item.shipping.shipping_fee}"

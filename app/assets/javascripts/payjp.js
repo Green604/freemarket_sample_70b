@@ -5,22 +5,18 @@ document.addEventListener(
       let btn = document.getElementById("token_submit"); //IDがtoken_submitの場合に取得されます
       btn.addEventListener("click", e => { //ボタンが押されたときに作動します
         e.preventDefault(); //ボタンを一旦無効化します
-        let card = {
+        let card = { //9~12行目のカード情報をcard変数に入れる
           number: document.getElementById("card_number").value,
           cvc: document.getElementById("cvc").value,
           exp_month: document.getElementById("exp_month").value,
           exp_year: document.getElementById("exp_year").value
-        }; //入力されたデータを取得します。
-        Payjp.createToken(card, (status, response) => {
-          if (status === 200) { //成功した場合
-            $("#card_number").removeAttr("name");
-            $("#cvc").removeAttr("name");
-            $("#exp_month").removeAttr("name");
-            $("#exp_year").removeAttr("name"); //データを自サーバにpostしないように削除
+        };
+        Payjp.createToken(card, (status, response) => { //card変数の情報をstatus,response変数に入れる、cardトークンが自動で生成される
+          if (status === 200) { //card変数が入力されたstatusが200=成功した場合
             $("#card_token").append(
               $('<input type="hidden" name="payjp-token">').val(response.id)
-            ); //取得したトークンを送信できる状態にします
-            document.inputForm.submit();
+            ); //取得したcardトークンの中に非表示データのpayjpトークン=card_id情報を入れてpayjpサーバーに送信できる状態にします
+            document.inputForm.submit(); //送信ボタンと同様の処理
             alert("登録が完了しました"); //確認用
           } else {
             alert("カード情報が正しくありません。"); //確認用

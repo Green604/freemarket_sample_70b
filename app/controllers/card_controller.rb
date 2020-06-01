@@ -12,17 +12,15 @@ class CardController < ApplicationController
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
-      customer = Payjp::Customer.create(
-      description: '登録テスト', #なくてもOK
-      email: current_user.email, #なくてもOK
-      card: params['payjp-token'],
-      metadata: {user_id: current_user.id}
-      ) #念の為metadataにuser_idを入れましたがなくてもOK
+      customer = Payjp::Customer.create( #同時に顧客IDもpayjpサーバーで生成される
+      card: params['payjp-token'], #jsで受け取ったpayjp_tokenの情報をpeyjpのサーバーで保存
+      )
       @card = Payment.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+      #@cardインスタンス変数にpaymentsテーブルの各カラムに入れたい情報を代入
       if @card.save
         redirect_to action: "show"
       else
-        redirect_to action: "pay"
+        redirect_to action: "new"
       end
     end
   end
@@ -32,9 +30,9 @@ class CardController < ApplicationController
     if card.blank?
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      customer.delete
-      card.delete
+      customer = Payjp::Customer.retrieve(card.customer_id) #payjpサーバー上からカードの顧客IDで顧客を検索
+      customer.delete #payjpサーバーのデータ削除
+      card.delete #DBのデータ削除
     end
       redirect_to action: "new"
   end
