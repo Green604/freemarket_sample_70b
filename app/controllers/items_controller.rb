@@ -12,11 +12,12 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item.images.find(params[:id])
+    # @item.images.find(params[:id])
     category_parent = @item.parent_category_id
     @category = Category.find(category_parent)
     category_child = @item.child_category_id
     @category_child = Category.find(category_child)
+    @favorite = Favorite.new
   end
 
   def new
