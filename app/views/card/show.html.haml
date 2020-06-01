@@ -1,42 +1,33 @@
-%label 登録クレジットカード情報
-%br
-= "**** **** **** " + @default_card_information.last4
-%br
-- exp_month = @default_card_information.exp_month.to_s
-- exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-= exp_month + " / " + exp_year
-= form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
-  %input{ type: "hidden", name: "card_id", value: "" }
-  %button 削除する
-
--# 岩崎追加
--# .mypage-card-contents
--#   .mypage-card-contents__header
--#   .user-card
--#     %h2.user-card__head
--#       支払い方法
--#     .user-card__main
--#       .card-list
--#         .card-list__head
--#           %h3.card-list__head__text
--#             クレジットカード一覧
--#         .card-list__main
--#           - if @card.present?
--#             .card-list__main__info
--#               .card-list__main__info__brand
--#                 = icon("fab", "#{@card_image}")
--#               .card-list__main__info__num
--#                 = "************" + @card_info.last4
--#               .card-list__main__info__num
--#                 = "#{@card_month}" + " / " + "#{@card_year}"
--#               .card-list__main__info__delete
--#                 = link_to '削除する', payment_path(current_user.id), method: :delete, class: "card-list__main__info__delete__btn"
--#           - else
--#             .card-list__main__new
--#               = link_to new_card_path, class: "card-list__main__new__btn" do
--#                 %i.fas.fa-credit-card
--#                 クレジットカードを追加する
--#       .user-card__main__card-help
--#         支払い方法について
--#   .mypage-card-contents__footer
+.mypage-card-contents
+  .mypage-card-contents__header
+  .user-card
+    %h2.user-card__head
+      支払い方法
+    .user-card__main
+      .card-list
+        .card-list__head
+          %h3.card-list__head__text
+            クレジットカード一覧
+        .card-list__main
+          - if @default_card_information.present?
+            .card-list__main__info
+              .card-list__main__info__brand
+                = icon("fab", "#{@card_image}")
+              .card-list__main__info__num
+                = "************" + @default_card_information.last4
+              .card-list__main__info__num
+                = "#{@card_month}" + " / " + "#{@card_year}"
+              .card-list__main__info__delete
+                = form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+                  %input{ type: "hidden", name: "card_id", value: "" }
+                  %button 削除する
+          - else
+            .card-list__main__new
+              = link_to new_card_path, class: "card-list__main__new__btn" do
+                %i.fas.fa-credit-card
+                クレジットカードを追加する
+      .user-card__main__card-help
+        支払い方法について
+  .mypage-card-contents__footer
+  
 

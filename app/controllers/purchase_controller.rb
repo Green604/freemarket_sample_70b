@@ -45,33 +45,3 @@ class PurchaseController < ApplicationController
   end
   
 end
-
-# 岩崎追記
-# def index
-    # 配送先情報取得
-#   @user_adress = ShippingAddress.find_by(user_id: current_user.id)
-#   @card = Payment.where(user_id: current_user).first
-    # カード登録知てない場合の表示の切り替えはビューの方で記載してます
-#   if @card.present?
-#     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-#     customer = Payjp::Customer.retrieve(card.customer_id)
-#     @default_card_information = customer.cards.retrieve(customer.default_card)
-#     @card_brand = @default_card_information.brand
-#     @card_month = @default_card_information.exp_month
-#     @card_year = @default_card_information.exp_year % 1000
-      
-      # カード会社画像表示ための分岐
-#     case @card_brand
-#     when "Visa" then
-#       @card_image = "cc-visa fa-2x"
-#     when "MasterCard" then
-#       @card_image = "cc-mastercard fa-2x"
-#     when "JCB" then
-#       @card_image = "c-jcb fa-2x"
-#     when "American Express" then
-#       @card_image = "cc-amex fa-2x"
-#     end
-
-#   end
-# end
-
