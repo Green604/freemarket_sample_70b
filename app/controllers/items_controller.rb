@@ -35,10 +35,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    category_parent = @item.parent_category_id
-    @category = Category.find(category_parent)
-    category_child = @item.child_category_id
-    @category_child = Category.find(category_child)
+    @category = Category.find(@item.parent_category_id)
+    @category_child = Category.find(@item.child_category_id)
     @comment = Comment.new
     @comments = @item.comments.includes(:user).order("created_at DESC")
   end
