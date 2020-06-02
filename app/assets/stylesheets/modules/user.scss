@@ -110,7 +110,7 @@
               width: 98%;
               color: white;
               line-height: 45px;
-              margin: 8px 0;
+              margin: 8px 0 16px 0;
               border: none;
             }
           }
@@ -135,7 +135,6 @@
       background-color: #f8f8f8;
       height: 70px;
       padding: 30px 29%;
-      display: flex;
     }
     .login-page__inner {
       border: 1px solid #f8f8f8;
@@ -195,6 +194,18 @@
           }
         }
       }
+    }
+  }
+
+  // パスワードを忘れた時のビュー
+  .password-page {
+    width: 64%;
+    margin: 0 auto;
+    background-color: white;
+    .password-page__header {
+      background-color: #f8f8f8;
+      height: 70px;
+      padding: 30px 36%;
     }
   }
 }
