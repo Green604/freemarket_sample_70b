@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :buyers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many  :items,  through:  :comments
+  def already_favorited?(item)
+    self.favorites.exists?(item_id: item.id) #あとで説明書く
+  end
 
   validates :nickname,        presence: true
   validates :first_name,      presence: true,

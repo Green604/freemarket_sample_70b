@@ -1,0 +1,11 @@
+%h1 ユーザー詳細ページ
+
+%h2 投稿内容
+- @user.items.each do |item|
+  = link_to "/items/#{item.id}" do
+    = item.name
+  %hr/
+%h3 いいねしている投稿
+- @user.liked_favorites.each do |item|
+  = item.name
+= link_to "ホームへ戻る", root_path

@@ -1,0 +1,12 @@
+- if user_signed_in?
+  = item.favorites.count
+  - if current_user.already_favorited?(item)
+    = button_to 'いいねを取り消す', item_favorite_path(item), method: :delete
+    -# remote: true
+  - else
+    = button_to 'いいね', item_favorites_path(item), method: :post
+    -# remote: true
+- else
+  %p 
+    いいね数: 
+    = item.favorites.count
