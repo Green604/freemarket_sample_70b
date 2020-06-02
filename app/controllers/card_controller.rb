@@ -48,7 +48,6 @@ class CardController < ApplicationController
       @card_brand = @default_card_information.brand
       @card_month = @default_card_information.exp_month
       @card_year = @default_card_information.exp_year % 1000
-
       case @card_brand
       when "Visa" then
         @card_image = "cc-visa fa-2x"
@@ -62,7 +61,3 @@ class CardController < ApplicationController
     end
   end
 end
-
-
-
-
