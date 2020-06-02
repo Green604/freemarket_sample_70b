@@ -1,76 +1,199 @@
-.account-page {
-  width: 60%;
-  margin: 0 auto;
+.background {
   background-color: #f8f8f8;
-  .account-page__header {
-    border: 1px solid lightgray;
-    height: 70px;
-    border-bottom: none;
-    padding: 30px 10%;
-    display: flex;
-    &--progress-bar {
-      text-align: center;
-      margin-left: 25%;
-      margin-top: 10px;
-      ul {
-        color: gray;
-        display: flex;
-        .progress-status {
-          color: blue;
+  .account-page {
+    width: 64%;
+    margin: 0 auto;
+    background-color: white;
+    .account-page__header {
+      background-color: #f8f8f8;
+      height: 70px;
+      padding: 30px 14%;
+      display: flex;
+      &--progress {
+        font-size: 12px;
+        text-align: center;
+        margin-left: 15%;
+        margin-top: 10px;
+        ol {
+          color: #888;
+          display: flex;
+          .progress-status {
+            color: #3CCACE;
+          }
+          .status-title {
+            margin-right: 43px;
+          }
+          .status-point {
+            color: #ccc;
+            letter-spacing: -3px;
+            &__first {
+              margin-left: 18px;
+              letter-spacing: -3px;
+            }
+            &__second {
+              letter-spacing: -3px;
+              z-index: 1;
+              li:before {
+                content: "ーーーーーーーー";
+                letter-spacing: -2px;
+              }
+            }
+            li:before {
+              content: "ーーーーーーーー";
+              letter-spacing: -2px;
+            }
+          }
+        }
+      }
+    }
+    .account-page__inner {
+      border: 1px solid #f8f8f8;
+      &--title {
+        padding: 40px 20%;
+        text-align: center;
+        border-bottom: 1px solid #f8f8f8;
+        font-size: 22px;
+      }
+      &--box {
+        padding: 40px 25%;
+        &--user-form {
+          .field {
+            .field-label {
+              font-size: 14px;
+              .form-require {
+                background-color: #3CCACE;
+                color: white;
+                padding: 2px 4px;
+                font-size: 12px;
+                border-radius: 2px;
+              }
+              .form-any {
+                background-color: #ccc;
+                color: white;
+                padding: 2px 4px;
+                font-size: 12px;
+                border-radius: 2px;
+              }
+            }
+            .field-input {
+              margin-bottom: 32px;
+              input {
+                width: 88%;
+                margin: 8px 8px 0 0;
+                height: 30px;
+                padding: 8px 16px ;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+              }
+              select {
+                width: 25%;
+                margin: 8px 0 0;
+                height: 48px;
+                padding: 10px 16px 8px;
+              }
+            }
+            .field-input-half {
+              margin-bottom: 32px;
+              input {
+                width: 37%;
+                margin: 8px 8px 0 0;
+                height: 30px;
+                padding: 8px 16px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+              }
+            }
+          }
+          .actions {
+            input {
+              background-color: #3CCACE;
+              width: 98%;
+              color: white;
+              line-height: 45px;
+              margin: 8px 0;
+              border: none;
+            }
+          }
         }
       }
     }
   }
-  .account-page__inner {
-    border: 1px solid lightgray;
-    &--title {
-      text-align: center;
-      line-height: 100px;
-      border-bottom: 1px solid lightgray;
-      font-size: 30px;
+  .footer{
+    line-height: 70px;
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 30px 10%;
+    font-size: 12px;
+  }
+
+// ログインページ
+  .login-page {
+    width: 42%;
+    margin: 0 auto;
+    background-color: white;
+    .login-page__header {
+      background-color: #f8f8f8;
+      height: 70px;
+      padding: 30px 29%;
+      display: flex;
     }
-    &--box {
-      padding: 50px 20%;
-      &--user-form {
-      .field {
-        .field-label {
-          .form-require {
-            background-color: blue;
-            color: white;
-            padding: 2px 4px;
-            font-size: 12px;
-          }
-          .form-any {
-            background-color:gray;
-            color: white;
-            padding: 2px 4px;
-            font-size: 12px;
-          }
+    .login-page__inner {
+      border: 1px solid #f8f8f8;
+      &--title {
+        padding: 40px 20%;
+        text-align: center;
+        border-bottom: 1px solid #f8f8f8;
+        p {
+          font-size: 14px;
+          margin-bottom: 8px;
         }
-        .field-input {
-          margin-bottom: 32px;
-          input {
-            width: 90%;
-            margin: 8px 0 0;
-            height: 48px;
-            padding: 10px 16px 8px;
-          }
-          select {
-            width: 30%;
-            margin: 8px 0 0;
-            height: 48px;
-            padding: 10px 16px 8px;
-          }
-        }
-      }
-      .actions {
-        input {
-          background-color: blue;
+        .actions {
+          display: inline-block;
+          background-color: #0099e8;
           width: 100%;
           color: white;
-          line-height: 60px;
+          line-height: 45px;
+          font-size: 16px;
+          text-decoration: none;
         }
       }
+      &--box {
+        padding: 40px 20%;
+        &--user-form {
+          .field {
+            .field-label {
+              font-size: 14px;
+            }
+            .field-input {
+              margin-bottom: 32px;
+              input {
+                width: 86%;
+                margin: 8px 8px 0 0;
+                height: 30px;
+                padding: 8px 16px ;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+              }
+            }
+          }
+          .actions {
+            input {
+              background-color: #3CCACE;
+              width: 98%;
+              color: white;
+              line-height: 45px;
+              margin: 8px 0;
+              border: none;
+            }
+          }
+          .users_shared_links {
+            margin-top: 40px;
+            a {
+              color: #0099e8;
+              text-decoration: none;
+            }
+          }
+        }
       }
     }
   }
