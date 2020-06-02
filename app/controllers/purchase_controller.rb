@@ -36,9 +36,9 @@ class PurchaseController < ApplicationController
     card = Payment.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
-    :amount => @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
-    :customer => card.customer_id, #顧客ID
-    :currency => 'jpy', #日本円
+    amount: @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
+    customer: card.customer_id, #顧客ID
+    currency: 'jpy', #日本円
     )
     buyer = Buyer.new(item_id: @item.id, user_id: current_user.id)
     if buyer.save
