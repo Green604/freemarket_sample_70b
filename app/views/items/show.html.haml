@@ -41,15 +41,18 @@
   = @item.shipping.shipping_day
 
 - if user_signed_in?
-  - unless user_signed_in? && current_user.id == @item.seller.user.id
-    .li
-      = link_to '購入', "#"
-
   - if user_signed_in? && current_user.id == @item.seller.user.id
     .li
       = link_to '編集', edit_item_path
     .li
-      = link_to '削除', item_path, method: :delete
+      = link_to '削除', "#"
+  - else
+    - if @item.buyer.present?
+      .li
+        売却済
+    - else
+      .li
+        = link_to '購入', item_purchase_path(@item.id)
 
 = link_to 'Back', root_path
 
