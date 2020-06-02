@@ -23,18 +23,18 @@
         .login-page__inner--box--user-form
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .field
-              .field-label
+              .field__label
                 = f.label :email, "メールアドレス"
-              .field-input
+              .field__input
                 = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス"
             .field
-              .field-label
+              .field__label
                 = f.label :password, "パスワード"
-              .field-input
+              .field__input
                 = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード"
             - if devise_mapping.rememberable?
               .field
-                .field-label
+                .field__label
                   = f.check_box :remember_me
                   = f.label :remember_me, "ログインしたままにする"
             .actions

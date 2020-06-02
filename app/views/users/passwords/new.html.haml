@@ -24,9 +24,9 @@
           = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
             = render "devise/shared/error_messages", resource: resource
             .field
-              .field-label
+              .field__label
                 = f.label :email, "メールアドレス"
-              .field-input
+              .field__input
                 = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "ご登録されたメールアドレス"
             .actions
               = f.submit "送信する"

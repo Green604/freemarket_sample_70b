@@ -4,7 +4,7 @@
     width: 64%;
     margin: 0 auto;
     background-color: white;
-    .account-page__header {
+    &__header {
       background-color: #f8f8f8;
       height: 70px;
       padding: 30px 14%;
@@ -46,7 +46,7 @@
         }
       }
     }
-    .account-page__inner {
+    &__inner {
       border: 1px solid #f8f8f8;
       &--title {
         padding: 40px 20%;
@@ -58,7 +58,7 @@
         padding: 40px 25%;
         &--user-form {
           .field {
-            .field-label {
+            &__label {
               font-size: 14px;
               .form-require {
                 background-color: #3CCACE;
@@ -75,7 +75,7 @@
                 border-radius: 2px;
               }
             }
-            .field-input {
+            &__input {
               margin-bottom: 32px;
               input {
                 width: 88%;
@@ -92,7 +92,7 @@
                 padding: 10px 16px 8px;
               }
             }
-            .field-input-half {
+            &__input-half {
               margin-bottom: 32px;
               input {
                 width: 37%;
@@ -131,12 +131,12 @@
     width: 42%;
     margin: 0 auto;
     background-color: white;
-    .login-page__header {
+    &__header {
       background-color: #f8f8f8;
       height: 70px;
       padding: 30px 29%;
     }
-    .login-page__inner {
+    &__inner {
       border: 1px solid #f8f8f8;
       &--title {
         padding: 40px 20%;
@@ -160,10 +160,10 @@
         padding: 40px 20%;
         &--user-form {
           .field {
-            .field-label {
+            &__label {
               font-size: 14px;
             }
-            .field-input {
+            &__input {
               margin-bottom: 32px;
               input {
                 width: 86%;
@@ -202,7 +202,7 @@
     width: 64%;
     margin: 0 auto;
     background-color: white;
-    .password-page__header {
+    &__header {
       background-color: #f8f8f8;
       height: 70px;
       padding: 30px 36%;
