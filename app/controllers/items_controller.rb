@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
   # ログインユーザー≠出品者のときに、直接URL指定にてedit,update,desytoyへアクセスされた場合も制限するため追記
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
@@ -52,16 +52,11 @@ class ItemsController < ApplicationController
     else
       flash.now[:alert] = 'エラーが発生しました。'
       render :edit
-      # respond_to do |format|
-    #   if @item.update(item_params)
-    #     format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @item }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @item.errors, status: :unprocessable_entity }
-    #   end
-    # end
     end
+  end
+
+  def search
+    @items = Item.search(params[:keyword])
   end
 
   def destroy
