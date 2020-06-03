@@ -202,7 +202,7 @@ require 'rails_helper'
 describe Item do
   describe '#search' do      
     it "Tシャツを検索できる" do
-      item = build(:item)
+      item = create(:item)
       expect(Item.search("シャツ")).to include(item)
     end
   end

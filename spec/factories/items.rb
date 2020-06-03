@@ -4,9 +4,9 @@ FactoryBot.define do
     description           {"これはナイキのTシャツです。"}
     price                 {"3000"}
     brand_id              {}
-    parent_category_id    {200}
-    child_category_id     {200}
-    category_id           {200}
+    parent_category_id    {10}
+    child_category_id     {10}
+    category_id           {10}
     shipping_id           {1}
     condition             {:"新品・未使用"}
 
