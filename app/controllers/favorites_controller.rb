@@ -22,7 +22,7 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       format.json
     end
-    redirect_to item_path(@favorite.item.id)
+    
   end
 
 end

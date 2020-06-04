@@ -41,7 +41,7 @@
   = @item.shipping.shipping_day
 
 -# %div{:id => "favorites_buttons_#{@item.id}"}
-.favorites_buttons
+.favorites_buttons{data: {id: @item.id}}
   = render partial: 'favorites/favorite', locals: { item: @item}
 
 - if user_signed_in?
