@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
     collection do
       get 'search'
+      # get 'detail_search'
     end
 
     resources :comments, only: :create

@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   # ログインユーザー≠出品者のときに、直接URL指定にてedit,update,desytoyへアクセスされた場合も制限するため追記
   before_action :set_item, only: [:show, :edit, :update, :destroy, :ensure_correct_user]
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+  before_action :set_ransack
 
 
   def index
@@ -59,6 +60,11 @@ class ItemsController < ApplicationController
     @items = Item.search(params[:keyword])
   end
 
+  def detail_search
+    @search_item = Item.ransack(params[:q])
+    @items = @search_item.result.page(params[:page])
+  end
+
   def destroy
     @item.destroy
     redirect_to root_path
@@ -90,6 +96,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_ransack
+    @q = Item.ransack(params[:q])
   end
 
 end
