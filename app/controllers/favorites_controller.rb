@@ -19,6 +19,9 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find_by(item_id: params[:item_id], user_id: current_user.id)
     @favorite.destroy
     # redirect_back(fallback_location: item_path(@favorite.item.id))
+    respond_to do |format|
+      format.json
+    end
     redirect_to item_path(@favorite.item.id)
   end
 

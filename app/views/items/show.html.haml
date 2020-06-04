@@ -42,7 +42,7 @@
 
 -# %div{:id => "favorites_buttons_#{@item.id}"}
 .favorites_buttons
-= render partial: 'favorites/favorite', locals: { item: @item}
+  = render partial: 'favorites/favorite', locals: { item: @item}
 
 - if user_signed_in?
   - unless user_signed_in? && current_user.id == @item.seller.user.id
