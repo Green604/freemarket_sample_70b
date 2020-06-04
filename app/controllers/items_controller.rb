@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     @category = Category.find(category_parent)
     category_child = @item.child_category_id
     @category_child = Category.find(category_child)
-    @favorite = Favorite.new
+    @favorite = Favorite.new 
   end
 
   def new
