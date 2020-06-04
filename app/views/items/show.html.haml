@@ -40,6 +40,22 @@
   発送日の目安:
   = @item.shipping.shipping_day
 
+.comment
+  - if current_user
+    = form_with( model: [@item, @comment], local: true) do |f|
+      = f.text_area :comment, placeholder: "コメントする", rows: "2"
+      = f.submit "SEND"
+
+.commentList
+  %p コメント一覧
+  - if @comments
+    - @comments.each do |comment|
+      %p 
+        = comment.user.nickname
+      %p
+        = comment.comment
+      %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
+
 - if user_signed_in?
   - if user_signed_in? && current_user.id == @item.seller.user.id
     .li
@@ -55,4 +71,3 @@
         = link_to '購入', item_purchase_path(@item.id)
 
 = link_to 'Back', root_path
-
