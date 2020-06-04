@@ -46,7 +46,8 @@
 .LikesIcon
   %i.far.fa-heart.LikesIcon-fa-heart
 .counts
-
+  いいね数：
+  = @item.favorites.count
 .favorites_buttons{data: {id: @item.id}}
   = render partial: 'favorites/favorite', locals: { item: @item}
 
