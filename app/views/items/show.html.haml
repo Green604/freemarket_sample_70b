@@ -40,7 +40,12 @@
   発送日の目安:
   = @item.shipping.shipping_day
 
--# %div{:id => "favorites_buttons_#{@item.id}"}
+
+-# .btn
+-#   %i.fas.fa-heart.favorite-btn
+.LikesIcon
+  %i.far.fa-heart.LikesIcon-fa-heart
+.counts
 .favorites_buttons{data: {id: @item.id}}
   = render partial: 'favorites/favorite', locals: { item: @item}
 

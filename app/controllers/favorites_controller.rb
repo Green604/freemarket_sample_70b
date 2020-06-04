@@ -5,9 +5,10 @@ class FavoritesController < ApplicationController
 
     # redirect_to item_path(@favorite.item.id)
     if @favorite.save
+      @favoriteCounts = Favorite.where(item_id: params[:item_id])
       respond_to do |format| # リクエストされたformatによって処理を分ける
         # format.html { redirect_to item_path(@favorite.item.id) }
-        format.json { render json: @favorite}  # jsファイルで作成したfavorite(@favorite)を使用するため、renderメソッドを使用して、作成したfavoriteをjson形式で返す
+        format.json  # jsファイルで作成したfavorite(@favorite)を使用するため、renderメソッドを使用して、作成したfavoriteをjson形式で返す
         # format.json { render json :@favorite } 7行目の記述が間違っていたので修正した
       end 
     else
@@ -18,7 +19,7 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite = Favorite.find_by(item_id: params[:item_id], user_id: current_user.id)
     @favorite.destroy
-    # redirect_back(fallback_location: item_path(@favorite.item.id))
+    @favoriteCounts = Favorite.where(item_id: params[:item_id])
     respond_to do |format|
       format.json
     end
