@@ -4,8 +4,10 @@ FactoryBot.define do
     description           {"これはナイキのTシャツです。"}
     price                 {"3000"}
     brand_id              {}
-    category_id           {}
-    shipping_id           {}
+    parent_category_id    {10}
+    child_category_id     {10}
+    category_id           {10}
+    shipping_id           {1}
     condition             {:"新品・未使用"}
 
     after(:build) do |item|                           
