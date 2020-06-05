@@ -4,16 +4,16 @@ $(function() {
   $('.LikesIcon').on('click', function() {
     let $btn = $(this);
     // Likeボタンがonクラス持っていたら
-    if ($btn.hasClass('on')) {
-
-      $btn.removeClass('on');
+    // if ($btn.hasClass('on')) {
+    if($('.button_to').children().is('#delete-good')) {
+      // $btn.removeClass('on');
 
       // 白抜きアイコンに戻す
       $btn.children("i").attr('class', 'far fa-heart LikesIcon-fa-heart');
 
     } else {
 
-      $btn.addClass('on');
+      // $btn.addClass('on');
 
       // ポイントは2つ！！
       // ①アイコンを変更する
