@@ -23,7 +23,9 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       format.json
     end
-    
+  end
+
+  def show
   end
 
 end
