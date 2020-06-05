@@ -61,6 +61,9 @@
   - unless user_signed_in? && current_user.id == @item.seller.user.id
     .li
       = link_to '購入', "#"
+    .li
+      = link_to 'いいね一覧ページ', "/items/#{@item.id}/favorites"
+    
 
   - if user_signed_in? && current_user.id == @item.seller.user.id
     .li
