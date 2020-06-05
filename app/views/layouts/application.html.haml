@@ -4,9 +4,14 @@
     %title FreemarketSample70b
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    %body
+    -# = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    -# = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
+    %scripy{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"}
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    %link{:href => "https://use.fontawesome.com/releases/v5.6.1/css/all.css", :rel => "stylesheet"}/
+  %body
     %header.header
       .header__bar.row
         %h1.grid-6
@@ -16,7 +21,8 @@
             マイページ
         - else
           .grid-6
-            ログイン
-            新規登録
+            = link_to "ログイン", new_user_session_path, method: :get
+            = link_to "新規登録", new_user_registration_path, method: :get
+
     = render 'layouts/notifications'
     = yield

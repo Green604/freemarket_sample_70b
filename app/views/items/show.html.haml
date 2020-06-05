@@ -1,16 +1,73 @@
 %p#notice= notice
 %p
-  %strong Title:
-  = @item.title
+- if user_signed_in?
+  ログイン中ユーザー:
+  = current_user.nickname
+- else 
+  未ログイン
 %p
-  %strong String:
-  = @item.string
+  商品名:
+  = @item.name
 %p
-  %strong Text:
-  = @item.text
+  - @item.images.each do |image|
+    = image_tag image.image.url
 %p
-  %strong Text:
-  = @item.text
-= link_to 'Edit', edit_item_path(@item)
-|
-= link_to 'Back', items_path
+  出品者:
+  = @item.seller.user.nickname
+
+%p
+  %strong カテゴリー:
+%p
+  = @category.name
+%p
+  = @category_child.name
+%p
+  = @item.category.name
+%p
+  ブランド:
+  - if @item.brand.present?
+    = @item.brand.name 
+%p
+  商品の状態:
+  = @item.condition
+%p
+  配送料の負担:
+  = @item.shipping.shipping_fee
+%p
+  発送元の地域:
+  = @item.shipping.shippingarea.name
+%p
+  発送日の目安:
+  = @item.shipping.shipping_day
+
+.comment
+  - if current_user
+    = form_with( model: [@item, @comment], local: true) do |f|
+      = f.text_area :comment, placeholder: "コメントする", rows: "2"
+      = f.submit "SEND"
+
+.commentList
+  %p コメント一覧
+  - if @comments
+    - @comments.each do |comment|
+      %p 
+        = comment.user.nickname
+      %p
+        = comment.comment
+      %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
+
+- if user_signed_in?
+  - if user_signed_in? && current_user.id == @item.seller.user.id
+    .li
+      = link_to '編集', edit_item_path
+    .li
+      = link_to '削除', "#"
+  - else
+    - if @item.buyer.present?
+      .li
+        売却済
+    - else
+      .li
+        = link_to '購入', item_purchase_path(@item.id)
+
+= link_to 'Back', root_path

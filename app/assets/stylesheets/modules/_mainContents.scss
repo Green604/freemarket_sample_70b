@@ -1,0 +1,241 @@
+.mainContent {
+  background: #f8f8f8;
+  display: block;
+
+  .introdcution {
+    width: 100%;
+    height: 560px;
+    background-color:#3CCACE;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    position: relative;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    .intContent {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 35px 0 0 0;
+      color: #ffffff;
+      .intTitle {
+        text-shadow: 0 0 5px rgba(0,0,0,0.4);
+        font-size: 60px;
+        line-height: 1.2;
+        font-weight: normal;
+      }
+      .intText {
+        text-shadow: 0 0 5px rgba(0,0,0,0.4);
+        font-size: 18px;
+        color: #fff;
+        line-height: 1.77778;
+        margin: 16px 0 0 0;
+      }
+      .intApp {
+
+      }
+    }
+  }
+
+  .reason {
+    height: 658px;
+    padding: 60px 20px;
+    display: block;     
+  
+    h2 {
+      text-align: center;
+      font-size: 26px;
+      line-height: 1.4;
+      font-weight: bold;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      position: relative;
+    }
+    ul {
+      text-align: center;
+      display: flex;
+      max-width: 1020px;
+      width: 100%;
+      margin: 0 auto;
+      list-style: none;
+      
+      li {
+        width: 30%;
+        margin: 16px 5% 0 0;
+        text-align: left;
+        flex-direction: column;
+        align-items: center;
+        &__image {
+          position: relative;
+          margin-bottom: 20px;
+          background-color: blue;
+          &__number {
+            span {
+              display: inline-block;
+              position: absolute;
+              top: 0;
+              left: 0;
+              border-radius: 4%;
+              font-size: 30px;
+              text-align: center;
+              margin: 0 5px 0 0;
+              padding: 10px 20px;
+              background-color: #3CCACE;
+              color: #fff;
+            }           
+          }
+        }
+        span {
+          color: #3CCACE;
+        }
+        h3 {
+          font-weight: bold;
+          font-size: 24px;
+          line-height: 50px;
+          margin: 0 0 0 2px;
+        }
+        p {
+          font-size: 18px;
+          line-height: 1.5;
+          margin: 16px 0 0;
+        }
+      }
+    }
+  }
+
+  .point {
+    background-color:#3CCACE;
+    background-position: bottom right;
+    height: 400px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    .pointContent {
+      color: #fff;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      text-align: left;
+      max-width: 1040px;
+      width: 100%;
+      margin: 0 auto;
+      .pointTitle {
+        font-size: 27px;
+        font-weight: bold;
+        line-height: 1.4;
+      }
+      .pointText {
+        font-size: 18px;
+        margin: 20px 0 30px;
+        line-height: 1.5;        
+      }
+      .pointApp {
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .mainfeatures {
+    height: 733.61px;
+    padding:60px 100px;
+    background-color: #ffffff;
+    h2 {
+      font-size: 27px;
+      text-align: center;
+      margin: 0 0 40px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      position: relative;
+    }
+    .features {
+      max-width: calc(1040px + 20px);
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      section {
+        display: flex;
+        flex-direction: column;
+        width: calc(1 / 3 * 100%);
+        text-align: center;
+        padding: 0 20px;
+        figure {
+          width: 70%;
+          margin: 0 auto;
+          line-height: 120px;
+        }      
+        h3 {
+          margin: 38px 0 10px;
+          font-size: 19px;
+          font-weight: bold;
+        }
+        p {
+          margin: 0 0 40px;
+          font-size: 17px;
+          font-weight: 200;
+          text-align: left;
+        }
+      } 
+    } 
+  }
+
+  .pickup {
+    padding: 80px 0 0;
+    background-color: #f8f8f8;
+    height: 532px;
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      line-height: 1.4;
+      font-weight: bold;
+    }
+    .itemBox { 
+      .itemHeader {
+        text-align: center;
+        color: #3CCACE;
+        font-size: 24px;
+      }
+      .itemLists {
+        width: 780px;
+        margin: 26px auto;
+        display: flex;
+        justify-content: space-around;
+        .itemList {
+          width: 220px;
+          display: inline-block;
+          &__box {
+            &--image {
+              .image {
+                height: 100px;
+                width: 100px;
+              }
+            }
+
+          }
+
+          a {
+            background-color: #fff;
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+          }
+          figure {
+            width: 220px;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            z-index: auto;
+          }
+          &__itmeDescription {
+            background-color: white;
+            color: #333;
+            padding: 16px;
+          }
+        }
+      } 
+    } 
+  }
+}

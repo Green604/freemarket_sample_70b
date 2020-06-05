@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_05_24_093559) do
     t.integer "condition", null: false
     t.integer "parent_category_id"
     t.integer "brand_id"
+    t.integer "parent_category_id"
+    t.integer "child_category_id"
     t.integer "category_id"
     t.integer "shipping_id"
     t.datetime "created_at", null: false
@@ -78,7 +80,8 @@ ActiveRecord::Schema.define(version: 2020_05_24_093559) do
 
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "payjp_id", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_payments_on_user_id"

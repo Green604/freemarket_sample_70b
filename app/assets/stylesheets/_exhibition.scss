@@ -1,0 +1,783 @@
+* {
+  box-sizing: border-box;
+}
+
+div {
+  vertical-align: baseline;
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  display: block;
+}
+
+hr {
+  display: block;
+  unicode-bidi: isolate;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  header {
+    height: 128px;
+  }
+}
+
+@media (min-width: 1068px) {
+  .container {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding: 40px 0px 41px;
+  }
+}
+
+@media (min-width: 768px) {
+  .furima-logo {
+      height: 49px;
+      width: 185px;
+      vertical-align: middle;
+  }
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .image-capsule {
+    height: 150px;
+  }
+}
+
+@media (min-width: 768px) {
+  .selling-price {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .selling-price-box__input {
+    max-width: 285px;
+  }
+}
+
+@media (min-width: 768px) {
+  .button {
+    width: 360px;
+    margin: 0px auto 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .attention {
+    margin: 0px 40px 64px;
+  }
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  color: rgb(51, 51, 51);
+  background-color: rgb(245, 245, 245);
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  font-size: 14px;
+  .overall {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    header {
+      height: 128px;
+      -webkit-box-align: center;
+      align-items: center;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      .logo {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+    .container {
+      background-color: rgb(255, 255, 255);
+      width: 100%;
+      margin: 0px auto;
+      .exhibition {
+        position: relative;
+        .exhibition-form {
+          display: block;
+          .image {
+            .image-flame {
+              margin: 0;
+              .image-box {
+                &__name {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__limit {
+                  margin-top: 16px;
+                  font-size: 14px;
+                  line-height: 1.4em;              
+                }
+                &__upload {
+                  margin-top: 16px;
+                  .image-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: -8px -4px 0px;
+                    .image-capsule {
+                      margin-top: 8px;
+                      flex: 110%;
+                      padding: 0px 4px;
+                      .image-folder {
+                        align-content: center;
+                        -webkit-box-align: center;
+                        align-items: center;
+                        background-color: rgb(245, 245, 245);
+                        cursor: pointer;
+                        display: flex;
+                        height: 100%;
+                        flex-wrap: wrap;
+                        -webkit-box-pack: center;
+                        justify-content: center;
+                        position: relative;
+                        border-width: 1px;
+                        border-style: dashed;
+                        border-color: rgb(204, 204, 204);
+                        border-image: initial;
+                        transition: all 0.5s ease-out 0s;
+                        .js-file_group {
+                          // display: none;
+                          // font-family: inherit;
+                          // font-size: 100%;
+                          // -webkit-appearance: initial;
+                          // background-color: initial;
+                          // align-items: baseline;
+                          // color: inherit;
+                          // text-align: start !important;
+                          // padding: initial;
+                          // border: initial;
+                          // letter-spacing: normal;
+                          // word-spacing: normal;
+                          // text-transform: none;
+                          // text-indent: 0px;
+                          // text-shadow: none;
+                          // -webkit-writing-mode: horizontal-tb !important;
+                          // text-rendering: auto;
+                          // -webkit-rtl-ordering: logical;
+                          // margin: 0em;
+                          // font: 400 11px system-ui;
+                        }
+                        &__icon {
+                          fill: rgb(34, 34, 34);
+                          height: 24px;
+                          margin-bottom: 8px;
+                          width: 24px;
+                          fill-rule: evenodd;
+                          overflow: hidden;
+                        }
+                        &___instruction {
+                          font-size: 12px !important;
+                          line-height: 1.4em;
+                          text-align:center;
+                          width: 100%;
+                          vertical-align: baseline;
+                          margin: 0px;
+                          padding: 0px;
+                          border-width: 0px;
+                          border-style: initial;
+                          border-color: initial;
+                          border-image: initial;
+                          font: inherit;
+                          display: block;
+                          margin-block-start: 1em;
+                          margin-block-end: 1em;
+                          margin-inline-start: 0px;
+                          margin-inline-end: 0px;
+                          cursor: pointer;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .description {
+            .item-name {
+              margin: 0;
+              .item-name-box {
+                &__name {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__input {
+                  @include input;
+                  .input-group {
+                    @include input-group;
+                    .input-group input {
+                      @include input-group-input;
+                    }
+                  }
+                }
+              }
+            }
+            .item-explanation {
+              margin: 0;
+              margin-top: 32px;
+              .item-explanation-flame {
+                .item-explanation-box {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                  &__textarea {
+                    font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+                    width: 100%;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    color: #222;
+                    font-size: 16px;
+                    margin: 0;
+                    outline: none;
+                    padding: 13px 16px;
+                    resize: vertical;
+                    vertical-align: middle;
+                  }
+                  &__counter {
+                    text-align: right;
+                    font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+                    color: #888;
+                    font-size: 12px;
+                    line-height: 1.4em;
+                  }
+                }
+              }
+            }
+          }
+          .detail {
+            .item-detail {
+              @include label-group__label(#888888);
+            }
+            .category {
+              margin: 0;
+              margin-top: 32px;
+              .category-section {
+                &__name {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .category-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .category-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .brand {
+              margin: 0;
+              margin-top: 32px;
+              .brand-section {
+                &__name {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required (#BFBFBF);
+                    }
+                  }
+                }
+                &__input {
+                  @include input;
+                  .input-group {
+                    @include input-group;
+                    .input-group input {
+                      @include input-group-input;
+                    }
+                  }
+                }
+              }
+            }
+            .condition {
+              margin: 0;
+              margin-top: 32px;
+              .condition-section {
+                &__name {
+                  margin: 0!important;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .condition-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .condition-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .shipping {
+            .shipping-about {
+              @include label-group__label ($light_gray);
+              a {
+                color: inherit;
+                text-decoration: none;
+                .shipping-about-svg {
+                  fill: rgb(0, 149, 238);
+                  height: 16px;
+                  margin-left: 4px;
+                  vertical-align: -3px;
+                  width: 16px;
+                }
+              } 
+            }
+            .shippingfee {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingfee-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingfee-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingway {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingway-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingway-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingarea {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingarea-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingarea-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+            .shippingday {
+              margin: 0;
+              margin-top: 32px;
+              &-section {
+                &__name {
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__pulldown {
+                  @include pulldown;
+                  .shippingday-select {
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .shippingday-svg {
+                      @include svg;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .exhibition-price {
+            .price {
+              @include label-group__label($light_gray);
+              a {
+                color: inherit;
+                text-decoration: none;
+                .price-svg {
+                  fill: rgb(0, 149, 238);
+                  height: 16px;
+                  margin-left: 4px;
+                  vertical-align: -3px;
+                  width: 16px;
+                }
+              } 
+            }
+            .selling-price {
+              &-box {
+                padding-top: 0px;
+                padding: 12px 0px;
+                -webkit-box-align: center;
+                align-items: center;
+                box-sizing: content-box;
+                display: flex;
+                height: 46px;
+                &__label {
+                  margin-right: auto;
+                  white-space: nowrap;
+                  vertical-align: baseline;
+                  margin: 0px;
+                  padding: 0px;
+                  border-width: 0px;
+                  border-style: initial;
+                  border-color: initial;
+                  border-image: initial;
+                  font: inherit;
+                  margin-right: auto;
+                  white-space: nowrap;
+                  .label-group {
+                    @include label-group;
+                    & label {
+                      @include label-group__label ($black);
+                    }
+                    &__required {
+                      @include label-group__required ($sky_blue);
+                    }
+                  }
+                }
+                &__yenmark {
+                  vertical-align: baseline;
+                  margin: 0px;
+                  padding: 0px;
+                  border-width: 0px;
+                  border-style: initial;
+                  border-color: initial;
+                  border-image: initial;
+                  font-size: 14px;
+                  margin-right: 8px;
+                }
+                &__input {
+                  align-items: center;
+                  display: inline-flex;
+                  width: 100%;
+                  color: #222;
+                  font-size: 16px;
+                  .price-input {
+                    display: inline-block;
+                    position: relative;
+                    width: inherit;
+                    input {
+                      @include input-group-input;
+                      text-align: right;
+                    }
+                  }
+                }
+              }
+              .selling-fee {
+                -webkit-box-align: center;
+                align-items: center;
+                box-sizing: content-box;
+                display: flex;
+                height: 46px;
+                padding: 12px 0px;
+                &__label {
+                  margin-right: auto;
+                  white-space: nowrap;
+                  .selling-fee-10 {
+                    @include label-group__label ($black);
+                    font-weight: 100;
+                  }
+                }
+                &__value {
+                  font-size: 14px;
+                }
+              }
+              .selling-fee-underbar {
+                border-top-width: 1px;
+                border-top-color: #efefef;
+                border-left: 0 solid #efefef;
+                border-bottom: 0 solid #efefef;
+                border-right: 0 solid #efefef;
+                border-top-style: solid;
+                margin: 0;
+              }
+              .profit {
+                -webkit-box-align: center;
+                align-items: center;
+                box-sizing: content-box;
+                display: flex;
+                height: 46px;
+                padding: 12px 0px;
+                &__label {
+                  margin-right: auto;
+                  white-space: nowrap;
+                  &-name {
+                    @include label-group__label ($black);
+                    font-weight: 100;
+                  }
+                }
+                &__value {
+                  font-size: 14px;
+                }
+              }
+              .button {
+                &-lightblue {
+                  @include button-lightblue;
+                }
+                &-gray {
+                  @include button-gray;
+                }
+                &-back {
+                  margin-top: 24px;
+                  color: #0095ee;
+                  display: flex;
+                  width: 100%;
+                  height: 20px;
+                  -webkit-box-pack: center;
+                  justify-content: center;
+                  -webkit-box-align: center;
+                  align-items: center;
+                  text-decoration: none;
+                  word-break: keep-all;
+                }
+              }
+              .attention {
+                margin: 0px 40px 64px;
+                display: block;
+                &-sentence {
+                  vertical-align: baseline;
+                  margin: 0px;
+                  padding: 0px;
+                  border-width: 0px;
+                  border-style: initial;
+                  border-color: initial;
+                  border-image: initial;
+                  font: inherit;
+                  display: block;
+                  margin-block-start: 1em;
+                  margin-block-end: 1em;
+                  margin-inline-start: 0px;
+                  margin-inline-end: 0px;
+                  font-size: 12px;
+                  line-height: 1.4em;
+                  box-sizing: border-box;
+                }
+                &__prohibit {
+                  @include word-link;
+                }
+                &__object {
+                  @include word-link;
+                }
+                &__fake {
+                  @include word-link;
+                }
+                &__stolen {
+                  @include word-link;
+                }
+              }
+            }    
+          } 
+              
+    
+              
+    
+              .exhibition__explanation_textarea {
+                margin: 0;
+                margin-top: 16px;
+                width: 100%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                color: #222;
+                font-size: 16px;
+                outline: none;
+                padding: 13px 16px;
+                resize: vertical;
+                vertical-align: middle;
+              }
+              .exhibition__explanation_textarea_limit {
+                margin-top: 16px;
+                text-align: right;
+                color: #888;
+                font-size: 10px;
+                line-height: 1.4em;
+              }
+                
+                input {
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  box-sizing: border-box;
+                  font-family: inherit;
+                  font-size: inherit;
+                  height: 48px;
+                  margin: 0;
+                  outline: none;
+                  padding: 0 16px;
+                  width: inherit;
+                }
+                .exhibition__explanation__label_style {
+                  align-items: center;
+                  display: flex;
+                }
+          .border {
+            border-top-width: 1px;
+            border-top-color: #efefef;
+            border-left: 0 solid #efefef;
+            border-bottom: 0 solid #efefef;
+            border-right: 0 solid #efefef;
+            border-top-style: solid;
+            margin: 0;
+          }
+        }
+      }
+    }
+    footer {
+      margin-top: auto;
+      text-align: center;
+      .policy {
+        .policy-list {
+          display: inline-block;
+          margin: -16px 0px 40px -16px;
+          list-style: none;
+          &__item {
+            display: inline-block;
+            margin: 16px 0px 0px 16px;
+            .name {
+              font-size: 12px;
+              color: inherit;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      .logo {
+        color: inherit;
+        text-decoration: none;
+        &__image {
+          height: 65px;
+          margin-bottom: 8px;
+          width: 80px;
+          vertical-align: middle;
+        }
+      }
+      .company {
+        font-size: 12px;
+      }
+    }
+  }
+}

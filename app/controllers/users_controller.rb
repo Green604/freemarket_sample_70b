@@ -1,5 +1,16 @@
 class UsersController < ApplicationController
 
+  def show
+    @nickname = current_user.nickname
+    @items = []
+    sellers = current_user.sellers.ids
+    sellers.each do |s|
+      key_id = Seller.find(s).item_id
+      @item = Item.find(key_id)
+      @items << @item
+    end
+  end
+
   def edit
   end
 
