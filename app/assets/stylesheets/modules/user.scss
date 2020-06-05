@@ -4,7 +4,7 @@
     @include user-account__contents ($white);
     &__header {
       background-color: $background_light_gray;
-      height: 68px;
+      height: 128px;
       padding: 30px 15%;
       align-items: center;
       display: flex;
@@ -21,25 +21,37 @@
           }
           .status-title {
             margin-right: 43px;
+            margin-bottom: 8px;
           }
           .status-point {
-            color: #ccc;
-            letter-spacing: -3px;
-            padding-bottom: 16px;
+            background-color: #ccc;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
             &__first {
+              background-color: $sky_blue;
+              width: 12px;
+              height: 12px;
+              border-radius: 50%;
               margin-left: 18px;
-              letter-spacing: -3px;
+              margin-bottom: 16px;
             }
             &__second {
-              letter-spacing: -3px;
               z-index: 1;
-              li:before {
-                @include center-line;
-              }
+              background-color: $sky_blue;
+              width: 12px;
+              height: 12px;
+              border-radius: 50%;
             }
-            li:before {
-              @include center-line;
-            }
+          }
+          .status-bar {
+            background-color: #ccc;
+            margin-top: 5px;
+            width: 80px;
+            height: 1px;
+          }
+          .add-color {
+            background-color: $sky_blue;
           }
         }
       }
@@ -50,27 +62,26 @@
         @include user-account__inner--title ($background_light_gray);
       }
       &--box {
-        padding: 40px 25%;
+        padding: 25px 25%;
         &--user-form {
           .field {
             &__label {
               font-size: 14px;
               .form-require {
-                @include label-group__required($sky_blue);
+                @include user-label-group($sky_blue);
               }
               .form-any {
-                @include label-group__required(#ccc);
+                @include user-label-group(#ccc);
               }
             }
             &__input {
               margin-bottom: 24px;
               input {
-                @include input;
                 @include user-input (#ccc);
               }
               select {
-                @include select;
-                width: 26%;
+                @include user-select;
+                width: 27%;
                 margin: 8px 0 0;
                 padding: 10px 16px 8px;
               }
@@ -78,9 +89,8 @@
             &__input-half {
               margin-bottom: 32px;
               input {
-                @include input;
                 @include user-input (#ccc);
-                width: 37.2%;
+                width: 47%;
               }
             }
           }
@@ -116,7 +126,7 @@
           font-size: 14px;
         }
         .actions {
-          display: inline-block;
+          // display: inline-block;
           @include user-submit (#0099e8);
         }
       }
@@ -130,7 +140,6 @@
             &__input {
               margin-bottom: 24px;
               input {
-                @include input;
                 @include user-input (#ccc);
               }
             }
@@ -143,7 +152,7 @@
           .users_shared_links {
             margin-top: 40px;
             a {
-              @include word-link;
+              @include user-word-link;
             }
           }
         }
