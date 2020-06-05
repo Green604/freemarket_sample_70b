@@ -1,13 +1,12 @@
 .background {
-  background-color: #f8f8f8;
+  background-color: $background_light_gray;
   .account-page {
-    width: 64%;
-    margin: 0 auto;
-    background-color: white;
+    @include user-account__contents ($white);
     &__header {
-      background-color: #f8f8f8;
-      height: 70px;
-      padding: 30px 14%;
+      background-color: $background_light_gray;
+      height: 68px;
+      padding: 30px 15%;
+      align-items: center;
       display: flex;
       &--progress {
         font-size: 12px;
@@ -18,7 +17,7 @@
           color: #888;
           display: flex;
           .progress-status {
-            color: #3CCACE;
+            color: $sky_blue;
           }
           .status-title {
             margin-right: 43px;
@@ -26,6 +25,7 @@
           .status-point {
             color: #ccc;
             letter-spacing: -3px;
+            padding-bottom: 16px;
             &__first {
               margin-left: 18px;
               letter-spacing: -3px;
@@ -34,25 +34,20 @@
               letter-spacing: -3px;
               z-index: 1;
               li:before {
-                content: "ーーーーーーーー";
-                letter-spacing: -2px;
+                @include center-line;
               }
             }
             li:before {
-              content: "ーーーーーーーー";
-              letter-spacing: -2px;
+              @include center-line;
             }
           }
         }
       }
     }
     &__inner {
-      border: 1px solid #f8f8f8;
       &--title {
-        padding: 40px 20%;
-        text-align: center;
-        border-bottom: 1px solid #f8f8f8;
-        font-size: 22px;
+        line-height: 97px;
+        @include user-account__inner--title ($background_light_gray);
       }
       &--box {
         padding: 40px 25%;
@@ -61,57 +56,37 @@
             &__label {
               font-size: 14px;
               .form-require {
-                background-color: #3CCACE;
-                color: white;
-                padding: 2px 4px;
-                font-size: 12px;
-                border-radius: 2px;
+                @include label-group__required($sky_blue);
               }
               .form-any {
-                background-color: #ccc;
-                color: white;
-                padding: 2px 4px;
-                font-size: 12px;
-                border-radius: 2px;
+                @include label-group__required(#ccc);
               }
             }
             &__input {
-              margin-bottom: 32px;
+              margin-bottom: 24px;
               input {
-                width: 88%;
-                margin: 8px 8px 0 0;
-                height: 30px;
-                padding: 8px 16px ;
-                border-radius: 5px;
-                border: 1px solid #ccc;
+                @include input;
+                @include user-input (#ccc);
               }
               select {
-                width: 25%;
+                @include select;
+                width: 26%;
                 margin: 8px 0 0;
-                height: 48px;
                 padding: 10px 16px 8px;
               }
             }
             &__input-half {
               margin-bottom: 32px;
               input {
-                width: 37%;
-                margin: 8px 8px 0 0;
-                height: 30px;
-                padding: 8px 16px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
+                @include input;
+                @include user-input (#ccc);
+                width: 37.2%;
               }
             }
           }
           .actions {
             input {
-              background-color: #3CCACE;
-              width: 98%;
-              color: white;
-              line-height: 45px;
-              margin: 8px 0 16px 0;
-              border: none;
+              @include user-submit ($sky_blue);
             }
           }
         }
@@ -119,77 +94,56 @@
     }
   }
   .footer{
-    line-height: 70px;
-    background-color: #f8f8f8;
+    line-height: 220px;
+    background-color: $background_light_gray;
     text-align: center;
-    padding: 30px 10%;
     font-size: 12px;
   }
 
 // ログインページ
   .login-page {
-    width: 42%;
+    max-width: 456px;
     margin: 0 auto;
-    background-color: white;
+    background-color: $white;
     &__header {
-      background-color: #f8f8f8;
-      height: 70px;
-      padding: 30px 29%;
+      @include user-login__header ($background_light_gray);
     }
     &__inner {
-      border: 1px solid #f8f8f8;
       &--title {
-        padding: 40px 20%;
-        text-align: center;
-        border-bottom: 1px solid #f8f8f8;
+        padding: 25px 14%;
+        @include user-account__inner--title ($background_light_gray);
         p {
           font-size: 14px;
-          margin-bottom: 8px;
         }
         .actions {
           display: inline-block;
-          background-color: #0099e8;
-          width: 100%;
-          color: white;
-          line-height: 45px;
-          font-size: 16px;
-          text-decoration: none;
+          @include user-submit (#0099e8);
         }
       }
       &--box {
-        padding: 40px 20%;
+        padding: 40px 14%;
         &--user-form {
           .field {
             &__label {
               font-size: 14px;
             }
             &__input {
-              margin-bottom: 32px;
+              margin-bottom: 24px;
               input {
-                width: 86%;
-                margin: 8px 8px 0 0;
-                height: 30px;
-                padding: 8px 16px ;
-                border-radius: 5px;
-                border: 1px solid #ccc;
+                @include input;
+                @include user-input (#ccc);
               }
             }
           }
           .actions {
             input {
-              background-color: #3CCACE;
-              width: 98%;
-              color: white;
-              line-height: 45px;
-              margin: 8px 0;
-              border: none;
+              @include user-submit ($sky_blue);
             }
           }
           .users_shared_links {
             margin-top: 40px;
             a {
-              color: #0099e8;
-              text-decoration: none;
+              @include word-link;
             }
           }
         }
@@ -199,13 +153,9 @@
 
   // パスワードを忘れた時のビュー
   .password-page {
-    width: 64%;
-    margin: 0 auto;
-    background-color: white;
+    @include user-account__contents ($white);
     &__header {
-      background-color: #f8f8f8;
-      height: 70px;
-      padding: 30px 36%;
+      @include user-login__header ($background_light_gray);
     }
   }
 }
