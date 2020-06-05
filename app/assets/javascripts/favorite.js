@@ -5,7 +5,7 @@ $(function() {
     let $btn = $(this);
     // Likeボタンがonクラス持っていたら
     // if ($btn.hasClass('on')) {
-    if($('.button_to').children().is('#delete-good')) {
+    if($('.button_to').children().is('#delete-good')) {　　　//ボタン変化はidがdelete-goodかgoodか(いいねしてる時のidかまだしてない時のidか)で変わる
       // $btn.removeClass('on');
 
       // 白抜きアイコンに戻す

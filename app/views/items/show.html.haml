@@ -43,13 +43,12 @@
 
 
 - if user_signed_in?
-  - if current_user.already_favorited?(@item)
+  - if current_user.already_favorited?(@item)     # ユーザーがすでにお気に入りしてるときは赤色のハートマーク、まだしてないときは白色のハートマーク
     .LikesIcon
-      %i.fas.fa-heart.LikesIcon-fa-heart.heart
+      %i.fas.fa-heart.LikesIcon-fa-heart.heart    
   - else
     .LikesIcon
-      %i.far.fa-heart.LikesIcon-fa-heart
-
+      %i.far.fa-heart.LikesIcon-fa-heart 
 
 .counts
   いいね数：
