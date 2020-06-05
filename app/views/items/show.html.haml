@@ -41,10 +41,11 @@
   = @item.shipping.shipping_day
 
 
--# .btn
--#   %i.fas.fa-heart.favorite-btn
-.LikesIcon
-  %i.far.fa-heart.LikesIcon-fa-heart
+
+- if user_signed_in?
+  .LikesIcon
+    %i.far.fa-heart.LikesIcon-fa-heart
+
 .counts
   いいね数：
   = @item.favorites.count
