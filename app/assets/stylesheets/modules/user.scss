@@ -1,7 +1,9 @@
+// user新規登録とshipping_address登録ページ
 .background {
   background-color: $background_light_gray;
   .account-page {
     @include user-account__contents ($white);
+    max-width: 700px;
     &__header {
       background-color: $background_light_gray;
       height: 128px;
@@ -24,31 +26,22 @@
             margin-bottom: 8px;
           }
           .status-point {
-            background-color: #ccc;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+            @include status-point (#ccc);
             &__first {
-              background-color: $sky_blue;
-              width: 12px;
-              height: 12px;
-              border-radius: 50%;
+              @include status-point ($sky_blue);
               margin-left: 18px;
               margin-bottom: 16px;
             }
             &__second {
               z-index: 1;
-              background-color: $sky_blue;
-              width: 12px;
-              height: 12px;
-              border-radius: 50%;
+              @include status-point ($sky_blue);
             }
           }
           .status-bar {
             background-color: #ccc;
             margin-top: 5px;
             width: 80px;
-            height: 1px;
+            height: 2px;
           }
           .add-color {
             background-color: $sky_blue;
@@ -82,8 +75,6 @@
               select {
                 @include user-select;
                 width: 27%;
-                margin: 8px 0 0;
-                padding: 10px 16px 8px;
               }
             }
             &__input-half {
@@ -112,9 +103,8 @@
 
 // ログインページ
   .login-page {
+    @include user-account__contents ($white);
     max-width: 456px;
-    margin: 0 auto;
-    background-color: $white;
     &__header {
       @include user-login__header ($background_light_gray);
     }
@@ -126,7 +116,6 @@
           font-size: 14px;
         }
         .actions {
-          // display: inline-block;
           @include user-submit (#0099e8);
         }
       }
@@ -160,7 +149,7 @@
     }
   }
 
-  // パスワードを忘れた時のビュー
+  // パスワードを忘れた方のページ
   .password-page {
     @include user-account__contents ($white);
     &__header {

@@ -1,6 +1,5 @@
 // ユーザー機能で使用
 @mixin user-account__contents ($color) {
-  max-width: 700px;
   margin: 0 auto;
   background-color: $color;
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;;
@@ -74,14 +73,21 @@
   font-size: 16px;
   height: 48px;
   line-height: 1;
-  margin: 0;
   outline: none;
-  padding: 0 56px 0 16px;
   width: 100%;
+  margin: 8px 0 0;
+  padding: 10px 16px 8px;
 }
 
 @mixin user-word-link {
   color: #0095ee;
   text-decoration: none;
   word-break: keep-all;
+}
+
+@mixin status-point ($color) {
+  background-color: $color;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
 }
