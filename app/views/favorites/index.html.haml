@@ -1,0 +1,18 @@
+%h1 お気に入り商品一覧ページ
+.favoriteItemBox
+  .favoriteItemHeader
+    お気に入り商品一覧
+  %ul.favoriteItemLists
+    - @favoriteItems.each do |item|
+      = link_to "/items/#{item.id}", method: :get, class:"favoriteItemList" do
+        %li.favoreteItemList__box
+          .favoriteItemList__box--image
+            = image_tag item.images.first.image.url, class: "image"
+          .favoriteItemList__box--name
+            = item.name
+            %br
+              = "#{item.price} 円"
+              %br
+                （税込）
+
+= link_to "ホームへ戻る", root_path
