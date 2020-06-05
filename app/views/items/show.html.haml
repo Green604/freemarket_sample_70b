@@ -43,8 +43,13 @@
 
 
 - if user_signed_in?
-  .LikesIcon
-    %i.far.fa-heart.LikesIcon-fa-heart
+  - if current_user.already_favorited?(@item)
+    .LikesIcon
+      %i.fas.fa-heart.LikesIcon-fa-heart.heart
+  - else
+    .LikesIcon
+      %i.far.fa-heart.LikesIcon-fa-heart
+
 
 .counts
   いいね数：
