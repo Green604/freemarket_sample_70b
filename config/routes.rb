@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :items do
 
-    resources :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy, :show]
 
     collection do
       get 'get_category_children', defaults: { format: 'json' }
