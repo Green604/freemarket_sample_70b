@@ -51,7 +51,7 @@
       %i.far.fa-heart.LikesIcon-fa-heart 
 
 .counts
-  いいね数：
+  お気に入り数：
   = @item.favorites.count
 .favorites_buttons{data: {id: @item.id}}
   = render partial: 'favorites/favorite', locals: { item: @item}
@@ -61,7 +61,7 @@
     .li
       = link_to '購入', "#"
     .li
-      = link_to 'いいね一覧ページ', "/items/#{@item.id}/favorites"
+      = link_to 'お気に入り一覧ページ', "/items/#{@item.id}/favorites"
     
 
   - if user_signed_in? && current_user.id == @item.seller.user.id

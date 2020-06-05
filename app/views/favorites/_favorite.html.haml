@@ -5,5 +5,5 @@
     = button_to 'いいね', item_favorites_path(item), {method: :post, id: "good"}
 - else
   %p 
-    いいね数: 
+    お気に入り数: 
     = item.favorites.count

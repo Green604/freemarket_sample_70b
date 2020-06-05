@@ -37,7 +37,7 @@ $(function() {
         contentType: false
       })
       .done(function(data){ 
-        $('.counts').html(`<p>いいね数：${data.counts}</p>`)
+        $('.counts').html(`<p>お気に入り数：${data.counts}</p>`)
         $('.favorites_buttons').html(`<form class="button_to" method="delete" action="/items/${data.item_id}/favorites/${data.id}"><input type="submit" value="いいねを取り消す" id="delete-good" ></form>`)
       })
     } else {
@@ -51,7 +51,7 @@ $(function() {
       })
       .done(function(data){ 
         var itemId = $('.favorites_buttons').data('id'); //ビューのfavorites_buttonsクラス内にあるdata-indaxを取得
-        $('.counts').html(`<p>いいね数：${data.counts}</p>`)
+        $('.counts').html(`<p>お気に入り数：${data.counts}</p>`)
         $('.favorites_buttons').html(`<form class="button_to" method="post" action="/items/${itemId}/favorites"><input type="submit" value="いいね" id="good" /></form>`)
       })
     }
