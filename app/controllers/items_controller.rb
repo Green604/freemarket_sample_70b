@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
     @comment = Comment.new
     @comments = @item.comments.includes(:user).order("created_at DESC")
     @favorite = Favorite.new 
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -57,7 +58,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:keyword])
+    @items = Item.d_search(params[:keyword])
   end
 
   def destroy

@@ -20,6 +20,14 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
   accepts_nested_attributes_for :shipping
 
-  scope :search, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
+  scope :d_search, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
+
+  def previous 
+    Item.where("id < ?", self.id).order("id DESC").first 
+  end 
+  
+  def next 
+    Item.where("id > ?", self.id).order("id ASC").first 
+  end
 
 end
