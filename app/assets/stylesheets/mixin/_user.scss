@@ -1,0 +1,93 @@
+// ユーザー機能で使用
+@mixin user-account__contents ($color) {
+  margin: 0 auto;
+  background-color: $color;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;;
+}
+
+@mixin user-login__header ($color) {
+  background-color: $color;
+  height: 128px;
+  text-align: center;
+  padding-top: 40px;
+}
+
+@mixin center-line {
+  content: "ーーーーーーーー";
+  letter-spacing: -2px;
+}
+
+@mixin user-input ($color) {
+  width: 100%;
+  margin: 8px 8px 0 0;
+  height: 30px;
+  padding: 8px 16px ;
+  border-radius: 4px;
+  border: 1px solid $color;
+  align-items: center;
+  display: inline-flex;
+  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+  font-size: 16px;
+  height: 48px;
+}
+
+@mixin user-submit ($color) {
+  background-color: $color;
+  width: 100%;
+  color: $white;
+  line-height: 48px;
+  margin: 8px 0 16px 0;
+  border: none;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+@mixin user-account__inner--title ($color) {
+  text-align: center;
+  border-bottom: 1px solid $color;
+  font-size: 22px;
+}
+
+@mixin user-label-group ($bgcolor){
+  font-size: 12px;
+  margin-left: 4px;
+  padding: 0 4px;
+  font-family: Arial, sans-serif ;
+  background-color: $bgcolor;
+  color: $white;
+  border-radius: 2px;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4em;
+}
+
+@mixin user-select {
+  -webkit-appearance: none;
+  background-color: $white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: $black;
+  font-size: 16px;
+  height: 48px;
+  line-height: 1;
+  outline: none;
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 10px 16px 8px;
+}
+
+@mixin user-word-link {
+  color: #0095ee;
+  text-decoration: none;
+  word-break: keep-all;
+}
+
+@mixin status-point ($color) {
+  background-color: $color;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
