@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    if @item.save
+    if @item.save!
       selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
       seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
       if selling_status.save && seller.save
