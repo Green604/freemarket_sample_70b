@@ -32,6 +32,10 @@
                     .image-container
                       .image-capsule
                         .image-folder#image-box
+                          #previews
+                            - if @item.persisted?
+                              - @item.images.each_with_index do |image, i|
+                                = image_tag image.image.url, data: { index: i }, width: "50", height: '50'
                           = f.fields_for :images do |image|
                             .js-file_group{"data-index": "#{image.index}" }
                               = image.file_field :image, class: 'js-file'
