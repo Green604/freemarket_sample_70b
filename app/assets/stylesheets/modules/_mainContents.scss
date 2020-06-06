@@ -1,11 +1,11 @@
 .mainContent {
-  background: #f8f8f8;
+  background: #fff;
   display: block;
 
   .introdcution {
     width: 100%;
     height: 560px;
-    background-color:#3CCACE;
+    background-image: url(http://furima.tokyo/assets/bg-mainVisual-pict_pc-a1a4be0d864c29338b03d163957f9fd26b20f7c1fa0d05c17b603ec54d249ebe.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -18,12 +18,11 @@
       width: 100%;
       margin: 0 auto;
       padding: 35px 0 0 0;
-      color: #ffffff;
       .intTitle {
         text-shadow: 0 0 5px rgba(0,0,0,0.4);
         font-size: 60px;
         line-height: 1.2;
-        font-weight: normal;
+        color: #ffffff;
       }
       .intText {
         text-shadow: 0 0 5px rgba(0,0,0,0.4);
@@ -33,16 +32,23 @@
         margin: 16px 0 0 0;
       }
       .intApp {
-
+        display: flex;
+        margin-top: 24px;
+        .app-a-icon {
+          width: 180px;
+          height: 80px;
+          margin-right: 10px;
+        }
+        .app-g-icon {
+          width: 180px;
+          height: 80px;
+        }
       }
     }
   }
 
   .reason {
-    height: 658px;
     padding: 60px 20px;
-    display: block;     
-  
     h2 {
       text-align: center;
       font-size: 26px;
@@ -58,32 +64,32 @@
       max-width: 1020px;
       width: 100%;
       margin: 0 auto;
-      list-style: none;
-      
       li {
         width: 30%;
         margin: 16px 5% 0 0;
         text-align: left;
+        display: flex;
         flex-direction: column;
         align-items: center;
-        &__image {
+        .example__image {
           position: relative;
           margin-bottom: 20px;
-          background-color: blue;
-          &__number {
-            span {
-              display: inline-block;
-              position: absolute;
-              top: 0;
-              left: 0;
-              border-radius: 4%;
-              font-size: 30px;
-              text-align: center;
-              margin: 0 5px 0 0;
-              padding: 10px 20px;
-              background-color: #3CCACE;
-              color: #fff;
-            }           
+          span {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 4%;
+            font-size: 30px;
+            text-align: center;
+            margin: 0 5px 0 0;
+            padding: 10px 20px;
+            background-color: #3CCACE;
+            color: #fff;
+          }       
+          .sample-image {
+            width: 100%;
+            vertical-align: bottom;
           }
         }
         span {
@@ -105,7 +111,7 @@
   }
 
   .point {
-    background-color:#3CCACE;
+    background-image: url(http://furima.tokyo/assets/bg-topMiddleDl-pict-5042a3aa7eef6dd93330080028e3a781daf47c390c00a4fb5d7e7b06caae68c9.jpg);
     background-position: bottom right;
     height: 400px;
     background-size: cover;
@@ -130,17 +136,23 @@
       }
       .pointApp {
         display: flex;
-        margin: 0;
-        padding: 0;
+        .app-a-icon {
+          width: 180px;
+          height: 80px;
+          margin-right: 10px;
+        }
+        .app-g-icon {
+          width: 180px;
+          height: 80px;
+        }
       }
     }
   }
 
   .mainfeatures {
-    height: 733.61px;
     padding:60px 100px;
-    background-color: #ffffff;
-    h2 {
+    background-color: #fff;
+    .featureTitle {
       font-size: 27px;
       text-align: center;
       margin: 0 0 40px;
@@ -155,16 +167,20 @@
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      section {
+      .feature {
         display: flex;
         flex-direction: column;
         width: calc(1 / 3 * 100%);
         text-align: center;
         padding: 0 20px;
-        figure {
+        .feature__image {
           width: 70%;
           margin: 0 auto;
           line-height: 120px;
+          .feature-images {
+            width: 100%;
+            vertical-align: bottom;
+          }
         }      
         h3 {
           margin: 38px 0 10px;
@@ -184,7 +200,7 @@
   .pickup {
     padding: 80px 0 0;
     background-color: #f8f8f8;
-    height: 532px;
+    height: 100%;
     h2 {
       text-align: center;
       font-size: 28px;
@@ -199,43 +215,55 @@
       }
       .itemLists {
         width: 780px;
-        margin: 26px auto;
+        padding: 26px;
         display: flex;
         justify-content: space-around;
-        .itemList {
+        .item {
           width: 220px;
           display: inline-block;
-          &__box {
-            &--image {
+          float: left;
+          text-decoration: none;
+          .itemList__box {
+            .itemList__box--image {
               .image {
-                height: 100px;
-                width: 100px;
+                width: 220px;
+                height: 150px;
+                position: relative;
+                overflow: hidden;
+                margin: 0;
+                z-index: auto;
               }
             }
-
-          }
-
-          a {
-            background-color: #fff;
-            display: inline-block;
-            text-decoration: none;
-            position: relative;
-          }
-          figure {
-            width: 220px;
-            height: 150px;
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-            z-index: auto;
-          }
-          &__itmeDescription {
-            background-color: white;
-            color: #333;
-            padding: 16px;
+            .itemList__box--body {
+              background-color: white;
+              color: #333;
+              padding: 16px;
+              &--name {
+                overflow: hidden;
+                line-height: 1.5;
+                font-size: 16px;
+                text-align: left;
+              }
+              &--details {
+                font-size: 16px;
+                .ul {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                }
+                .tax {
+                  font-size: 10px;
+                  text-align: left;
+                }
+              }
+            }
           }
         }
       } 
     } 
+  }
+  .pickup-header {
+    padding-bottom: 80px;
+    background-color: #f8f8f8;
   }
 }
