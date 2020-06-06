@@ -6,12 +6,16 @@ class User < ApplicationRecord
 
   has_one :shipping_address, dependent: :destroy
   has_one :payment, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many  :items,  through:  :favorites
+  has_many :favorites, dependent: :destroy 
+  has_many  :items, dependent: :destroy
+  has_many  :favorite_items, through: :favorites, source: :item #ユーザーがどの商品にいいねをしたか。いいね一覧のため
   has_many :sellers, dependent: :destroy
   has_many :buyers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many  :items,  through:  :comments
+  def already_favorited?(item)
+    self.favorites.exists?(item_id: item.id) #あとで説明書く
+  end
 
   validates :nickname,        presence: true
   validates :first_name,      presence: true,
