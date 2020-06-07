@@ -43,7 +43,9 @@
               margin: 0 10px 0 0;
             }
             .itemBox__price-detail {
-              font-size: 16px;
+              span {
+                font-size: 16px;
+              }
             }
           }
           .itemDetail {
@@ -132,136 +134,152 @@
               }
             }
           }
-          .item-detail-message {
-            margin: 8px auto;
-            .message-container {
-              background-repeat: no-repeat;
-              margin: 0;
-              padding: 0;
-              .message-content {
-                padding: 24px 7.5%;
-                background: #fff;
-                background-color: yellowgreen;
-                .message-items {
-                  margin: 0;
-                  .clearfix {
-                    .message-user {
-                      float: left;
-                      position: relative;
-                      top: -20px;
-                      display: inline-block;
-                      color: #333;
-                      .figure {
-                        background-repeat: no-repeat;
-                        margin: 0;
-                        padding: 0;
-                        .div {
-                          width: 40px;
-                          height: 40px;
-                          overflow: hidden;
-                          border-radius: 50%;
-                        }
-                        .bold {
-                          overflow: hidden;
-                          position: absolute;
-                          top: 0;
-                          left: 56px;
-                          max-width: 100%;
-                          min-width: 214px;
-                          height: 1.2em;
-                          white-space: nowrap;
-                          text-overflow: ellipsis;
-                          text-align: left;
-                          font-weight: bold;
-                        }
+        }
+        .item-detail-message {
+          padding: 24px;
+          background-color: #fff;
+          margin: 10px 0;
+          text-align: center;
+          .message-container {
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            .message-content {
+              padding: 24px 7.5%;
+              background: #fff;
+              .message-items {
+                margin: 0;
+                .clearfix {
+                  display: flex;
+                  justify-content: space-between;
+                  margin: 60px 0px;
+                  .message-user {
+                    position: relative;
+                    top: -20px;
+                    display: inline-block;
+                    color: #333;
+                    text-decoration: none;
+                    .figure {
+                      background-repeat: no-repeat;
+                      margin: 0;
+                      padding: 0;
+                      .div {
+                        width: 40px;
+                        height: 40px;
+                        overflow: hidden;
+                        border-radius: 50%;
                       }
-                      .message-is-seller {
-                        margin: 8px 0 0;
-                        padding: 4px;
-                        background: #eef0f4;
-                        color: #000;
+                      .bold {
+                        overflow: hidden;
+                        position: absolute;
+                        top: 0;
+                        left: 56px;
+                        max-width: 100%;
+                        min-width: 214px;
+                        height: 1.2em;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        text-align: left;
+                        font-weight: bold;
                       }
                     }
-                    .message-body {
-                      float: right;
-                      position: relative;
-                      width: calc(100% - 56px);
-                      padding: 16px;
+                    .message-is-seller {
+                      margin: 8px 0 0;
+                      padding: 4px;
                       background: #eef0f4;
-                      border-radius: 15px;
-                      line-height: 1.5;
-                      word-break: break-all;
-                      .message-body-text {
-                        background-repeat: no-repeat;
-                        margin: 0;
-                        padding: 0;
-                      }
-                      .message-icons {
-                        margin: 8px 0 0;
-                        .message-icon-left {
-                          float: left;
-                          .icon-time {
-                            vertical-align: middle;
-                          }
-                          time {
-                            vertical-align: middle;
-                          }
+                      color: #000;
+                    }
+                  }
+                  .message-body {
+                    position: relative;
+                    width: calc(100% - 56px);
+                    padding: 16px;
+                    background: #eef0f4;
+                    border-radius: 15px;
+                    line-height: 1.5;
+                    word-break: break-all;
+                    .message-body-text {
+                      background-repeat: no-repeat;
+                      margin: 0;
+                      padding: 0;
+                    }
+                    .message-icons {
+                      margin: 8px 0 0;
+                      .message-icon-left {
+                        float: left;
+                        .icon-time {
+                          vertical-align: middle;
                         }
-                        .message-icon-right {
-                          float: right;
+                        time {
+                          vertical-align: middle;
                         }
                       }
-                      .icon-balloon {
-                        position: absolute;
-                        top: 8px;
-                        left: -9px;
-                        color: #eef0f4;
+                      .message-icon-right {
+                        float: right;
                       }
+                    }
+                    .icon-balloon {
+                      position: absolute;
+                      top: 8px;
+                      left: -9px;
+                      color: #eef0f4;
                     }
                   }
                 }
               }
-              .comment_body {
-                width: 100%;
-                min-height: 104px;
-                padding: 10px;
-              }
-              .noticeMsg {
-                padding: 8px;
-                font-size: 14px;
-                background-color: #f8f8f8;
-                margin: 10px 0;
-                text-align: left;
-              }
-              .commentBtn {
-                font-size: 18px;
-                line-height: 48px;
-                background: #3CCACE;
-                border: 1px solid #3CCACE;
-                color: #fff;
-                width: 60%;
-                font-size: 18px;
-                border-radius: 100px;
-              }
+            }
+            .comment_body {
+              width: 100%;
+              min-height: 104px;
+              padding: 10px;
+            }
+            .noticeMsg {
+              padding: 8px;
+              font-size: 14px;
+              background-color: #f8f8f8;
+              margin: 10px 0;
+              text-align: left;
+            }
+            .commentBtn {
+              font-size: 18px;
+              line-height: 48px;
+              background: #3CCACE;
+              border: 1px solid #3CCACE;
+              color: #fff;
+              width: 60%;
+              font-size: 18px;
+              border-radius: 100px;
+              margin-top: 10px;
             }
           }
         }
       }
       .links {
         list-style: none;
+        display: flex;
+        justify-content: space-between;
         .left {
-          float: left;
           a {
             text-decoration: none;
             color: #3CCACE;
           }
         }
         .right {
-          float: right;
           a {
             text-decoration: none;
             color: #3CCACE;
           }
+        }
+      }
+      .relatedItems {
+        a {
+          display: block;
+          margin: 24px 0 8px;
+          color: #3CCACE;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 22px;
+          position: relative;
         }
       }
     }

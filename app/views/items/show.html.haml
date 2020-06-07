@@ -87,40 +87,42 @@
                 = link_to '#' do
                   %i.fa.fa-flag
                     不適切な商品の通報
-          .item-detail-message 
-            .message-container
-              .message-content
-                %ul.message-items
-                  - if @comments
-                    - @comments.each do |comment|
-                      %li.clearfix
-                        = link_to '#', class: "message-user" do
-                          .figure
-                            .div
-                              = image_tag "https://static.mercdn.net/thumb/members/551390331.jpg?1581956265", width: 40, height: 40
-                            %figcaption.bold
-                              = comment.user.nickname
-                          .message-is-seller
-                            出品者
-                        .message-body
-                          .message-body-text
-                            = comment.comment
-                          .message-icons.clearfix
-                            %time.message-icon-left
-                              %i.icon-time
-                              %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
-                            .message-icon-right
-                              = link_to '#' do
-                                %i.fa.fa-flag
-                          %i.icon-balloon
-              - if current_user
-                = form_with( model: [@item, @comment], local: true, class: "new_comment") do |f|
-                  = f.text_area :comment, placeholder: "コメントする", rows: "2", class: "comment_body"
-                  %p.noticeMsg
-                    相手のことを考え丁寧なコメントを心がけましょう。
-                    %br
-                    不快な言葉遣いなどは利用制限や退去処分となることがあります。
-                  = f.submit "コメントする", class: "commentBtn"
+        .item-detail-message 
+          .message-container
+            .message-content
+              %ul.message-items
+                - if @comments
+                  - @comments.each do |comment|
+                    %li.clearfix
+                      = link_to comment.user, class: "message-user" do
+                        .figure
+                          .div
+                            = image_tag "https://static.mercdn.net/thumb/members/551390331.jpg?1581956265", width: 40, height: 40
+                          %figcaption.bold
+                            = comment.user.nickname
+                        .message-is-seller
+                          出品者
+                      .message-body
+                        .message-body-text
+                          = comment.comment
+                        .message-icons.clearfix
+                          %time.message-icon-left
+                            %i.icon-time
+                            %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
+                          .message-icon-right
+                            = link_to '#' do
+                              %i.fa.fa-flag
+                        %i.icon-balloon
+                        
+            - if current_user
+              = form_with( model: [@item, @comment], local: true, class: "new_comment") do |f|
+                = f.text_area :comment, placeholder: "コメントする", rows: "2", class: "comment_body"
+                %p.noticeMsg
+                  相手のことを考え丁寧なコメントを心がけましょう。
+                  %br
+                  不快な言葉遣いなどは利用制限や退去処分となることがあります。
+                = f.submit "コメントする", class: "commentBtn" do
+                  %i.fa.fa-comment
 
       %ul.links
         %li.left
@@ -144,5 +146,3 @@
     - else
       .li
         = link_to '購入', item_purchase_path(@item.id)
-
-= link_to 'Back', root_path
