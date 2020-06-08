@@ -7,13 +7,11 @@
   .user-card {
     @include card-form;
     &__head {
-      height: 50px;
-      line-height: 50px;
+      padding: 10px 0;
       @include form-head;
     }
     &__main {
       .card-list {
-        height: 200px;
         padding: 40px 40px;
         background-color: white;
         &__head {
@@ -28,7 +26,6 @@
         &__main {
           @include border-bottom;
           &__info {
-          height: 60%;
           width: 300px;
           margin: 20px auto;
           position: relative;
@@ -46,7 +43,6 @@
             }
           }
           &__new {
-            height: 60%;
             width: 300px;
             margin: 20px auto;
             &__btn {
@@ -60,11 +56,7 @@
       &__card-help {
         @include word-link;
         text-align: right;
-        padding: 0 40px 40px;
-        span {
-          height: 80px;
-          line-height: 80px;
-        }
+        padding: 15px 40px 50px;
         .fa-chevron-right {
           margin-left: 5px;
         }
@@ -80,16 +72,13 @@
 .card-registration-contents {
   background-color: $light_gray;
   .card-registration__main {
-    height: 100%;
     &__container {
       @include card-form;
       &__head {
-        height: 50px;
-        line-height: 50px;
+        padding: 10px 0;
         @include form-head;
       }
       &__form {
-        height: 60%;
         width: 500px;
         margin: 0 auto;
         padding: 50px;

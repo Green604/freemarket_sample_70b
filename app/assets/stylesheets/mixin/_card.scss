@@ -1,17 +1,17 @@
 @mixin card-form {
-  width: 650px;
+  max-width: 650px;
+  width: 100%;
   background-color: white;
   margin: 0 auto;
 }
 
 @mixin form-header {
-  height: 120px;
-  width: 650px;
+  width: 100%;
   margin: 0 auto;
   background-color: $light_gray;
   text-align: center;
   h1 {
-    padding-top: 20px;
+    padding: 20px 0 20px;
   }
 }
 
@@ -25,7 +25,6 @@
 }
 
 @mixin form-footer {
-  height: 200px;
   margin-top: 30px;
   background-color: $light_gray;
   &__body {

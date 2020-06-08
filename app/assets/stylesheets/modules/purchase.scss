@@ -1,15 +1,16 @@
 // 商品購入確認ページ
+body, html {
+  height: 100%;
+}
 .purchase-confirmation-contents {
   background-color: $light_gray;
   .purchase-confirmation-contents__main{
-    height: 100%;
     &__container {
       width: 650px;
       margin: 0 auto;
       background-color: white;
       &__head {
-        height: 80px; 
-        line-height: 80px;
+        padding: 25px;
         @include form-head;
       }
       .purchase-content {
@@ -20,12 +21,8 @@
           margin: 30px auto;
           width: 350px;
           .purchase-item {
-            height: 120px;
             display: flex;
             align-items: center;
-            &__image {
-              padding-bottom: 30px;
-            }
             &__detail {
               padding-left: 20px;
               &__title {
@@ -38,23 +35,22 @@
           }
           .purchase-form {
             &__item-price {
-              height: 110px;
+              // height: 110px;
               display: flex;
               justify-content: space-between;
               @include border-bottom;
               &__logo {
                 font-weight: 600;
                 font-size: 18px;
-                line-height: 110px;
+                padding: 10px 0 30px;
               }
               &__number {
                 font-weight: 600;
                 font-size: 25px;
-                line-height: 110px;
+                padding: 10px 0 30px;
               }
             }
             &__user-card {
-              height: 160px;
               @include border-bottom;
               padding: 30px 0;
               
@@ -78,7 +74,6 @@
               }
             }
             &__user-adress {
-              height: 150px;
               @include border-bottom;
               padding: 30px 0;
               
@@ -98,7 +93,6 @@
               }
             }
             &__button {
-              height: 120px;
               @include border-bottom;
               .buy-button {
                 margin: 30px 0;
