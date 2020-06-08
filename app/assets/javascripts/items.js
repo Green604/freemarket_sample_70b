@@ -1,5 +1,6 @@
 $(function() {
   // 画像用のinputを生成する関数
+
   const buildFileField = (index)=> {
     const html = `<div data-index="${index}" class="js-file_group">
                     <input class="js-file" type="file"
@@ -12,8 +13,25 @@ $(function() {
 
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    const html = `<img data-index="${index}" src="${url}" width="50px" height="50px">`;
+    const html = `<div class="preview-box" id="preview-box__${index}}>
+                    <div class="upper-box">
+                      <img data-index="${index}" src="${url}" width="50px" height="50px">
+                    </div>
+                    <div class="lower-box">
+                      <div class="delete-box" id="delete_btn_${index}">
+                        <span>削除</span>
+                      </div>
+                    </div>
+                  </div>`;
     return html;
+  }
+
+  // ラベルのwidth操作
+  function setLabel() {
+    //プレビューボックスのwidthを取得し、maxから引くことでラベルのwidthを決定
+    var prevContent = $('.label-content').prev();
+    labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
+    $('.label-content').css('width', labelWidth);
   }
 
   // file_fieldのnameに動的なindexをつける為の配列
