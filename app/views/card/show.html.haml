@@ -1,12 +1,12 @@
 .mypage-card-contents
-  .mypage-card-contents__header
+  = render 'card-header'
   .user-card
-    %h2.user-card__head
-      支払い方法
+    .user-card__head
+      %h2 支払い方法
     .user-card__main
       .card-list
         .card-list__head
-          %h3.card-list__head__text
+          %h3.card-list__head__logo
             クレジットカード一覧
         .card-list__main
           - if @default_card_information.present?
@@ -18,16 +18,16 @@
               .card-list__main__info__num
                 = "#{@card_month}" + " / " + "#{@card_year}"
               .card-list__main__info__delete
-                = form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
-                  %input{ type: "hidden", name: "card_id", value: "" }
-                  %button 削除する
+                = link_to '削除する', delete_card_index_path, method: :post, class: "card-list__main__info__delete__btn"
           - else
             .card-list__main__new
               = link_to new_card_path, class: "card-list__main__new__btn" do
                 %i.fas.fa-credit-card
                 クレジットカードを追加する
       .user-card__main__card-help
-        支払い方法について
-  .mypage-card-contents__footer
+        %span 支払い方法について
+        %i.fas.fa-chevron-right         
+  = render 'card-footer'
+
   
 
