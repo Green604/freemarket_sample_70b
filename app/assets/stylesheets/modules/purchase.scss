@@ -1,9 +1,6 @@
 // 商品購入確認ページ
 .purchase-confirmation-contents {
   background-color: $light_gray;
-  .purchase-confirmation-contents__header {
-    @include form-header;
-  }
   .purchase-confirmation-contents__main{
     height: 100%;
     &__container {
@@ -112,8 +109,5 @@
         }
       }
     }
-  }
-  .purchase-confirmation-contents__footer{
-    @include form-footer;
   }
 }
