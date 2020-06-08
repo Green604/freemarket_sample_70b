@@ -68,6 +68,23 @@
             = f.check_box :shipping_shipping_fee_in, {multiple: true, class: "detail_condition detail_checkbox"}, '着払い（購入者負担）', nil
             = '着払い（購入者負担）'
 
+      .detail_search__group
+        .detail_search__group--label
+          = fa_icon "search"
+          %p 販売状況
+        .detail_search__group--checkbox
+          %label
+            %input{type: "checkbox"}
+            = 'すべて'
+        .detail_search__group--checkbox
+          %label
+            = f.check_box :selling_status_status_in, {multiple: true, class: "detail_condition detail_checkbox"}, '出品中', nil
+            = '出品中'
+        .detail_search__group--checkbox
+          %label
+            = f.check_box :selling_status_status_in, {multiple: true, class: "detail_condition detail_checkbox"}, '売却済み', nil
+            = '売却済み'
+        
       .detail_search__btns
         .detail_search__btn--grey
           = link_to "クリア", "",type: "button"

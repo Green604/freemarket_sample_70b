@@ -56,17 +56,16 @@
         = comment.comment
       %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
 
+.li
+  = @item.selling_status.status
 - if user_signed_in?
-  - if user_signed_in? && current_user.id == @item.seller.user.id
+  - if user_signed_in? && current_user.id == @item.seller.user.id && @item.buyer.blank?
     .li
       = link_to '編集', edit_item_path
     .li
       = link_to '削除', "#"
   - else
-    - if @item.buyer.present?
-      .li
-        売却済
-    - else
+    - unless @item.buyer.present?
       .li
         = link_to '購入', item_purchase_path(@item.id)
 

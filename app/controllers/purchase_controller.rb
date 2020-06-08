@@ -40,7 +40,8 @@ class PurchaseController < ApplicationController
     currency: 'jpy', #日本円
     )
     buyer = Buyer.new(item_id: @item.id, user_id: current_user.id)
-    if buyer.save
+    selling_status = SellingStatus.where(item_id: @item.id)
+    if buyer.save && selling_status.update(status: "売却済み")
       redirect_to action: 'done' #完了画面に移動
     else
       flash.now[:alert] = 'エラーが発生しました。'
