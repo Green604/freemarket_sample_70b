@@ -107,15 +107,15 @@ class ItemsController < ApplicationController
     @q = Item.ransack(params[:q])
   end
 
-  def detail_search_params
-    params.require(:q)
-    .permit(:name_cont,
-            :price_gteq, 
-            :price_lteq, 
-            :sorts,
-            state_in: [], 
-            fee_payer_in: [], 
-            status_in: [])
-  end
+  # def detail_search_params
+  #   params.require(:q)
+  #   .permit(:name_cont,
+  #           :price_gteq, 
+  #           :price_lteq, 
+  #           :sorts,
+  #           state_in: [], 
+  #           fee_payer_in: [], 
+  #           status_in: [])
+  # end
 
 end
