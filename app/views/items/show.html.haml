@@ -6,10 +6,13 @@
           %h2.itemBox__name
             = @item.name
           .itemBox__body
+            .item-main-image
+              =image_tag @image.image.url, size: "620x350", class: "main-image"
             %ul
-              - @item.images.each do |image|
+              - @item.images.first(3).each.with_index do |image, index|
                 %li
-                  = image_tag image.image.url 
+                  = image_tag image.image.url, size: "207x100", class: "sub-image"
+
           .itemBox__price
             %span
               = "¥#{@item.price}"
@@ -65,6 +68,13 @@
                     = @item.shipping.shipping_day
           .optionalArea
             %ul
+              - if user_signed_in?
+                - if current_user.already_favorited?(@item)     # ユーザーがすでにお気に入りしてるときは赤色のハートマーク、まだしてないときは白色のハートマーク
+                  .LikesIcon
+                    %i.fas.fa-heart.LikesIcon-fa-heart.heart    
+                - else
+                  .LikesIcon
+                    %i.far.fa-heart.LikesIcon-fa-heart 
               %li.counts
                 %p.favorite
                   お気に入り数：
@@ -75,14 +85,28 @@
                   - if user_signed_in?
                     %p
                       = link_to 'お気に入り一覧ページ', "/items/#{@item.id}/favorites", class: "favorites-lists"
-                    - unless user_signed_in? && current_user.id == @item.seller.user.id
-                      .li
-                        = link_to '購入', "#"
             %ul.optional
               %li.optionalBtn
                 = link_to '#' do
                   %i.fa.fa-flag
                     不適切な商品の通報
+
+        .itemBox-container
+          - if user_signed_in?
+            - if user_signed_in? && current_user.id == @item.seller.user.id
+              .li-edit
+                = link_to '商品の編集', edit_item_path, class: "link-path"
+              .li-or
+                or
+              .li-delete
+                = link_to 'この商品を削除する', item_path, method: :delete, class: "link-path"
+            - else
+              - if @item.buyer.present?
+                .li-status
+                  売却済
+              - else
+                .li-purchase
+                  = link_to 'この商品を購入する', item_purchase_path(@item.id), class: "link-path"
 
         .item-detail-message 
           .message-container
@@ -131,16 +155,3 @@
         .productLists
           
 
-- if user_signed_in?
-  - if user_signed_in? && current_user.id == @item.seller.user.id
-    .li
-      = link_to '編集', edit_item_path
-    .li
-      = link_to '削除', item_path, method: :delete
-  - else
-    - if @item.buyer.present?
-      .li
-        売却済
-    - else
-      .li
-        = link_to '購入', item_purchase_path(@item.id)
