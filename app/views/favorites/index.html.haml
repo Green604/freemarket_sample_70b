@@ -1,10 +1,13 @@
+- breadcrumb :favorite
+= render "layouts/breadcrumbs"
+
 %h1 お気に入り商品一覧ページ
 .favoriteItemBox
   .favoriteItemHeader
     お気に入り商品一覧
   %ul.favoriteItemLists
     - @favoriteItems.each do |item|
-      = link_to item_favorites_path(item.id), method: :get, class:"favoriteItemList" do
+      = link_to item_path(item.id), method: :get, class:"favoriteItemList" do
         %li.favoreteItemList__box
           .favoriteItemList__box--image
             = image_tag item.images.first.image.url, class: "image"
