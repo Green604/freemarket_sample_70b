@@ -1,0 +1,159 @@
+// user新規登録とshipping_address登録ページ
+.background {
+  background-color: $background_light_gray;
+  .account-page {
+    @include user-account__contents ($white);
+    max-width: 700px;
+    &__header {
+      background-color: $background_light_gray;
+      height: 128px;
+      padding: 30px 15%;
+      align-items: center;
+      display: flex;
+      &--progress {
+        font-size: 12px;
+        text-align: center;
+        margin-left: 15%;
+        margin-top: 10px;
+        ol {
+          color: #888;
+          display: flex;
+          .progress-status {
+            color: $sky_blue;
+          }
+          .status-title {
+            margin-right: 43px;
+            margin-bottom: 8px;
+          }
+          .status-point {
+            @include status-point (#ccc);
+            &__first {
+              @include status-point ($sky_blue);
+              margin-left: 18px;
+              margin-bottom: 16px;
+            }
+            &__second {
+              z-index: 1;
+              @include status-point ($sky_blue);
+            }
+          }
+          .status-bar {
+            background-color: #ccc;
+            margin-top: 5px;
+            width: 80px;
+            height: 2px;
+          }
+          .add-color {
+            background-color: $sky_blue;
+          }
+        }
+      }
+    }
+    &__inner {
+      &--title {
+        line-height: 97px;
+        @include user-account__inner--title ($background_light_gray);
+      }
+      &--box {
+        padding: 25px 25%;
+        &--user-form {
+          .field {
+            &__label {
+              font-size: 14px;
+              .form-require {
+                @include user-label-group($sky_blue);
+              }
+              .form-any {
+                @include user-label-group(#ccc);
+              }
+            }
+            &__input {
+              margin-bottom: 24px;
+              input {
+                @include user-input (#ccc);
+              }
+              select {
+                @include user-select;
+                width: 27%;
+              }
+            }
+            &__input-half {
+              margin-bottom: 32px;
+              input {
+                @include user-input (#ccc);
+                width: 47%;
+              }
+            }
+          }
+          .actions {
+            input {
+              @include user-submit ($sky_blue);
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer{
+    line-height: 220px;
+    background-color: $background_light_gray;
+    text-align: center;
+    font-size: 12px;
+  }
+
+// ログインページ
+  .login-page {
+    @include user-account__contents ($white);
+    max-width: 456px;
+    &__header {
+      @include user-login__header ($background_light_gray);
+    }
+    &__inner {
+      &--title {
+        padding: 25px 14%;
+        @include user-account__inner--title ($background_light_gray);
+        p {
+          font-size: 14px;
+        }
+        .actions {
+          @include user-submit (#0099e8);
+        }
+      }
+      &--box {
+        padding: 40px 14%;
+        &--user-form {
+          .field {
+            &__label {
+              font-size: 14px;
+            }
+            &__input {
+              margin-bottom: 24px;
+              input {
+                @include user-input (#ccc);
+              }
+            }
+          }
+          .actions {
+            input {
+              @include user-submit ($sky_blue);
+            }
+          }
+          .users_shared_links {
+            margin-top: 40px;
+            a {
+              @include user-word-link;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // パスワードを忘れた方のページ
+  .password-page {
+    @include user-account__contents ($white);
+    &__header {
+      @include user-login__header ($background_light_gray);
+    }
+  }
+}
