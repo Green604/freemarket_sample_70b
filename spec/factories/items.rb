@@ -26,4 +26,14 @@ FactoryBot.define do
     brand_id              {"1"}
   end
 
+  FactoryItem.define do
+    before :each, class: Items do
+      @item1 = create(:item, name: 'あああ', description: "良いい", price: 1000, condition: :"新品・未使用", parent_category_id: 1, child_category_id: 1,category_id: 1, shipping_id: 1)
+      @item2 = create(:item, name: '良いい', description: "良いい", price: 1000, condition: :"新品・未使用", parent_category_id: 1, child_category_id: 1,category_id: 1, shipping_id: 1)
+      @item3 = create(:item, name: 'ううう', description: "良いい", price: 1000, condition: :"新品・未使用", parent_category_id: 1, child_category_id: 1,category_id: 1, shipping_id: 1)
+      @params = Hash.new
+      @params[:q] = Hash.new
+    end
+  end
+
 end
