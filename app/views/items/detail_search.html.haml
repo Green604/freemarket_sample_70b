@@ -84,7 +84,27 @@
           %label
             = f.check_box :selling_status_status_in, {multiple: true, class: "detail_condition detail_checkbox"}, '売却済み', nil
             = '売却済み'
-        
+
+      .detail_search__group
+        .detail_search__group--label
+          = fa_icon "search"
+          %p ブランドを検索する
+        = f.search_field :brand_name_cont, placeholder: "例）ナイキ"
+
+      .detail_search__group
+        .detail_search__group--label
+          = fa_icon "search"
+          %p カテゴリーを検索する
+          %p トップカテゴリー
+          = f.collection_select :parent_category_id_in, Category.where(ancestry: nil), :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+          %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+          %p ミドルカテゴリー
+          = f.collection_select :child_category_id_in, @child_category, :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+          %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+          %p ボトムカテゴリー
+          = f.collection_select :category_id_in, @grandchild_category, :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+          %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+
       .detail_search__btns
         .detail_search__btn--grey
           = link_to "クリア", "",type: "button"

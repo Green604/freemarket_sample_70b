@@ -30,6 +30,6 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :shipping
   accepts_nested_attributes_for :brand
 
-  scope :seek, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
+  scope :d_search, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
 
 end

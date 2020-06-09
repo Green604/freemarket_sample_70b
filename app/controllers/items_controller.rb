@@ -57,12 +57,14 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.seek(params[:keyword])
+    @items = Item.d_search(params[:keyword])
   end
 
   def detail_search
     @search_item = Item.ransack(params[:q])
     @items = @search_item.result.page(params[:page])
+    @grandchild_category = Category.where('ancestry LIKE(?)',"%/%")
+    @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
   end
 
   def detail_search_result
@@ -106,16 +108,5 @@ class ItemsController < ApplicationController
   def set_ransack
     @q = Item.ransack(params[:q])
   end
-
-  # def detail_search_params
-  #   params.require(:q)
-  #   .permit(:name_cont,
-  #           :price_gteq, 
-  #           :price_lteq, 
-  #           :sorts,
-  #           state_in: [], 
-  #           fee_payer_in: [], 
-  #           status_in: [])
-  # end
 
 end
