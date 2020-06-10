@@ -19,7 +19,7 @@ $(function(){
   function appendGrandchidrenBox(insertHTML){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<div class='category-select-grandchild'>
-                              <select class="category-select-wrapper__box--select" id="grandchild_category" name="item[category_id]>
+                              <select class="category-select-wrapper__box--select" id="grandchild_category" name="item[category_id]">
                                 <option value="選択してください">選択してください</option>
                                 ${insertHTML}
                               </select>
