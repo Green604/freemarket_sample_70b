@@ -1,31 +1,5 @@
 $(function() {
   // 画像用のinputを生成する関数
-
-  // const buildFileField = (index)=> {
-  //   const html = `<div data-index="${index}" class="js-file_group">
-  //                   <input class="js-file" type="file"
-  //                   name="item[images_attributes][${index}][image]"
-  //                   id="item_images_attributes_${index}_image"><br>
-  //                   <div class="js-remove">削除</div>
-  //                 </div>`;
-  //   return html;
-  // }
-
-  // プレビュー用のimgタグを生成する関数
-  // const buildHTML = (index, url)=> {
-  //   const html = `<div class="preview-box" id="preview-box__${index}}>
-  //                   <div class="upper-box">
-  //                     <img data-index="${index}" src="${url}" width="50px" height="50px">
-  //                   </div>
-  //                   <div class="lower-box">
-  //                     <div class="delete-box" id="delete_btn_${index}">
-  //                       <span>削除</span>
-  //                     </div>
-  //                   </div>
-  //                 </div>`;
-  //   return html;
-  // }
-
   function buildHTML(index) {
     var html = `<div class="preview-box" id="preview-box__${index}">
                   <div data-index="${index}" class="upper-box">
@@ -47,8 +21,6 @@ $(function() {
     labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, '')); // label-contentクラスの横幅をreplaceで置き換えて、620からそれを引いたものを変数に代入する
     $('.label-content').css('width', labelWidth); // label-contentクラスの横幅を620-xに変更する
   }
-
-  //ここまでは理解した-----------------------------------------------------------------------------
 
   // プレビューの追加
   $(document).on('change', '.hidden-field', function() { //id=image-boxが対象要素。フォーム部品の状態に何らかの変化があったときに発動するchangeイベント。js-fileはセレクタ。セレクタは対象要素内でさらに指定したセレクタからのイベントだけを確認できるようにする
@@ -83,17 +55,13 @@ $(function() {
         $(prevContent).append(html); 
         console.log(prevContent[0]); 
       }
-      //イメージを追加
-      // var alt = $('.upload-image').attr('alt', 'hello');
-      // console.log(alt[0]);
 
+      //イメージを追加
       $(`#preview-box__${id} img`).attr('src', `${image}`); //#preview-box__${id} imgのsrc属性を取得してimageに変更する
-      // console.log(`#preview-box__${id} img`);
       var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
       //プレビューが5個あったらラベルを隠す。ここはあとで5を10に変えてもいいかも
       if (index == 5) {
         $('.label-content').hide(); //対象要素を隠す
-        console.log('eeeeeeeee');
       }
 
       //ラベルのwidth操作
