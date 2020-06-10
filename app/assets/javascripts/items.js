@@ -24,36 +24,26 @@ $(function() {
 
   // プレビューの追加
   $(document).on('change', '.hidden-field', function() { //id=image-boxが対象要素。フォーム部品の状態に何らかの変化があったときに発動するchangeイベント。js-fileはセレクタ。セレクタは対象要素内でさらに指定したセレクタからのイベントだけを確認できるようにする
-    console.log('hello!');
     setLabel(); //label-contentクラスの横幅を変えるメソッドを呼び出す(＝横幅を変える処理を実行する)
-    console.log('hellohello!');
     //js-fileのidの数値のみ取得（id="item_images_attributes_0_image"の0だけ取得するということ。0〜9の数字を取得）
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
-    console.log(id); //id=0が取得できている!!!
     //labelボックスのidとforを更新
     $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
     //選択したfileのオブジェクトを取得
     var file = this.files[0];
-    console.log(file); //fileの中身確認できた!!
     var reader = new FileReader(); //FileReaderオブジェクトの生成
-    console.log(reader); //まだデータは読み込まれていない
     //readAsDataURLで指定したFileオブジェクトを読み込む
     reader.readAsDataURL(file); 
     //読み込み時に発火するイベント onloadメソッドは読み込みが完了したら実行する
     reader.onload = function() {
       var image = this.result; //直前に実行したイベントが返した値を取得する
-      console.log(image); //なんかすごいのが返り値として出てきた
       //プレビューが元々なかった場合はhtmlを追加
       if ($(`#preview-box__${id}`).length == 0) {
         var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
-        console.log(index); //0が出た＝プレビューがもともとなかった場合
         var html = buildHTML(id); //プレビューを生成する関数を変数に代入
-        console.log(html); //htmlにちゃんと上記の記述が入っている
         //ラベルの直前のプレビュー群にプレビューを追加
         var prevContent = $('.label-content').prev(); //prevメソッドは直前のhtmlを取得。label-contentクラスを取得して変数に代入
-        console.log(prevContent[0]); //prevContenの中身が意味わからない
         $(prevContent).append(html); 
-        console.log(prevContent[0]); 
       }
 
       //イメージを追加
@@ -70,7 +60,6 @@ $(function() {
       if(index < 5){
         //プレビューの数でラベルのオプションを更新する
         $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`}); //これはたぶんOK
-        console.log('fffffffffff');
       }
     }
   });
