@@ -293,6 +293,7 @@ body {
                     padding: 13px 16px;
                     resize: vertical;
                     vertical-align: middle;
+                    margin-top: 16px;
                   }
                   &__counter {
                     text-align: right;
@@ -329,6 +330,7 @@ body {
                   align-items: center;
                   // display: inline-flex;
                   width: 100%;
+                  margin-top: 16px;
                   .category-select {
                     @include xxx-select;
                     select {
