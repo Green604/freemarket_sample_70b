@@ -42,8 +42,14 @@
                             .hidden-content
                               = f.fields_for :images do |image|
                                 .js-file_group{"data-index": "#{image.index}" }
-                                  = image.file_field :image, class: 'js-file'
-                
+                                  = image.file_field :image, class: 'hidden-field'
+                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][1][image]", id: "item_images_attributes_1_image" }
+                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][2][image]", id: "item_images_attributes_2_image" }
+                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image" }
+                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][4][image]", id: "item_images_attributes_4_image" }
+                         
+                         
+                         
                           -#   - if @item.persisted?
                           -#     - @item.images.each_with_index do |image, i|
                           -#       = image_tag image.image.url, data: { index: i }, width: "50", height: '50'
