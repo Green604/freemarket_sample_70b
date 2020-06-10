@@ -55,8 +55,7 @@ $(function(){
       $('#grandchildren_wrapper').remove();
     }
   });
-  $('#child_category').change(function(){
-    console.log('hello');
+  $('.category-section__pulldown').on('change', '#child_category', function(){
     var childId = $('#child_category option:selected').data('category'); 
     if (childId != "---"){ 
       $.ajax({
