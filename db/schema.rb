@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 2020_05_24_093559) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ancestry"
   end
 
   create_table "chats", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 2020_05_24_093559) do
     t.text "description", null: false
     t.integer "price", null: false
     t.integer "condition", null: false
-    t.integer "parent_category_id"
     t.integer "brand_id"
     t.integer "parent_category_id"
     t.integer "child_category_id"
