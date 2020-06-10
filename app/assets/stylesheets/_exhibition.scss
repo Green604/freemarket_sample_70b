@@ -326,13 +326,25 @@ body {
                   }
                 }
                 &__pulldown {
-                  @include pulldown;
+                  align-items: center;
+                  // display: inline-flex;
+                  width: 100%;
                   .category-select {
                     @include xxx-select;
                     select {
                       @include select;
                     }
                     .category-svg {
+                      @include svg;
+                    }
+                  }
+                  .category-select-child {
+                    margin-top: 12px;
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .childCategory-svg {
                       @include svg;
                     }
                   }
