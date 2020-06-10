@@ -348,6 +348,16 @@ body {
                       @include svg;
                     }
                   }
+                  .category-select-grandchild {
+                    margin-top: 12px;
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .grandChildCategory-svg {
+                      @include svg;
+                    }
+                  }
                 }
               }
             }
