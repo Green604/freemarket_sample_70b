@@ -48,8 +48,6 @@
                                   %input{class:"hidden-field", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image" }
                                   %input{class:"hidden-field", type: "file", name: "item[images_attributes][4][image]", id: "item_images_attributes_4_image" }
                          
-                         
-                         
                           -#   - if @item.persisted?
                           -#     - @item.images.each_with_index do |image, i|
                           -#       = image_tag image.image.url, data: { index: i }, width: "50", height: '50'
@@ -97,10 +95,10 @@
                     .label-group-category
                       = f.label 'カテゴリー', class: 'category-select__label'
                       %span.category-select--require 必須
-                      .category-select-wrapper
-                        .category-select-wrapper__box
-                          = f.collection_select :parent_category_id, Category.where(ancestry: nil), :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
-                          %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+                    .category-select-wrapper
+                      .category-select-wrapper__box
+                        = f.collection_select :parent_category_id, Category.where(ancestry: nil), :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+                        %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
 
               .brand
                 .brand-section

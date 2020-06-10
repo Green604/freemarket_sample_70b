@@ -152,7 +152,6 @@ body {
                         align-content: center;
                         -webkit-box-align: center;
                         align-items: center;
-                        // background-color: rgb(245, 245, 245);
                         cursor: pointer;
                         display: flex;
                         height: 100%;
@@ -160,16 +159,12 @@ body {
                         -webkit-box-pack: center;
                         justify-content: center;
                         position: relative;
-                        // border-width: 1px;
-                        // border-style: dashed;
-                        // border-color: rgb(204, 204, 204);
-                        // border-image: initial;
                         transition: all 0.5s ease-out 0s;
                         #previews {
                           display: block;
                           margin: 16px auto 0;
                           display: flex;
-                          // flex-wrap: wrap;
+                          // flex-wrap: wrap; //ここは後からもしかしたら必要になるかもしれない
                           .prev-content {
                             display: flex;
                             .preview-box {
@@ -320,12 +315,12 @@ body {
               .category-section {
                 &__name {
                   margin: 0!important;
-                  .label-group {
+                  .label-group-category {
                     @include label-group;
-                    & label {
+                    label {
                       @include label-group__label ($black);
                     }
-                    &__required {
+                    span {
                       @include label-group__required ($sky_blue);
                     }
                   }
