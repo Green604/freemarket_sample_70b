@@ -7,7 +7,7 @@ $(function(){
     var childSelectHtml = '';
     childSelectHtml =  `<div class='category-select-child'>
                           <select class="category-select-wrapper__box--select" id="child_category" name="item[child_category_id]">
-                            <option value="" data-category="---">---</option>
+                            <option value="" data-category="選択してください">選択してください</option>
                             ${insertHTML}
                           </select>
                           <svg class='childCategory-svg', aria-hidden="true", fill="888888", fill-rule= "evenodd", height="24", view="0 0 24 24", width="24">
