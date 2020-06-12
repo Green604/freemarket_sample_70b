@@ -29,6 +29,7 @@ $(function(){
                             </div>`;
     $('.category-section__pulldown').append(grandchildSelectHtml);
   }
+
   $('#parent_category').on('change', function(){
     var parentCategory = $(this).val(); 
     if (parentCategory != "---"){ 
