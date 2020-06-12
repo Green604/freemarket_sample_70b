@@ -12,6 +12,14 @@ class ItemsController < ApplicationController
     @parents = Category.all.order("id ASC").limit(13)
   end
 
+  def show
+    @category = Category.find(@item.parent_category_id)
+    @category_child = Category.find(@item.child_category_id)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user).order("created_at DESC")
+    @favorite = Favorite.new 
+  end
+
   def new
     @item = Item.new
     @item.images.new
@@ -32,15 +40,8 @@ class ItemsController < ApplicationController
       flash.now[:alert] = '入力されていない項目があります。'
       render :new
     end
-    
   end
 
-  def show
-    @category = Category.find(@item.parent_category_id)
-    @category_child = Category.find(@item.child_category_id)
-    @comment = Comment.new
-    @comments = @item.comments.includes(:user).order("created_at DESC")
-  end
   
   def edit
 

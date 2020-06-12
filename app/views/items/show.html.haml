@@ -1,3 +1,5 @@
+- breadcrumb :itemDetail, @item
+
 %p#notice= notice
 %p
 - if user_signed_in?
@@ -40,6 +42,27 @@
   発送日の目安:
   = @item.shipping.shipping_day
 
+- if user_signed_in?
+  - if current_user.already_favorited?(@item)     # ユーザーがすでにお気に入りしてるときは赤色のハートマーク、まだしてないときは白色のハートマーク
+    .LikesIcon
+      %i.fas.fa-heart.LikesIcon-fa-heart.heart    
+  - else
+    .LikesIcon
+      %i.far.fa-heart.LikesIcon-fa-heart 
+
+.counts
+  お気に入り数：
+  = @item.favorites.count
+.favorites_buttons{data: {id: @item.id}}
+  = render partial: 'favorites/favorite', locals: { item: @item}
+
+- if user_signed_in?
+  %p
+    = link_to 'お気に入り一覧ページ', "/items/#{@item.id}/favorites"
+  - unless user_signed_in? && current_user.id == @item.seller.user.id
+    .li
+      = link_to '購入', "#"
+    
 .comment
   - if current_user
     = form_with( model: [@item, @comment], local: true) do |f|
@@ -63,7 +86,7 @@
     .li
       = link_to '編集', edit_item_path
     .li
-      = link_to '削除', "#"
+      = link_to '削除', item_path, method: :delete
   - else
     - unless @item.buyer.present?
       .li

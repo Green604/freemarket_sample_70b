@@ -54,9 +54,13 @@ class CardController < ApplicationController
       when "MasterCard" then
         @card_image = "cc-mastercard fa-2x"
       when "JCB" then
-        @card_image = "c-jcb fa-2x"
+        @card_image = "cc-jcb fa-2x"
       when "American Express" then
         @card_image = "cc-amex fa-2x"
+      when "Diners Club" then
+        @card_image = "cc-diners-club fa-2x"
+      when "Discover" then
+        @card_image = "cc-discover fa-2x"
       end
     end
   end
