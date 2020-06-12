@@ -53,17 +53,9 @@
                                 //プレビューが出ている分のfile_fieldとdelete用のチェックボックスを設置
                                 = image.file_field :image, class: "hidden-field"
                                 = image.check_box:_destroy, class: "hidden-checkbox"
-
                                 //5つのfile_fieldを準備するに当たって、足りない分を表示
                               - @item.images.length.upto(4) do |i|
                                 %input{name: "item[images_attributes][#{i}][image]", id: "item_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
-                                
-                                -# .js-file_group{"data-index": "#{image.index}" }
-                                -#   = image.file_field :image, class: 'hidden-field'
-                                -#   %input{class:"hidden-field", type: "file", name: "item[images_attributes][1][image]", id: "item_images_attributes_1_image" }
-                                -#   %input{class:"hidden-field", type: "file", name: "item[images_attributes][2][image]", id: "item_images_attributes_2_image" }
-                                -#   %input{class:"hidden-field", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image" }
-                                -#   %input{class:"hidden-field", type: "file", name: "item[images_attributes][4][image]", id: "item_images_attributes_4_image" }
             %hr.border
 
             %section.description
