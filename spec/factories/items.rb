@@ -26,4 +26,10 @@ FactoryBot.define do
     brand_id              {"1"}
   end
 
+  before :item, class: Item do
+    @item2 = create(:item, name: 'えええ', description: "良いい", price: 1000, condition: :"新品・未使用", parent_category_id: 1, child_category_id: 1,category_id: 1, shipping_id: 1)
+    @item3 = create(:item, name: '良いい', description: "良いい", price: 1000, condition: :"新品・未使用", parent_category_id: 1, child_category_id: 1,category_id: 1, shipping_id: 1)
+    @item4 = create(:item, name: 'ううう', description: "良いい", price: 1000, condition: :"新品・未使用", parent_category_id: 1, child_category_id: 1,category_id: 1, shipping_id: 1)
+  end
+
 end

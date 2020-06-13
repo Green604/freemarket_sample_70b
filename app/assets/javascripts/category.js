@@ -5,30 +5,31 @@ $(function(){
   }
   function appendChidrenBox(insertHTML){
     var childSelectHtml = '';
-    childSelectHtml = `<div class='category-select-wrapper__added' id= 'children_wrapper'>
-                        <div class='category-select-wrapper__box'>
+    childSelectHtml =  `<div class='category-select-child'>
                           <select class="category-select-wrapper__box--select" id="child_category" name="item[child_category_id]">
-                            <option value="---" data-category="---">---</option>
+                            <option value="選択してください">選択してください</option>
                             ${insertHTML}
-                          <select>
-                          <i class='fas fa-chevron-down category-select-wrapper__box--arrow-down'></i>
-                        </div>
-                      </div>`;
-    $('.label-group-category').append(childSelectHtml);
+                          </select>
+                          <svg class='childCategory-svg', aria-hidden="true", fill="888888", fill-rule= "evenodd", height="24", view="0 0 24 24", width="24">
+                            <path d="M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z" />
+                          </svg>
+                        </div>`;
+    $('.category-section__pulldown').append(childSelectHtml);
   }
   function appendGrandchidrenBox(insertHTML){
     var grandchildSelectHtml = '';
-    grandchildSelectHtml = `<div class='category-select-wrapper__added' id= 'grandchildren_wrapper'>
-                              <div class='category-select-wrapper__box'>
-                                <select class="category-select-wrapper__box--select" id="grandchild_category" name="item[category_id]">
-                                  <option value="---" data-category="---">---</option>
-                                  ${insertHTML}
-                                </select>
-                                <i class='fas fa-chevron-down category-select-wrapper__box--arrow-down'></i>
-                              </div>
+    grandchildSelectHtml = `<div class='category-select-grandchild'>
+                              <select class="category-select-wrapper__box--select" id="grandchild_category" name="item[category_id]">
+                                <option value="選択してください">選択してください</option>
+                                ${insertHTML}
+                              </select>
+                              <svg class='grandChildCategory-svg', aria-hidden="true", fill="888888", fill-rule= "evenodd", height="24", view="0 0 24 24", width="24">
+                                <path d="M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z" />
+                              </svg>
                             </div>`;
-    $('.label-group-category').append(grandchildSelectHtml);
+    $('.category-section__pulldown').append(grandchildSelectHtml);
   }
+
   $('#parent_category').on('change', function(){
     var parentCategory = $(this).val(); 
     if (parentCategory != "---"){ 
@@ -55,7 +56,7 @@ $(function(){
       $('#grandchildren_wrapper').remove();
     }
   });
-  $('.label-group-category').on('change', '#child_category', function(){
+  $('.category-section__pulldown').on('change', '#child_category', function(){
     var childId = $('#child_category option:selected').data('category'); 
     if (childId != "---"){ 
       $.ajax({
