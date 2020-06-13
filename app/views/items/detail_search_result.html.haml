@@ -1,0 +1,30 @@
+.search
+  .search-container
+    .search-left
+      - @items.each do |item|
+        = link_to "/items/#{item.id}", method: :get, class:"itemList" do
+          %li.itemList__box
+            .itemList__box--image
+              = image_tag item.images.first.image.url, class: "image"
+            .itemList__box--name
+              = item.name
+              %br
+                = "#{item.price} 円"
+                %br
+                  （税込）
+    .search-right
+      %section.items-box-container
+        -if @item.present?
+          %h2.search-result-head
+            =@search
+            %span.search-result-head-text
+              の検索結果
+          .search-result-number
+            ="1-#{@items.count}件表示"
+        -else
+          %h2.search-result-nil
+            検索結果
+          .search-result-number
+            ="1-#{@items.count}件表示"
+        .items-box-content
+          -# = render @items

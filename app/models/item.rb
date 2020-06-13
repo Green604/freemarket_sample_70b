@@ -17,7 +17,8 @@ class Item < ApplicationRecord
   # mount_uploader :image, ImageUploader
   accepts_nested_attributes_for :images, allow_destroy: true
   accepts_nested_attributes_for :shipping
+  accepts_nested_attributes_for :brand
 
-  scope :search, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
+  scope :d_search, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
 
 end
