@@ -29,22 +29,26 @@
                     .label-group
                       = f.label :image, '出品画像'
                       %span.label-group__required 必須
-                  %p.image-box__limit 最大10枚までアップロードできます
+                  %p.image-box__limit 最大5枚までアップロードできます
                   .image-box__upload
                     .image-container
                       .image-capsule
                         .image-folder#image-box
-                          = f.fields_for :images do |image|
-                            .js-file_group{"data-index": "#{image.index}" }
-                              = image.file_field :image, class: 'js-file'
-                              %br/
-                              %span.js-remove 削除
-                          %p.image-folder__icon
-                            %i.fas.fa-camera.fa-lg
-                          %p.image-folder__instruction
-                          ドラッグアンドドロップ
-                          %br/
-                          またはクリックしてファイルをアップロード
+                          #previews
+                            .prev-content
+                            .label-content  
+                              %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+                                %pre.label_box__text-visible 
+                                  %svg.image-upload-svg{width: "24", height: "24", fill: "#222222", "fill-rule": "evenodd", viewbox: "0 0 24 24", "area-hidden": "true"}
+                                    %path{d: "M19.3,5H16.73l-.8-1.61A.7.7,0,0,0,15.3,3H8.7a.7.7,0,0,0-.63.39L7.27,5H4.7A2.7,2.7,0,0,0,2,7.7V18.3A2.7,2.7,0,0,0,4.7,21H19.3A2.7,2.7,0,0,0,22,18.3V7.7A2.7,2.7,0,0,0,19.3,5ZM12,17.3A4.3,4.3,0,1,1,16.3,13,4.31,4.31,0,0,1,12,17.3Z"}
+                            .hidden-content
+                              = f.fields_for :images do |image|
+                                .js-file_group{"data-index": "#{image.index}" }
+                                  = image.file_field :image, class: 'hidden-field'
+                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][1][image]", id: "item_images_attributes_1_image" }
+                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][2][image]", id: "item_images_attributes_2_image" }
+                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image" }
+                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][4][image]", id: "item_images_attributes_4_image" }
             %hr.border
 
             %section.description
@@ -78,10 +82,11 @@
                     .label-group-category
                       = f.label 'カテゴリー', class: 'category-select__label'
                       %span.category-select--require 必須
-                      .category-select-wrapper
-                        .category-select-wrapper__box
-                          = f.collection_select :parent_category_id, Category.where(ancestry: nil), :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
-                          %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+                    .category-section__pulldown
+                      .category-select
+                        = f.collection_select :parent_category_id, Category.where(ancestry: nil), :id, :name, { prompt: "選択してください" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+                        %svg.category-svg{"aria-hidden": "true", fill: "888888", "fill-rule": "evenodd", height: "24", view: "0 0 24 24", width: "24"}
+                          %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
 
               .brand
                 .brand-section
