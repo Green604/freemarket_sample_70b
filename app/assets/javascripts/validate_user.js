@@ -1,15 +1,15 @@
 $(function(){
 
   jQuery.validator.addMethod("fullName", function(value, element) {
-    return this.optional(element) || /\A[ぁ-んァ-ン一-龥]/.test(value);
+    return this.optional(element) || /^[^\x01-\x7E\xA1-\xDF]+$/.test(value);
   }, "全角で入力して下さい");
 
   jQuery.validator.addMethod("fullNameKana", function(value, element) {
-    return this.optional(element) || /\A[ぁ-ん]/.test(value);
+    return this.optional(element) || /^[\u3040-\u309f]+$/.test(value);
   }, "全角ひらがなで入力して下さい");
 
   // バリデーションの実行
-  $('#new_user').validate({
+  $('#new_user, #new_shipping_address').validate({
     rules: {
       "user[nickname]": {
         required: true
@@ -50,7 +50,39 @@ $(function(){
       },
       "user[birthday(3i)]": {
         required: true
+      },
+      "shipping_address[last_name]": {
+        required: true,
+        fullName: true
+      },
+      "shipping_address[first_name]": {
+        required: true,
+        fullName: true
+      },
+      "shipping_address[last_name_kana]": {
+        required: true,
+        fullNameKana: true
+      },
+      "shipping_address[first_name_kana]": {
+        required: true,
+        fullNameKana: true
+      },
+      "shipping_address[zipcode]": {
+        required: true
+      },
+      "shipping_address[prefecture]": {
+        required: true
+      },
+      "shipping_address[city]": {
+        required: true
+      },
+      "shipping_address[house_number]": {
+        required: true
+      },
+      "shipping_address[phone_number]": {
+        required: true
       }
+
     },
     messages: {
       "user[nickname]": {
@@ -88,6 +120,33 @@ $(function(){
       },
       "user[birthday(3i)]": {
         required: "日 を入力してください"
+      },
+      "shipping_address[last_name]": {
+        required: "姓 を入力してください"
+      },
+      "shipping_address[first_name]": {
+        required: "名 を入力してください"
+      },
+      "shipping_address[last_name_kana]": {
+        required: "姓カナ を入力してください"
+      },
+      "shipping_address[first_name_kana]": {
+        required: "名カナ を入力してください"
+      },
+      "shipping_address[zipcode]": {
+        required: "郵便番号を入力してください"
+      },
+      "shipping_address[prefecture]": {
+        required: "都道府県を入力してください"
+      },
+      "shipping_address[city]": {
+        required: "市区町村を入力してください"
+      },
+      "shipping_address[house_number]": {
+        required: "番地を入力してください"
+      },
+      "shipping_address[phone_number]": {
+        required: "電話番号を入力してください"
       }
     },
     errorClass: "form-invalid", // バリデーションNGの場合に追加するクラス名の指定
@@ -102,12 +161,19 @@ $(function(){
         error.insertAfter('.error-msg__name-kana');
       } else if(element.attr('id') === 'user_birthday_1i' || element.attr('id') === 'user_birthday_2i' || element.attr('id') === 'user_birthday_3i' ) {
           error.insertAfter('.error-msg-birthday');
+      } else if(element.attr('id') === 'shipping_address_last_name' || element.attr('id') === 'shipping_address_first_name') {
+        error.insertAfter('.error-msg__shipping-name');
+      } else if(element.attr('id') === 'shipping_address_last_name_kana' || element.attr('id') === 'shipping_address_first_name_kana') {
+        error.insertAfter('.error-msg__shipping-name-kana');
       }else{    
-        error.insertAfter(element);
+          error.insertAfter(element);
+        }
       }
-    }
   })
-  $("#user_nickname, #user_email, #user_password, #user_password_confirmation, #user_last_name, #user_first_name, #user_first_name, #user_last_name_kana, #user_first_name_kana, #user_birthday_1i, #user_birthday_2i, #user_birthday_3i").blur(function () {
+  $("#user_nickname, #user_email, #user_password, #user_password_confirmation, #user_last_name, #user_first_name, #user_first_name, #user_last_name_kana, #user_first_name_kana, #user_birthday_1i, #user_birthday_2i, #user_birthday_3i, #shipping_address_last_name, #shipping_address_first_name, #shipping_address_last_name_kana, #shipping_address_first_name_kana, #shipping_address_zipcode, #shipping_address_prefecture, #shipping_address_city, #shipping_address_house_number, #shipping_address_phone_number").blur(function () {
     $(this).valid();
-  }); 
+  });
+
+  $()
+
 })
