@@ -19,6 +19,12 @@ Rails.application.routes.draw do
 
   end
 
-  resources :users, only: :show
+  resources :users, only: :show do
+
+    collection do
+      get 'logout', to: 'logout#index'
+    end
+
+  end
 
 end

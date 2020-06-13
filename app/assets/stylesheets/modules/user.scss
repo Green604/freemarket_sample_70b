@@ -203,6 +203,23 @@
         }
       }
     }
+    &__header-logout {
+      background: $white;
+      height: 200px;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      padding: 64px;
+      .action {
+        display: inline-block;
+        background-color: $sky_blue;
+        font-size: 14px;
+        text-decoration: none;
+        color: $white;
+        width: 320px;
+        line-height: 50px;
+      }
+    }
     &__tabs {
       display: flex;
       .tab {
