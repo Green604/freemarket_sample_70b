@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   resources :users, only: :show do
 
     collection do
-      get 'logout', to: 'logout#index'
-      get 'card', to: 'card#index'
+      get 'logouts', to: 'logouts#index'
+      get 'cards', to: 'cards#index'
     end
 
   end
