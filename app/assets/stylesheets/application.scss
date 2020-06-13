@@ -9,13 +9,13 @@
 @import "mixin/label";
 @import "mixin/button";
 @import "mixin/user";
+@import "mixin/card";
 @import "./exhibition";
 @import "modules/flash";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "modules/item";
 @import "modules/user";
-@import "modules/flash";
-// @import "modules/favorites";
-// @import "modules/card";
-@import "modules/flash";
+@import "modules/favorites";
+@import "modules/card";
+@import "modules/purchase";

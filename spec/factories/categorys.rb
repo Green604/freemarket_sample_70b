@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :category do
 
-    name    {"メンズ"}
+    name    { "メンズ" }
 
   end
 end

@@ -6,6 +6,7 @@
     = csp_meta_tag
     -# = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     -# = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
     %scripy{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"}
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
@@ -22,6 +23,8 @@
           .grid-6
             = link_to "ログイン", new_user_session_path, method: :get
             = link_to "新規登録", new_user_registration_path, method: :get
+    .breadcrumbs
+      = breadcrumbs pretext: "",separator: " &rsaquo; ", class: "breadcrumbs-list"
 
     = render 'layouts/notifications'
     = yield

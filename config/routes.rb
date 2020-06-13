@@ -10,13 +10,45 @@ Rails.application.routes.draw do
 
   root "items#index"
 
-  resources :items, except: [:edit] do
+  resources :items do
+
+    resources :favorites, only: [:create, :destroy, :index]
 
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
 
+    # 編集画面でカテゴリーを編集可能にするための記述
+    member do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+
+    collection do
+      get 'search'
+      get 'detail_search'
+      get 'detail_search_result'
+    end
+
+    resources :comments, only: :create
+
+    resources :purchase, only: [:index] do
+      member do
+        get 'index', to: 'purchase#index'
+        post 'pay', to: 'purchase#pay'
+        get 'done', to: 'purchase#done'
+      end
+    end
+
+  end
+
+  resources :card, only: [:new, :show] do
+    collection do
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+    end
   end
 
   resources :users, only: :show do
@@ -25,7 +57,6 @@ Rails.application.routes.draw do
       get 'logouts', to: 'logouts#index'
       get 'cards', to: 'cards#index'
     end
-
   end
 
 end
