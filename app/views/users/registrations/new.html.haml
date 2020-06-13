@@ -37,7 +37,7 @@
         %h2 会員情報入力
       .account-page__inner--box
         .account-page__inner--box--user-form
-          = form_for(@user, url: user_registration_path) do |f| 
+          = form_for @user, url: user_registration_path, builder: WithErrorFormBuilder do |f| 
             = render "devise/shared/error_messages", resource: @user
             .field
               .field__label
