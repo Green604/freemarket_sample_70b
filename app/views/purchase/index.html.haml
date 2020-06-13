@@ -1,10 +1,9 @@
 .purchase-confirmation-contents
-  .purchase-confirmation-contents__header
+  = render 'card/card-header'
   .purchase-confirmation-contents__main
     .purchase-confirmation-contents__main__container
-
       .purchase-confirmation-contents__main__container__head
-        %h1 購入を確定しますか？
+        %h2 購入内容の確認
       .purchase-content
         .purchase-content__inner
           .purchase-item
@@ -14,42 +13,53 @@
               .purchase-item__detail__title
                 = @item.name
               .purchase-item__detail__price
-                = "¥#{@item.price}" + "   (税込み)   " + "#{@item.shipping.shipping_fee}"
+                = "¥#{@item.price}" + "   (税込み)   " + "#{@shipping_fee}"
       .purchase-content
         .purchase-content__inner
           .purchase-form
             .purchase-form__item-price
               .purchase-form__item-price__logo
-                %p 支払い金額
-              - if @default_card_information.present?
-                .card-list__main__info
-                  %span クレジットカード
-                  .card-list__main__info__num
-                    = "************" + @default_card_information.last4
-                  .card-list__main__info__num
-                    %span 有効期限
-                    = "#{@card_month}" + " / " + "#{@card_year}"
-                  .card-list__main__info__brand
-                    = icon("fab", "#{@card_image}")
-              - else
-                .purchase-form__user-card__registration
-                  = link_to new_payment_path, class: "purchase-form__user-card__registration__link" do
-                    %i.fas.fa-plus-circle
-                    登録してください
+                %span 支払い金額
+              .purchase-form__item-price__number
+                %span 
+                = "¥#{@item.price}"
+            .purchase-form__user-card
+              .purchase-form__user-card__form
+                .purchase-form__user-card__form__logo
+                  %span 支払い方法
+                - if @default_card_information.present?
+                  .card-list__main__info
+                    %span クレジットカード
+                    .card-list__main__info__num
+                      = "************" + @default_card_information.last4
+                    .card-list__main__info__num
+                      %span 有効期限
+                      = "#{@card_month}" + " / " + "#{@card_year}"
+                    .card-list__main__info__change
+                      = link_to '変更する', delete_card_index_path, method: :post
+                    .card-list__main__info__brand
+                      = icon("fab", "#{@card_image}")
+                - else
+                  .purchase-form__user-card__registration
+                    = link_to new_payment_path, class: "purchase-form__user-card__registration__link" do
+                      %i.fas.fa-plus-circle
+                      登録してください
             .purchase-form__user-adress
-              .purchase-form__user-adress__logo
-                %span 配送先
-                .purchase-form__user-adress__info
-                  = "〒" + "#{current_user.shipping_address.zipcode}"
-                  %br
-                  = "#{current_user.shipping_address.prefecture}" + "#{current_user.shipping_address.city}" + "#{current_user.shipping_address.house_number}"
-                  - if current_user.shipping_address.building
-                    = current_user.shipping_address.building
-                  %br
-                  = "#{current_user.shipping_address.first_name}" + "#{current_user.shipping_address.last_name}"
-                .purchase-form__user-adress__change
+              .purchase-form__user-adress__form
+                .purchase-form__user-adress__form__logo
+                  %span 配送先
+                .purchase-form__user-adress__form__info
+                  %p
+                    = "〒" + "#{current_user.shipping_address.zipcode}"
+                    %br
+                    = "#{current_user.shipping_address.prefecture}" + "#{current_user.shipping_address.city}" + "#{current_user.shipping_address.house_number}"
+                    - if current_user.shipping_address.building
+                      = current_user.shipping_address.building
+                    %br
+                    = "#{current_user.shipping_address.first_name}" + "#{current_user.shipping_address.last_name}"
+                .purchase-form__user-adress__form__change
                   = link_to '変更する', "#", class: "purchase-form__user-adress__change__link"
             .purchase-form__button
               = form_tag(action: :pay, method: :post) do
                 %button.buy-button{type:"submit"} 購入する
-  .purchase-confirmation-contents__footer
+  = render 'card/card-footer'

@@ -9,8 +9,6 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :category
   belongs_to :shipping
-  # belongs_to :user
-
   validates :name, :description, :price, :condition, :parent_category_id, :child_category_id, :category, :shipping, :images, presence: true
   validates_associated :images
 

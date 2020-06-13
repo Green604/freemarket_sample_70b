@@ -1,10 +1,9 @@
 .purchase-confirmation-contents
-  .purchase-confirmation-contents__header
+  = render 'card/card-header'
   .purchase-confirmation-contents__main
     .purchase-confirmation-contents__main__container
-
       .purchase-confirmation-contents__main__container__head
-        %h1 購入が完了しました！
+        %h2 購入が完了しました！
       .purchase-content
         .purchase-content__inner
           .purchase-item
@@ -14,4 +13,5 @@
               .purchase-item__detail__title
                 = @item.name
               .purchase-item__detail__price
-                = "¥#{@item.price}" + "   (税込み)   " + "#{@item.shipping.shipping_fee}"
+                = "¥#{@item.price}" + "   (税込み)   " + "#{@shipping_fee}"
+  = render 'card/card-footer'

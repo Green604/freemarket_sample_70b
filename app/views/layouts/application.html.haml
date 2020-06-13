@@ -12,17 +12,19 @@
     = javascript_include_tag 'application'
     %link{:href => "https://use.fontawesome.com/releases/v5.6.1/css/all.css", :rel => "stylesheet"}/
   %body
-    -# %header.header
-    -#   .header__bar.row
-    -#     %h1.grid-6
-    -#       %a{:href => "/"} FURIMA
-    -#     - if user_signed_in?
-    -#       .user_nav.grid-6
-    -#         マイページ
-    -#     - else
-    -#       .grid-6
-    -#         = link_to "ログイン", new_user_session_path, method: :get
-    -#         = link_to "新規登録", new_user_registration_path, method: :get
+    %header.header
+      .header__bar.row
+        %h1.grid-6
+          %a{:href => "/"} FURIMA
+        - if user_signed_in?
+          .user_nav.grid-6
+            マイページ
+        - else
+          .grid-6
+            = link_to "ログイン", new_user_session_path, method: :get
+            = link_to "新規登録", new_user_registration_path, method: :get
+    .breadcrumbs
+      = breadcrumbs pretext: "",separator: " &rsaquo; ", class: "breadcrumbs-list"
 
     = render 'layouts/notifications'
     = yield
