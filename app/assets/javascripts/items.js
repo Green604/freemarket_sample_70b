@@ -15,8 +15,7 @@ $(function() {
       return html;
     }
 
-    // 投稿編集時
-    //items/:i/editページへリンクした際のアクション=======================================
+    // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
     if (window.location.href.match(/\/items\/\d+\/edit/)){
       //登録済み画像のプレビュー表示欄の要素を取得する
       var prevContent = $('.label-content').prev();
@@ -39,59 +38,64 @@ $(function() {
     //=============================================================================
 
 
-    // ラベルのwidth操作  ラベルの横幅を変える関数
+    // ラベルの横幅を変える操作
     function setLabel() {
-      //プレビューボックスのwidthを取得し、maxから引くことでラベルのwidthを決定
-      var prevContent = $('.label-content').prev(); //prevメソッドは直前のhtmlを取得。label-contentクラスを取得して変数に代入
-      labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, '')); // label-contentクラスの横幅をreplaceで置き換えて、620からそれを引いたものを変数に代入する
-      $('.label-content').css('width', labelWidth); // label-contentクラスの横幅を620-xに変更する
+      //プレビューの幅を変数に代入
+      var prevContent = $('.label-content').prev(); 
+      //ラベル（カメラマークの範囲）のもともとの620pxからプレビューの分だけ引いた幅にする
+      labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, '')); 
+      //ラベル（カメラマークの範囲）の幅を変える
+      $('.label-content').css('width', labelWidth);
     }
 
     // プレビューの追加
-    $(document).on('change', '.hidden-field', function() { //id=image-boxが対象要素。フォーム部品の状態に何らかの変化があったときに発動するchangeイベント。js-fileはセレクタ。セレクタは対象要素内でさらに指定したセレクタからのイベントだけを確認できるようにする
-      setLabel(); //label-contentクラスの横幅を変えるメソッドを呼び出す(＝横幅を変える処理を実行する)
-      //js-fileのidの数値のみ取得（id="item_images_attributes_0_image"の0だけ取得するということ。0〜9の数字を取得）
+    //hidden-fieldにchangeイベントを発火させる
+    $(document).on('change', '.hidden-field', function() { 
+      setLabel(); //ラベルの横幅を変える処理を実行する
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //labelボックスのidとforを更新
       $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
       //選択したfileのオブジェクトを取得
       var file = this.files[0];
-      var reader = new FileReader(); //FileReaderオブジェクトの生成
+      //FileReaderオブジェクトの生成
+      var reader = new FileReader(); 
       //readAsDataURLで指定したFileオブジェクトを読み込む
       reader.readAsDataURL(file); 
       //読み込み時に発火するイベント onloadメソッドは読み込みが完了したら実行する
       reader.onload = function() {
-        var image = this.result; //直前に実行したイベントが返した値を取得する
+        //直前に実行したイベントが返した値を取得する
+        var image = this.result; 
         //プレビューが元々なかった場合はhtmlを追加
         if ($(`#preview-box__${id}`).length == 0) {
-          var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
-          var html = buildHTML(id); //プレビューを生成する関数を変数に代入
-          //ラベルの直前のプレビュー群にプレビューを追加
-          var prevContent = $('.label-content').prev(); //prevメソッドは直前のhtmlを取得。label-contentクラスを取得して変数に代入
+          //プレビューの数を数えて変数に代入
+          var index = $('.preview-box').length; 
+          //プレビューを生成する関数を変数に代入
+          var html = buildHTML(id); 
+          //プレビューエリアのhtmlを変数に代入
+          var prevContent = $('.label-content').prev(); 
+          //既存のプレビューエリアに新たに追加されたプレビューを追加
           $(prevContent).append(html); 
         }
-        //イメージを追加
-        $(`#preview-box__${id} img`).attr('src', `${image}`); //#preview-box__${id} imgのsrc属性を取得してimageに変更する
+        //画像を追加
+        $(`#preview-box__${id} img`).attr('src', `${image}`); 
         var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
-        //プレビューが5個あったらラベルを隠す。ここはあとで5を10に変えてもいいかも
+        //プレビューが5個あったらラベルを隠す（ここはあとで10に変える）
         if (index == 5) {
-          $('.label-content').hide(); //対象要素を隠す
+          $('.label-content').hide();
         }
 
-        //=============================================================================
-        //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=============
+        //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=====
         if ($(`#item_images_attributes_${id}__destroy`)){
           $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
         } 
         //=============================================================================
 
-
-        //ラベルのwidth操作
-        setLabel(); //label-contentクラスの横幅を変えるメソッドを呼び出す(＝横幅を変える処理を実行する)
+        //ラベル（カメラマークの範囲）の横幅を変える処理を実行
+        setLabel(); 
         //ラベルのidとforの値を変更
         if(index < 5){
           //プレビューの数でラベルのオプションを更新する
-          $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`}); //これはたぶんOK
+          $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
         }
       }
     });
