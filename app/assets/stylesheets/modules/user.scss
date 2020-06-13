@@ -224,7 +224,7 @@
       display: flex;
       .tab {
         display: inline-block;
-        line-height: 74px;
+        line-height: 72px;
         width: 350px;
         background-color: #eee;
         text-align: center;
@@ -234,7 +234,9 @@
         color: $black;
       }
       .white-tab {
+        line-height: 70px;
         background-color: $white;
+        border-top: 2px solid $sky_blue;
       }
     }
     &__messages {
@@ -368,173 +370,3 @@
     font-size: 12px;
   }
 }
-
-
-// ユーザーマイページ
-//   .user-mypage {
-//     width: 700px;
-//     margin: 0 auto;
-//     padding-top: 40px;
-//     &__header {
-//       background: linear-gradient(-45deg, rgba(246, 255, 0, .8), $sky_blue);
-//       height: 200px;
-//       text-align: center;
-//       padding: 20px;
-//       font-size: 14px;
-//       a {
-//         display: inline-block;
-//         margin-top: 24px;
-//       }
-//       h2 {
-//         margin-top: 8px;
-//         font-weight: bold;
-//       }
-//       .user-status {
-//         margin-top: 8px;
-//         div {
-//           display: inline-block;
-//           span {
-//             margin-left: 8px;
-//             font-weight: bold;
-//           }
-//         }
-//         .products-number {
-//           margin-left: 16px;
-//         }
-//       }
-//     }
-//     &__tabs {
-//       display: flex;
-//       .tab {
-//         display: inline-block;
-//         line-height: 74px;
-//         width: 350px;
-//         background-color: #eee;
-//         text-align: center;
-//         text-decoration: none;
-//         font-size: 16px;
-//         font-weight: bold;
-//         color: $black;
-//       }
-//       .white-tab {
-//         background-color: $white;
-//       }
-//     }
-//     &__messages {
-//       line-height: 60px;
-//       background-color: $white;
-//       padding: 16px;
-//       font-size: 14px;
-//       text-align: center;
-//       font-weight: bold;
-//       color: #cccccc;
-//       margin-bottom: 1px;
-//     }
-//     &__btn {
-//       background-color: $white;
-//       height: 90px;
-//       padding: 16px;
-//       .btn {
-//         display: inline-block;
-//         line-height: 56px;
-//         width: 100%;
-//         background-color: #eee;
-//         text-align: center;
-//         text-decoration: none;
-//         color: $black;
-//       }
-//     }
-//     &__purchase {
-//       line-height: 72px;
-//       margin-top: 40px;
-//       padding: 0 16px;
-//       background-color: #fafafa;
-//       font-size: 16px;
-//       font-weight: bold;
-//     }
-//     &__images-nil {
-//       background-color: $white;
-//       height: 236px;
-//       text-align: center;
-//       line-height: 236px;
-//       color: #cccccc;
-//       font-size: 16px;
-//       font-weight: bold;
-//       margin-bottom: 40px;
-//     }
-//     &__images {
-//       display: flex;
-//       background-color: $white;
-//       height: 236px;
-//       padding: 20px;
-//       align-items: center;
-//       margin-bottom: 1px;
-//       .item-list {
-//         text-decoration: none;
-//         color: $black;
-//         font-size: 14px;
-//         &__box {
-//           margin: 0 10px;
-//           &--image {
-//             .image {
-//               height: 100px;
-//               width: 100px;
-//             }
-//           }
-//           &--name {
-//           }
-//         }
-//       }
-//     }
-//     &__container {
-//       margin-top: 40px;
-//       p {
-//         font-size: 16px;
-//         font-weight: bold;
-//         margin: 0 0 4px 0;
-//       }
-//       .content {
-//         display: inline-block;
-//         height: 48px;
-//         padding: 16px;
-//         width: 100%;
-//         background-color: $white;
-//         text-decoration: none;
-//         color: $black;
-//         margin-bottom: 1px;
-//       }
-//       .icon-arrow {
-//         color: #cccccc;
-//         position: relative;
-//         &__right {
-//           position: absolute;
-//           top: 16px;
-//           right: 16px;
-//         }
-//       }
-//     }
-//   }
-//   .footer-sell-btn {
-//     position: fixed;
-//     bottom: 32px;
-//     right: 32px;
-//     .sell-btn {
-//       display: inline-block;
-//       height: 120px;
-//       width: 120px;
-//       background-color: $sky_blue;
-//       text-align: center;
-//       color: $white;
-//       text-decoration: none;
-//       font-size: 18px;
-//       font-weight: bold;
-//       border-radius: 4px;
-//       padding-top: 15px;
-//     }
-//   }
-//   .footer-camera-icon {
-//     position: fixed;
-//     bottom: 47px;
-//     right: 65px;
-//   }
-// }

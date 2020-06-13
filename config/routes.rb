@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
     collection do
       get 'logout', to: 'logout#index'
+      get 'card', to: 'card#index'
     end
 
   end
