@@ -1,13 +1,20 @@
 class UsersController < ApplicationController
 
   def show
-    @nickname = current_user.nickname
     @items = []
-    sellers = current_user.sellers.ids
-    sellers.each do |s|
-      key_id = Seller.find(s).item_id
+    @sellers = current_user.sellers.ids
+    buyers = current_user.buyers.ids
+    buyers.each do |s|
+      key_id = Buyer.find(s).item_id
       @item = Item.find(key_id)
       @items << @item
+    # @nickname = current_user.nickname
+    # @items = []
+    # sellers = current_user.sellers.ids
+    # sellers.each do |s|
+    #   key_id = Seller.find(s).item_id
+    #   @item = Item.find(key_id)
+    #   @items << @item
     end
   end
 

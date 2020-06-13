@@ -1,0 +1,106 @@
+.user-mypage
+  %ul.user-mypage__container
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "マイページ", "/users/#{current_user.id}", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "お知らせ", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "やることリスト", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "いいね！一覧", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "出品する", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "下書き一覧", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "出品した商品 - 出品中", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "出品した商品 - 取引中", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "出品した商品 - 売却済み", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "購入した商品 - 取引中", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "購入した商品 - 過去の取引", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "ニュース一覧", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "評価一覧", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "ガイド", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "お問い合わせ", "#", class: "content"
+  %ul.user-mypage__container.add-margin-top
+    %p
+      フリペイ
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "売上・振込申請", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "ポイント", "#", class: "content"
+  %ul.user-mypage__container.add-margin-top
+    %p
+      設定
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "プロフィール", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "発送元・お届け先住所変更", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "支払い方法", "#", class: "content"
+      -# masterへマージするときに下の記述に変える、現在のブランチではエラーとなる為コメントアウト
+      -# = link_to "支払い方法", new_card_path, class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "メール/パスワード", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "本人情報", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "電話番号の確認", "#", class: "content"
+    %li
+      .icon-arrow
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "content"
