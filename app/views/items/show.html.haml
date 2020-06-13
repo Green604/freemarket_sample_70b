@@ -59,9 +59,9 @@
 - if user_signed_in?
   %p
     = link_to 'お気に入り一覧ページ', "/items/#{@item.id}/favorites"
-  - unless user_signed_in? && current_user.id == @item.seller.user.id
-    .li
-      = link_to '購入', "#"
+  -# - unless user_signed_in? && current_user.id == @item.seller.user.id
+  -#   .li
+  -#     = link_to '購入', "#"
     
 .comment
   - if current_user
