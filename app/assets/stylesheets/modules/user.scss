@@ -68,20 +68,30 @@
               }
             }
             &__input {
-              margin-bottom: 24px;
+              // margin-bottom: 24px;
               input {
                 @include user-input (#ccc);
+              }
+              input.form-invalid {
+                border: #ea352d 1px solid;
               }
               select {
                 @include user-select;
                 width: 27%;
               }
+              select.form-invalid {
+                border: #ea352d 1px solid;
+              }
+              
             }
             &__input-half {
-              margin-bottom: 32px;
+              // margin-bottom: 32px;
               input {
                 @include user-input (#ccc);
                 width: 47%;
+              }
+              input.form-invalid {
+                border: #ea352d 1px solid;
               }
             }
           }
@@ -90,6 +100,10 @@
               @include user-submit ($sky_blue);
             }
           }
+        }
+        // フォーム直下にメッセージを出すために、フォームの上にmargin掛けました
+        .error-msg__margin {
+          margin-top: 24px;
         }
       }
     }
@@ -156,4 +170,13 @@
       @include user-login__header ($background_light_gray);
     }
   }
+}
+
+// エラーメッセージ
+p.form-invalid {
+  color: #ea352d;
+}
+// 元々のバリデーションエラーでフォームが崩れるのを防ぐため
+.field_with_errors {
+  display: contents;
 }

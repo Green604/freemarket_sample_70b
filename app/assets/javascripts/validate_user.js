@@ -1,4 +1,13 @@
 $(function(){
+
+  jQuery.validator.addMethod("fullName", function(value, element) {
+    return this.optional(element) || /\A[ぁ-んァ-ン一-龥]/.test(value);
+  }, "全角で入力して下さい");
+
+  jQuery.validator.addMethod("fullNameKana", function(value, element) {
+    return this.optional(element) || /\A[ぁ-ん]/.test(value);
+  }, "全角ひらがなで入力して下さい");
+
   // バリデーションの実行
   $('#new_user').validate({
     rules: {
@@ -10,23 +19,28 @@ $(function(){
         email: true
       },
       "user[password]": {
-        required: true
+        required: true,
+        minlength: 7
       },
       "user[password_confirmation]": {
         required: true,
         equalTo: "#user_password"
       },
       "user[last_name]": {
-        required: true
+        required: true,
+        fullName: true
       },
       "user[first_name]": {
-        required: true
+        required: true,
+        fullName: true
       },
       "user[last_name_kana]": {
-        required: true
+        required: true,
+        fullNameKana: true
       },
       "user[first_name_kana]": {
-        required: true
+        required: true,
+        fullNameKana: true
       },
       "user[birthday(1i)]": {
         required: true
@@ -47,7 +61,8 @@ $(function(){
         email: "フォーマットが不適切です"
       },
       "user[password]": {
-        required: "パスワードを入力してください"
+        required: "パスワードを入力してください",
+        minlength: "パスワードは7文字以上で入力してください"
       },
       "user[password_confirmation]": {
         required: "パスワードを入力してください",
