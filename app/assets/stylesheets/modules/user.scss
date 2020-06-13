@@ -161,6 +161,8 @@
 
 // ユーザーマイページ
 .background-mypage {
+  background-color: $background_light_gray;
+  padding-bottom: 40px;
   .flex-box {
     margin: 40px auto 0;
     width: 1020px;
@@ -342,32 +344,28 @@
       }
     }
   }
-  .footer-sell-btn {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    .sell-btn {
-      display: inline-block;
-      height: 120px;
-      width: 120px;
-      background-color: $sky_blue;
-      text-align: center;
-      color: $white;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 4px;
-      padding-top: 15px;
-    }
-  }
-  .footer-camera-icon {
-    position: fixed;
-    bottom: 47px;
-    right: 65px;
-  }
-  .footer{
-    line-height: 220px;
-    text-align: center;
-    font-size: 12px;
-  }
+  // 最終的に他のscssに書かれるのでコメントアウト
+  // .footer-sell-btn {
+  //   position: fixed;
+  //   bottom: 32px;
+  //   right: 32px;
+  //   .sell-btn {
+  //     display: inline-block;
+  //     height: 120px;
+  //     width: 120px;
+  //     background-color: $sky_blue;
+  //     text-align: center;
+  //     color: $white;
+  //     text-decoration: none;
+  //     font-size: 18px;
+  //     font-weight: bold;
+  //     border-radius: 4px;
+  //     padding-top: 15px;
+  //   }
+  // }
+  // .footer-camera-icon {
+  //   position: fixed;
+  //   bottom: 47px;
+  //   right: 65px;
+  // }
 }

@@ -6,5 +6,3 @@
       .user-mypage
         .user-mypage__header-logout
           = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "action"
-  .footer-box
-    =render "users/show_footer_box"
