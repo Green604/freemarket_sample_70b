@@ -92,3 +92,4 @@ gem 'active_hash'
 gem 'activerecord-session_store'
 gem 'dotenv-rails'
 gem "gretel"
+gem "ransack"
