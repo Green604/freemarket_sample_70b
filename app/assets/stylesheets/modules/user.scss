@@ -297,9 +297,9 @@
       .item-list {
         text-decoration: none;
         color: $black;
-        font-size: 14px;
         &__box {
-          margin: 0 10px;
+          margin: 0 16px;
+          font-size: 16px;
           &--image {
             .image {
               height: 100px;
@@ -307,6 +307,7 @@
             }
           }
           &--name {
+            margin: 4px 0;
           }
         }
       }

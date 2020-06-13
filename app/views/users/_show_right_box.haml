@@ -41,8 +41,8 @@
               = image_tag item.images.first.image.url, class: "image"
             .item-list__box--name
               = item.name
-              %br
-                = "#{item.price} 円"
+            .item-list__box--price
+              = "#{item.price} 円"
     .user-mypage__btn
       = link_to "一覧を見る", "#", class: "btn"
   - else
