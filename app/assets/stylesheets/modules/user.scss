@@ -88,7 +88,8 @@
               // margin-bottom: 32px;
               input {
                 @include user-input (#ccc);
-                width: 47%;
+                // width: 47%;
+                width: calc(50% - 16px);
               }
               input.form-invalid {
                 border: #ea352d 1px solid;
@@ -178,5 +179,11 @@ p.form-invalid {
 }
 // 元々のバリデーションエラーでフォームが崩れるのを防ぐため
 .field_with_errors {
-  display: contents;
+  input {
+    border-color: #ff0211 !important;
+  }
+}
+.errors {
+  display: inline;
+  color: #ff0211;
 }
