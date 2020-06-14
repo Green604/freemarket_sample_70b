@@ -1,5 +1,6 @@
 @import "reset";
 @import "config/colors";
+@import "mixin/item";
 @import "modules/item";
 @import "modules/topContents";
 @import "modules/mainContents";
@@ -11,8 +12,6 @@
 @import "mixin/user";
 @import "./exhibition";
 @import "modules/flash";
-@import "font-awesome-sprockets";
-@import "font-awesome";
 @import "modules/item";
 @import "modules/user";
 @import "modules/flash";

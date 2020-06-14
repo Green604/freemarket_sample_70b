@@ -1,24 +1,21 @@
-.breadCrumbs {
-  
-}
-.main {
-  background: #f8f8f8;
+.Main {
+  background-color: $background_light_gray;
   .showMain {
     padding: 40px;
     margin: 0 auto;
-    .contentRight {
+    .contentBox {
       width: 700px;
       margin: 0 auto;
       .topContent {
         .itemBox {
-          background-color: #fff;
+          background-color: $white;
           padding: 24px 40px 40px;
-          .itemBox__name {
+          &__name {
             text-align: center;
             font-weight: bold;
             font-size: 24px;
           }
-          .itemBox__body {
+          &__body {
             margin: 16px 0 0;
             ul {
               display: flex;
@@ -27,7 +24,7 @@
               }
             }
           }
-          .itemBox__price {
+          &__price {
             margin: 24px 0 24px;
             text-align: center;
             display: flex;
@@ -37,13 +34,13 @@
               font-weight: bold;
               margin: 0 10px 0 0;
             }
-            .itemBox__price-detail {
+            &-detail {
               span {
                 font-size: 16px;
               }
             }
           }
-          .itemDetail {
+          &_detail {
             line-height: 1.5;
             font-size: 18px;
             margin-bottom: 30px;
@@ -97,7 +94,7 @@
                   margin-right: auto;
                   padding: 6px 10px;
                   border-radius: 40px;
-                  color: #3CCACE;
+                  color: $sky_blue;
                   border: 1px solid #ffb340;
                 }
                 .favorites-box {
@@ -137,42 +134,32 @@
         }
         .itemBox-container {
           .li-edit {
-            padding: 24px;
-            background-color: #3CCACE;
-            margin: 10px;
-            text-align: center;
+            @include list-button;
+            background-color: $sky_blue;
             .link-path {
               text-decoration: none;
               color: white;
             }
           }
           .li-or {
-            padding: 24px;
-            margin: 10px;
-            text-align: center;
+            @include list-button;
           }
           .li-delete {
-            padding: 24px;
+            @include list-button;
             background-color: gray;
-            margin: 10px;
-            text-align: center;
             .link-path {
               text-decoration: none;
               color: white;
             }
           }
           .li-status {
-            padding: 24px;
-            background-color: #3CCACE;
-            margin: 10px;
-            text-align: center;
+            @include list-button;
+            background-color: $sky_blue;
             color: white;
           }
           .li-purchase {
-            padding: 24px;
-            background-color: #3CCACE;
-            margin: 10px;
-            text-align: center;
+            @include list-button;
+            background-color: $sky_blue;
             .link-path {
               text-decoration: none;
               color: white;
@@ -180,17 +167,15 @@
           }
         }
         .item-detail-message {
-          padding: 24px;
-          background-color: #fff;
-          margin: 10px 0;
-          text-align: center;
+          @include list-button;
+          background-color: $white;
           .message-container {
             background-repeat: no-repeat;
             margin: 0;
             padding: 0;
             .message-content {
               padding: 24px 7.5%;
-              background: #fff;
+              background: $white;
               .message-items {
                 margin: 0;
                 .clearfix {
@@ -242,7 +227,7 @@
                     border-radius: 15px;
                     line-height: 1.5;
                     word-break: break-all;
-                    .message-body-text {
+                    &-text {
                       background-repeat: no-repeat;
                       margin: 0;
                       padding: 0;
@@ -287,11 +272,10 @@
             .commentBtn {
               font-size: 18px;
               line-height: 48px;
-              background: #3CCACE;
-              border: 1px solid #3CCACE;
-              color: #fff;
+              background-color: $sky_blue;
+              border: 1px solid $sky_blue;
+              color: $white;
               width: 60%;
-              font-size: 18px;
               border-radius: 100px;
               margin-top: 10px;
             }
@@ -304,14 +288,12 @@
         justify-content: space-between;
         .left {
           a {
-            text-decoration: none;
-            color: #3CCACE;
+            @include link-items
           }
         }
         .right {
           a {
-            text-decoration: none;
-            color: #3CCACE;
+            @include link-items
           }
         }
       }
@@ -319,7 +301,7 @@
         a {
           display: block;
           margin: 24px 0 8px;
-          color: #3CCACE;
+          color: $sky_blue;
           text-decoration: none;
           font-weight: bold;
           font-size: 22px;

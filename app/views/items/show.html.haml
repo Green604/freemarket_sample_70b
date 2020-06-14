@@ -1,6 +1,6 @@
-.main
+.Main
   .showMain
-    .contentRight
+    .contentBox
       .topContent
         .itemBox
           %h2.itemBox__name
@@ -12,7 +12,6 @@
               - @item.images.first(3).each.with_index do |image, index|
                 %li
                   = image_tag image.image.url, size: "207x100", class: "sub-image"
-
           .itemBox__price
             %span
               = "¥#{@item.price}"
@@ -21,7 +20,7 @@
                 （税込）
               %span
                 = @item.shipping.shipping_fee
-          .itemDetail
+          .itemBox_detail
             = @item.description
           .table
             %table
@@ -69,7 +68,7 @@
           .optionalArea
             %ul
               - if user_signed_in?
-                - if current_user.already_favorited?(@item)     # ユーザーがすでにお気に入りしてるときは赤色のハートマーク、まだしてないときは白色のハートマーク
+                - if current_user.already_favorited?(@item)     
                   .LikesIcon
                     %i.fas.fa-heart.LikesIcon-fa-heart.heart    
                 - else
