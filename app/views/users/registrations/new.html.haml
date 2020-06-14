@@ -37,6 +37,7 @@
         %h2 会員情報入力
       .account-page__inner--box
         .account-page__inner--box--user-form
+          -# 作成したフォームビルダーを設定↓
           = form_for @user, url: user_registration_path, builder: WithErrorFormBuilder do |f| 
             = render "devise/shared/error_messages", resource: @user
             .field
