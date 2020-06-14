@@ -1,8 +1,10 @@
 $(function(){
+
   function appendOption(category){
     var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
+
   function appendChidrenBox(insertHTML){
     var childSelectHtml = '';
     childSelectHtml =  `<div class='category-select-child'>
@@ -30,56 +32,127 @@ $(function(){
     $('.category-section__pulldown').append(grandchildSelectHtml);
   }
 
-  $('#parent_category').on('change', function(){
-    var parentCategory = $(this).val(); 
-    if (parentCategory != "---"){ 
-      $.ajax({
-        url: 'get_category_children',
-        type: 'GET',
-        data: { parent_id: parentCategory }, 
-        dataType: 'json'
-      })
-      .done(function(children){
-        $('#children_wrapper').remove(); 
-        $('#grandchildren_wrapper').remove();
-        var insertHTML = '';
-        children.forEach(function(child){
-          insertHTML += appendOption(child);
-        });
-        appendChidrenBox(insertHTML);
-      })
-      .fail(function(){
-        alert('カテゴリー取得に失敗しました');
-      })
-    }else{
-      $('#children_wrapper').remove(); 
-      $('#grandchildren_wrapper').remove();
-    }
-  });
-  $('.category-section__pulldown').on('change', '#child_category', function(){
-    var childId = $('#child_category option:selected').data('category'); 
-    if (childId != "---"){ 
-      $.ajax({
-        url: 'get_category_grandchildren',
-        type: 'GET',
-        data: { child_id: childId }, 
-        dataType: 'json'
-      })
-      .done(function(grandchildren){
-        if (grandchildren.length != 0) {
-          $('#grandchildren_wrapper').remove(); 
-          var insertHTML = '';
-          grandchildren.forEach(function(grandchild){
-            insertHTML += appendOption(grandchild);
-          });
-          appendGrandchidrenBox(insertHTML);
+  $(window).on('load',function(){
+    //new.html.hamlの場合
+    if(document.URL.match('new')) {
+      $('#parent_category').on('change', function(){
+        var parentCategory = $(this).val(); 
+        if (parentCategory != "---"){ 
+          $.ajax({
+            url: 'get_category_children',
+            type: 'GET',
+            data: { parent_id: parentCategory }, 
+            dataType: 'json'
+          })
+          .done(function(children){
+            $('#children_wrapper').remove(); 
+            $('#grandchildren_wrapper').remove();
+            var insertHTML = '';
+            children.forEach(function(child){
+              insertHTML += appendOption(child);
+            });
+            appendChidrenBox(insertHTML);
+          })
+          .fail(function(){
+            alert('カテゴリー取得に失敗しました');
+          })
+        }else{
+          $('#children_wrapper').remove(); 
+          $('#grandchildren_wrapper').remove();
         }
-      })
-      .fail(function(){
-        alert('カテゴリー取得に失敗しました');
-      })
-    }else{
-      $('#grandchildren_wrapper').remove(); 
+      });
+      $('.category-section__pulldown').on('change', '#child_category', function(){
+        var childId = $('#child_category option:selected').data('category'); 
+        if (childId != "---"){ 
+          $.ajax({
+            url: 'get_category_grandchildren',
+            type: 'GET',
+            data: { child_id: childId }, 
+            dataType: 'json'
+          })
+          .done(function(grandchildren){
+            if (grandchildren.length != 0) {
+              $('#grandchildren_wrapper').remove(); 
+              var insertHTML = '';
+              grandchildren.forEach(function(grandchild){
+                insertHTML += appendOption(grandchild);
+              });
+              appendGrandchidrenBox(insertHTML);
+            }
+          })
+          .fail(function(){
+            alert('カテゴリー取得に失敗しました');
+          })
+        }else{
+          $('#grandchildren_wrapper').remove(); 
+        }
+      });
+    }
+
+    //edit.html.hamlの場合は。。。
+    if(document.URL.match('edit')) {
+      $('#parent_category').on('change', function(){
+        //親カテゴリーの名前を取得
+        var parentCategory = $(this).val(); 
+        //親カテゴリーが初期値でないことを確認
+        if (parentCategory != "---"){ 
+          $.ajax({
+            url: 'get_category_children',
+            type: 'GET',
+            data: { parent_id: parentCategory }, 
+            dataType: 'json'
+          })
+          .done(function(children){
+            //親カテゴリーが変更された時
+            //子カテゴリーを削除
+            $('#children_wrapper').remove(); 
+            //孫カテゴリーを削除
+            $('#grandchildren_wrapper').remove();
+            var insertHTML = '';
+            children.forEach(function(child){
+              insertHTML += appendOption(child);
+            });
+            appendChidrenBox(insertHTML);
+          })
+          .fail(function(){
+            alert('カテゴリー取得に失敗しました');
+          })
+        }else{
+          //親カテゴリーが初期値になった時
+          //子カテゴリーを削除
+          $('#children_wrapper').remove(); 
+          //孫カテゴリーを削除
+          $('#grandchildren_wrapper').remove();
+        }
+      });
+    
+      $('.category-section__pulldown').on('change', '#child_category', function(){
+        var childId = $('#child_category option:selected').data('category'); 
+        if (childId != "---"){ 
+          $.ajax({
+            url: 'get_category_grandchildren',
+            type: 'GET',
+            data: { child_id: childId }, 
+            dataType: 'json'
+          })
+          .done(function(grandchildren){
+            if (grandchildren.length != 0) {
+              $('#grandchildren_wrapper').remove(); 
+              var insertHTML = '';
+              grandchildren.forEach(function(grandchild){
+                insertHTML += appendOption(grandchild);
+              });
+              appendGrandchidrenBox(insertHTML);
+            }
+          })
+          .fail(function(){
+            alert('カテゴリー取得に失敗しました');
+          })
+        }else{
+          $('#grandchildren_wrapper').remove(); 
+        }
+      });
     }
   });
+
 });
