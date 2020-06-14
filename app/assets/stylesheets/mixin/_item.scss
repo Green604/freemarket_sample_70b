@@ -1,0 +1,10 @@
+@mixin list-button {
+  padding: 24px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+@mixin link-items {
+  text-decoration: none;
+  color: $sky_blue;
+}

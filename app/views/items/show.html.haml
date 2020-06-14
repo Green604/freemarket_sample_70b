@@ -1,95 +1,155 @@
-- breadcrumb :itemDetail, @item
+.Main
+  .showMain
+    .contentBox
+      .topContent
+        .itemBox
+          %h2.itemBox__name
+            = @item.name
+          .itemBox__body
+            .item-main-image
+              =image_tag @image.image.url, size: "620x350", class: "main-image"
+            %ul
+              - @item.images.first(3).each.with_index do |image, index|
+                %li
+                  = image_tag image.image.url, size: "207x100", class: "sub-image"
+          .itemBox__price
+            %span
+              = "¥#{@item.price}"
+            .itemBox__price-detail
+              %span
+                （税込）
+              %span
+                = @item.shipping.shipping_fee
+          .itemBox_detail
+            = @item.description
+          .table
+            %table
+              %tbody
+                %tr
+                  %th
+                    出品者
+                  %td
+                    = @item.seller.user.nickname
+                %tr
+                  %th
+                    カテゴリー
+                  %td
+                    = link_to "#{@category.name}", '#'
+                    %br
+                    = link_to "#{@category_child.name}", '#'
+                    %br
+                    = link_to "#{@item.category.name}", '#'
+                %tr
+                  %th
+                    ブランド
+                  %td
+                    - if @item.brand.present?
+                      = @item.brand.name 
+                %tr
+                  %th
+                    商品の状態
+                  %td
+                    = @item.condition
+                %tr
+                  %th
+                    配送料の負担
+                  %td
+                    = @item.shipping.shipping_fee
+                %tr
+                  %th
+                    発送元の地域
+                  %td
+                    = @item.shipping.shippingarea.name
+                %tr
+                  %th
+                    発送日の目安
+                  %td
+                    = @item.shipping.shipping_day
+          .optionalArea
+            %ul
+              - if user_signed_in?
+                - if current_user.already_favorited?(@item)     
+                  .LikesIcon
+                    %i.fas.fa-heart.LikesIcon-fa-heart.heart    
+                - else
+                  .LikesIcon
+                    %i.far.fa-heart.LikesIcon-fa-heart 
+              %li.counts
+                %p.favorite
+                  お気に入り数：
+                  = @item.favorites.count
+                .favorites-box
+                  .favorites_buttons{data: {id: @item.id}}
+                    = render partial: 'favorites/favorite', locals: { item: @item}
+                  - if user_signed_in?
+                    %p
+                      = link_to 'お気に入り一覧ページ', "/items/#{@item.id}/favorites", class: "favorites-lists"
+            %ul.optional
+              %li.optionalBtn
+                = link_to '#' do
+                  %i.fa.fa-flag
+                    不適切な商品の通報
 
-%p#notice= notice
-%p
-- if user_signed_in?
-  ログイン中ユーザー:
-  = current_user.nickname
-- else 
-  未ログイン
-%p
-  商品名:
-  = @item.name
-%p
-  - @item.images.each do |image|
-    = image_tag image.image.url
-%p
-  出品者:
-  = @item.seller.user.nickname
+        .itemBox-container
+          - if user_signed_in?
+            - if user_signed_in? && current_user.id == @item.seller.user.id
+              .li-edit
+                = link_to '商品の編集', edit_item_path, class: "link-path"
+              .li-or
+                or
+              .li-delete
+                = link_to 'この商品を削除する', item_path, method: :delete, class: "link-path"
+            - else
+              - if @item.buyer.present?
+                .li-status
+                  売却済
+              - else
+                .li-purchase
+                  = link_to 'この商品を購入する', item_purchase_path(@item.id), class: "link-path"
 
-%p
-  %strong カテゴリー:
-%p
-  = @category.name
-%p
-  = @category_child.name
-%p
-  = @item.category.name
-%p
-  ブランド:
-  - if @item.brand.present?
-    = @item.brand.name 
-%p
-  商品の状態:
-  = @item.condition
-%p
-  配送料の負担:
-  = @item.shipping.shipping_fee
-%p
-  発送元の地域:
-  = @item.shipping.shippingarea.name
-%p
-  発送日の目安:
-  = @item.shipping.shipping_day
+        .item-detail-message 
+          .message-container
+            .message-content
+              %ul.message-items
+                - if @comments
+                  - @comments.each do |comment|
+                    %li.clearfix
+                      = link_to comment.user, class: "message-user" do
+                        .figure
+                          .div
+                            = image_tag "https://static.mercdn.net/thumb/members/551390331.jpg?1581956265", width: 40, height: 40
+                          %figcaption.bold
+                            = comment.user.nickname
+                        .message-is-seller
+                          出品者
+                      .message-body
+                        .message-body-text
+                          = comment.comment
+                        .message-icons.clearfix
+                          %time.message-icon-left
+                            %i.icon-time
+                            %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
+                          .message-icon-right
+                            = link_to '#' do
+                              %i.fa.fa-flag
+                        %i.icon-balloon
+                        
+            - if current_user
+              = form_with( model: [@item, @comment], local: true, class: "new_comment") do |f|
+                = f.text_area :comment, placeholder: "コメントする", rows: "2", class: "comment_body"
+                %p.noticeMsg
+                  相手のことを考え丁寧なコメントを心がけましょう。
+                  %br
+                  不快な言葉遣いなどは利用制限や退去処分となることがあります。
+                = f.submit "コメントする", class: "commentBtn" do
+                  %i.fa.fa-comment
 
-- if user_signed_in?
-  - if current_user.already_favorited?(@item)     # ユーザーがすでにお気に入りしてるときは赤色のハートマーク、まだしてないときは白色のハートマーク
-    .LikesIcon
-      %i.fas.fa-heart.LikesIcon-fa-heart.heart    
-  - else
-    .LikesIcon
-      %i.far.fa-heart.LikesIcon-fa-heart 
-
-.counts
-  お気に入り数：
-  = @item.favorites.count
-.favorites_buttons{data: {id: @item.id}}
-  = render partial: 'favorites/favorite', locals: { item: @item}
-
-- if user_signed_in?
-  %p
-    = link_to 'お気に入り一覧ページ', "/items/#{@item.id}/favorites"
-  -# - unless user_signed_in? && current_user.id == @item.seller.user.id
-  -#   .li
-  -#     = link_to '購入', "#"
-    
-.comment
-  - if current_user
-    = form_with( model: [@item, @comment], local: true) do |f|
-      = f.text_area :comment, placeholder: "コメントする", rows: "2"
-      = f.submit "SEND"
-
-.commentList
-  %p コメント一覧
-  - if @comments
-    - @comments.each do |comment|
-      %p 
-        = comment.user.nickname
-      %p
-        = comment.comment
-      %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
-
-.li
-  = @item.selling_status.status
-- if user_signed_in?
-  - if user_signed_in? && current_user.id == @item.seller.user.id && @item.buyer.blank?
-    .li
-      = link_to '編集', edit_item_path
-    .li
-      = link_to '削除', item_path, method: :delete
-  - else
-    - unless @item.buyer.present?
-      .li
-        = link_to '購入', item_purchase_path(@item.id)
-
-= link_to 'Back', root_path
+      %ul.links
+        %li.left
+          = link_to '＜前の商品', item_path(@previous_item) if @previous_item
+        %li.right
+          = link_to '後ろの商品＞', item_path(@next_item) if @next_item
+      .relatedItems
+        = link_to "#{@category_child.name}をもっと見る"
+        .productLists
+          
