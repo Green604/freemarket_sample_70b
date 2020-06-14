@@ -172,177 +172,182 @@
       .user-mypage {
         margin-right: 40px;
         width: 280px;
-      }
-    }
-  }
-  .user-mypage {
-    width: 700px;
-    margin: 0 auto;
-    &__header {
-      background: linear-gradient(-45deg, rgba(246, 255, 0, .8), $sky_blue);
-      @include user-mypage__header;
-      a {
-        display: inline-block;
-        margin-top: 24px;
-      }
-      h2 {
-        margin-top: 8px;
-        font-weight: bold;
-      }
-      .user-status {
-        margin-top: 8px;
-        div {
-          display: inline-block;
-          span {
-            margin-left: 8px;
-            font-weight: bold;
+        &__container {
+          p {
+            @include user-mypage__font-weight;
+            margin: 0 0 4px 0;
           }
-        }
-        .products-number {
-          margin-left: 16px;
-        }
-      }
-    }
-    &__header-logout {
-      background: $white;
-      @include user-mypage__header;
-      padding: 64px;
-      .action {
-        @include user-mypage__btn ($sky_blue);
-        font-size: 14px;
-        color: $white;
-        width: 320px;
-        line-height: 50px;
-        border-radius: 4px;
-      }
-    }
-    &__tabs {
-      display: flex;
-      .tab {
-        @include user-mypage__tab;
-      }
-      .white-tab {
-        @include user-mypage__white-tab;
-      }
-      .tab-2 {
-        @include user-mypage__tab;
-      }
-      .white-tab-2 {
-        @include user-mypage__white-tab;
-      }
-    }
-    &__messages {
-      @include user-mypage__lightcolor-font;
-      line-height: 48px;
-      background-color: $white;
-      font-size: 14px;
-      margin-bottom: 1px;
-      li {
-        padding: 16px;
-        margin-bottom: 1px;
-      }
-      .container {
-        display: none;
-      }
-      .show {
-        display: block;
-      }
-    }
-    &__btn {
-      background-color: $white;
-      height: 90px;
-      padding: 16px;
-      .btn {
-        @include user-mypage__btn (#eee);
-        line-height: 56px;
-        width: 100%;
-        text-align: center;
-        color: $black;
-      }
-    }
-    &__purchase {
-      line-height: 40px;
-      margin-top: 40px;
-      padding: 16px;
-      background-color: #fafafa;
-      @include user-mypage__font-weight;
-    }
-    &__images-nil {
-      @include user-mypage__images-container;
-      @include user-mypage__lightcolor-font;
-      padding-top: 160px;
-      font-size: 16px;
-      margin-bottom: 40px;
-      position: relative;
-      .icon-freema {
-        position: absolute;
-        top: 40px;
-        left: 310px
-      }
-    }
-    &__images {
-      @include user-mypage__images-container;
-      padding: 20px;
-      align-items: center;
-      margin-bottom: 1px;
-      display: flex;
-      .item-list {
-        text-decoration: none;
-        color: $black;
-        &__box {
-          margin: 0 16px;
-          font-size: 16px;
-          &--image {
-            .image {
-              height: 100px;
-              width: 100px;
+          .content {
+            @include user-mypage__btn ($white);
+            height: 48px;
+            padding: 16px;
+            width: 100%;
+            color: $black;
+            margin-bottom: 1px;
+          }
+          .changecolor {
+            @include user-mypage__changecolor (#f8f8f8);
+          }
+          .addcolor {
+            @include user-mypage__changecolor (#eeeeee);
+          }
+          .icon-arrow {
+            color: #cccccc;
+            position: relative;
+            &__right {
+              position: absolute;
+              top: 16px;
+              right: 16px;
             }
           }
-          &--name {
-            margin: 4px 0;
+        }
+      }
+    }
+    .right-box {
+      .user-mypage {
+        width: 700px;
+        margin: 0 auto;
+        &__header {
+          background: linear-gradient(-45deg, rgba(246, 255, 0, .8), $sky_blue);
+          @include user-mypage__header;
+          a {
+            display: inline-block;
+            margin-top: 24px;
+          }
+          h2 {
+            margin-top: 8px;
+            font-weight: bold;
+          }
+          .user-status {
+            margin-top: 8px;
+            div {
+              display: inline-block;
+              span {
+                margin-left: 8px;
+                font-weight: bold;
+              }
+            }
+            .products-number {
+              margin-left: 16px;
+            }
+          }
+        }
+        &__tabs {
+          display: flex;
+          .tab {
+            @include user-mypage__tab;
+          }
+          .white-tab {
+            @include user-mypage__white-tab;
+          }
+          .tab-2 {
+            @include user-mypage__tab;
+          }
+          .white-tab-2 {
+            @include user-mypage__white-tab;
+          }
+        }
+        &__messages {
+          @include user-mypage__lightcolor-font;
+          line-height: 48px;
+          background-color: $white;
+          font-size: 14px;
+          margin-bottom: 1px;
+          li {
+            padding: 16px;
+            margin-bottom: 1px;
+          }
+          .container {
+            display: none;
+          }
+          .show {
+            display: block;
+          }
+        }
+        &__btn {
+          background-color: $white;
+          height: 90px;
+          padding: 16px;
+          .btn {
+            @include user-mypage__btn (#eee);
+            line-height: 56px;
+            width: 100%;
+            text-align: center;
+            color: $black;
+          }
+        }
+        &__purchase {
+          line-height: 40px;
+          margin-top: 40px;
+          padding: 16px;
+          background-color: #fafafa;
+          @include user-mypage__font-weight;
+        }
+        &__images-nil {
+          @include user-mypage__images-container;
+          @include user-mypage__lightcolor-font;
+          padding-top: 160px;
+          font-size: 16px;
+          margin-bottom: 40px;
+          position: relative;
+          .icon-freema {
+            position: absolute;
+            top: 40px;
+            left: 310px
+          }
+        }
+        &__images {
+          @include user-mypage__images-container;
+          padding: 20px;
+          align-items: center;
+          margin-bottom: 1px;
+          display: flex;
+          .item-list {
+            text-decoration: none;
+            color: $black;
+            &__box {
+              margin: 0 16px;
+              font-size: 16px;
+              &--image {
+                .image {
+                  height: 100px;
+                  width: 100px;
+                }
+              }
+              &--name {
+                margin: 4px 0;
+              }
+            }
+          }
+        }
+        .container-2 {
+          display: none;
+        }
+        .show {
+          display: block;
+        }
+        .add-margin-top {
+          margin-top: 40px;
+        }
+
+        // ログアウトページで使用
+        &__header-logout {
+          background: $white;
+          @include user-mypage__header;
+          padding: 64px;
+          .action {
+            @include user-mypage__btn ($sky_blue);
+            font-size: 14px;
+            color: $white;
+            width: 320px;
+            line-height: 50px;
+            border-radius: 4px;
           }
         }
       }
     }
-    .container-2 {
-      display: none;
-    }
-    .show {
-      display: block;
-    }
-    .add-margin-top {
-      margin-top: 40px;
-    }
-    &__container {
-      p {
-        @include user-mypage__font-weight;
-        margin: 0 0 4px 0;
-      }
-      .content {
-        @include user-mypage__btn ($white);
-        height: 48px;
-        padding: 16px;
-        width: 100%;
-        color: $black;
-        margin-bottom: 1px;
-      }
-      .changecolor {
-        @include user-mypage__changecolor (#f8f8f8);
-      }
-      .addcolor {
-        @include user-mypage__changecolor (#eeeeee);
-      }
-      .icon-arrow {
-        color: #cccccc;
-        position: relative;
-        &__right {
-          position: absolute;
-          top: 16px;
-          right: 16px;
-        }
-      }
-    }
   }
+
   // 最終的に他のscssに書かれる予定で今はコメントアウト
   // .footer-sell-btn {
   //   position: fixed;
