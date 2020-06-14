@@ -20,13 +20,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :brand
 
   scope :d_search, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
-
-  def previous 
-    Item.where("id < ?", self.id).order("id DESC").first 
-  end 
-  
-  def next 
-    Item.where("id > ?", self.id).order("id ASC").first 
-  end
+  scope :previous, -> (item) { where("id < ?", item.id).order('id DESC').first }
+  scope :next, -> (item) { where("id > ?", item.id).order('id ASC').first }
 
 end

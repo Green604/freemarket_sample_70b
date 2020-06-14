@@ -20,6 +20,8 @@ class ItemsController < ApplicationController
     @favorite = Favorite.new 
     @images = @item.images
     @image = @images.first
+    @previous_item = Item.previous(@item)
+    @next_item = Item.next(@item)
   end
 
   def new

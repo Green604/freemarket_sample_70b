@@ -146,9 +146,9 @@
 
       %ul.links
         %li.left
-          = link_to '＜前の商品', item_path(@item.previous) if @item.previous
+          = link_to '＜前の商品', item_path(@previous_item) if @previous_item
         %li.right
-          = link_to '後ろの商品＞', item_path(@item.next) if @item.next
+          = link_to '後ろの商品＞', item_path(@next_item) if @next_item
       .relatedItems
         = link_to "#{@category_child.name}をもっと見る"
         .productLists
