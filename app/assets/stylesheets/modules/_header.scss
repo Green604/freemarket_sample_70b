@@ -1,10 +1,15 @@
 .topContent {
+  background-color: $white;
   padding: 0 60px;
   font: 16px;
   color: #000000;
+  padding-bottom: 5px;
   .insideHeader {
-    min-height: 8px;
-    padding-top: 15px;
+    max-width: 1040px;
+    width: 100%;
+    min-height: 82px;
+    margin: 0 auto;
+    padding: 15px 0 0;
     .mainHeader {
       display: flex;
       align-items: center;

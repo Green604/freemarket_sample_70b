@@ -40,15 +40,10 @@
         .navBar
           %ul.leftList
             %li.list
-              -# - @parents.each do |parent|
-              -#   %p 
-              -#     = parent.name
-              -#   - parent.children.each do |child|
-              -#     %p
-              -#       = child.name    
-              -#     - child.children.each do |grandchild|
-              -#       %p
-              -#         = grandchild.name
+              - @parents.each do |parent|
+                = link_to "#{parent.name}", root_path, class: "parent_category",id: "#{parent.id}"
+            .children_list
+            .grand_children_list
 
             %li.list
               = link_to "ブランド"

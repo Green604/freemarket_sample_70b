@@ -214,23 +214,20 @@
         font-size: 24px;
       }
       .itemLists {
-        width: 780px;
         padding: 26px;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         .item {
           width: 220px;
           display: inline-block;
-          float: left;
           text-decoration: none;
           .itemList__box {
             .itemList__box--image {
               .image {
                 width: 220px;
-                height: 150px;
+                height: 160px;
                 position: relative;
                 overflow: hidden;
-                margin: 0;
                 z-index: auto;
               }
             }
