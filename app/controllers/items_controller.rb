@@ -18,7 +18,6 @@ class ItemsController < ApplicationController
     @comment = Comment.new
     @comments = @item.comments.includes(:user).order("created_at DESC")
     @favorite = Favorite.new 
-    @item = Item.find(params[:id])
     @images = @item.images
     @image = @images.first
   end
