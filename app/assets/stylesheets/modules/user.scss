@@ -161,6 +161,7 @@
 
 // ユーザーマイページ
 .background-mypage {
+  font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   background-color: $background_light_gray;
   padding-bottom: 40px;
   .flex-box {
@@ -179,10 +180,7 @@
     margin: 0 auto;
     &__header {
       background: linear-gradient(-45deg, rgba(246, 255, 0, .8), $sky_blue);
-      height: 200px;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
+      @include user-mypage__header;
       a {
         display: inline-block;
         margin-top: 24px;
@@ -207,63 +205,37 @@
     }
     &__header-logout {
       background: $white;
-      height: 200px;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
+      @include user-mypage__header;
       padding: 64px;
       .action {
-        display: inline-block;
-        background-color: $sky_blue;
+        @include user-mypage__btn ($sky_blue);
         font-size: 14px;
-        text-decoration: none;
         color: $white;
         width: 320px;
         line-height: 50px;
+        border-radius: 4px;
       }
     }
     &__tabs {
       display: flex;
       .tab {
-        display: inline-block;
-        line-height: 72px;
-        width: 350px;
-        background-color: #eee;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        color: $black;
+        @include user-mypage__tab;
       }
       .white-tab {
-        line-height: 70px;
-        background-color: $white;
-        border-top: 2px solid $sky_blue;
+        @include user-mypage__white-tab;
       }
       .tab-2 {
-        display: inline-block;
-        line-height: 72px;
-        width: 350px;
-        background-color: #eee;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        color: $black;
+        @include user-mypage__tab;
       }
       .white-tab-2 {
-        line-height: 70px;
-        background-color: $white;
-        border-top: 2px solid $sky_blue;
+        @include user-mypage__white-tab;
       }
     }
     &__messages {
+      @include user-mypage__lightcolor-font;
       line-height: 48px;
       background-color: $white;
       font-size: 14px;
-      text-align: center;
-      font-weight: bold;
-      color: #cccccc;
       margin-bottom: 1px;
       li {
         padding: 16px;
@@ -281,31 +253,25 @@
       height: 90px;
       padding: 16px;
       .btn {
-        display: inline-block;
+        @include user-mypage__btn (#eee);
         line-height: 56px;
         width: 100%;
-        background-color: #eee;
         text-align: center;
-        text-decoration: none;
         color: $black;
       }
     }
     &__purchase {
-      line-height: 72px;
+      line-height: 40px;
       margin-top: 40px;
-      padding: 0 16px;
+      padding: 16px;
       background-color: #fafafa;
-      font-size: 16px;
-      font-weight: bold;
+      @include user-mypage__font-weight;
     }
     &__images-nil {
-      background-color: $white;
-      height: 236px;
+      @include user-mypage__images-container;
+      @include user-mypage__lightcolor-font;
       padding-top: 160px;
-      text-align: center;
-      color: #cccccc;
       font-size: 16px;
-      font-weight: bold;
       margin-bottom: 40px;
       position: relative;
       .icon-freema {
@@ -315,8 +281,7 @@
       }
     }
     &__images {
-      background-color: $white;
-      height: 236px;
+      @include user-mypage__images-container;
       padding: 20px;
       align-items: center;
       margin-bottom: 1px;
@@ -350,27 +315,22 @@
     }
     &__container {
       p {
-        font-size: 16px;
-        font-weight: bold;
+        @include user-mypage__font-weight;
         margin: 0 0 4px 0;
       }
       .content {
-        display: inline-block;
+        @include user-mypage__btn ($white);
         height: 48px;
         padding: 16px;
         width: 100%;
-        background-color: $white;
-        text-decoration: none;
         color: $black;
         margin-bottom: 1px;
       }
       .changecolor {
-        background-color: #f8f8f8;
-        color: $black;
+        @include user-mypage__changecolor (#f8f8f8);
       }
       .addcolor {
-        background-color: #eeeeee;
-        color: $black;
+        @include user-mypage__changecolor (#eeeeee);
       }
       .icon-arrow {
         color: #cccccc;
@@ -383,7 +343,7 @@
       }
     }
   }
-  // 最終的に他のscssに書かれるのでコメントアウト
+  // 最終的に他のscssに書かれる予定で今はコメントアウト
   // .footer-sell-btn {
   //   position: fixed;
   //   bottom: 32px;

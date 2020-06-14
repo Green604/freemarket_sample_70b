@@ -2,7 +2,6 @@
 @mixin user-account__contents ($color) {
   margin: 0 auto;
   background-color: $color;
-  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;;
 }
 
 @mixin user-login__header ($color) {
@@ -10,11 +9,6 @@
   height: 128px;
   text-align: center;
   padding-top: 40px;
-}
-
-@mixin center-line {
-  content: "ーーーーーーーー";
-  letter-spacing: -2px;
 }
 
 @mixin user-input ($color) {
@@ -26,7 +20,6 @@
   border: 1px solid $color;
   align-items: center;
   display: inline-flex;
-  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
   font-size: 16px;
   height: 48px;
 }
@@ -90,4 +83,57 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
+}
+
+// ユーザーマイページで使用
+@mixin user-mypage__header {
+  height: 200px;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+@mixin user-mypage__tab {
+  display: inline-block;
+  line-height: 72px;
+  width: 350px;
+  background-color: #eee;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: $black;
+}
+
+@mixin user-mypage__white-tab {
+  line-height: 70px;
+  background-color: $white;
+  border-top: 2px solid $sky_blue;
+}
+
+@mixin user-mypage__images-container {
+  background-color: $white;
+  height: 236px;
+}
+
+@mixin user-mypage__changecolor ($color) {
+  background-color: $color;
+  color: $black;
+}
+
+@mixin user-mypage__btn ($color) {
+  display: inline-block;
+  background-color: $color;
+  text-decoration: none;
+}
+
+@mixin user-mypage__lightcolor-font {
+  text-align: center;
+  font-weight: bold;
+  color: #cccccc;
+}
+
+@mixin user-mypage__font-weight {
+  font-size: 16px;
+  font-weight: bold;
 }

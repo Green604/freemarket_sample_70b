@@ -16,9 +16,9 @@
             #{@sellers.length}
   %ul.user-mypage__tabs
     %li
-      = link_to "お知らせ", "#", class: "tab white-tab"
+      = link_to "お知らせ", "#", remote: true, class: "tab white-tab"
     %li
-      = link_to "やること", "#", class: "tab"
+      = link_to "やること", "#", remote: true, class: "tab"
   %ul.user-mypage__messages
     %li.container.show
       お知らせはありません
@@ -31,9 +31,9 @@
     購入した商品
   %ul.user-mypage__tabs
     %li
-      = link_to "過去の取引", "#", class: "tab-2 white-tab-2"
+      = link_to "過去の取引", "#", remote: true, class: "tab-2 white-tab-2"
     %li
-      = link_to "取引中", "#", class: "tab-2"
+      = link_to "取引中", "#", remote: true, class: "tab-2"
   %ul
     %li.user-mypage.container-2.show
       - if @items.present?
