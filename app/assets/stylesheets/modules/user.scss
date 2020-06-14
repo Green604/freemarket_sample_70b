@@ -240,16 +240,41 @@
         background-color: $white;
         border-top: 2px solid $sky_blue;
       }
+      .tab-2 {
+        display: inline-block;
+        line-height: 72px;
+        width: 350px;
+        background-color: #eee;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        color: $black;
+      }
+      .white-tab-2 {
+        line-height: 70px;
+        background-color: $white;
+        border-top: 2px solid $sky_blue;
+      }
     }
     &__messages {
-      line-height: 60px;
+      line-height: 48px;
       background-color: $white;
-      padding: 16px;
       font-size: 14px;
       text-align: center;
       font-weight: bold;
       color: #cccccc;
       margin-bottom: 1px;
+      li {
+        padding: 16px;
+        margin-bottom: 1px;
+      }
+      .container {
+        display: none;
+      }
+      .show {
+        display: block;
+      }
     }
     &__btn {
       background-color: $white;
@@ -290,12 +315,12 @@
       }
     }
     &__images {
-      display: flex;
       background-color: $white;
       height: 236px;
       padding: 20px;
       align-items: center;
       margin-bottom: 1px;
+      display: flex;
       .item-list {
         text-decoration: none;
         color: $black;
@@ -313,6 +338,12 @@
           }
         }
       }
+    }
+    .container-2 {
+      display: none;
+    }
+    .show {
+      display: block;
     }
     .add-margin-top {
       margin-top: 40px;
@@ -332,6 +363,14 @@
         text-decoration: none;
         color: $black;
         margin-bottom: 1px;
+      }
+      .changecolor {
+        background-color: #f8f8f8;
+        color: $black;
+      }
+      .addcolor {
+        background-color: #eeeeee;
+        color: $black;
       }
       .icon-arrow {
         color: #cccccc;

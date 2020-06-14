@@ -2,8 +2,8 @@
   %ul.user-mypage__container
     %li
       .icon-arrow
-        %i.fas.fa-chevron-right.icon-arrow__right.addcolor
-      = link_to "マイページ", "/users/#{current_user.id}", class: "content addcolor"
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "マイページ", "/users/#{current_user.id}", class: "content"
     %li
       .icon-arrow
         %i.fas.fa-chevron-right.icon-arrow__right
@@ -84,8 +84,8 @@
       = link_to "発送元・お届け先住所変更", "#", class: "content"
     %li
       .icon-arrow
-        %i.fas.fa-chevron-right.icon-arrow__right
-      = link_to "支払い方法", cards_users_path, class: "content"
+        %i.fas.fa-chevron-right.icon-arrow__right.addcolor
+      = link_to "支払い方法", cards_users_path, class: "content addcolor"
 
     %li
       .icon-arrow
