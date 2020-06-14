@@ -1,14 +1,17 @@
-$(function(){
+$(function(){ 
 
+  // メソッドの追加
+  // 全角入力のバリデーションは元々の機能にないので追加
   jQuery.validator.addMethod("fullName", function(value, element) {
     return this.optional(element) || /^[^\x01-\x7E\xA1-\xDF]+$/.test(value);
   }, "全角で入力して下さい");
 
+  // 全角ひらがな入力のバリデーションは元々の機能にないので追加
   jQuery.validator.addMethod("fullNameKana", function(value, element) {
     return this.optional(element) || /^[\u3040-\u309f]+$/.test(value);
   }, "全角ひらがなで入力して下さい");
 
-  // バリデーションの実行
+  // バリデーションの設定
   $('#new_user, #new_shipping_address').validate({
     rules: {
       "user[nickname]": {
@@ -82,7 +85,6 @@ $(function(){
       "shipping_address[phone_number]": {
         required: true
       }
-
     },
     messages: {
       "user[nickname]": {
@@ -154,9 +156,11 @@ $(function(){
     validClass: "valid", // バリデーションOKの場合に追加するクラス名の指定
     errorPlacement: function(error, element){
 
+      // メッセージ表示場所の変更
+      // 【お名前】のようにフォームが2つセットのものは、デフォルトだとそれぞれのフォーム直下にメッセージが出てしまいレイアウトが崩れてしまうため、
+      // 表示場所をその親の直下に出てくるように変更
       if(element.attr('id') === 'user_last_name' || element.attr('id') === 'user_first_name'){
-        error.insertAfter('.error-msg__name');
-      //標準出力箇所（フォーム項目の後にエラーメッセージを出力）
+        error.insertAfter('.error-msg__name'); 
       } else if(element.attr('id') === 'user_last_name_kana' || element.attr('id') === 'user_first_name_kana') {
         error.insertAfter('.error-msg__name-kana');
       } else if(element.attr('id') === 'user_birthday_1i' || element.attr('id') === 'user_birthday_2i' || element.attr('id') === 'user_birthday_3i' ) {
@@ -165,15 +169,13 @@ $(function(){
         error.insertAfter('.error-msg__shipping-name');
       } else if(element.attr('id') === 'shipping_address_last_name_kana' || element.attr('id') === 'shipping_address_first_name_kana') {
         error.insertAfter('.error-msg__shipping-name-kana');
-      }else{    
+      }else{    //標準出力箇所（フォーム項目の後にエラーメッセージを出力）
           error.insertAfter(element);
-        }
       }
+    }
   })
+  // 各フォームに対してバリデーションの実行
   $("#user_nickname, #user_email, #user_password, #user_password_confirmation, #user_last_name, #user_first_name, #user_first_name, #user_last_name_kana, #user_first_name_kana, #user_birthday_1i, #user_birthday_2i, #user_birthday_3i, #shipping_address_last_name, #shipping_address_first_name, #shipping_address_last_name_kana, #shipping_address_first_name_kana, #shipping_address_zipcode, #shipping_address_prefecture, #shipping_address_city, #shipping_address_house_number, #shipping_address_phone_number").blur(function () {
     $(this).valid();
   });
-
-  $()
-
 })
