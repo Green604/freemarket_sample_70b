@@ -15,6 +15,19 @@ $(function() {
       return html;
     }
 
+    function addLabelHTML(id) {
+      var labelhtml =  `<div class="addlabel-content" width="620">
+                          <label class="addlabel-box" for="item_images_attributes_${id}_image" id="label-box-${id}">
+                            <pre class="label_box__text-visible">
+                              <svg area-hidden="true", class="image-upload-svg", fill-rule="evenodd", fill="222222", height="24", viewBox="0 0 24 24", width="24">
+                                <path d="M19.3,5H16.73l-.8-1.61A.7.7,0,0,0,15.3,3H8.7a.7.7,0,0,0-.63.39L7.27,5H4.7A2.7,2.7,0,0,0,2,7.7V18.3A2.7,2.7,0,0,0,4.7,21H19.3A2.7,2.7,0,0,0,22,18.3V7.7A2.7,2.7,0,0,0,19.3,5ZM12,17.3A4.3,4.3,0,1,1,16.3,13,4.31,4.31,0,0,1,12,17.3Z" />
+                              </svg>
+                            </pre>
+                          </label>
+                        </div>`;
+      return labelhtml;
+    }
+
     // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
     if (window.location.href.match(/\/items\/\d+\/edit/)){
       //登録済み画像のプレビュー表示欄の要素を取得する
@@ -80,8 +93,13 @@ $(function() {
         $(`#preview-box__${id} img`).attr('src', `${image}`); 
         var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
         //プレビューが5個あったらラベルを隠す（ここはあとで10に変える）
+        var addLabel = addLabelHTML(id); 
+
         if (index == 5) {
           $('.label-content').hide();
+          $('.label-content').after(addLabel);
+          $('.addlabel-box').attr('for', "item_images_attributes_0_image");
+          $('.addlabel-box').attr('id', "label-box-0");
         }
 
         //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=====
