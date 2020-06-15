@@ -73,14 +73,14 @@
                 @include user-input (#ccc);
               }
               input.form-invalid {
-                border: #ea352d 1px solid;
+                @include form-error;
               }
               select {
                 @include user-select;
                 width: 27%;
               }
               select.form-invalid {
-                border: #ea352d 1px solid;
+                @include form-error;
               }
               
             }
@@ -92,7 +92,7 @@
                 width: calc(50% - 16px);
               }
               input.form-invalid {
-                border: #ea352d 1px solid;
+                @include form-error;
               }
             }
           }
@@ -146,6 +146,9 @@
               input {
                 @include user-input (#ccc);
               }
+              input.form-invalid {
+                @include form-error;
+              }
             }
           }
           .actions {
@@ -175,15 +178,18 @@
 
 // エラーメッセージ
 p.form-invalid {
-  color: #ea352d;
+  color: $error_msg;
 }
-// 元々のバリデーションエラーでフォームが崩れるのを防ぐため
 .field_with_errors {
   input {
-    border-color: #ff0211 !important;
+    border-color: $error_msg !important;
   }
 }
 .errors {
   display: inline;
-  color: #ff0211;
+  color: $error_msg;
+}
+#error_explanation{
+  color: $error_msg;
+  padding: 20px 0 20px;
 }
