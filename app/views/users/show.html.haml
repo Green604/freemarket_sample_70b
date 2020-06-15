@@ -1,21 +1,10 @@
 - breadcrumb :mypage
-= render "layouts/breadcrumbs"
 
-.contents_row
-  %p
-    = "#{@nickname}さんの出品一覧"
-
-  - @items.each do |item|
-    = link_to "/items/#{item.id}", method: :get, class:"itemList" do
-      %li.itemList__box
-        .itemList__box--image
-          = image_tag item.images.first.image.url, class: "image"
-        .itemList__box--name
-          = item.name
-          %br
-            = "#{item.price} 円"
-            %br
-              （税込）
-
-  = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'actions'
-  = link_to "クレジットカード登録", new_card_path, class: 'actions'
+.background-mypage
+  .flex-box
+    .left-box
+      =render "show_left_box"
+    .right-box
+      =render "show_right_box"
+  .footer-box
+    =render "show_footer_box"

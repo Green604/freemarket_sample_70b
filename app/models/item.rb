@@ -9,7 +9,6 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :category
   belongs_to :shipping
-  
   validates :name, :description, :price, :condition, :parent_category_id, :child_category_id, :category, :shipping, :images, presence: true
   validates_associated :images
 
@@ -18,7 +17,10 @@ class Item < ApplicationRecord
   # mount_uploader :image, ImageUploader
   accepts_nested_attributes_for :images, allow_destroy: true
   accepts_nested_attributes_for :shipping
+  accepts_nested_attributes_for :brand
 
-  scope :search, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
+  scope :d_search, -> (keyword){where('name LIKE(?)', "%#{keyword}%")}
+  scope :previous, -> (item) { where("id < ?", item.id).order('id DESC').first }
+  scope :next, -> (item) { where("id > ?", item.id).order('id ASC').first }
 
 end
