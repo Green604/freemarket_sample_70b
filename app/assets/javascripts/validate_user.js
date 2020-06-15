@@ -5,11 +5,23 @@ $(function(){
   jQuery.validator.addMethod("fullName", function(value, element) {
     return this.optional(element) || /^[^\x01-\x7E\xA1-\xDF]+$/.test(value);
   }, "全角で入力して下さい");
-
   // 全角ひらがな入力のバリデーションは元々の機能にないので追加
   jQuery.validator.addMethod("fullNameKana", function(value, element) {
     return this.optional(element) || /^[\u3040-\u309f]+$/.test(value);
   }, "全角ひらがなで入力して下さい");
+  // 半角英数
+  jQuery.validator.addMethod("hankaku", function(value, element) {
+    return this.optional(element) || /^[A-Za-z0-9]*$/.test(value);
+  }, "半角英数で入力して下さい");
+  // 郵便番号ハイフンありなし対応
+  jQuery.validator.addMethod("zipcode", function(value, element) {
+    return this.optional(element) || /^\d{3}[-]?\d{4}$/.test(value);
+  }, "正しく入力して下さい");
+  // 電話番号ハイフンありなし対応
+  jQuery.validator.addMethod("phoneNumber", function(value, element) {
+    return this.optional(element) || /^\d{10,11}$|^\d{2,5}-\d{1,4}-\d{4}$/.test(value);
+  }, "正しく入力して下さい");
+  
 
   // バリデーションの設定
   $('#new_user, #new_shipping_address').validate({
@@ -23,6 +35,7 @@ $(function(){
       },
       "user[password]": {
         required: true,
+        hankaku: true,
         minlength: 7
       },
       "user[password_confirmation]": {
@@ -71,7 +84,8 @@ $(function(){
         fullNameKana: true
       },
       "shipping_address[zipcode]": {
-        required: true
+        required: true,
+        zipcode: true
       },
       "shipping_address[prefecture]": {
         required: true
@@ -83,7 +97,8 @@ $(function(){
         required: true
       },
       "shipping_address[phone_number]": {
-        required: true
+        required: true,
+        phoneNumber: true
       }
     },
     messages: {
