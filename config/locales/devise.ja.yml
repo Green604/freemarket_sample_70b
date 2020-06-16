@@ -25,8 +25,25 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        nickname: ニックネーム
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓カナ
+        first_name_kana: 名カナ
+        birthday: 生年月日
+      shipping_address:
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓カナ
+        first_name_kana: 名カナ
+        zipcode: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        house_number: 番地
+        phone_number: 電話番号
     models:
-      user: ユーザ
+      user: ユーザー
+      shipping_address: 住所
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

@@ -69,20 +69,28 @@
               }
             }
             &__input {
-              margin-bottom: 24px;
               input {
                 @include user-input (#ccc);
+              }
+              input.form-invalid {
+                @include form-error;
               }
               select {
                 @include user-select;
                 width: 27%;
               }
+              select.form-invalid {
+                @include form-error;
+              }
+              
             }
             &__input-half {
-              margin-bottom: 32px;
               input {
                 @include user-input (#ccc);
-                width: 47%;
+                width: calc(50% - 16px);
+              }
+              input.form-invalid {
+                @include form-error;
               }
             }
           }
@@ -91,6 +99,10 @@
               @include user-submit ($sky_blue);
             }
           }
+        }
+        // フォーム直下にメッセージを出すために、フォームの上にmargin掛けました
+        .error-msg__margin {
+          margin-top: 24px;
         }
       }
     }
@@ -132,6 +144,9 @@
               input {
                 @include user-input (#ccc);
               }
+              input.form-invalid {
+                @include form-error;
+              }
             }
           }
           .actions {
@@ -157,6 +172,24 @@
       @include user-login__header ($background_light_gray);
     }
   }
+}
+
+// エラーメッセージ
+p.form-invalid {
+  color: $error_msg;
+}
+.field_with_errors {
+  input {
+    border-color: $error_msg !important;
+  }
+}
+.errors {
+  display: inline;
+  color: $error_msg;
+}
+#error_explanation{
+  color: $error_msg;
+  padding: 20px 0 20px;
 }
 
 // ユーザーマイページ
