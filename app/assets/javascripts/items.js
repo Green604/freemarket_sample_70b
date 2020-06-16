@@ -15,6 +15,7 @@ $(function() {
       return html;
     }
 
+    //6〜10枚目のプレビュー画像のためのラベル作る関数
     function addLabelHTML(id) {
       var labelhtml =  `<div class="addlabel-content" width="620">
                           <label class="addlabel-box" for="item_images_attributes_${id}_image" id="label-box-${id}">
@@ -26,6 +27,21 @@ $(function() {
                           </label>
                         </div>`;
       return labelhtml;
+    }
+
+    //6~10枚目のプレビュー画像部分のHTML作る関数
+    function buildHTML(index) {
+      var addPreviewhtml = `<div class="preview-box" id="preview-box__${index}">
+                    <div data-index="${index}" class="upper-box">
+                      <img src="" alt="preview" class="upload-image">
+                    </div>
+                    <div class="lower-box">
+                      <div class="delete-box" id="delete_btn_${index}">
+                        <span>削除</span>
+                      </div>
+                    </div>
+                  </div>`;
+      return addPreviewhtml;
     }
 
     // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
@@ -51,7 +67,7 @@ $(function() {
     //=============================================================================
 
 
-    // ラベルの横幅を変える操作
+    // ラベルの横幅を変える操作(1〜5枚目)
     function setLabel() {
       //プレビューの幅を変数に代入
       var prevContent = $('.label-content').prev(); 
@@ -59,6 +75,16 @@ $(function() {
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, '')); 
       //ラベル（カメラマークの範囲）の幅を変える
       $('.label-content').css('width', labelWidth);
+    }
+
+    // ラベルの横幅を変える操作(6〜10枚目)
+    function setLabel() {
+      //プレビューの幅を変数に代入
+      var addPrevContent = $('.addlabel-content').prev(); 
+      //ラベル（カメラマークの範囲）のもともとの620pxからプレビューの分だけ引いた幅にする
+      addLabelWidth = (620 - $(addPrevContent).css('width').replace(/[^0-9]/g, '')); 
+      //ラベル（カメラマークの範囲）の幅を変える
+      $('.addlabel-content').css('width', addLabelWidth);
     }
 
     // プレビューの追加
@@ -92,14 +118,15 @@ $(function() {
         //画像を追加
         $(`#preview-box__${id} img`).attr('src', `${image}`); 
         var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
-        //プレビューが5個あったらラベルを隠す（ここはあとで10に変える）
+        
         var addLabel = addLabelHTML(id); 
-
+        //プレビューが5個あったらラベルを隠す（ここはあとで10に変える）
         if (index == 5) {
           $('.label-content').hide();
           $('.label-content').after(addLabel);
           $('.addlabel-box').attr('for', "item_images_attributes_0_image");
           $('.addlabel-box').attr('id', "label-box-0");
+
         }
 
         //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=====
