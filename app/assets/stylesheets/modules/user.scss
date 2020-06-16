@@ -69,7 +69,6 @@
               }
             }
             &__input {
-              // margin-bottom: 24px;
               input {
                 @include user-input (#ccc);
               }
@@ -86,10 +85,8 @@
               
             }
             &__input-half {
-              // margin-bottom: 32px;
               input {
                 @include user-input (#ccc);
-                // width: 47%;
                 width: calc(50% - 16px);
               }
               input.form-invalid {

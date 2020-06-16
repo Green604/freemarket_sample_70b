@@ -86,6 +86,7 @@
 }
 @mixin form-error {
   border: $error_msg 1px solid;
+}
 
 // ユーザーマイページで使用
 @mixin user-mypage__header {
@@ -138,3 +139,4 @@
 @mixin user-mypage__font-weight {
   font-size: 16px;
   font-weight: bold;
+}
