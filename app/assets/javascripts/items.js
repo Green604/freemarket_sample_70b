@@ -95,16 +95,15 @@ $(function() {
     // プレビューの追加
     //hidden-fieldにchangeイベントを発火させる
     $(document).on('change', '.hidden-field', function() { 
- 
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
-      //labelボックスのidとforを更新
 
-      if (index < 5) {
+      //labelボックスのidとforを更新
+      if (index <= 5) {
         var index = $('.preview-box').length; 
         $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
       }
       
-      if (index >= 5) {
+      if (index > 5) {
         var index = $('.preview-box').length; 
         $('.addlabel-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
       }
@@ -133,6 +132,7 @@ $(function() {
 
         //画像を追加
         $(`#preview-box__${id} img`).attr('src', `${image}`); 
+
         var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
         
         //プレビューが5個あったらラベルを隠す
@@ -144,14 +144,39 @@ $(function() {
           $('.addlabel-content').before(previewContent); 
           var previewHtml = buildPreviewHTML(index); 
           $('.preview-content').append(previewHtml); 
-          $('.preview-content').hide(); 
+          $('.preview-content').hide();
         }
 
         if (index == 6) {
-          $('.preview-content').show(); 
+          $('.preview-content').show();  
+          var previewHtml = buildPreviewHTML(index); 
+          $('.preview-content').append(previewHtml);
+          $('#preview-box__6').hide();
+        }
+
+        if (index == 7) {
+          $('#preview-box__6').show();  
+          var previewHtml = buildPreviewHTML(index); 
+          $('.preview-content').append(previewHtml);
+          $('#preview-box__7').hide();
+        }
+
+        if (index == 8) {
+          $('#preview-box__7').show();  
+          var previewHtml = buildPreviewHTML(index); 
+          $('.preview-content').append(previewHtml);
+          $('#preview-box__8').hide();
+        }
+
+        if (index == 9) {
+          $('#preview-box__8').show();  
+          var previewHtml = buildPreviewHTML(index); 
+          $('.preview-content').append(previewHtml);
+          $('#preview-box__9').hide();
         }
 
         if (index == 10) {
+          $('#preview-box__9').show(); 
           $('.addlabel-content').hide();
         }
 
