@@ -32,16 +32,21 @@ $(function() {
     //6~10枚目のプレビュー画像部分のHTML作る関数
     function buildPreviewHTML(index) {
       var addPreviewhtml = `<div class="preview-box" id="preview-box__${index}">
-                    <div data-index="${index}" class="upper-box">
-                      <img src="" alt="preview" class="upload-image">
-                    </div>
-                    <div class="lower-box">
-                      <div class="delete-box" id="delete_btn_${index}">
-                        <span>削除</span>
-                      </div>
-                    </div>
-                  </div>`;
+                              <div data-index="${index}" class="upper-box">
+                                <img src="" alt="preview" class="upload-image">
+                              </div>
+                              <div class="lower-box">
+                                <div class="delete-box" id="delete_btn_${index}">
+                                  <span>削除</span>
+                                </div>
+                              </div>
+                            </div>`;
       return addPreviewhtml;
+    }
+
+    function buildPreviewContent() {
+      var addPreviewContent = `<div class="preview-content"></div>`;
+      return addPreviewContent;
     }
 
     // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
@@ -115,20 +120,24 @@ $(function() {
           //既存のプレビューエリアに新たに追加されたプレビューを追加
           $(prevContent).append(html); 
         }
+
         //画像を追加
         $(`#preview-box__${id} img`).attr('src', `${image}`); 
         var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
         
         var addLabel = addLabelHTML(id); 
-        var previewhtml = buildPreviewHTML(id); 
-        var addPrevContent = $('.addlabel-content').prev(); 
-        //プレビューが5個あったらラベルを隠す（ここはあとで10に変える）
+        
+        //プレビューが5個あったらラベルを隠す
         if (index == 5) {
           $('.label-content').hide();
           $('.label-content').after(addLabel);
           $('.addlabel-box').attr('for', "item_images_attributes_0_image");
           $('.addlabel-box').attr('id', "label-box-0");
-          $('.label-content').before(previewhtml); 
+          var previewContent = buildPreviewContent(); 
+          $('.addlabel-content').before(previewContent); 
+          var previewHtml = buildPreviewHTML(index); 
+          console.log(previewHtml);
+          $('.preview-content').append(previewHtml); 
         }
 
         //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=====
@@ -138,7 +147,14 @@ $(function() {
         //=============================================================================
 
         //ラベル（カメラマークの範囲）の横幅を変える処理を実行
-        setLabel();
+        if(index <= 5) {
+          setLabel();
+        }
+
+        if(index >=6) {
+          addSetLabel();
+        }
+
         //ラベルのidとforの値を変更
         if(index < 5){
           //プレビューの数でラベルのオプションを更新する
@@ -146,6 +162,10 @@ $(function() {
         }
       }
     });
+
+
+
+
 
     // 画像の削除
     $(document).on('click', '.delete-box', function() {
