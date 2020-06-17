@@ -137,14 +137,16 @@ $(function() {
         
         //プレビューが5個あったらラベルを隠す
         if (index == 5) {
-          $('.label-content').hide();
+          $('.label-content').hide(); //1~5枚目用のラベル隠す
           var addLabel = addLabelHTML(id); 
-          $('.label-content').after(addLabel);
+          $('.label-content').after(addLabel); //6〜10枚目用のラベル設置
           var previewContent = buildPreviewContent(); 
-          $('.addlabel-content').before(previewContent); 
+          $('.addlabel-content').before(previewContent); //6〜10枚目用のプレビュー枠設置
           var previewHtml = buildPreviewHTML(index); 
-          $('.preview-content').append(previewHtml); 
-          $('.preview-content').hide();
+          $('.preview-content').append(previewHtml);  //6枚目用のプレビュー枠の中のhtml入れる
+          $('.preview-content').hide(); //6枚目用のプレビュー枠の中のhtml隠す
+          $('.image-box__upload').css('height', '460px'); //写真スペース用にスペースを広げる
+          $('.prev-content').css('margin-top', '300px'); //写真スペース用にスペースを広げる
         }
 
         if (index == 6) {
@@ -188,11 +190,11 @@ $(function() {
 
         //ラベル（カメラマークの範囲）の横幅を変える処理を実行
         if(index <= 5) {
-          setLabel();
+          setLabel(); //1~5枚目の時の横幅を変える処理
         }
 
         if(index >=6) {
-          addSetLabel();
+          addSetLabel(); //6~10枚目の時の横幅を変える処理
         }
 
         //ラベルのidとforの値を変更
@@ -201,7 +203,7 @@ $(function() {
           $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
         }
 
-        if(index >= 5){
+        if(index >= 5){ //なんでここが6じゃなくて5なのかはわかってない
           //プレビューの数でラベルのオプションを更新する
           $('.addlabel-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
         }
