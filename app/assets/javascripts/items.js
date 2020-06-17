@@ -144,6 +144,11 @@ $(function() {
           $('.addlabel-content').before(previewContent); 
           var previewHtml = buildPreviewHTML(index); 
           $('.preview-content').append(previewHtml); 
+          $('.preview-content').hide(); 
+        }
+
+        if (index == 6) {
+          $('.preview-content').show(); 
         }
 
         if (index == 10) {
