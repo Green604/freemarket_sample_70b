@@ -85,9 +85,9 @@ $(function() {
     // ラベルの横幅を変える操作(6〜10枚目)
     function addSetLabel() {
       //プレビューの幅を変数に代入
-      var addPrevContent = $('.addlabel-content').prev(); 
+      var previewContent = $('.addlabel-content').prev(); 
       //ラベル（カメラマークの範囲）のもともとの620pxからプレビューの分だけ引いた幅にする
-      addLabelWidth = (620 - $(addPrevContent).css('width').replace(/[^0-9]/g, '')); 
+      addLabelWidth = (620 - $(previewContent).css('width').replace(/[^0-9]/g, '')); 
       //ラベル（カメラマークの範囲）の幅を変える
       $('.addlabel-content').css('width', addLabelWidth);
     }
@@ -98,7 +98,18 @@ $(function() {
       // setLabel(); //ラベルの横幅を変える処理を実行する
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //labelボックスのidとforを更新
-      $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+
+      if (index < 6) {
+        var index = $('.preview-box').length; 
+        $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+      }
+      
+      if (index >= 6) {
+        var index = $('.preview-box').length; 
+        $('.addlabel-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+      }
+
+
       //選択したfileのオブジェクトを取得
       var file = this.files[0];
       //FileReaderオブジェクトの生成
@@ -159,6 +170,11 @@ $(function() {
         if(index < 5){
           //プレビューの数でラベルのオプションを更新する
           $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
+        }
+
+        if(index >= 5){
+          //プレビューの数でラベルのオプションを更新する
+          $('.addlabel-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
         }
       }
     });
