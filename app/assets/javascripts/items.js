@@ -95,7 +95,7 @@ $(function() {
     // プレビューの追加
     //hidden-fieldにchangeイベントを発火させる
     $(document).on('change', '.hidden-field', function() { 
-      // setLabel(); //ラベルの横幅を変える処理を実行する
+ 
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //labelボックスのidとforを更新
 
@@ -108,7 +108,6 @@ $(function() {
         var index = $('.preview-box').length; 
         $('.addlabel-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
       }
-
 
       //選択したfileのオブジェクトを取得
       var file = this.files[0];
@@ -136,11 +135,10 @@ $(function() {
         $(`#preview-box__${id} img`).attr('src', `${image}`); 
         var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
         
-        var addLabel = addLabelHTML(id); 
-        
         //プレビューが5個あったらラベルを隠す
         if (index == 5) {
           $('.label-content').hide();
+          var addLabel = addLabelHTML(id); 
           $('.label-content').after(addLabel);
           var previewContent = buildPreviewContent(); 
           $('.addlabel-content').before(previewContent); 
