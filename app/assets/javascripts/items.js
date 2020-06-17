@@ -99,12 +99,12 @@ $(function() {
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //labelボックスのidとforを更新
 
-      if (index < 6) {
+      if (index < 5) {
         var index = $('.preview-box').length; 
         $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
       }
       
-      if (index >= 6) {
+      if (index >= 5) {
         var index = $('.preview-box').length; 
         $('.addlabel-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
       }
@@ -142,13 +142,14 @@ $(function() {
         if (index == 5) {
           $('.label-content').hide();
           $('.label-content').after(addLabel);
-          $('.addlabel-box').attr('for', "item_images_attributes_0_image");
-          $('.addlabel-box').attr('id', "label-box-0");
           var previewContent = buildPreviewContent(); 
           $('.addlabel-content').before(previewContent); 
           var previewHtml = buildPreviewHTML(index); 
-          console.log(previewHtml);
           $('.preview-content').append(previewHtml); 
+        }
+
+        if (index == 10) {
+          $('.addlabel-content').hide();
         }
 
         //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=====
