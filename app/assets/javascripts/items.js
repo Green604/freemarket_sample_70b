@@ -211,13 +211,20 @@ $(function() {
     });
 
 
-
-
-
     // 画像の削除
     $(document).on('click', '.delete-box', function() {
       var index = $('.preview-box').length;
-      setLabel(index);
+
+      // setLabel(index);
+
+      if(index <= 5) {
+        setLabel(index); //1~5枚目の時の横幅を変える処理
+      }
+
+      if(index >=6) {
+        addSetLabel(); //6~10枚目の時の横幅を変える処理
+      }
+
       //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //取得したidに該当するプレビューを削除
