@@ -189,11 +189,11 @@ $(function() {
         //=============================================================================
 
         //ラベル（カメラマークの範囲）の横幅を変える処理を実行
-        if(index <= 5) {
+        if (index <= 5) {
           setLabel(); //1~5枚目の時の横幅を変える処理
         }
 
-        if(index >=6) {
+        if (index >=6) {
           addSetLabel(); //6~10枚目の時の横幅を変える処理
         }
 
@@ -215,12 +215,21 @@ $(function() {
     $(document).on('click', '.delete-box', function() {
       var index = $('.preview-box').length;
 
-      if(index <= 5) {
+
+      if (index < 5) {
         setLabel(index); //1~5枚目の時の横幅を変える処理
+        console.log('helllllo');
       }
 
-      if(index >=6) {
-        addSetLabel(); //6~10枚目の時の横幅を変える処理
+      if (index == 6) {
+        $('.label-content').show();
+        setLabel(index); //1~5枚目の時の横幅を変える処理
+        $('.label-content').css('width', '112px');
+        console.log('hello');
+      }
+
+      if(index > 6) {
+        addSetLabel(index); //6~10枚目の時の横幅を変える処理
       }
 
       //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
@@ -228,9 +237,15 @@ $(function() {
       //取得したidに該当するプレビューを削除
       $(`#preview-box__${id}`).remove();
 
+      //最後の子要素を消す
       var lastPreview = $('.preview-content').children().last();
       console.log(lastPreview[0]);
       $(lastPreview).remove();
+      var previewHtml = buildPreviewHTML(index); 
+      $('.preview-content').append(previewHtml);
+      var lastPreview = $('.preview-content').children().last();
+      $(lastPreview).hide();
+
 
       //新規登録時と編集時の場合分け==========================================================
 
