@@ -145,8 +145,8 @@ $(function() {
           var previewHtml = buildPreviewHTML(index); 
           $('.preview-content').append(previewHtml);  //6枚目用のプレビュー枠の中のhtml入れる
           $('.preview-content').hide(); //6枚目用のプレビュー枠の中のhtml隠す
-          $('.image-box__upload').css('height', '460px'); //写真スペース用にスペースを広げる
-          $('.prev-content').css('margin-top', '300px'); //写真スペース用にスペースを広げる
+          $('.image-box__upload').css('height', '320px'); //写真スペース用にスペースを広げる
+          $('.prev-content').css('margin-top', '200px'); //写真スペース用にスペースを広げる
         }
 
         if (index == 6) {
@@ -242,12 +242,20 @@ $(function() {
         //5個めが消されたらラベルを表示
         if (index == 4) {
           $('.label-content').show();
+          setLabel(index);
         }
-
+        //10個めが消されたらラベルを表示
         if (index == 9) {
           $('.addlabel-content').show();
+          addSetLabel(index);
+          // $('.addlabel-box').css('width', '112px'); //ラベルの幅を設定
         }
-        setLabel(index);
+
+        // if (index == 8) {
+        //   addSetLabel(index);
+        // }
+
+        // setLabel(index);
         if(id < 5){
           //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
           $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
