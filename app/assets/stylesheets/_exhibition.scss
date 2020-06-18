@@ -262,7 +262,13 @@ body {
                     .input-group input {
                       @include input-group-input;
                     }
+                    input.form-invalid {
+                      @include form-error;
+                    }
                   }
+
+
+
                 }
               }
             }
@@ -303,6 +309,9 @@ body {
                     font-size: 12px;
                     line-height: 1.4em;
                   }
+                  textarea.form-invalid {
+                    @include form-error;
+                  }
                 }
               }
             }
@@ -340,6 +349,9 @@ body {
                     .category-svg {
                       @include svg;
                     }
+                    select.form-invalid {
+                      @include form-error;
+                    }
                   }
                   .category-select-child {
                     margin-top: 12px;
@@ -350,6 +362,9 @@ body {
                     .childCategory-svg {
                       @include svg;
                     }
+                    select.form-invalid {
+                      @include form-error;
+                    }
                   }
                   .category-select-grandchild {
                     margin-top: 12px;
@@ -359,6 +374,9 @@ body {
                     }
                     .grandChildCategory-svg {
                       @include svg;
+                    }
+                    select.form-invalid {
+                      @include form-error;
                     }
                   }
                 }
@@ -417,6 +435,9 @@ body {
                     .condition-svg {
                       @include svg;
                     }
+                    select.form-invalid {
+                      @include form-error;
+                    }
                   }
                 }
               }
@@ -462,6 +483,9 @@ body {
                     .shippingfee-svg {
                       @include svg;
                     }
+                    select.form-invalid {
+                      @include form-error;
+                    }
                   }
                 }
               }
@@ -490,6 +514,9 @@ body {
                     }
                     .shippingway-svg {
                       @include svg;
+                    }
+                    select.form-invalid {
+                      @include form-error;
                     }
                   }
                 }
@@ -520,6 +547,9 @@ body {
                     .shippingarea-svg {
                       @include svg;
                     }
+                    select.form-invalid {
+                      @include form-error;
+                    }
                   }
                 }
               }
@@ -548,6 +578,9 @@ body {
                     }
                     .shippingday-svg {
                       @include svg;
+                    }
+                    select.form-invalid {
+                      @include form-error;
                     }
                   }
                 }
@@ -625,6 +658,9 @@ body {
                     input {
                       @include input-group-input;
                       text-align: right;
+                    }
+                    input.form-invalid {
+                      @include form-error;
                     }
                   }
                 }
