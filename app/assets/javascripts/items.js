@@ -239,21 +239,55 @@ $(function() {
         $(`#item_images_attributes_${id}_image`).val("");
         //削除時のラベル操作
         var index = $('.preview-box').length;
-        //5個めが消されたらラベルを表示
+        //5枚目が消されたらラベルを表示
+
+        if (index == 0) {
+          setLabel(index);
+        }
+
+        if (index == 1) {
+          setLabel(index);
+        }
+
+        if (index == 2) {
+          setLabel(index);
+        }
+
+        if (index == 3) {
+          setLabel(index);
+        }
+
         if (index == 4) {
           $('.label-content').show();
           setLabel(index);
         }
-        //10個めが消されたらラベルを表示
+
+        //6枚目が消されたらラベルを表示
+        if (index == 5) {
+          addSetLabel(index);
+          $('.addlabel-content').hide(); //6〜10枚目用のラベルを隠す
+          $('.image-box__upload').css('height', '158px'); //写真スペース用にスペースを広げる
+          $('.prev-content').css('margin-top', '0px'); //写真スペース用にスペースを広げる
+        }
+        
+        if (index == 6) {
+          addSetLabel(index);
+        }
+
+        if (index == 7) {
+          addSetLabel(index);
+        }
+
+        if (index == 8) {
+          addSetLabel(index);
+        }
+
+        //10枚目が消されたらラベルを表示
         if (index == 9) {
           $('.addlabel-content').show();
           addSetLabel(index);
-          // $('.addlabel-box').css('width', '112px'); //ラベルの幅を設定
         }
 
-        // if (index == 8) {
-        //   addSetLabel(index);
-        // }
 
         // setLabel(index);
         if(id < 5){
