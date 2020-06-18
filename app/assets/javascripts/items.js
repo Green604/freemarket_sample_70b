@@ -303,7 +303,7 @@ $(function() {
         }
 
         //ラベルのwidth操作
-        setLabel();
+        // setLabel();
         //ラベルのidとforの値を変更
         //削除したプレビューのidによって、ラベルのidを変更する
         if(id < 5){
