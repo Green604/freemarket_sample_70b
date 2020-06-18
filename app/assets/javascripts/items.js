@@ -215,8 +215,6 @@ $(function() {
     $(document).on('click', '.delete-box', function() {
       var index = $('.preview-box').length;
 
-      // setLabel(index);
-
       if(index <= 5) {
         setLabel(index); //1~5枚目の時の横幅を変える処理
       }
@@ -229,6 +227,10 @@ $(function() {
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //取得したidに該当するプレビューを削除
       $(`#preview-box__${id}`).remove();
+
+      var lastPreview = $('.preview-content').children().last();
+      console.log(lastPreview[0]);
+      $(lastPreview).remove();
 
       //新規登録時と編集時の場合分け==========================================================
 
@@ -262,6 +264,15 @@ $(function() {
           setLabel(index);
         }
 
+        // function removePreview() {
+        //   $('.preview-content').on('click', function() {
+        //     var clickPreview = $(this).html();
+        //     var nextPreview = $(clickPreview).next();
+        //     $(nextPreview).remove();
+        //     console.log(nextPreview[0]);
+        //   })
+        // }
+
         //6枚目が消されたらラベルを表示
         if (index == 5) {
           addSetLabel(index);
@@ -269,7 +280,8 @@ $(function() {
           $('.image-box__upload').css('height', '158px'); //写真スペース用にスペースを広げる
           $('.prev-content').css('margin-top', '0px'); //写真スペース用にスペースを広げる
         }
-        
+
+
         if (index == 6) {
           addSetLabel(index);
         }
@@ -302,12 +314,14 @@ $(function() {
           $('.label-content').show();
         }
 
-        //ラベルのwidth操作
-        // setLabel();
         //ラベルのidとforの値を変更
         //削除したプレビューのidによって、ラベルのidを変更する
         if(id < 5){
           $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+        }
+
+        if(id >= 5){
+          $('.addlabel-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
         }
       }
     });
