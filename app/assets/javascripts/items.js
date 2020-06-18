@@ -243,6 +243,10 @@ $(function() {
         if (index == 4) {
           $('.label-content').show();
         }
+
+        if (index == 9) {
+          $('.addlabel-content').show();
+        }
         setLabel(index);
         if(id < 5){
           //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
@@ -252,7 +256,7 @@ $(function() {
         //投稿編集時
         $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
         //5個めが消されたらラベルを表示
-        if (index == 5) {
+        if (index == 10) {
           $('.label-content').show();
         }
 
