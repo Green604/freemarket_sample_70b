@@ -185,6 +185,7 @@ p.form-invalid {
   }
 }
 .errors {
+  display: inline;
   color: $error_msg;
 }
 #error_explanation{

@@ -118,6 +118,9 @@ body {
         position: relative;
         .exhibition-form {
           display: block;
+          #error_explanation {
+            text-align: center;
+          }
           .image {
             .image-flame {
               margin: 0;
