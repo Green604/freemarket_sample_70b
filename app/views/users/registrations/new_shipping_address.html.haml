@@ -39,7 +39,7 @@
         .account-page__inner--box--user-form
           -# 作成したフォームビルダーを設定↓
           = form_for(@shipping_address, url: shipping_addresses_path, builder: WithErrorFormBuilder ) do |f| 
-            = render "devise/shared/error_messages", resource: @shipping_address 
+            = render "layouts/error_messages", resource: @shipping_address
             .field
               .field__label
                 = f.label :first_name, "お名前(全角)"
