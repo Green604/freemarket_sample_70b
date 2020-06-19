@@ -41,9 +41,24 @@ ja:
         city: 市区町村
         house_number: 番地
         phone_number: 電話番号
+      item:
+        category: 孫カテゴリー
+        name: 商品名
+        description: 商品の説明
+        price: 販売価格
+        condition: 商品の状態
+        parent_category_id: 親カテゴリー
+        child_category_id: 子カテゴリー
+        images: 出品画像
+      shipping:
+        shipping_day: 配送までの日数
+        shipping_fee: 配送料の負担
+        shippingarea_id: 配送元の地域
+        shippingway_id: 配送方法
     models:
       user: ユーザー
       shipping_address: 住所
+      item: 商品
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
