@@ -42,5 +42,11 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :show
-
+  resources :category, only: :new do
+    member do
+      get 'parents', to: 'category#parents'
+      get 'children', to: 'category#children'
+      get 'grand_children', to: 'category#grand_children'
+    end
+  end
 end

@@ -9,11 +9,6 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @parents = Category.all.order("id ASC").limit(13)
-    @children = Category.find(params[:category_id]).children
-    respond_to do |format|
-      format.html
-      format.json
-    end
   end
 
   def new

@@ -2,7 +2,7 @@ $(function() {
   // 子カテゴリーを追加するための処理です。
     function buildChildHTML(child){
       var html =`<a class="child_category" id="${child.id}" 
-                  href="/category/${child.id}">${child.name}</a>`;
+                  href="/category/${child.id}/children">${child.name}</a>`;
       return html;
     }
   
@@ -28,7 +28,7 @@ $(function() {
     // 孫カテゴリを追加する処理です　基本的に子要素と同じです！
     function buildGrandChildHTML(child){
       var html =`<a class="grand_child_category" id="${child.id}"
-                 href="/category/${child.id}">${child.name}</a>`;
+                 href="/category/${child.id}/grand_children">${child.name}</a>`;
       return html;
     }
   

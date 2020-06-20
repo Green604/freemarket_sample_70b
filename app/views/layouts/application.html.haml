@@ -38,16 +38,20 @@
             .search-result
             
         .navBar
-          %ul.leftList
-            %li.list
-              - @parents.each do |parent|
-                = link_to "#{parent.name}", root_path, class: "parent_category",id: "#{parent.id}"
-            .children_list
-            .grand_children_list
+          %ul.leftList_box
+            %li.leftList_box_left
+              .category_list
+                .parents_box 
+                  -# = fa_icon "list-ul", class: 'list-icon'
+                  %span.initial_list カテゴリーから探す
+                  .parents_list
+                    - @parents2.each do |parent|
+                      = link_to "#{parent.name}", parents_category_path(parent), class: "parent_category",id: "#{parent.id}"
+                .children_list
+                .grand_children_list
 
-            %li.list
-              = link_to "ブランド"
-              .menue
+            %li.leftList_box_right
+              %span.brand ブランド
           %ul.rightList
             - if user_signed_in?
               %li.btn

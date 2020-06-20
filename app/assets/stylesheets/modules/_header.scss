@@ -49,15 +49,85 @@
     font-size: 14px;
     display: flex;
     margin-bottom: 10px;
+    line-height: 46px;
+    position: relative;
+    // height: 46px;
     ul {
       list-style: none;
     }
-    .leftList {
-      position: relative;
+    .leftList_box {
       display: flex;
-      .list {
+      &_left {
         text-decoration: none;
         padding: 0;
+        position: absolute;
+        z-index: 10;
+        .category_list {
+          display: flex;
+          &:hover {
+            .parents_box {
+              .initial_list {
+                color: blue;
+              }
+              .parents_list {
+                // border: solid 0.5px gray;
+                height: 950px;
+                background-color: $white;
+                .parent_category {
+                  display: block;
+                }
+                .now-selected-red {
+                  background-color:#3CCACE;
+                }
+              }
+            }
+            .children_list {
+              // border: solid 0.5px gray;
+              height: 950px;
+              background-color: $white;
+              .child_category {
+                display: block;
+              }
+              .now-selected-gray {
+                background-color: gray;
+              }
+            }
+            .grand_children_list {
+              // border: solid 0.5px gray;
+              height: 950px;
+              background-color: $white;
+              .grand_child_category {
+                display: block;
+              }
+            }
+          }
+          .parents_box {
+            .list-icon {
+              color: #3CCACE;
+            }
+            .parents_list {
+              .parent_category {
+                display: none;
+              }
+            }
+          }
+          .children_list {
+            margin-top: 46px;
+            display: flex;
+            flex-direction: column;
+            .child_category {
+              display: none;
+            }
+          }
+          .grand_children_list {
+            .grand_child_category {
+              display: none;
+            }
+            margin-top: 46px;
+            display: flex;
+            flex-direction: column;
+          }
+        }
         a {
           color: #333;
           text-decoration: none;
@@ -67,15 +137,16 @@
           background-size: 18px;
           padding-right: 30px;
         }
-        .menue {
-          display: flex;
-          line-height: 38px;       
-        }
+      }
+      &_right {
+        position: absolute;
+        left: 160px;
       }
     }    
     .rightList {
       margin-left: auto;
       display: flex;   
+      margin-top: 4px;
       .btn {
         color: #333;
         line-height: 38px;

@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def set_parents
-    @parents = Category.where(ancestry: nil)
+    @parents2 = Category.where(ancestry: nil)
   end
+  
 
   protected
 
