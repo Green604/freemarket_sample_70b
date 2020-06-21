@@ -155,12 +155,10 @@ $(function(){
     }
   })
   $('#new_item').on('blur', '#item_name, #item_description, #parent_category, #child_category, #grandchild_category, #item_condition, #item_shipping_attributes_shipping_fee, #item_shipping_attributes_shippingway_id, #item_shipping_attributes_shippingarea_id, #item_shipping_attributes_shipping_day, #item_price', function() { 
-    console.log(1);  
     $(this).valid();
   });
   // 画像フォームはblurイベントだと発火しないのでchangeイベントに設定
   $('#new_item').on('change','#item_images_attributes_0_image, #item_images_attributes_1_image, #item_images_attributes_2_image, #item_images_attributes_3_image, #item_images_attributes_4_image', function() {   
     $(this).valid();
-    console.log(2); 
   });
 })
