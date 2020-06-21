@@ -1,7 +1,4 @@
 $(function(){
-
-  const imagesForm = "#item_images_attributes_0_image, #item_images_attributes_1_image, #item_images_attributes_2_image, #item_images_attributes_3_image, #item_images_attributes_4_image"
-
   $('#new_item').validate({
     ignore: [],
     // 画像フォームは複数あるので、フォームの数分エラーメッセージが表示されてしまうので
