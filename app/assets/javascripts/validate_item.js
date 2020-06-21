@@ -34,8 +34,8 @@ $(function(){
           } else {
             return true
           }
-      }
-    }, 
+        }
+      }, 
       "item[images_attributes][3][image]": {
         required: function(element){
           if ($("#item_images_attributes_0_image").val()!="" || $("#item_images_attributes_1_image").val()!="" || $("#item_images_attributes_2_image").val()!="" || $("#item_images_attributes_4_image").val()!=""){
@@ -43,7 +43,7 @@ $(function(){
           } else {
             return true
           }
-      }
+        }
       }, 
       "item[images_attributes][4][image]": {
         required: function(element){
@@ -89,7 +89,6 @@ $(function(){
       "item[price]": {
         required: true,
         range: [300, 9999999]
-  
       }
     },
     messages: {
