@@ -62,6 +62,20 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.d_search(params[:keyword])
+
+    # 並び替え機能で使用
+    @keyword = params[:keyword]
+    # orderメソッドへ代入する値を条件分岐
+    # params[:sort].nil? ? sort  = "created_at DESC" : sort = params[:sort]をリファクタリング
+    sort = params[:sort] || "created_at DESC"
+    # 入力された値をLIKE句により各カラムと一致したものを抽出する。
+    @items = Item.where('name LIKE(?) OR description LIKE(?)', "%#{@keyword}%", "%#{@keyword}%").order(sort)
+    @count = @items.count
+    # 検索結果が"0"だった場合、全ての商品を表示させる
+    if @count == 0
+      @items = Item.order(sort)
+    end
+    @items = @items.page(params[:page]).per(8)
   end
 
   def detail_search
@@ -74,6 +88,7 @@ class ItemsController < ApplicationController
   def detail_search_result
     @search_item = Item.ransack(params[:q])
     @items = @search_item.result.page(params[:page])
+    # @items = @items.page(params[:page]).par(5)
   end
 
   def destroy

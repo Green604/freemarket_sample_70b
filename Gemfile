@@ -95,4 +95,4 @@ gem 'ransack'
 gem 'kaminari'
 gem 'font-awesome-rails'
 gem "gretel"
-
+gem 'kaminari'
