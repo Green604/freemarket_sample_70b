@@ -36,6 +36,7 @@
       .account-page__inner--title
         %h2 会員情報入力
       .account-page__inner--box
+        -# エラーメッセージファイルを出品ページでも使うので共通化、ファイル場所変更したのでそれに合わせて変更
         = render "layouts/error_messages", resource: @user
         .account-page__inner--box--user-form
           -# 作成したフォームビルダーを設定↓
