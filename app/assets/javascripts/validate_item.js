@@ -1,43 +1,59 @@
 $(function(){
 
+  const imagesForm = "#item_images_attributes_0_image, #item_images_attributes_1_image, #item_images_attributes_2_image, #item_images_attributes_3_image, #item_images_attributes_4_image"
+
   $('#new_item').validate({
     ignore: [],
+    // 画像フォームは複数あるので、フォームの数分エラーメッセージが表示されてしまうので
+    // grouop化してbalidateされた場合単一のメッセージを表示するように設定
     groups: {
       images: "item[images_attributes][0][image] item[images_attributes][1][image] item[images_attributes][2][image] item[images_attributes][3][image] item[images_attributes][4][image]"
     },
     rules: {
+      // 画像フォールのreruiredの設定を他の４つのフォームが空だったらrewuiredをonに、一つでも値がはいっていたらoffになるように設定
+      // 各フォームに同様の設定を施しています
       "item[images_attributes][0][image]": {
         required: function(element){
-          if ($("#item_images_attributes_1_image").val()==="" && $("#item_images_attributes_2_image").val()==="" && $("#item_images_attributes_3_image").val()==="" && $("#item_images_attributes_4_image").val()===""){
-            return true;
+          if ($("#item_images_attributes_1_image").val()!="" || $("#item_images_attributes_2_image").val()!="" || $("#item_images_attributes_3_image").val()!="" || $("#item_images_attributes_4_image").val()!=""){
+            return false
+          } else {
+            return true
           }
         }
       }, 
       "item[images_attributes][1][image]": {
         required: function(element){
-          if ($("#item_images_attributes_0_image").val()==="" && $("#item_images_attributes_2_image").val()==="" && $("#item_images_attributes_3_image").val()==="" && $("#item_images_attributes_4_image").val()===""){
-            return true;
+          if ($("#item_images_attributes_0_image").val()!="" || $("#item_images_attributes_2_image").val()!="" || $("#item_images_attributes_3_image").val()!="" || $("#item_images_attributes_4_image").val()!=""){
+            return false
+          } else {
+            return true
           }
         }
       }, 
       "item[images_attributes][2][image]": {
         required: function(element){
-          if ($("#item_images_attributes_0_image").val()==="" && $("#item_images_attributes_1_image").val()==="" && $("#item_images_attributes_3_image").val()==="" && $("#item_images_attributes_4_image").val()===""){
-            return true;
+          if ($("#item_images_attributes_0_image").val()!="" || $("#item_images_attributes_1_image").val()!="" || $("#item_images_attributes_3_image").val()!="" || $("#item_images_attributes_4_image").val()!=""){
+            return false
+          } else {
+            return true
           }
       }
     }, 
       "item[images_attributes][3][image]": {
         required: function(element){
-          if ($("#item_images_attributes_0_image").val()==="" && $("#item_images_attributes_1_image").val()===""&& $("#item_images_attributes_2_image").val()==="" && $("#item_images_attributes_4_image").val()===""){
-            return true;
+          if ($("#item_images_attributes_0_image").val()!="" || $("#item_images_attributes_1_image").val()!="" || $("#item_images_attributes_2_image").val()!="" || $("#item_images_attributes_4_image").val()!=""){
+            return false
+          } else {
+            return true
           }
       }
       }, 
       "item[images_attributes][4][image]": {
         required: function(element){
-          if ($("#item_images_attributes_0_image").val()==="" && $("#item_images_attributes_1_image").val()===""&& $("#item_images_attributes_2_image").val()==="" && $("#item_images_attributes_3_image").val()===""){
-            return true;
+          if ($("#item_images_attributes_0_image").val()!="" || $("#item_images_attributes_1_image").val()!="" || $("#item_images_attributes_2_image").val()!="" || $("#item_images_attributes_3_image").val()!=""){
+            return false
+          } else {
+            return true
           }
         }
       }, 
@@ -134,23 +150,20 @@ $(function(){
     errorElement: "p", 
     validClass: "valid",
     errorPlacement: function(error, element){
-
-      // メッセージ表示場所の変更
-      // 【お名前】のようにフォームが2つセットのものは、デフォルトだとそれぞれのフォーム直下にメッセージが出てしまいレイアウトが崩れてしまうため、
-      // 表示場所をその親の直下に出てくるように変更
       if(element.attr('name') === 'item[images_attributes][0][image]' || element.attr('name') === 'item[images_attributes][1][image]' || element.attr('name') === 'item[images_attributes][2][image]' || element.attr('name') === 'item[images_attributes][3][image]' || element.attr('name') === 'item[images_attributes][4][image]'){
         error.insertAfter('#label-box--0'); 
-      }else{    //標準出力箇所（フォーム項目の後にエラーメッセージを出力）
+      }else{  
           error.insertAfter(element);
       }
     }
-  
   })
-  $('#new_item').on('blur', '#item_name, #item_description, #parent_category, #child_category, #grandchild_category, #item_condition, #item_shipping_attributes_shipping_fee, #item_shipping_attributes_shippingway_id, #item_shipping_attributes_shippingarea_id, #item_shipping_attributes_shipping_day, #item_price', function() {   
+  $('#new_item').on('blur', '#item_name, #item_description, #parent_category, #child_category, #grandchild_category, #item_condition, #item_shipping_attributes_shipping_fee, #item_shipping_attributes_shippingway_id, #item_shipping_attributes_shippingarea_id, #item_shipping_attributes_shipping_day, #item_price', function() { 
+    console.log(1);  
     $(this).valid();
-
   });
-  $(document).on('blur','#item_images_attributes_0_image, #item_images_attributes_1_image, #item_images_attributes_2_image, #item_images_attributes_3_image, #item_images_attributes_4_image', function() {   
+  // 画像フォームはblurイベントだと発火しないのでchangeイベントに設定
+  $('#new_item').on('change','#item_images_attributes_0_image, #item_images_attributes_1_image, #item_images_attributes_2_image, #item_images_attributes_3_image, #item_images_attributes_4_image', function() {   
     $(this).valid();
+    console.log(2); 
   });
 })
