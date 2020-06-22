@@ -31,7 +31,25 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    if @item.save!
+    if @item.save
+      # 出品ページからparamsで受け取った入力ワードが既にbrandテーブルにあるか検索
+      @brand = Brand.find_by(name: "#{params[:input]}")
+      # ① 既にあれば@itemデータのbrand_id部分を更新して保存
+      if @brand
+        @item.update(brand_id: @brand.id)
+      else
+        # ②-1 ない場合でかつ入力フォームが空じゃない限りは
+        unless "#{params[:input]}".blank?
+          # ②-2 まずbrandテーブルに新規で保存
+          brand = Brand.new(name: "#{params[:input]}")
+          if brand.save
+            # ③-3 上で保存したばかりのbrand_idを@itemで入れて更新、保存
+            @item.update(brand_id: brand.id)
+          else
+            render :new
+          end
+        end
+      end
       selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
       seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
       if selling_status.save && seller.save
@@ -53,6 +71,21 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
+      @brand = Brand.find_by(name: "#{params[:input]}")
+      if @brand
+        @item.update(brand_id: @brand.id)
+      else
+        if "#{params[:input]}".blank?
+          @item.update(brand_id: nil)
+        else
+          brand = Brand.new(name: "#{params[:input]}")
+          if brand.save
+            @item.update(brand_id: brand.id)
+          else
+            render :edit
+          end
+        end
+      end
       redirect_to root_path
     else
       flash.now[:alert] = 'エラーが発生しました。'
@@ -98,7 +131,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :parent_category_id, :child_category_id, :category_id, :shipping_id, images_attributes: [:image, :_destroy, :id], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id], brands_attributes: [:name, :_destroy, :id])
+    params.require(:item).permit(:name, :description, :price, :condition, :parent_category_id, :child_category_id, :category_id, :shipping_id, images_attributes: [:image, :_destroy, :id], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id], brands_attributes: [:name, :_destroy, :id])
   end
 
   def move_to_index
