@@ -1,13 +1,13 @@
 $(function() {
   $(function() {
   // 画像用のinputを生成する関数
-    function buildHTML(index) {
-      var html = `<div class="preview-box" id="preview-box__${index}">
-                    <div data-index="${index}" class="upper-box">
+    function buildHTML(count) {
+      var html = `<div class="preview-box" id="preview-box__${count}">
+                    <div data-index="${count}" class="upper-box">
                       <img src="" alt="preview" class="upload-image">
                     </div>
                     <div class="lower-box">
-                      <div class="delete-box" id="delete_btn_${index}">
+                      <div class="delete-box" id="delete_btn_${count}">
                         <span>削除</span>
                       </div>
                     </div>
@@ -35,8 +35,7 @@ $(function() {
         $('.label-content').hide();
       }
     }
-    //=============================================================================
-
+    
 
     // ラベルの横幅を変える操作
     function setLabel() {
@@ -48,13 +47,21 @@ $(function() {
       $('.label-content').css('width', labelWidth);
     }
 
+    //=============================================================================
+
+
     // プレビューの追加
-    //hidden-fieldにchangeイベントを発火させる
     $(document).on('change', '.hidden-field', function() { 
       setLabel(); //ラベルの横幅を変える処理を実行する
+
+      //hidden-fieldのidの数値のみ取得
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      console.log(id[0]);
+
       //labelボックスのidとforを更新
-      $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+      const labellabel = $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+      console.log(labellabel[0]); 
+      // debagger;
       //選択したfileのオブジェクトを取得
       var file = this.files[0];
       //FileReaderオブジェクトの生成
@@ -90,12 +97,16 @@ $(function() {
         } 
         //=============================================================================
 
-        //ラベル（カメラマークの範囲）の横幅を変える処理を実行
+        // //ラベル（カメラマークの範囲）の横幅を変える処理を実行
         setLabel(); 
-        //ラベルのidとforの値を変更
+        // //ラベルのidとforの値を変更
         if(index < 5){
           //プレビューの数でラベルのオプションを更新する
-          $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
+          $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`}); //attrメソッドでid属性とfor属性を設定
+          //ラベルをインプット(入力部品)と関連づけるためにはラベルのfor属性とインプットのid属性を一致させる必要がある（スクショ参照）
+          //インプットタグをラベルタグの中に含めて書く場合はfor属性とid属性は省略してOK
+          const labelnum = $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
+          // console.log(labelnum[0]);
         }
       }
     });
@@ -106,6 +117,7 @@ $(function() {
       setLabel(index);
       //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      console.log(this);
       //取得したidに該当するプレビューを削除
       $(`#preview-box__${id}`).remove();
 
@@ -118,15 +130,22 @@ $(function() {
         $(`#item_images_attributes_${id}_image`).val("");
         //削除時のラベル操作
         var index = $('.preview-box').length;
-        //5個めが消されたらラベルを表示
+        //5枚のうち1枚が消されたらラベルを表示
         if (index == 4) {
           $('.label-content').show();
         }
+        
+        
         setLabel(index);
         if(id < 5){
           //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
           $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
         }
+        
+        if (index == 0) {
+          $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
+        }
+        
       } else {
         //投稿編集時
         $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
