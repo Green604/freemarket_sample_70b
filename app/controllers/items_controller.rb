@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
         render :new
       end
     else
-      flash.now[:alert] = '入力されていない項目があります。'
       render :new
     end
   end
@@ -55,7 +54,6 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to root_path
     else
-      flash.now[:alert] = 'エラーが発生しました。'
       render :edit
     end
   end
