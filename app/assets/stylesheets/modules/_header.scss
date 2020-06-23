@@ -3,7 +3,7 @@
   padding: 0 60px;
   font: 16px;
   color: #000000;
-  padding-bottom: 5px;
+  // padding-bottom: 5px;
   .insideHeader {
     max-width: 1040px;
     width: 100%;
@@ -48,7 +48,7 @@
   .navBar {
     font-size: 14px;
     display: flex;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     line-height: 46px;
     position: relative;
     // height: 46px;
@@ -61,6 +61,7 @@
         text-decoration: none;
         padding: 0;
         position: absolute;
+        // top: 5px;
         z-index: 10;
         .category_list {
           display: flex;
@@ -139,8 +140,30 @@
         }
       }
       &_right {
+        width: 130px;
         position: absolute;
+        // top: 5px;
+        z-index: 10;
         left: 160px;
+        display: flex;
+        flex-direction: column;
+        &:hover {
+          background-color: $white;
+          .brand {
+            color: blue;
+          }
+          .brand-item {
+            display: block;
+            text-decoration: none;
+            color: black;
+          }
+          .now-selected-blue {
+            background-color:#3CCACE;
+          }
+        }
+        .brand-item {
+          display: none;
+        }
       }
     }    
     .rightList {

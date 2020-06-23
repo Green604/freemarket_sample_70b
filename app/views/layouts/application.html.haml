@@ -51,7 +51,13 @@
                 .grand_children_list
 
             %li.leftList_box_right
+              -# = i.icon-tag pc-header-cat-brand-icon do
               %span.brand ブランド
+              = link_to "#{@brand1.name}", brand_path(@brand1.id), class: "brand-item", id: "#{@brand1.id}"
+              = link_to "#{@brand2.name}", brand_path(@brand2.id), class: "brand-item", id: "#{@brand2.id}"
+              = link_to "#{@brand3.name}", brand_path(@brand3.id), class: "brand-item", id: "#{@brand3.id}"
+              = link_to "#{@brand4.name}", brand_path(@brand4.id), class: "brand-item", id: "#{@brand4.id}"
+              = link_to "#{@brand5.name}", brand_path(@brand5.id), class: "brand-item", id: "#{@brand5.id}"
           %ul.rightList
             - if user_signed_in?
               %li.btn

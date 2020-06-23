@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # patch '/brand/:id/index', to: 'brand#index'
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -42,6 +44,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :show
+  resources :brand, only: :index
+  get '/brand/:id/index', to: 'brand#index', as: 'brand'
+
   resources :category, only: :new do
     member do
       get 'parents', to: 'category#parents'
