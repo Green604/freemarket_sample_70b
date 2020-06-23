@@ -100,12 +100,17 @@ $(function() {
         // //ラベル（カメラマークの範囲）の横幅を変える処理を実行
         setLabel(); 
         // //ラベルのidとforの値を変更
-        if(index < 5){
+        if(index <= 5){
+
+          var newId = Number(id);
+          var newnewId = newId + 1;
+          console.log(newnewId);
           //プレビューの数でラベルのオプションを更新する
-          $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`}); //attrメソッドでid属性とfor属性を設定
-          //ラベルをインプット(入力部品)と関連づけるためにはラベルのfor属性とインプットのid属性を一致させる必要がある（スクショ参照）
-          //インプットタグをラベルタグの中に含めて書く場合はfor属性とid属性は省略してOK
-          const labelnum = $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
+          // $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`}); //attrメソッドでid属性とfor属性を設定
+          $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+          // const labelnum = $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
+          // console.log(labelnum[0]);
+          // const labelnum = $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
           // console.log(labelnum[0]);
         }
       }
@@ -145,7 +150,7 @@ $(function() {
         if (index == 0) {
           $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
         }
-        
+
       } else {
         //投稿編集時
         $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
