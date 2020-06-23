@@ -47,14 +47,38 @@ $(function() {
       $('.label-content').css('width', labelWidth);
     }
 
+    const buildFileField = (id)=> {
+      const html = `<div data-index="${id}" class="js-file_group">
+                      <input class="hidden-field" type="file"
+                      name="item[images_attributes][${id}][image]"
+                      id="item_images_attributes_${id}_image"
+                      <div class="js-remove">削除</div>
+                    </div>`;
+      return html;
+    }
+    
     //=============================================================================
 
-
+    
+    let fileIndex = [1,2,3,4,5,6,7,8,9,10];
     // プレビューの追加
     $(document).on('change', '.hidden-field', function() { 
-      setLabel(); //ラベルの横幅を変える処理を実行する
+      // file_fieldのnameに動的なindexをつける為の配列
+  
+      // $('#image-box').on('change', '.js-file', function(e) {
+      // fileIndexの先頭の数字を使ってinputを作る
+      $('.hidden-content').append(buildFileField(fileIndex[0]));
+      console.log(fileIndex[0]);
+      fileIndex.shift();
+      console.log(fileIndex[0]);
+      // 末尾の数に1足した数を追加する
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+      console.log(fileIndex[0]);
 
-      //hidden-fieldのidの数値のみ取得
+  
+      setLabel(); //ラベルの横幅を変える処理を実行する
+      
+      //js-file_groupのidの数値のみ取得
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       console.log(id[0]);
 
@@ -62,16 +86,22 @@ $(function() {
       const labellabel = $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
       console.log(labellabel[0]); 
       // debagger;
+
+
       //選択したfileのオブジェクトを取得
       var file = this.files[0];
       //FileReaderオブジェクトの生成
       var reader = new FileReader(); 
+      console.log(reader);
       //readAsDataURLで指定したFileオブジェクトを読み込む
       reader.readAsDataURL(file); 
       //読み込み時に発火するイベント onloadメソッドは読み込みが完了したら実行する
       reader.onload = function() {
         //直前に実行したイベントが返した値を取得する
         var image = this.result; 
+        console.log(image);
+
+
         //プレビューが元々なかった場合はhtmlを追加
         if ($(`#preview-box__${id}`).length == 0) {
           //プレビューの数を数えて変数に代入
@@ -128,11 +158,22 @@ $(function() {
 
       //新規登録時と編集時の場合分け==========================================================
 
+      
+      
       //新規投稿時
       //削除用チェックボックスの有無で判定
       if ($(`#item_images_attributes_${id}__destroy`).length == 0) {
+        
+        
+        // $('#image-box').on('click', '.js-remove', function() {
+          // $(this).parent().remove();
+          // 画像入力欄が0個にならないようにしておく
+          if ($('.hidden-field').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+        // });
+        
+
         //フォームの中身を削除 
-        $(`#item_images_attributes_${id}_image`).val("");
+        $(`#item_images_attributes_${id}_image`).parent().remove();
         //削除時のラベル操作
         var index = $('.preview-box').length;
         //5枚のうち1枚が消されたらラベルを表示
@@ -140,16 +181,20 @@ $(function() {
           $('.label-content').show();
         }
         
+        var specialId = $(".js-file_group").last().children().attr('id').replace(/[^0-9]/g, '');
+        console.log(specialId);
         
+        // .attr('id').replace(/[^0-9]/g, '');
+
         setLabel(index);
         if(id < 5){
           //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
-          $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+          $('.label-box').attr({id: `label-box--${specialId}`,for: `item_images_attributes_${specialId}_image`});
         }
         
-        if (index == 0) {
-          $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
-        }
+        // if (index == 0) {
+        //   $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
+        // }
 
       } else {
         //投稿編集時
