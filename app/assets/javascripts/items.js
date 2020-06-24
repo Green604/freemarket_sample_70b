@@ -17,7 +17,7 @@ $(function() {
     
     //6〜10枚目のプレビュー画像のためのラベル作る関数
     function addLabelHTML(id) {
-      var labelhtml =  `<div class="addlabel-content" width="620">
+      var labelhtml =  `<div class="addlabel-content">
                           <label class="addlabel-box" for="item_images_attributes_${id}_image" id="label-box-${id}">
                             <pre class="label_box__text-visible">
                               <svg area-hidden="true", class="image-upload-svg", fill-rule="evenodd", fill="222222", height="24", viewBox="0 0 24 24", width="24">
@@ -29,12 +29,13 @@ $(function() {
                         return labelhtml;
                       }
                       
-                      // ラベルの横幅を変える操作(6〜10枚目)
+    // ラベルの横幅を変える操作(6〜10枚目)
     function addSetLabel() {
       //プレビューの幅を変数に代入
       var previewContent = $('.addlabel-content').prev(); 
       //ラベル（カメラマークの範囲）のもともとの620pxからプレビューの分だけ引いた幅にする
       addLabelWidth = (620 - $(previewContent).css('width').replace(/[^0-9]/g, '')); 
+      width = $(previewContent).css('width').replace(/[^0-9]/g, '');
       //ラベル（カメラマークの範囲）の幅を変える
       $('.addlabel-content').css('width', addLabelWidth);
     }
@@ -100,7 +101,7 @@ $(function() {
         // 末尾の数に1足した数を追加する
         fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
         console.log(fileIndex[0]);
-          
+        $('.js-file_group').hide();
           
         // setLabel(); //ラベルの横幅を変える処理を実行する
 
@@ -241,18 +242,41 @@ $(function() {
             }
           }
         });
+
         
-        // 画像の削除
-        $(document).on('click', '.delete-box', function() {
-          var index = $('.preview-box').length;
-          setLabel(index);
-          //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
-          var id = $(this).attr('id').replace(/[^0-9]/g, '');
-          console.log(this);
-          //取得したidに該当するプレビューを削除
-          $(`#preview-box__${id}`).remove();
-          
-          //新規登録時と編集時の場合分け==========================================================
+    // 画像の削除
+    $(document).on('click', '.delete-box', function() {
+
+      //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
+      var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      
+      //取得したidに該当するプレビューを削除
+      $(`#preview-box__${id}`).remove();
+
+      var index = $('.preview-box').length;
+      console.log(index);
+      if (index < 5) {
+        setLabel(index);
+      }
+
+      if (index == 5) {
+        addSetLabel(); //6~10枚目の時の横幅を変える処理
+        $('.addlabel-content').hide();
+      }
+
+      if (index > 5) {
+        $('.addlabel-content').show();
+        addSetLabel(); //6~10枚目の時の横幅を変える処理
+      }
+
+      if (index == 9) {
+        $('.addlabel-content').show(); //10枚目を消したらラベルを表示
+        addSetLabel(); //6~10枚目の時の横幅を変える処理
+        width = $('.preview-content').css('width').replace(/[^0-9]/g, '');
+        console.log(width);
+      }
+      
+      //新規登録時と編集時の場合分け==========================================================
           
       
       
