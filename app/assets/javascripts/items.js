@@ -208,7 +208,9 @@ $(function() {
               var newnewId = newId + 1;
               $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
               console.log(newnewId);
-              var addLabel = addLabelHTML(id); 
+              var newId = Number(id);
+              var newnewId = newId + 1;
+              var addLabel = addLabelHTML(newnewId); 
               $('.label-content').after(addLabel); //6〜10枚目用のラベル設置
               var previewContent = buildPreviewContent(); 
               $('.addlabel-content').before(previewContent); //6〜10枚目用のプレビュー枠設置
