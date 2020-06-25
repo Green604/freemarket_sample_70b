@@ -33,4 +33,26 @@ class WithErrorFormBuilder < ActionView::Helpers::FormBuilder
     return super if options[:no_errors]
     super + pick_errors(attribute)
   end
+
+  def text_area(attribute, options={})
+    return super if options[:no_errors]
+    super + pick_errors(attribute)
+  end
+
+  def number_field(attribute, options={})
+    return super if options[:no_errors]
+    super + pick_errors(attribute)
+  end
+
+  def collection_select(attribute, collection, value_method, text_method, options = {}, html_options = {})
+    return super if options[:no_errors]
+    super + pick_errors(attribute)
+  end
+
+ def select(attribute, choices = nil, options = {}, html_options = {}, &block)
+    return super if options[:no_errors]
+    super + pick_errors(attribute)
+  end
+
+  
 end

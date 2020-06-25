@@ -179,7 +179,8 @@ p.form-invalid {
   color: $error_msg;
 }
 .field_with_errors {
-  input {
+  width: inherit;
+  input, textarea, select {
     border-color: $error_msg !important;
   }
 }
