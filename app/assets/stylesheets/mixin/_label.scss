@@ -90,6 +90,8 @@
   display: inline-block;
   position: relative;
   width: inherit;
+  // エラーメッセージが追加された際にプルダウンアイコンが微妙にずれてしまうのを防ぐため追記
+  max-height: 48px;
 }
 
 @mixin word-link {

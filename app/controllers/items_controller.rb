@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    if @item.save!
+    if @item.save
       selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
       seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
       if selling_status.save && seller.save
@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
         render :new
       end
     else
-      flash.now[:alert] = '入力されていない項目があります。'
       render :new
     end
   end
@@ -55,7 +54,6 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to root_path
     else
-      flash.now[:alert] = 'エラーが発生しました。'
       render :edit
     end
   end

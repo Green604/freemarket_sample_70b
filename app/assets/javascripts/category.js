@@ -7,7 +7,7 @@ $(function(){
     var childSelectHtml = '';
     childSelectHtml =  `<div class='category-select-child'>
                           <select class="category-select-wrapper__box--select" id="child_category" name="item[child_category_id]">
-                            <option value="選択してください">選択してください</option>
+                            <option value="">選択してください</option>
                             ${insertHTML}
                           </select>
                           <svg class='childCategory-svg', aria-hidden="true", fill="888888", fill-rule= "evenodd", height="24", view="0 0 24 24", width="24">
@@ -20,7 +20,7 @@ $(function(){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<div class='category-select-grandchild'>
                               <select class="category-select-wrapper__box--select" id="grandchild_category" name="item[category_id]">
-                                <option value="選択してください">選択してください</option>
+                                <option value="">選択してください</option>
                                 ${insertHTML}
                               </select>
                               <svg class='grandChildCategory-svg', aria-hidden="true", fill="888888", fill-rule= "evenodd", height="24", view="0 0 24 24", width="24">
@@ -29,6 +29,7 @@ $(function(){
                             </div>`;
     $('.category-section__pulldown').append(grandchildSelectHtml);
   }
+
 
   $('#parent_category').on('change', function(){
     var parentCategory = $(this).val(); 
