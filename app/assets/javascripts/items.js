@@ -34,7 +34,7 @@ $(function() {
       var labelhtml =  `<div class="addlabel-content">
                           <label class="addlabel-box" for="item_images_attributes_${id}_image" id="label-box-${id}">
                             <pre class="label_box__text-visible">
-                              <svg area-hidden="true", class="image-upload-svg", fill-rule="evenodd", fill="222222", height="24", viewBox="0 0 24 24", width="24">
+                              <svg area-hidden="true", class="image-upload-svg", fill-rule="evenodd", fill="#222222", height="24", viewBox="0 0 24 24", width="24">
                                 <path d="M19.3,5H16.73l-.8-1.61A.7.7,0,0,0,15.3,3H8.7a.7.7,0,0,0-.63.39L7.27,5H4.7A2.7,2.7,0,0,0,2,7.7V18.3A2.7,2.7,0,0,0,4.7,21H19.3A2.7,2.7,0,0,0,22,18.3V7.7A2.7,2.7,0,0,0,19.3,5ZM12,17.3A4.3,4.3,0,1,1,16.3,13,4.31,4.31,0,0,1,12,17.3Z" />
                               </svg>
                             </pre>
@@ -238,6 +238,9 @@ $(function() {
               var newnewId = newId + 1;
               var addLabel = addLabelHTML(newnewId); 
               $('.label-content').after(addLabel); //6〜10枚目用のラベル設置
+              $('.image-box__upload').css('height', '320px');
+              $('.prev-content').css('margin-top', '200px');
+              // $('.addlabel-content').css('padding-bottom', '200px');
               var previewContent = buildPreviewContent(); 
               $('.addlabel-content').before(previewContent); //6〜10枚目用のプレビュー枠設置
             }
@@ -306,14 +309,18 @@ $(function() {
         $('.label-content').show();
       }
 
-      if (index == 4) {
+      if (upperRow == 4 && index == 4) {
         setLabel(index);
         $('.addlabel-content').remove();
         $('.preview-content').remove();
+        $('.image-box__upload').css('height', '158px');
+        $('.prev-content').css('margin-top', '0px');
       }
 
       if (index == 5) {
         addSetLabel();
+        $('.prev-content').css('margin-top', '0px');
+        $('#previews').css('padding-top', '200px');
       }
 
       if (index > 5) {
