@@ -315,6 +315,7 @@ $(function() {
         $('.preview-content').remove();
         $('.image-box__upload').css('height', '158px');
         $('.prev-content').css('margin-top', '0px');
+        $('#previews').css('padding-top', '0px');
       }
 
       if (index == 5) {
