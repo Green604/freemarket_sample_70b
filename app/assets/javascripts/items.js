@@ -3,7 +3,21 @@ $(function() {
     // 画像用のinputを生成する関数
     function buildHTML(count) {
       var html = `<div class="preview-box" id="preview-box__${count}">
-      <div data-index="${count}" class="upper-box">
+      <div data-index="${count}" class="upper-box upper-row">
+      <img src="" alt="preview" class="upload-image">
+      </div>
+      <div class="lower-box">
+      <div class="delete-box" id="delete_btn_${count}">
+      <span>削除</span>
+      </div>
+      </div>
+      </div>`;
+      return html;
+    }
+
+    function buildHTMLUnder(count) {
+      var html = `<div class="preview-box" id="preview-box__${count}">
+      <div class="upper-box">
       <img src="" alt="preview" class="upload-image">
       </div>
       <div class="lower-box">
@@ -142,18 +156,26 @@ $(function() {
             console.log(index);
             //プレビューを生成する関数を変数に代入
             var html = buildHTML(id); 
+            var underHtml = buildHTMLUnder(id);
             //プレビューエリアのhtmlを変数に代入
             // var prevContent = $('.label-content').prev(); 
             //既存のプレビューエリアに新たに追加されたプレビューを追加
 
             //上段の時
-            if(index < 5){
-              $('.prev-content').append(html); 
-            }
+            // if(index < 5){
+            //   $('.prev-content').append(html); 
+            // }
 
+            var upperRow = $('.upper-row').length;
+            
             //下段の時
-            if(index >= 5){
-              $('.preview-content').append(html); 
+            if(index >= 0){
+              if (upperRow < 5) {
+                $('.prev-content').append(html); 
+                setLabel(); 
+              } else {
+                $('.preview-content').append(underHtml); 
+              }
             }
           }
 
@@ -166,12 +188,15 @@ $(function() {
           //   // var prevContent = $('.addlabel-content').prev(); 
           //   $('.preview-content').append(html);
           // }
-          
           //画像を追加
           $(`#preview-box__${id} img`).attr('src', `${image}`); 
           var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
           //プレビューが5個あったらラベルを隠す（ここはあとで10に変える）
-          if (index == 5) {
+          // if (index == 5) {
+            //   $('.label-content').hide();
+            // }
+          var upperRow = $('.upper-row').length;
+          if (upperRow == 5) {
             $('.label-content').hide();
           }
 
@@ -191,7 +216,7 @@ $(function() {
             // }
             
             // //ラベルのidとforの値を変更
-            if(index < 5){
+            if(upperRow < 5){
               var newId = Number(id);
               var newnewId = newId + 1;
               //プレビューの数でラベルのオプションを更新する
@@ -204,7 +229,7 @@ $(function() {
               
             }
             
-            if(index == 5){
+            if(upperRow == 5 && index == 5){
               var newId = Number(id);
               var newnewId = newId + 1;
               $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
@@ -217,11 +242,21 @@ $(function() {
               $('.addlabel-content').before(previewContent); //6〜10枚目用のプレビュー枠設置
             }
             
-            if(index > 5){
+            if(index >= 5){
               var newId = Number(id);
               var newnewId = newId + 1;
-              $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+              // $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+              // $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
               console.log(newnewId);
+              if(upperRow < 5){
+                $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+                console.log('upperUpper');
+                // var NeoId = newnewId + 1;
+                $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+              } else {
+                $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+                console.log('upperUpperUpperUpperUpper');
+              }
             }
             
             if(index == 10){
@@ -239,6 +274,7 @@ $(function() {
             
             if (index > 5) {
               addSetLabel(); //6~10枚目の時の横幅を変える処理
+              console.log('addSetLabel');
             }
           }
         });
@@ -249,22 +285,35 @@ $(function() {
 
       //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      var newId = Number(id);
+      var newnewId = newId + 1;
       
       //取得したidに該当するプレビューを削除
       $(`#preview-box__${id}`).remove();
 
+      var upperRow = $('.upper-row').length;
+      console.log(upperRow);
+      if (upperRow < 5) {
+        $('.label-content').show();
+        setLabel();
+        console.log('upperRow');
+      }
+
       var index = $('.preview-box').length;
-      console.log(index);
+      console.log(index);//4
       if (index < 5) {
         setLabel(index);
+        $('.label-content').show();
+      }
+
+      if (index == 4) {
+        setLabel(index);
+        $('.addlabel-content').remove();
+        $('.preview-content').remove();
       }
 
       if (index == 5) {
-        addSetLabel(); //6~10枚目の時の横幅を変える処理
-        // $('.addlabel-content').remove();
-        $('.preview-content').remove();
-        // var addLabel = addLabelHTML(id); 
-        // $('.label-content').after(addLabel); //6〜10枚目用のラベル設置
+        addSetLabel();
       }
 
       if (index > 5) {
@@ -308,13 +357,24 @@ $(function() {
 
         // setLabel(index);
         // if(id < 5){
-          //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
-          $('.label-box').attr({id: `label-box--${specialId}`,for: `item_images_attributes_${specialId}_image`});
+        //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
+        
+        if(index >= 5){
+          if(upperRow < 5) {
+            $('.label-box').attr({id: `label-box--${specialId}`,for: `item_images_attributes_${specialId}_image`});
+            // var NeoId = newnewId + 1;
+            $('.addlabel-box').attr({id: `label-box--${specialId}`,for: `item_images_attributes_${specialId}_image`});
+          } else {
+            $('.addlabel-box').attr({id: `label-box--${specialId}`,for: `item_images_attributes_${specialId}_image`});
+            console.log('upperUpperUpperUpperUpper');
+          }
+        }
         // }
         
         // if (index == 0) {
         //   $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
         // }
+        console.log(index);//2
 
       } else {
         //投稿編集時
