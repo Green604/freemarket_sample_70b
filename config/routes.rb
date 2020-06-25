@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :show
-  resources :brand, only: :index
   get '/brand/:id/index', to: 'brand#index', as: 'brand'
 
   resources :category, only: :new do

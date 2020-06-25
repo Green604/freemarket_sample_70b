@@ -1,0 +1,14 @@
+@mixin category-list {
+  height: 950px;
+  background-color: $white;
+}
+@mixin category-list2 {
+  margin-top: 46px;
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin position {
+  position: absolute;
+  z-index: 10;
+}

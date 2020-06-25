@@ -99,7 +99,7 @@
         新規投稿商品
       %ul.itemLists
         - @items.last(4).each do |item|
-          = link_to "/items/#{item.id}", method: :get, class:"item" do
+          = link_to item_path(item.id), method: :get, class:"item" do
             %li.itemList__box
               .itemList__box--image
                 = image_tag item.images.first.image.url, class: "image"
@@ -119,10 +119,52 @@
     ピックアップブランド
     .itemBox
       .itemHeader
-        アーカイバ
+        シャネル
       %ul.itemLists
-        - @items.last(4).each do |item|
-          = link_to "/items/#{item.id}", method: :get, class:"item" do
+        - @chanel.last(4).each do |item|
+          = link_to item_path(item.id), method: :get, class:"item" do
+            %li.itemList__box
+              .itemList__box--image
+                = image_tag item.images.first.image.url, class: "image"
+              .itemList__box--body
+                .itemList__box--body--name
+                  = item.name
+                .itemList__box--body--details
+                  .ul 
+                    .li
+                      = "#{item.price} 円"
+                    .li
+                  .tax
+                    （税込）
+  %h2.pickup-header
+    ピックアップブランド
+    .itemBox
+      .itemHeader
+        ナイキ
+      %ul.itemLists
+        - @nike.last(4).each do |item|
+          = link_to item_path(item.id), method: :get, class:"item" do
+            %li.itemList__box
+              .itemList__box--image
+                = image_tag item.images.first.image.url, class: "image"
+              .itemList__box--body
+                .itemList__box--body--name
+                  = item.name
+                .itemList__box--body--details
+                  .ul 
+                    .li
+                      = "#{item.price} 円"
+                    .li
+                  .tax
+                    （税込）
+  %h2.pickup-header
+    ピックアップブランド
+    .itemBox
+      .itemHeader
+        ルイ　ヴィトン
+      %ul.itemLists
+        - @louisvuitton.last(4).each do |item|
+          = link_to item_path(item.id), method: :get, class:"item" do
             %li.itemList__box
               .itemList__box--image
                 = image_tag item.images.first.image.url, class: "image"

@@ -4,8 +4,6 @@
     %title FreemarketSample70b
     = csrf_meta_tags
     = csp_meta_tag
-    -# = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    -# = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
     %scripy{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"}
     = stylesheet_link_tag    'application', media: 'all'
@@ -42,7 +40,7 @@
             %li.leftList_box_left
               .category_list
                 .parents_box 
-                  -# = fa_icon "list-ul", class: 'list-icon'
+                  = fa_icon "list-ul", class: 'list-icon'
                   %span.initial_list カテゴリーから探す
                   .parents_list
                     - @parents2.each do |parent|
@@ -51,7 +49,6 @@
                 .grand_children_list
 
             %li.leftList_box_right
-              -# = i.icon-tag pc-header-cat-brand-icon do
               %span.brand ブランド
               = link_to "#{@brand1.name}", brand_path(@brand1.id), class: "brand-item", id: "#{@brand1.id}"
               = link_to "#{@brand2.name}", brand_path(@brand2.id), class: "brand-item", id: "#{@brand2.id}"

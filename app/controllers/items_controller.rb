@@ -9,6 +9,9 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @parents = Category.all.order("id ASC").limit(13)
+    @chanel = Item.all.where(brand_id: 4407)
+    @nike = Item.all.where(brand_id: 6810)
+    @louisvuitton = Item.all.where(brand_id: 11180)
   end
 
   def new
