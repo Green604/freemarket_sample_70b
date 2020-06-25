@@ -31,63 +31,61 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    if @item.save
-      # 出品ページからparamsで受け取った入力ワードが既にbrandテーブルにあるか検索
-      @brand = Brand.find_by(name: "#{params[:input]}")
-      # ① 既にあれば@itemデータのbrand_id部分を更新して保存
-      if @brand
-        @item.update(brand_id: @brand.id)
-      else
-        # ②-1 ない場合でかつ入力フォームが空じゃない限りは
-        unless "#{params[:input]}".blank?
-          # ②-2 まずbrandテーブルに新規で保存
-          brand = Brand.new(name: "#{params[:input]}")
-          if brand.save
-            # ③-3 上で保存したばかりのbrand_idを@itemで入れて更新、保存
-            @item.update(brand_id: brand.id)
+    # 出品ページからparamsで受け取った入力ワードが既にbrandテーブルにあるか検索
+    @brand = Brand.find_by(name: "#{params[:input]}")  
+    begin
+      ActiveRecord::Base.transaction do   
+        if @item.save!
+          # ① 既にbrand名が存在すれば@itemデータのbrand_id部分を更新して保存
+          if @brand
+            @item.update!(brand_id: @brand.id)
           else
-            render :new
+            # ②-1 ない場合でかつ入力フォームが空じゃない限りは
+            unless "#{params[:input]}".blank?
+              # ②-2 まずbrandテーブルに新規で保存
+              brand = Brand.new(name: "#{params[:input]}")
+              if brand.save!
+                # ③-3 上で保存したばかりのbrand_idを@itemで入れて更新、保存
+                @item.update!(brand_id: brand.id)
+              end
+            end
           end
+          selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
+          seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
+          selling_status.save!
+          seller.save!
         end
       end
-      selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
-      seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
-      if selling_status.save && seller.save
-        redirect_to item_path (@item.id)
-      else
-        flash.now[:alert] = 'エラーが発生しました。'
-        render :new
-      end
-    else
-      flash.now[:alert] = '入力されていない項目があります。'
+      redirect_to item_path (@item.id)
+    rescue
+      flash.now[:alert] = 'エラーが発生しました。'
       render :new
     end
   end
-
   
   def edit
-
   end
 
   def update
-    if @item.update(item_params)
-      @brand = Brand.find_by(name: "#{params[:input]}")
-      if @brand
-        @item.update(brand_id: @brand.id)
-      else
-        if "#{params[:input]}".blank?
-          @item.update(brand_id: nil)
+    @brand = Brand.find_by(name: "#{params[:input]}")
+    begin
+      ActiveRecord::Base.transaction do
+        @item.update!(item_params)
+        if @brand
+          @item.update!(brand_id: @brand.id)
         else
-          brand = Brand.new(name: "#{params[:input]}")
-          if brand.save
-            @item.update(brand_id: brand.id)
+          if "#{params[:input]}".blank?
+            @item.update!(brand_id: nil)
           else
-            render :edit
+            brand = Brand.new(name: "#{params[:input]}")
+            if brand.save!
+              @item.update!(brand_id: brand.id)
+            end
           end
         end
       end
       redirect_to root_path
-    else
+    rescue
       flash.now[:alert] = 'エラーが発生しました。'
       render :edit
     end
