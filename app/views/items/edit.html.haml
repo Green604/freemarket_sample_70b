@@ -103,7 +103,11 @@
                       %span.label-group__required 任意
                   .brand-section__input
                     .input-group
-                      = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
+                      -# = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
+                      - if @item.brand_id
+                        = text_field_tag :input, @item.brand.name, placeholder: "例）シャネル"
+                      - else
+                        = text_field_tag :input, "", placeholder: "例）シャネル"
               .condition
                 .condition-section
                   .condition-section__name
