@@ -261,7 +261,10 @@ $(function() {
 
       if (index == 5) {
         addSetLabel(); //6~10枚目の時の横幅を変える処理
-        $('.addlabel-content').hide();
+        // $('.addlabel-content').remove();
+        $('.preview-content').remove();
+        // var addLabel = addLabelHTML(id); 
+        // $('.label-content').after(addLabel); //6〜10枚目用のラベル設置
       }
 
       if (index > 5) {
@@ -278,20 +281,16 @@ $(function() {
       
       //新規登録時と編集時の場合分け==========================================================
           
-      
-      
       //新規投稿時
       //削除用チェックボックスの有無で判定
       if ($(`#item_images_attributes_${id}__destroy`).length == 0) {
         
-        
         // $('#image-box').on('click', '.js-remove', function() {
-          // $(this).parent().remove();
-          // 画像入力欄が0個にならないようにしておく
-          if ($('.hidden-field').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+        // $(this).parent().remove();
+        // 画像入力欄が0個にならないようにしておく
+        // if ($('.hidden-field').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
         // });
         
-
         //フォームの中身を削除 
         $(`#item_images_attributes_${id}_image`).parent().remove();
         //削除時のラベル操作
@@ -307,11 +306,11 @@ $(function() {
         
         // .attr('id').replace(/[^0-9]/g, '');
 
-        setLabel(index);
-        if(id < 5){
+        // setLabel(index);
+        // if(id < 5){
           //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
           $('.label-box').attr({id: `label-box--${specialId}`,for: `item_images_attributes_${specialId}_image`});
-        }
+        // }
         
         // if (index == 0) {
         //   $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
