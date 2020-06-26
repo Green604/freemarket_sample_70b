@@ -17,7 +17,7 @@ $(function() {
 
     function buildHTMLUnder(count) {
       var html = `<div class="preview-box" id="preview-box__${count}">
-      <div class="upper-box">
+      <div class="upper-box lower-row">
       <img src="" alt="preview" class="upload-image">
       </div>
       <div class="lower-box">
@@ -128,7 +128,7 @@ $(function() {
         // const labellabel = $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
         // console.log(labellabel[0]); 
         // debagger;
-          
+        
         //選択したfileのオブジェクトを取得
         var file = this.files[0];
         //FileReaderオブジェクトの生成
@@ -295,6 +295,7 @@ $(function() {
       $(`#preview-box__${id}`).remove();
 
       var upperRow = $('.upper-row').length;
+      var lowerRow = $('.lower-row').length;
       console.log(upperRow);
       if (upperRow < 5) {
         $('.label-content').show();
@@ -303,10 +304,17 @@ $(function() {
       }
 
       var index = $('.preview-box').length;
-      console.log(index);//4
+      console.log(index);
       if (index < 5) {
         setLabel(index);
         $('.label-content').show();
+        if (lowerRow > 0) {
+          addSetLabel();
+          $('.addlabel-content').show();
+        }
+        if (lowerRow == 0) {
+          $('.addlabel-content').remove();
+        }
       }
 
       if (upperRow == 4 && index == 4) {
@@ -327,6 +335,14 @@ $(function() {
       if (index > 5) {
         $('.addlabel-content').show();
         addSetLabel(); //6~10枚目の時の横幅を変える処理
+        $('.prev-content').css('margin-top', '0px');
+        $('#previews').css('padding-top', '200px');
+        if (upperRow < 5) {
+          $('.addlabel-content').hide();
+        }
+        if (lowerRow < 5) {
+          $('.addlabel-content').show();
+        }
       }
 
       if (index == 9) {
@@ -334,6 +350,9 @@ $(function() {
         addSetLabel(); //6~10枚目の時の横幅を変える処理
         width = $('.preview-content').css('width').replace(/[^0-9]/g, '');
         console.log(width);
+        if (upperRow < 5) {
+          $('.addlabel-content').hide();
+        }
       }
       
       //新規登録時と編集時の場合分け==========================================================
