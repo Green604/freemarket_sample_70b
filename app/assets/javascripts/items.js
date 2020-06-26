@@ -222,6 +222,7 @@ $(function() {
               //プレビューの数でラベルのオプションを更新する
               // $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`}); //attrメソッドでid属性とfor属性を設定
               $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+              $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
               // const labelnum = $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
               // console.log(labelnum[0]);
               // const labelnum = $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
