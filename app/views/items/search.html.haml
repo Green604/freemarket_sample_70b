@@ -1,50 +1,50 @@
 = form_with(url: search_items_path, local: true, method: :get, class: "search-form") do |f|
   = f.search_field :keyword, placeholder: "商品を検索する", class: "search-input"
   = f.submit "検索", class: "search-btn"
+.background
+  .search-container
+    .search-container__header
+      %ul.search-container__header--tabs
+        %li.l-side.tab
+          .search-sort
+            .select-wrap
+              %select{name: :sort_order, class: 'sort_order'}
+                %option{value: "location.pathname", name: "location.pathname"}
+                  並び替え
+                %option{value: "price_asc"}
+                  価格の安い順
+                %option{value: "price_desc"}
+                  価格の高い順
+                %option{value: "created_at_asc"}
+                  出品の古い順
+                %option{value: "created_at_desc"}
+                  出品の新しい順
+        %li.tab
+          = link_to '詳細検索', detail_search_items_path, class: "action"
 
-.search-container
-  .search-container__header
-    %ul.search-container__header--tabs
-      %li.l-side.tab
-        .search-sort
-          .select-wrap
-            %select{name: :sort_order, class: 'sort_order'}
-              %option{value: "location.pathname", name: "location.pathname"}
-                並び替え
-              %option{value: "price_asc"}
-                価格の安い順
-              %option{value: "price_desc"}
-                価格の高い順
-              %option{value: "created_at_asc"}
-                出品の古い順
-              %option{value: "created_at_desc"}
-                出品の新しい順
-      %li.tab
-        = link_to '詳細検索', detail_search_items_path, class: "action"
+    - if @keyword == ""
+      %h2.search-container__header--keyword
+        検索結果
+    - else
+      %h2.search-container__header--keyword
+        %span
+          #{@keyword}
+        の検索結果
 
-  - if @keyword == ""
-    %h2.search-container__header--keyword
-      検索結果
-  - else
-    %h2.search-container__header--keyword
-      %span
-        #{@keyword}
-      の検索結果
+    %p.search-container__header--number
+      #{@items.length}件表示
 
-  %p.search-container__header--number
-    #{@items.length}件表示
-
-  .search-container__main
-    %ul.search-result
-      - @items.each do|item|
-        = link_to item_path(item.id), method: :get, class:"item-list" do
-          %li.item-list__box
-            .item-list__box--image
-              = image_tag item.images.first.image.url, class: "image"
-            .item-list__box--name
-              = item.name
-              %br
-                = "#{item.price} 円"
+    .search-container__main
+      %ul.search-result
+        - @items.each do|item|
+          = link_to item_path(item.id), method: :get, class:"item-list" do
+            %li.item-list__box
+              .item-list__box--image
+                = image_tag item.images.first.image.url, class: "image"
+              .item-list__box--name
+                = item.name
                 %br
-                  （税込）
-  = paginate(@items)
+                  = "#{item.price} 円"
+                  %br
+                    （税込）
+    = paginate(@items)
