@@ -63,6 +63,7 @@
   font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
   color: #222;
   font-size: 16px;
+  margin-top: 16px;
 }
 
 @mixin input-group-input {
@@ -82,12 +83,15 @@
   align-items: center;
   display: inline-flex;
   width: 100%;
+  margin-top: 16px;
 }
 
 @mixin xxx-select {
   display: inline-block;
   position: relative;
   width: inherit;
+  // エラーメッセージが追加された際にプルダウンアイコンが微妙にずれてしまうのを防ぐため追記
+  max-height: 48px;
 }
 
 @mixin word-link {

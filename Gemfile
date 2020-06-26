@@ -93,3 +93,8 @@ gem 'activerecord-session_store'
 gem 'dotenv-rails'
 gem 'mechanize'
 gem 'seed_dump'
+gem 'ransack'
+gem 'kaminari'
+gem 'font-awesome-rails'
+gem "gretel"
+

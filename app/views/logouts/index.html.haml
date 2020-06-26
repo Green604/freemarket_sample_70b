@@ -1,0 +1,10 @@
+- breadcrumb :mypage
+
+.background-mypage
+  .flex-box
+    .left-box
+      =render "logouts_left_box"
+    .right-box
+      .user-mypage
+        .user-mypage__header-logout
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "action"

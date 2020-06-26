@@ -97,6 +97,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: rgb(245, 245, 245);
     header {
       height: 128px;
       -webkit-box-align: center;
@@ -117,6 +118,9 @@ body {
         position: relative;
         .exhibition-form {
           display: block;
+          #error_explanation {
+            text-align: center;
+          }
           .image {
             .image-flame {
               margin: 0;
@@ -152,7 +156,6 @@ body {
                         align-content: center;
                         -webkit-box-align: center;
                         align-items: center;
-                        background-color: rgb(245, 245, 245);
                         cursor: pointer;
                         display: flex;
                         height: 100%;
@@ -160,60 +163,77 @@ body {
                         -webkit-box-pack: center;
                         justify-content: center;
                         position: relative;
-                        border-width: 1px;
-                        border-style: dashed;
-                        border-color: rgb(204, 204, 204);
-                        border-image: initial;
                         transition: all 0.5s ease-out 0s;
-                        .js-file_group {
-                          // display: none;
-                          // font-family: inherit;
-                          // font-size: 100%;
-                          // -webkit-appearance: initial;
-                          // background-color: initial;
-                          // align-items: baseline;
-                          // color: inherit;
-                          // text-align: start !important;
-                          // padding: initial;
-                          // border: initial;
-                          // letter-spacing: normal;
-                          // word-spacing: normal;
-                          // text-transform: none;
-                          // text-indent: 0px;
-                          // text-shadow: none;
-                          // -webkit-writing-mode: horizontal-tb !important;
-                          // text-rendering: auto;
-                          // -webkit-rtl-ordering: logical;
-                          // margin: 0em;
-                          // font: 400 11px system-ui;
-                        }
-                        &__icon {
-                          fill: rgb(34, 34, 34);
-                          height: 24px;
-                          margin-bottom: 8px;
-                          width: 24px;
-                          fill-rule: evenodd;
-                          overflow: hidden;
-                        }
-                        &___instruction {
-                          font-size: 12px !important;
-                          line-height: 1.4em;
-                          text-align:center;
-                          width: 100%;
-                          vertical-align: baseline;
-                          margin: 0px;
-                          padding: 0px;
-                          border-width: 0px;
-                          border-style: initial;
-                          border-color: initial;
-                          border-image: initial;
-                          font: inherit;
+                        #previews {
                           display: block;
-                          margin-block-start: 1em;
-                          margin-block-end: 1em;
-                          margin-inline-start: 0px;
-                          margin-inline-end: 0px;
-                          cursor: pointer;
+                          margin: 16px auto 0;
+                          display: flex;
+                          flex-wrap: wrap; //ここは後からもしかしたら必要になるかもしれない
+                          .prev-content {
+                            display: flex;
+                            .preview-box {
+                              height: 162px;
+                              width: 112px;
+                              margin: 0 15px 10px 0;
+                              .upper-box {
+                                height: 112px;
+                                width: 100%;
+                                img{
+                                  width: 112px;
+                                  height: 112px;
+                                }
+                              }
+                              .lower-box {
+                                display: flex;
+                                text-align: center;
+                                .delete-box {
+                                  color: #00b0ff;
+                                  width: 100%;
+                                  height: 50px;
+                                  line-height: 50px;
+                                  border: 1px solid #eee;
+                                  background: #f5f5f5;
+                                  cursor: pointer;
+                                }
+                              }
+                            }
+                          }
+                          .label-content{
+                            margin-bottom: 10px;
+                            width: 620px;
+                            .label-box {
+                              display: block;
+                              border: 1px dashed #ccc;
+                              position: relative;
+                              background: #f5f5f5;
+                              width: 100%;
+                              height: 162px;
+                              cursor: pointer;
+                              pre {
+                                font-size: 14px;
+                                line-height: 1.5;
+                                font-weight: bold;
+                                -webkit-transform: translate(0, -50%);
+                                transform: translate(0, -50%);
+                                pointer-events: none;
+                                white-space: pre-wrap;
+                                word-wrap: break-word;
+                                top: 50%;
+                                left: 16px;
+                                right: 16px;
+                                position: absolute;
+                                text-align: center;
+                              }
+                            }
+                          }
+                          .hidden-content {
+                            .hidden-field {
+                              display: none;
+                            }
+                            .hidden-checkbox {
+                              display: none;
+                            }
+                          }
                         }
                       }
                     }
@@ -245,7 +265,13 @@ body {
                     .input-group input {
                       @include input-group-input;
                     }
+                    input.form-invalid {
+                      @include form-error;
+                    }
                   }
+
+
+
                 }
               }
             }
@@ -277,6 +303,7 @@ body {
                     padding: 13px 16px;
                     resize: vertical;
                     vertical-align: middle;
+                    margin-top: 16px;
                   }
                   &__counter {
                     text-align: right;
@@ -284,6 +311,9 @@ body {
                     color: #888;
                     font-size: 12px;
                     line-height: 1.4em;
+                  }
+                  textarea.form-invalid {
+                    @include form-error;
                   }
                 }
               }
@@ -299,18 +329,21 @@ body {
               .category-section {
                 &__name {
                   margin: 0!important;
-                  .label-group {
+                  .label-group-category {
                     @include label-group;
-                    & label {
+                    label {
                       @include label-group__label ($black);
                     }
-                    &__required {
+                    span {
                       @include label-group__required ($sky_blue);
                     }
                   }
                 }
                 &__pulldown {
-                  @include pulldown;
+                  align-items: center;
+                  // display: inline-flex;
+                  width: 100%;
+                  margin-top: 16px;
                   .category-select {
                     @include xxx-select;
                     select {
@@ -318,6 +351,35 @@ body {
                     }
                     .category-svg {
                       @include svg;
+                    }
+                    select.form-invalid {
+                      @include form-error;
+                    }
+                  }
+                  .category-select-child {
+                    margin-top: 12px;
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .childCategory-svg {
+                      @include svg;
+                    }
+                    select.form-invalid {
+                      @include form-error;
+                    }
+                  }
+                  .category-select-grandchild {
+                    margin-top: 12px;
+                    @include xxx-select;
+                    select {
+                      @include select;
+                    }
+                    .grandChildCategory-svg {
+                      @include svg;
+                    }
+                    select.form-invalid {
+                      @include form-error;
                     }
                   }
                 }
@@ -376,6 +438,9 @@ body {
                     .condition-svg {
                       @include svg;
                     }
+                    select.form-invalid {
+                      @include form-error;
+                    }
                   }
                 }
               }
@@ -421,6 +486,9 @@ body {
                     .shippingfee-svg {
                       @include svg;
                     }
+                    select.form-invalid {
+                      @include form-error;
+                    }
                   }
                 }
               }
@@ -449,6 +517,9 @@ body {
                     }
                     .shippingway-svg {
                       @include svg;
+                    }
+                    select.form-invalid {
+                      @include form-error;
                     }
                   }
                 }
@@ -479,6 +550,9 @@ body {
                     .shippingarea-svg {
                       @include svg;
                     }
+                    select.form-invalid {
+                      @include form-error;
+                    }
                   }
                 }
               }
@@ -507,6 +581,9 @@ body {
                     }
                     .shippingday-svg {
                       @include svg;
+                    }
+                    select.form-invalid {
+                      @include form-error;
                     }
                   }
                 }
@@ -584,6 +661,9 @@ body {
                     input {
                       @include input-group-input;
                       text-align: right;
+                    }
+                    input.form-invalid {
+                      @include form-error;
                     }
                   }
                 }

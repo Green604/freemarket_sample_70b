@@ -18,6 +18,7 @@ class PurchaseController < ApplicationController
       @card_brand = @default_card_information.brand
       @card_month = @default_card_information.exp_month
       @card_year = @default_card_information.exp_year % 1000
+
       case @card_brand
       when "Visa" then
         @card_image = "cc-visa fa-2x"
@@ -27,7 +28,19 @@ class PurchaseController < ApplicationController
         @card_image = "c-jcb fa-2x"
       when "American Express" then
         @card_image = "cc-amex fa-2x"
+      when "Diners Club" then
+        @card_image = "cc-diners-club fa-2x"
+      when "Discover" then
+        @card_image = "cc-discover fa-2x"
       end
+
+      case @item.shipping.shipping_fee
+      when "送料込み（出品者負担）" then
+        @shipping_fee = "送料込み"
+      when "着払い（購入者負担）" then
+        @shipping_fee = "着払い"
+      end
+
     end
   end
 
@@ -40,7 +53,8 @@ class PurchaseController < ApplicationController
     currency: 'jpy', #日本円
     )
     buyer = Buyer.new(item_id: @item.id, user_id: current_user.id)
-    if buyer.save
+    selling_status = SellingStatus.where(item_id: @item.id)
+    if buyer.save && selling_status.update(status: "売却済み")
       redirect_to action: 'done' #完了画面に移動
     else
       flash.now[:alert] = 'エラーが発生しました。'
@@ -48,13 +62,22 @@ class PurchaseController < ApplicationController
     end
   end
 
-  def set_item
-    @item = Item.find(params[:id])
+  def done
+    case @item.shipping.shipping_fee
+    when "送料込み（出品者負担）" then
+      @shipping_fee = "送料込み"
+    when "着払い（購入者負担）" then
+      @shipping_fee = "着払い"
+    end
   end
 
   private
   def item_params
     params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :parent_category_id, :child_category_id, :category_id, :shipping_id, images_attributes: [:image], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id])
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
   
 end

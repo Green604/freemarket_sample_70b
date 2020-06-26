@@ -1,5 +1,10 @@
 @import "reset";
 @import "config/colors";
+@import "mixin/item";
+@import "modules/item";
+@import "modules/topContents";
+@import "modules/mainContents";
+@import "modules/bottomContents";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "mixin/toppage";
@@ -9,10 +14,13 @@
 @import "modules/item";
 @import "mixin/label";
 @import "mixin/button";
+@import "mixin/user";
+@import "mixin/card";
 @import "./exhibition";
 @import "modules/flash";
 @import "modules/item";
 @import "modules/user";
+@import "modules/favorites";
 @import "modules/card";
-@import "modules/flash"
+@import "modules/purchase";
 

@@ -13,14 +13,24 @@ Rails.application.routes.draw do
   root "items#index"
 
   resources :items do
-    
+
+    resources :favorites, only: [:create, :destroy, :index]
+
     collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+
+    # 編集画面でカテゴリーを編集可能にするための記述
+    member do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
 
     collection do
       get 'search'
+      get 'detail_search'
+      get 'detail_search_result'
     end
 
     resources :comments, only: :create
@@ -43,8 +53,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: :show
   get '/brand/:id/index', to: 'brand#index', as: 'brand'
+
+  resources :users, only: :show do
+
+    collection do
+      get 'logouts', to: 'logouts#index'
+      get 'cards', to: 'cards#index'
+    end
+  end
 
   resources :category, only: :new do
     member do

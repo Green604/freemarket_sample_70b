@@ -203,7 +203,7 @@ describe Item do
   describe '#search' do      
     it "Tシャツを検索できる" do
       item = create(:item)
-      expect(Item.search("シャツ")).to include(item)
+      expect(Item.d_search("シャツ")).to include(item)
     end
   end
 end
