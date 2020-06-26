@@ -62,6 +62,10 @@ $(function() {
 
     // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
     if (window.location.href.match(/\/items\/\d+\/edit/)){
+      $('.label-content').hide();
+      $('.addlabel-content').hide();
+      $('.image-box__upload').css('height', '320px');
+      $('.prev-content').css('margin-top', '200px');
       //登録済み画像のプレビュー表示欄の要素を取得する
       var prevContent = $('.label-content').prev();
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
@@ -91,7 +95,14 @@ $(function() {
       //ラベル（カメラマークの範囲）の幅を変える
       $('.label-content').css('width', labelWidth);
     }
+
+    //edit用のsetLabel
+    function editSetLabel() {
+      labelWidth = (620 - $('.prev-content').css('width').replace(/[^0-9]/g, '')); 
+      $('.label-content').css('width', labelWidth);
+    }
     
+    //新規出品画面のinputタグ
     const buildFileField = (id)=> {
       const html = `<div data-index="${id}" class="js-file_group">
       <input class="hidden-field" type="file"
@@ -101,20 +112,41 @@ $(function() {
       </div>`;
       return html;
     }
+
+    //編集画面のinputタグ
+    const makeFileField = (id)=> {
+      const html = `<div class="js-file_group" data-index="${id}">
+      <input class="hidden-field" type="file" name="item[images_attributes][${id}][image]" id="item_images_attributes_${id}_image">
+      </div>`;
+      return html;
+    }
     
-    let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+    // file_fieldのnameに動的なindexをつける為の配列
+    let fileIndex = [1,2,3,4,5,6,7,8,9,10,11,12];
+
     // プレビューの追加
     $(document).on('change', '.hidden-field', function() { 
-      // file_fieldのnameに動的なindexをつける為の配列
       
-        // fileIndexの先頭の数字を使ってinputを作る
-        $('.hidden-content').append(buildFileField(fileIndex[0]));
-        console.log(fileIndex[0]);
+        // 既に使われているindexを除外
+        lastIndex = $('.js-file_group:last').data('index');
+        fileIndex.splice(0, lastIndex);
+
+        $('.hidden-destroy').hide();
+      // fileIndexの先頭の数字を使ってinputを作る
+        if (window.location.href.match(/\/items\/\d+\/new/)){
+          $('.hidden-content').append(buildFileField(fileIndex[0]));
+        }
+        if (window.location.href.match(/\/items\/\d+\/edit/)){
+          $('.hidden-content').append(makeFileField(fileIndex[0]));
+          console.log(fileIndex[0]);
+        }
+
         fileIndex.shift();
-        console.log(fileIndex[0]);
         // 末尾の数に1足した数を追加する
         fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
-        console.log(fileIndex[0]);
+        // var fileIndex = fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+        // console.log(fileIndex);
+
         $('.js-file_group').hide();
           
         // setLabel(); //ラベルの横幅を変える処理を実行する
@@ -301,7 +333,7 @@ $(function() {
       if (upperRow < 5) {
         $('.label-content').show();
         setLabel();
-        console.log('upperRow');
+        console.log('editSetLabel');
       }
 
       var index = $('.preview-box').length;
@@ -338,7 +370,11 @@ $(function() {
 
       if (index > 5) {
         $('.addlabel-content').show();
-        addSetLabel(); //6~10枚目の時の横幅を変える処理
+        console.log('upperRow');
+        //新規投稿画面だったら・・・
+        // if ($(`#item_images_attributes_${id}__destroy`).length == 0) {
+          addSetLabel(); //6~10枚目の時の横幅を変える処理
+        // }
         $('.prev-content').css('margin-top', '0px');
         $('#previews').css('padding-top', '200px');
         if (upperRow < 5) {
@@ -360,11 +396,13 @@ $(function() {
       }
       
       //新規登録時と編集時の場合分け==========================================================
+
           
       //新規投稿時
       //削除用チェックボックスの有無で判定
       if ($(`#item_images_attributes_${id}__destroy`).length == 0) {
         
+        console.log('editedit');
         // $('#image-box').on('click', '.js-remove', function() {
         // $(this).parent().remove();
         // 画像入力欄が0個にならないようにしておく
@@ -410,6 +448,18 @@ $(function() {
       } else {
         //投稿編集時
         $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
+
+        var specialId = $(".hidden-field").last().attr('id').replace(/[^0-9]/g, '');
+        // var id = $('.hidden-field').attr('id').replace(/[^0-9]/g, '');
+        var editId = Number(specialId);
+        var editeditId = editId + 1;
+        console.log(editeditId);
+        var field = makeFileField(editeditId)
+        console.log(field);
+        $('.hidden-content').append(field);
+        // $('.addlabel-box').attr({id: `label-box--${editeditId}`,for: `item_images_attributes_${editeditId}_image`});
+
+
         //5個めが消されたらラベルを表示
         if (index == 5) {
           $('.label-content').show();
