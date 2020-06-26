@@ -314,6 +314,9 @@ $(function() {
         }
         if (lowerRow == 0) {
           $('.addlabel-content').remove();
+          $('.preview-content').remove();
+          $('#previews').css('padding-top', '0px');
+          $('.image-box__upload').css('height', '158px');
         }
       }
 
