@@ -2,11 +2,14 @@
 @import "config/colors";
 @import "mixin/item";
 @import "modules/item";
-@import "modules/topContents";
 @import "modules/mainContents";
-@import "modules/bottomContents";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "mixin/toppage";
+@import "modules/header";
+@import "modules/mainContents";
+@import "modules/footer";
+@import "modules/item";
 @import "mixin/label";
 @import "mixin/button";
 @import "mixin/user";
@@ -18,3 +21,4 @@
 @import "modules/favorites";
 @import "modules/card";
 @import "modules/purchase";
+
