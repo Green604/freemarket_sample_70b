@@ -1,8 +1,7 @@
 class BrandController < ApplicationController
 
   def index
-    @items = Item.all.where(brand_id: params[:id])
-    # binding.pry
+    @items = Item.where(brand_id: params[:id])
   end
 
   private
