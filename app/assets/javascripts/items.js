@@ -122,7 +122,7 @@ $(function() {
     $(document).on('change', '.hidden-field', function() { 
       
       $('.hidden-destroy').hide();
-    // fileIndexの先頭の数字を使ってinputを作る  
+      // fileIndexの先頭の数字を使ってinputを作る  
       $('.hidden-content').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
       // 末尾の数に1足した数を追加する
@@ -146,82 +146,82 @@ $(function() {
       previewLength = $(`#preview-box__${id}`).length
       var index = $('.preview-box').length;
 
-          //inputタグと同じid値のプレビューがなかった場合はhtmlを追加
-          if ($(`#preview-box__${id}`).length == 0) {
-            previewLength = $(`#preview-box__${id}`).length
-            var index = $('.preview-box').length; 
-            var html = buildHTML(id); 
-            var underHtml = buildHTMLUnder(id);
-            var upperRow = $('.upper-row').length;
-            
-            if(index >= 0){
-              if (upperRow < 5) {
-                $('.prev-content').append(html); 
-                setLabel(); 
-              } else {
-                $('.preview-content').append(underHtml); 
-              }
+        //inputタグと同じid値のプレビューがなかった場合はhtmlを追加
+        if ($(`#preview-box__${id}`).length == 0) {
+          previewLength = $(`#preview-box__${id}`).length
+          var index = $('.preview-box').length; 
+          var html = buildHTML(id); 
+          var underHtml = buildHTMLUnder(id);
+          var upperRow = $('.upper-row').length;
+          
+          if(index >= 0){
+            if (upperRow < 5) {
+              $('.prev-content').append(html); 
+              setLabel(); 
+            } else {
+              $('.preview-content').append(underHtml); 
             }
           }
+        }
 
-          //画像を追加
-          $(`#preview-box__${id} img`).attr('src', `${image}`); 
-          var index = $('.preview-box').length; 
-          var upperRow = $('.upper-row').length;
-          if (upperRow == 5) {
-            $('.label-content').hide();
-          }
+        //画像を追加
+        $(`#preview-box__${id} img`).attr('src', `${image}`); 
+        var index = $('.preview-box').length; 
+        var upperRow = $('.upper-row').length;
+        if (upperRow == 5) {
+          $('.label-content').hide();
+        }
 
-          //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=====
-          if ($(`#item_images_attributes_${id}__destroy`)){
-            $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
-          } 
+        //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す=====
+        if ($(`#item_images_attributes_${id}__destroy`)){
+          $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
+        } 
         //=============================================================================
             
-            var numberId = Number(id);
-            var ondAddId = numberId + 1;
-            // //ラベルのidとforの値を変更
-            if(upperRow < 5){
-              $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-              $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});     
-            }
-            
-            if(upperRow == 5 && index == 5){
-              $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-              var addLabel = addLabelHTML(ondAddId); 
-              $('.label-content').after(addLabel); 
-              $('.image-box__upload').css('height', '320px');
-              $('.prev-content').css('margin-top', '200px');
-              var previewContent = buildPreviewContent(); 
-              $('.addlabel-content').before(previewContent);
-            }
-            
-            if(index >= 5){
-              if(upperRow < 5){
-                $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-                $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${newnewId}_image`});
-              } else {
-                $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-              }
-            }
-            
-            if(index == 10){
-              $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-              $('.addlabel-content').hide();
-            }
-            
-
-            // //ラベル（カメラマークの範囲）の横幅を変える処理を実行
-            if (index <= 5) {
-              setLabel(); //1~5枚目の時の横幅を変える処理
-            }
-            
-            if (index > 5) {
-              addSetLabel(); //6~10枚目の時の横幅を変える処理
-              console.log('addSetLabel');
-            }
+        //inputタグの文字列のidを数値に変換
+        var numberId = Number(id);
+        var ondAddId = numberId + 1;
+        //ラベルのidとforの値を変更
+        //上段が5枚未満の場合
+        if(upperRow < 5){
+          $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+          $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});     
+        }
+        //上段枚数が5枚あり下段が1枚もない場合
+        if(upperRow == 5 && index == 5){
+          $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+          var addLabel = addLabelHTML(ondAddId); 
+          $('.label-content').after(addLabel); 
+          $('.image-box__upload').css('height', '320px');
+          $('.prev-content').css('margin-top', '200px');
+          var previewContent = buildPreviewContent(); 
+          $('.addlabel-content').before(previewContent);
+        }
+        //合計5枚以上の場合
+        if(index >= 5){
+          //上段が5枚未満の場合
+          if(upperRow < 5){
+            $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+            $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${newnewId}_image`});
+          } else {
+            $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
           }
-        });
+        }
+        //合計10枚の場合
+        if(index == 10){
+          $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+          $('.addlabel-content').hide();
+        }
+        
+        if (index <= 5) {
+          setLabel();
+        }
+        
+        if (index > 5) {
+          addSetLabel(); 
+        }
+      }
+    });
 
         
     // 画像の削除
