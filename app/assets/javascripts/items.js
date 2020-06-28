@@ -141,10 +141,10 @@ $(function() {
       //読み込み時に発火するイベント onloadメソッドは読み込みが完了したら実行する
       reader.onload = function() {
       //直前に実行したイベントが返した値を取得する
-      var image = this.result; 
+        var image = this.result; 
 
-      previewLength = $(`#preview-box__${id}`).length
-      var index = $('.preview-box').length;
+        previewLength = $(`#preview-box__${id}`).length
+        var index = $('.preview-box').length;
 
         //inputタグと同じid値のプレビューがなかった場合はhtmlを追加
         if ($(`#preview-box__${id}`).length == 0) {
@@ -223,36 +223,38 @@ $(function() {
       }
     });
 
-        
     // 画像の削除
     $(document).on('click', '.delete-box', function() {
-
-      //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
+      //プレビューのidを抽出
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
-      var newId = Number(id);
-      var newnewId = newId + 1;
+      //文字列のidを数値化
+      var numberId = Number(id);
+      var oneAddId = numberId + 1;
       
       //取得したidに該当するプレビューを削除
       $(`#preview-box__${id}`).remove();
 
+      //上段の枚数
       var upperRow = $('.upper-row').length;
+      //下段の枚数
       var lowerRow = $('.lower-row').length;
-      console.log(upperRow);
+      //上段が5枚未満の場合
       if (upperRow < 5) {
         $('.label-content').show();
         setLabel();
-        console.log('editSetLabel');
       }
-
+      //プレビューの枚数
       var index = $('.preview-box').length;
-      console.log(index);
+      //合計枚数が5枚未満の場合
       if (index < 5) {
         setLabel(index);
         $('.label-content').show();
+        //下段に1枚以上ある場合
         if (lowerRow > 0) {
           addSetLabel();
           $('.addlabel-content').show();
         }
+        //下段に1枚もない場合
         if (lowerRow == 0) {
           $('.addlabel-content').remove();
           $('.preview-content').remove();
@@ -260,7 +262,7 @@ $(function() {
           $('.image-box__upload').css('height', '158px');
         }
       }
-
+      //合計枚数が4枚で全部上段にある場合
       if (upperRow == 4 && index == 4) {
         setLabel(index);
         $('.addlabel-content').remove();
@@ -269,35 +271,33 @@ $(function() {
         $('.prev-content').css('margin-top', '0px');
         $('#previews').css('padding-top', '0px');
       }
-
+      //合計枚数が5枚の場合
       if (index == 5) {
         addSetLabel();
         $('.prev-content').css('margin-top', '0px');
         $('#previews').css('padding-top', '200px');
       }
-
+      //合計枚数が6枚以上の場合
       if (index > 5) {
         $('.addlabel-content').show();
-        console.log('upperRow');
-        //新規投稿画面だったら・・・
-        // if ($(`#item_images_attributes_${id}__destroy`).length == 0) {
-          addSetLabel(); //6~10枚目の時の横幅を変える処理
-        // }
+          addSetLabel();
         $('.prev-content').css('margin-top', '0px');
         $('#previews').css('padding-top', '200px');
+        //上段が5枚未満の場合
         if (upperRow < 5) {
           $('.addlabel-content').hide();
         }
+        //下段が5枚未満の場合
         if (lowerRow < 5) {
           $('.addlabel-content').show();
         }
       }
-
+      //合計枚数が9枚の場合
       if (index == 9) {
-        $('.addlabel-content').show(); //10枚目を消したらラベルを表示
-        addSetLabel(); //6~10枚目の時の横幅を変える処理
+        $('.addlabel-content').show();
+        addSetLabel();
         width = $('.preview-content').css('width').replace(/[^0-9]/g, '');
-        console.log(width);
+        //上段が5枚未満の場合
         if (upperRow < 5) {
           $('.addlabel-content').hide();
         }
