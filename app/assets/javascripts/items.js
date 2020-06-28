@@ -1,6 +1,6 @@
 $(function() {
   $(function() {
-    // 画像用のinputを生成する関数
+    // 上段用のプレビューHTML生成
     function buildHTML(count) {
       var html = `<div class="preview-box" id="preview-box__${count}">
       <div data-index="${count}" class="upper-box upper-row">
@@ -14,7 +14,7 @@ $(function() {
       </div>`;
       return html;
     }
-
+    // 下段用のプレビューHTML生成
     function buildHTMLUnder(count) {
       var html = `<div class="preview-box" id="preview-box__${count}">
       <div class="upper-box lower-row">
@@ -29,7 +29,7 @@ $(function() {
       return html;
     }
     
-    //6〜10枚目のプレビュー画像のためのラベル作る関数
+    //下段目プレビューHTML
     function addLabelHTML(id) {
       var labelhtml =  `<div class="addlabel-content">
                           <label class="addlabel-box" for="item_images_attributes_${id}_image" id="label-box-${id}">
@@ -43,7 +43,7 @@ $(function() {
                         return labelhtml;
                       }
 
-    //新規出品画面のinputタグ
+    //新規出品画面のinputファイルフォーム
     const buildFileField = (id)=> {
       const html = `<div data-index="${id}" class="js-file_group">
       <input class="hidden-field" type="file"
@@ -53,39 +53,35 @@ $(function() {
       return html;
     }
                       
-    // ラベルの横幅を変える操作(6〜10枚目)
+    // 下段ラベルの横幅を変える
     function addSetLabel() {
-      //プレビューの幅を変数に代入
       var previewContent = $('.addlabel-content').prev(); 
-      //ラベル（カメラマークの範囲）のもともとの620pxからプレビューの分だけ引いた幅にする
       addLabelWidth = (620 - $(previewContent).css('width').replace(/[^0-9]/g, '')); 
       width = $(previewContent).css('width').replace(/[^0-9]/g, '');
-      //ラベル（カメラマークの範囲）の幅を変える
       $('.addlabel-content').css('width', addLabelWidth);
     }
 
-    // 6〜10枚目用のプレビュー枠設置
+    // 下段用のプレビュー枠
     function buildPreviewContent() {
       var addPreviewContent = `<div class="preview-content"></div>`;
       return addPreviewContent;
     }
+    
+    // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
     var count = $('.preview-box').length;
     var lowerRow = $('.lower-row').length;
 
-    // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
     if (window.location.href.match(/\/items\/\d+\/edit/)){
-      // 編集画面変異後すぐにからのフォームを追加
       $('.hidden-content').append(buildFileField(count));
-      if (lowerRow == 0) { // 既存の画像が５枚以下(=下段が不要)の場合、下のラベルを隠す
+      if (lowerRow == 0) { 
         $('.addlabel-content').remove();
-      } else { // 既存の画像が５枚以上の場合、上のラベルを隠し、高さを広げ、下段のラベルを幅を調整
+      } else { 
         if (lowerRow == 5){
-          $('.addlabel-content').remove();  
+          $('.addlabel-content').hide();  
         }
         $('.label-content').hide();
         $('.image-box__upload').css('height', '320px');
         $('.prev-content').css('margin-top', '200px');
-        // addSetLabel();
       }
       
       //登録済み画像のプレビュー表示欄の要素を取得する
@@ -110,31 +106,17 @@ $(function() {
 
     // ラベルの横幅を変える操作
     function setLabel() {
-      //プレビューの幅を変数に代入
       var prevContent = $('.label-content').prev(); 
-      //ラベル（カメラマークの範囲）のもともとの620pxからプレビューの分だけ引いた幅にする
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, '')); 
-      //ラベル（カメラマークの範囲）の幅を変える
       $('.label-content').css('width', labelWidth);
     }
 
-    //edit用のsetLabel
-    function editSetLabel() {
-      labelWidth = (620 - $('.prev-content').css('width').replace(/[^0-9]/g, '')); 
-      $('.label-content').css('width', labelWidth);
-    }
-    
-    // //新規出品画面のinputタグ
-    // const buildFileField = (id)=> {
-    //   const html = `<div data-index="${id}" class="js-file_group">
-    //   <input class="hidden-field" type="file"
-    //   name="item[images_attributes][${id}][image]"
-    //   id="item_images_attributes_${id}_image"
-    //   <div class="js-remove">削除</div>
-    //   </div>`;
-    //   return html;
+    // //edit用のsetLabel
+    // function editSetLabel() {
+    //   labelWidth = (620 - $('.prev-content').css('width').replace(/[^0-9]/g, '')); 
+    //   $('.label-content').css('width', labelWidth);
     // }
-
+    
     //編集画面のinputタグ
     const makeFileField = (id)=> {
       const html = `<div class="js-file_group" data-index="${id}">
