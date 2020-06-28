@@ -42,6 +42,16 @@ $(function() {
                         </div>`;
                         return labelhtml;
                       }
+
+    //新規出品画面のinputタグ
+    const buildFileField = (id)=> {
+      const html = `<div data-index="${id}" class="js-file_group">
+      <input class="hidden-field" type="file"
+      name="item[images_attributes][${id}][image]"
+      id="item_images_attributes_${id}_image"
+      </div>`;
+      return html;
+    }
                       
     // ラベルの横幅を変える操作(6〜10枚目)
     function addSetLabel() {
@@ -59,13 +69,25 @@ $(function() {
       var addPreviewContent = `<div class="preview-content"></div>`;
       return addPreviewContent;
     }
+    var count = $('.preview-box').length;
+    var lowerRow = $('.lower-row').length;
 
     // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
     if (window.location.href.match(/\/items\/\d+\/edit/)){
-      $('.label-content').hide();
-      $('.addlabel-content').hide();
-      $('.image-box__upload').css('height', '320px');
-      $('.prev-content').css('margin-top', '200px');
+      // 編集画面変異後すぐにからのフォームを追加
+      $('.hidden-content').append(buildFileField(count));
+      if (lowerRow == 0) { // 既存の画像が５枚以下(=下段が不要)の場合、下のラベルを隠す
+        $('.addlabel-content').remove();
+      } else { // 既存の画像が５枚以上の場合、上のラベルを隠し、高さを広げ、下段のラベルを幅を調整
+        if (lowerRow == 5){
+          $('.addlabel-content').remove();  
+        }
+        $('.label-content').hide();
+        $('.image-box__upload').css('height', '320px');
+        $('.prev-content').css('margin-top', '200px');
+        addSetLabel();
+      }
+      
       //登録済み画像のプレビュー表示欄の要素を取得する
       var prevContent = $('.label-content').prev();
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
@@ -102,16 +124,16 @@ $(function() {
       $('.label-content').css('width', labelWidth);
     }
     
-    //新規出品画面のinputタグ
-    const buildFileField = (id)=> {
-      const html = `<div data-index="${id}" class="js-file_group">
-      <input class="hidden-field" type="file"
-      name="item[images_attributes][${id}][image]"
-      id="item_images_attributes_${id}_image"
-      <div class="js-remove">削除</div>
-      </div>`;
-      return html;
-    }
+    // //新規出品画面のinputタグ
+    // const buildFileField = (id)=> {
+    //   const html = `<div data-index="${id}" class="js-file_group">
+    //   <input class="hidden-field" type="file"
+    //   name="item[images_attributes][${id}][image]"
+    //   id="item_images_attributes_${id}_image"
+    //   <div class="js-remove">削除</div>
+    //   </div>`;
+    //   return html;
+    // }
 
     //編集画面のinputタグ
     const makeFileField = (id)=> {
@@ -123,23 +145,24 @@ $(function() {
     
     // file_fieldのnameに動的なindexをつける為の配列
     let fileIndex = [1,2,3,4,5,6,7,8,9,10,11,12];
+     // 既に使われているindexを除外、イベント内に記述するとイベント発生の度に配列内の数字が削除されてしまう
+     lastIndex = $('.js-file_group:last').data('index');
+     fileIndex.splice(0, lastIndex);
+
+    //  var lowerRow = $('.lower-row').length;
+
 
     // プレビューの追加
     $(document).on('change', '.hidden-field', function() { 
       
-        // 既に使われているindexを除外
-        lastIndex = $('.js-file_group:last').data('index');
-        fileIndex.splice(0, lastIndex);
+       
 
         $('.hidden-destroy').hide();
       // fileIndexの先頭の数字を使ってinputを作る
-        if (window.location.href.match(/\/items\/\d+\/new/)){
-          $('.hidden-content').append(buildFileField(fileIndex[0]));
-        }
-        if (window.location.href.match(/\/items\/\d+\/edit/)){
-          $('.hidden-content').append(makeFileField(fileIndex[0]));
-          console.log(fileIndex[0]);
-        }
+        
+        $('.hidden-content').append(buildFileField(fileIndex[0]));
+        console.log("フォーム追加！")
+
 
         fileIndex.shift();
         // 末尾の数に1足した数を追加する
@@ -267,6 +290,7 @@ $(function() {
               var newnewId = newId + 1;
               $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
               console.log(newnewId);
+              console.log("aaa");
               var newId = Number(id);
               var newnewId = newId + 1;
               var addLabel = addLabelHTML(newnewId); 
@@ -451,17 +475,17 @@ $(function() {
 
         var specialId = $(".hidden-field").last().attr('id').replace(/[^0-9]/g, '');
         // var id = $('.hidden-field').attr('id').replace(/[^0-9]/g, '');
-        var editId = Number(specialId);
-        var editeditId = editId + 1;
-        console.log(editeditId);
-        var field = makeFileField(editeditId)
-        console.log(field);
-        $('.hidden-content').append(field);
+        // var editId = Number(specialId);
+        // var editeditId = editId + 1;
+        // console.log(editeditId);
+        // var field = makeFileField(editeditId)
+        // console.log(field);
+        // $('.hidden-content').append(field);
         // $('.addlabel-box').attr({id: `label-box--${editeditId}`,for: `item_images_attributes_${editeditId}_image`});
 
 
         //5個めが消されたらラベルを表示
-        if (index == 5) {
+        if (index == 4) {
           $('.label-content').show();
         }
 
@@ -470,7 +494,7 @@ $(function() {
         //ラベルのidとforの値を変更
         //削除したプレビューのidによって、ラベルのidを変更する
         if(id < 5){
-          $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+          $('.label-box').attr({id: `label-box--${specialId}`,for: `item_images_attributes_${specialId}_image`});
         }
       }
     });
