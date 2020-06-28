@@ -348,6 +348,10 @@ p.form-invalid {
               }
               &--name {
                 margin: 0 20px;
+                max-width: 500px;
+              }
+              &--price {
+                max-width: 100px;
               }
             }
           }
