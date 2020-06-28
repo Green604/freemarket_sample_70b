@@ -112,7 +112,7 @@ $(function() {
     // =============================================================================
 
     // file_fieldのnameに動的なindexをつける為の配列
-    let fileIndex = [1,2,3,4,5,6,7,8,9,10,11,12];
+    let fileIndex = [1,2,3,4,5,6,7,8,9,10];
 
     lastIndex = $('.js-file_group:last').data('index');
     fileIndex.splice(0, lastIndex);
@@ -342,7 +342,7 @@ $(function() {
         //ラベルのidとforの値を変更
         //削除したプレビューのidによってラベルのidを変更する
         if(id < 5){
-          $('.label-box').attr({id: `label-box--${specialId}`,for: `item_images_attributes_${specialId}_image`});
+          $('.label-box').attr({id: `label-box--${lastId}`,for: `item_images_attributes_${lastId}_image`});
         }
       }
     });
