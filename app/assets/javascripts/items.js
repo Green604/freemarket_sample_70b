@@ -140,37 +140,20 @@ $(function() {
       reader.readAsDataURL(file); 
       //読み込み時に発火するイベント onloadメソッドは読み込みが完了したら実行する
       reader.onload = function() {
-        //直前に実行したイベントが返した値を取得する
-        var image = this.result; 
-        console.log(image);
-          
-          previewLength = $(`#preview-box__${id}`).length
-          console.log(previewLength);
+      //直前に実行したイベントが返した値を取得する
+      var image = this.result; 
 
-          var index = $('.preview-box').length;
+      previewLength = $(`#preview-box__${id}`).length
+      var index = $('.preview-box').length;
 
           //inputタグと同じid値のプレビューがなかった場合はhtmlを追加
           if ($(`#preview-box__${id}`).length == 0) {
             previewLength = $(`#preview-box__${id}`).length
-            console.log(previewLength);
-            //プレビューの数を数えて変数に代入
             var index = $('.preview-box').length; 
-            console.log(index);
-            //プレビューを生成する関数を変数に代入
             var html = buildHTML(id); 
             var underHtml = buildHTMLUnder(id);
-            //プレビューエリアのhtmlを変数に代入
-            // var prevContent = $('.label-content').prev(); 
-            //既存のプレビューエリアに新たに追加されたプレビューを追加
-
-            //上段の時
-            // if(index < 5){
-            //   $('.prev-content').append(html); 
-            // }
-
             var upperRow = $('.upper-row').length;
             
-            //下段の時
             if(index >= 0){
               if (upperRow < 5) {
                 $('.prev-content').append(html); 
@@ -181,22 +164,9 @@ $(function() {
             }
           }
 
-          // // 下段用のプレビューを設置
-          // if($(`#preview-box__${id}`).length == 1) {
-          //   console.log('hellohellohello');
-          //   var index = $('.preview-box').length; 
-          //   var html = buildHTML(id); 
-          //   console.log(id); //なぜここが4なんだ？
-          //   // var prevContent = $('.addlabel-content').prev(); 
-          //   $('.preview-content').append(html);
-          // }
           //画像を追加
           $(`#preview-box__${id} img`).attr('src', `${image}`); 
-          var index = $('.preview-box').length; //preview-boxの数を数えて変数に代入
-          //プレビューが5個あったらラベルを隠す（ここはあとで10に変える）
-          // if (index == 5) {
-            //   $('.label-content').hide();
-            // }
+          var index = $('.preview-box').length; 
           var upperRow = $('.upper-row').length;
           if (upperRow == 5) {
             $('.label-content').hide();
@@ -207,69 +177,36 @@ $(function() {
             $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
           } 
         //=============================================================================
-
-        // // //ラベル（カメラマークの範囲）の横幅を変える処理を実行
-        // if (index <= 5) {
-          //   setLabel(); //1~5枚目の時の横幅を変える処理
-          // }
-          
-          // if (index >=6) {
-            //   addSetLabel(); //6~10枚目の時の横幅を変える処理
-            // }
             
+            var numberId = Number(id);
+            var ondAddId = numberId + 1;
             // //ラベルのidとforの値を変更
             if(upperRow < 5){
-              var newId = Number(id);
-              var newnewId = newId + 1;
-              //プレビューの数でラベルのオプションを更新する
-              // $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`}); //attrメソッドでid属性とfor属性を設定
-              $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
-              $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
-              // const labelnum = $('.label-box').attr({id: `label-box--${index}`,for: `item_images_attributes_${index}_image`});
-              // console.log(labelnum[0]);
-              // const labelnum = $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
-              // console.log(labelnum[0]);
-              
+              $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+              $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});     
             }
             
             if(upperRow == 5 && index == 5){
-              var newId = Number(id);
-              var newnewId = newId + 1;
-              $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
-              console.log(newnewId);
-              console.log("aaa");
-              var newId = Number(id);
-              var newnewId = newId + 1;
-              var addLabel = addLabelHTML(newnewId); 
-              $('.label-content').after(addLabel); //6〜10枚目用のラベル設置
+              $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+              var addLabel = addLabelHTML(ondAddId); 
+              $('.label-content').after(addLabel); 
               $('.image-box__upload').css('height', '320px');
               $('.prev-content').css('margin-top', '200px');
-              // $('.addlabel-content').css('padding-bottom', '200px');
               var previewContent = buildPreviewContent(); 
-              $('.addlabel-content').before(previewContent); //6〜10枚目用のプレビュー枠設置
+              $('.addlabel-content').before(previewContent);
             }
             
             if(index >= 5){
-              var newId = Number(id);
-              var newnewId = newId + 1;
-              // $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
-              // $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
-              console.log(newnewId);
               if(upperRow < 5){
-                $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
-                console.log('upperUpper');
-                // var NeoId = newnewId + 1;
-                $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+                $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+                $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${newnewId}_image`});
               } else {
-                $('.addlabel-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
-                console.log('upperUpperUpperUpperUpper');
+                $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
               }
             }
             
             if(index == 10){
-              var newId = Number(id);
-              var newnewId = newId + 1;
-              $('.label-box').attr({id: `label-box--${newnewId}`,for: `item_images_attributes_${newnewId}_image`});
+              $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
               $('.addlabel-content').hide();
             }
             
