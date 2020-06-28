@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     collection do
       get 'logouts', to: 'logouts#index'
       get 'cards', to: 'cards#index'
+      get 'user_favorites', to: 'user_favorites#index'
     end
   end
 

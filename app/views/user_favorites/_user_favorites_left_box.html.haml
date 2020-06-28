@@ -2,8 +2,8 @@
   %ul.user-mypage__container
     %li
       .icon-arrow
-        %i.fas.fa-chevron-right.icon-arrow__right.addcolor
-      = link_to "マイページ", "/users/#{current_user.id}", class: "content addcolor"
+        %i.fas.fa-chevron-right.icon-arrow__right
+      = link_to "マイページ", "/users/#{current_user.id}", class: "content"
     %li
       .icon-arrow
         %i.fas.fa-chevron-right.icon-arrow__right
@@ -14,8 +14,8 @@
       = link_to "やることリスト", "#", class: "content"
     %li
       .icon-arrow
-        %i.fas.fa-chevron-right.icon-arrow__right
-      = link_to "いいね！一覧", user_favorites_users_path, class: "content"
+        %i.fas.fa-chevron-right.icon-arrow__right.addcolor
+      = link_to "いいね！一覧", user_favorites_users_path, class: "content addcolor"
     %li
       .icon-arrow
         %i.fas.fa-chevron-right.icon-arrow__right
