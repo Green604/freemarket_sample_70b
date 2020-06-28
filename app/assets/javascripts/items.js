@@ -85,7 +85,7 @@ $(function() {
         $('.label-content').hide();
         $('.image-box__upload').css('height', '320px');
         $('.prev-content').css('margin-top', '200px');
-        addSetLabel();
+        // addSetLabel();
       }
       
       //登録済み画像のプレビュー表示欄の要素を取得する
