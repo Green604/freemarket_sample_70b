@@ -104,80 +104,45 @@ $(function() {
     }
     // =============================================================================
 
-    // ラベルの横幅を変える操作
+    // ラベルの横幅を変える
     function setLabel() {
       var prevContent = $('.label-content').prev(); 
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, '')); 
       $('.label-content').css('width', labelWidth);
     }
+    
 
-    // //edit用のsetLabel
-    // function editSetLabel() {
-    //   labelWidth = (620 - $('.prev-content').css('width').replace(/[^0-9]/g, '')); 
-    //   $('.label-content').css('width', labelWidth);
-    // }
-    
-    //編集画面のinputタグ
-    const makeFileField = (id)=> {
-      const html = `<div class="js-file_group" data-index="${id}">
-      <input class="hidden-field" type="file" name="item[images_attributes][${id}][image]" id="item_images_attributes_${id}_image">
-      </div>`;
-      return html;
-    }
-    
     // file_fieldのnameに動的なindexをつける為の配列
     let fileIndex = [1,2,3,4,5,6,7,8,9,10,11,12];
-     // 既に使われているindexを除外、イベント内に記述するとイベント発生の度に配列内の数字が削除されてしまう
-     lastIndex = $('.js-file_group:last').data('index');
-     fileIndex.splice(0, lastIndex);
 
-    //  var lowerRow = $('.lower-row').length;
-
+    lastIndex = $('.js-file_group:last').data('index');
+    fileIndex.splice(0, lastIndex);
 
     // プレビューの追加
     $(document).on('change', '.hidden-field', function() { 
       
-       
+      $('.hidden-destroy').hide();
+    // fileIndexの先頭の数字を使ってinputを作る  
+      $('.hidden-content').append(buildFileField(fileIndex[0]));
+      fileIndex.shift();
+      // 末尾の数に1足した数を追加する
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+      $('.js-file_group').hide();
 
-        $('.hidden-destroy').hide();
-      // fileIndexの先頭の数字を使ってinputを作る
-        
-        $('.hidden-content').append(buildFileField(fileIndex[0]));
-        console.log("フォーム追加！")
-
-
-        fileIndex.shift();
-        // 末尾の数に1足した数を追加する
-        fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
-        // var fileIndex = fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
-        // console.log(fileIndex);
-
-        $('.js-file_group').hide();
-          
-        // setLabel(); //ラベルの横幅を変える処理を実行する
-
-        //inputタグのidの数値のみ取得
-        var id = $(this).attr('id').replace(/[^0-9]/g, '');
-        console.log(this); 
-        console.log(id); //6枚目を追加するときにここが4になるのはなぜ？4止まりなんだな。4以降が更新されてない。
-        
-        //labelボックスのidとforを更新
-        // const labellabel = $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
-        // console.log(labellabel[0]); 
-        // debagger;
-        
-        //選択したfileのオブジェクトを取得
-        var file = this.files[0];
-        //FileReaderオブジェクトの生成
-        var reader = new FileReader(); 
-        console.log(reader);
-        //readAsDataURLで指定したFileオブジェクトを読み込む
-        reader.readAsDataURL(file); 
-        //読み込み時に発火するイベント onloadメソッドは読み込みが完了したら実行する
-        reader.onload = function() {
-          //直前に実行したイベントが返した値を取得する
-          var image = this.result; 
-          console.log(image);
+      //inputタグのidの数値のみ取得
+      var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      
+      //選択したfileのオブジェクトを取得
+      var file = this.files[0];
+      //FileReaderオブジェクトの生成
+      var reader = new FileReader(); 
+      //readAsDataURLで指定したFileオブジェクトを読み込む
+      reader.readAsDataURL(file); 
+      //読み込み時に発火するイベント onloadメソッドは読み込みが完了したら実行する
+      reader.onload = function() {
+        //直前に実行したイベントが返した値を取得する
+        var image = this.result; 
+        console.log(image);
           
           previewLength = $(`#preview-box__${id}`).length
           console.log(previewLength);
