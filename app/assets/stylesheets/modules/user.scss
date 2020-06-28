@@ -331,25 +331,23 @@ p.form-invalid {
           }
         }
         &__images {
-          @include user-mypage__images-container;
-          padding: 20px;
-          align-items: center;
-          margin-bottom: 1px;
-          display: flex;
           .item-list {
             text-decoration: none;
             color: $black;
             &__box {
-              margin: 0 16px;
-              font-size: 16px;
+              width: 100%;
+              background-color: $white;
+              display: flex;
+              padding: 16px;
+              margin-bottom: 1px;
               &--image {
                 .image {
-                  height: 100px;
-                  width: 100px;
+                  height: 48px;
+                  width: 48px;
                 }
               }
               &--name {
-                margin: 4px 0;
+                margin: 0 20px;
               }
             }
           }
