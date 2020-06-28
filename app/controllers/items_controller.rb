@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
   def detail_search_result
     @search_item = Item.ransack(params[:q])
     @items = @search_item.result.page(params[:page])
-    # @items = @items.page(params[:page]).par(5)
+    @items = @items.page(params[:page]).per(8)
   end
 
   def destroy

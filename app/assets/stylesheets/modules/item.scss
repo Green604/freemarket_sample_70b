@@ -312,7 +312,7 @@
   }
 }
 
-// 検索一覧
+// 検索結果一覧ページ
 .background {
   background-color: $background_light_gray;
   .search-container {
@@ -329,6 +329,9 @@
           line-height: 72px;
           text-align: center;
           border: 1px solid #ccc;
+          select {
+            border: none;
+          }
           .action {
             color: #333;
             text-decoration: none;
@@ -354,6 +357,8 @@
         justify-content: space-between;
         flex-wrap: wrap;
         .item-list {
+          text-decoration: none;
+          color: #333333;
           &__box {
             background-color: $white;
             margin: 8px 0;
@@ -363,6 +368,111 @@
                 width: 160px;
               }
             }
+            &--name {
+              padding: 8px;
+            }
+          }
+        }
+      }
+    }
+    &__footer {
+      text-align: center;
+      padding: 40px 0;
+      margin-left: 88px;
+      .page {
+        display: inline-block;
+        border: 1px solid #AAAAAA;
+        text-align: center;
+        line-height: 42px;
+        width: 44px;
+        border-radius: 4px;
+      }
+      a {
+        color: #333;
+        text-decoration: none;
+      }
+      .translation_missing {
+        display: block;
+        border: 1px solid #AAAAAA;
+        text-align: center;
+        line-height: 42px;
+        width: 44px;
+        border-radius: 4px;
+        color: #333;
+        float: right;
+      }
+    }
+  }
+}
+
+// 詳細検索ページ
+.background {
+  .container {
+    width: 700px;
+    padding: 40px 64px;
+    margin: 0 auto;
+    background-color: $white;
+    .contents {
+      .detail_search {
+        span {
+          font-weight: bold;
+        }
+        &__title {
+          h3 {
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 40px;
+          }
+        }
+        &__group {
+          margin-top: 40px;
+          input, select {
+            width: 100%;
+            height: 48px;
+            padding: 8px 16px;
+            margin-top: 8px;
+          }
+        }
+        &__group-middle {
+          margin-top: 40px;
+          &--checkbox {
+            display: inline-block;
+            width: 49%;
+            label {
+              display: flex;
+              line-height: 36px;
+              input {
+                height: 20px;
+                width: 20px;
+                margin-top: 8px;
+                margin-right: 8px;
+              }
+            }
+          }
+        }
+        &__btns {
+          padding-top: 40px;
+          display: flex;
+          justify-content: space-between;
+          a {
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 50px;
+            width: 255px;
+            background-color: #AAAAAA;
+            color: $white;
+          }
+          input {
+            border: none;
+            border-radius: 4px;
+            height: 50px;
+            width: 255px;
+            background-color: $sky_blue;
+            color: $white;
           }
         }
       }
