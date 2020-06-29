@@ -86,6 +86,7 @@ $(function() {
         if (lowerRow == 5){
           $('.addlabel-content').hide();  
         }
+        addSetLabel(); 
         $('.label-content').hide();
         $('.image-box__upload').css('height', '320px');
         $('.prev-content').css('margin-top', '200px');
@@ -201,7 +202,7 @@ $(function() {
           //上段が5枚未満の場合
           if(upperRow < 5){
             $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-            $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${newnewId}_image`});
+            $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
           } else {
             $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
           }
