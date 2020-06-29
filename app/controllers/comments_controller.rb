@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params) 
     if @comment.save
+      # commentが保存された時、json形式でリスポンスを返す
       respond_to do |format|
         format.json
       end
