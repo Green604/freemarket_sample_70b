@@ -77,15 +77,11 @@ $(function() {
     // 投稿編集時のみ（出品した画像情報を取得しておく必要がある）============================
     var count = $('.preview-box').length;
     var lowerRow = $('.lower-row').length;
-    
+
     if (window.location.href.match(/\/items\/\d+\/edit/)){
       $('.hidden-content').append(buildFileField(count));
       if (lowerRow == 0) { 
-        // $('.addlabel-content').remove();
-        var previewContent = buildPreviewContent(); 
-        $('.addlabel-content').before(previewContent);
-        $('.image-box__upload').css('height', '320px');
-        $('.prev-content').css('margin-top', '200px');
+        $('.addlabel-content').remove();
       } else { 
         if (lowerRow == 5){
           $('.addlabel-content').hide();  
@@ -93,7 +89,6 @@ $(function() {
         $('.label-content').hide();
         $('.image-box__upload').css('height', '320px');
         $('.prev-content').css('margin-top', '200px');
-        addSetLabel(); 
       }
       
       //登録済み画像のプレビュー表示欄の要素を取得する
@@ -118,15 +113,13 @@ $(function() {
 
     // file_fieldのnameに動的なindexをつける為の配列
     let fileIndex = [1,2,3,4,5,6,7,8,9,10,11,12];
-<<<<<<< HEAD
 
-=======
->>>>>>> 49fa27f8f92ba5a985427923d597a5983d9d2209
     lastIndex = $('.js-file_group:last').data('index');
-    // var editLastNumber = lastIndex - 1;
     fileIndex.splice(0, lastIndex);
+
     // プレビューの追加
     $(document).on('change', '.hidden-field', function() { 
+      
       $('.hidden-destroy').hide();
       // fileIndexの先頭の数字を使ってinputを作る  
       $('.hidden-content').append(buildFileField(fileIndex[0]));
@@ -134,6 +127,7 @@ $(function() {
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
       $('.js-file_group').hide();
+
       //inputタグのidの数値のみ取得
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       
@@ -173,7 +167,6 @@ $(function() {
         $(`#preview-box__${id} img`).attr('src', `${image}`); 
         var index = $('.preview-box').length; 
         var upperRow = $('.upper-row').length;
-        var addLabelCount = $('.addlabel-content').length;
         if (upperRow == 5) {
           $('.label-content').hide();
         }
@@ -195,26 +188,20 @@ $(function() {
         }
         //上段枚数が5枚あり下段が1枚もない場合
         if(upperRow == 5 && index == 5){
-          if (addLabelCount == 1) {
-            $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-      
-          } else {
-            $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-            var addLabel = addLabelHTML(ondAddId); 
-            $('.label-content').after(addLabel); 
-            $('.image-box__upload').css('height', '320px');
-            $('.prev-content').css('margin-top', '200px');
-            var previewContent = buildPreviewContent(); 
-            $('.addlabel-content').before(previewContent);
-            console.log("2ばんめ");
-          }
+          $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+          var addLabel = addLabelHTML(ondAddId); 
+          $('.label-content').after(addLabel); 
+          $('.image-box__upload').css('height', '320px');
+          $('.prev-content').css('margin-top', '200px');
+          var previewContent = buildPreviewContent(); 
+          $('.addlabel-content').before(previewContent);
         }
         //合計5枚以上の場合
         if(index >= 5){
           //上段が5枚未満の場合
           if(upperRow < 5){
             $('.label-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
-            $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
+            $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${newnewId}_image`});
           } else {
             $('.addlabel-box').attr({id: `label-box--${ondAddId}`,for: `item_images_attributes_${ondAddId}_image`});
           }
