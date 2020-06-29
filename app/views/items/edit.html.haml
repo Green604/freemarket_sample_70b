@@ -18,7 +18,7 @@
     .container
       .exhibition
         .exhibition-form
-          = form_with model: @item, id: 'new_item', local: true do |f|
+          = form_with model: @item, id: 'new_item', builder: WithErrorFormBuilder, local: true do |f|
             = hidden_field_tag :user_id, current_user.id
             %section.image
               .image-flame
@@ -117,11 +117,10 @@
                       %span.label-group__required 任意
                   .brand-section__input
                     .input-group
-                      -# = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
-                      -# - if @item.brand_id
-                      -#   = text_field_tag :input, @item.brand.name, placeholder: "例）シャネル"
-                      -# - else
-                      -#   = text_field_tag :input, "", placeholder: "例）シャネル"
+                      - if @item.brand_id
+                        = text_field_tag :input, @item.brand.name, placeholder: "例）シャネル"
+                      - else
+                        = text_field_tag :input, "", placeholder: "例）シャネル"
               .condition
                 .condition-section
                   .condition-section__name

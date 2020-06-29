@@ -20,7 +20,10 @@
     .container
       .exhibition
         .exhibition-form
-          = form_with model: @item, local: true do |f|
+          -# jsのバリデーションが何かしらの不具合で発動しない場合
+          -# 通常のモデルバリデーションでメッセージが表示されるように設定
+          = render 'layouts/error_messages', resource: @item
+          = form_with model: @item, id: 'new_item', builder: WithErrorFormBuilder, local: true do |f|
             = hidden_field_tag :user_id, current_user.id
             %section.image
               .image-flame
@@ -92,7 +95,9 @@
                       %span.label-group__required 任意
                   .brand-section__input
                     .input-group
-                      = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
+                      -# = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
+                      = text_field_tag :input, "", placeholder: "例）シャネル"
+
               .condition
                 .condition-section
                   .condition-section__name

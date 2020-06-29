@@ -37,67 +37,69 @@
         %h2 住所入力
       .account-page__inner--box
         .account-page__inner--box--user-form
-          = form_for(@shipping_address, url: shipping_addresses_path) do |f| 
-            = render "devise/shared/error_messages", resource: @shipping_address 
+          -# 作成したフォームビルダーを設定↓
+          = form_for(@shipping_address, url: shipping_addresses_path, builder: WithErrorFormBuilder ) do |f| 
+          -# エラーメッセージファイルを出品ページでも使うので共通化、ファイル場所変更したのでそれに合わせて変更
+            = render "layouts/error_messages", resource: @shipping_address
             .field
               .field__label
                 = f.label :first_name, "お名前(全角)"
                 %span.form-require
                   必須
-              .field__input-half
+              .field__input-half.error-msg__shipping-name
                 = f.text_field :last_name, placeholder: "例)山田", autofocus: true, autocomplete: "last_name"
                 = f.text_field :first_name, placeholder: "例)太郎", autofocus: true, autocomplete: "first_name"
-            .field
+            .field.error-msg__margin 
               .field__label
                 = f.label :first_name_kana, "お名前ひらがな(全角)"
                 %span.form-require
                   必須
-              .field__input-half
+              .field__input-half.error-msg__shipping-name-kana
                 = f.text_field :last_name_kana, placeholder: "例)やまだ", autofocus: true, autocomplete: "last_name_kana"
                 = f.text_field :first_name_kana, placeholder: "例)たろう", autofocus: true, autocomplete: "first_name_kana"
-            .field
+            .field.error-msg__margin 
               .field__label
                 = f.label :zipcode, "郵便番号"
                 %span.form-require
                   必須
               .field__input
                 = f.text_field :zipcode, autofocus: true, autocomplete: "zipcode", placeholder: "例)123-4567"
-            .field
+            .field.error-msg__margin 
               .field__label
                 = f.label :prefecture, "都道府県"
                 %span.form-require
                   必須
               .field__input
                 = f.text_field :prefecture, autofocus: true, autocomplete: "prefecture", placeholder: "例)北海道"
-            .field
+            .field.error-msg__margin 
               .field__label
                 = f.label :city, "市町村"
                 %span.form-require
                   必須
               .field__input
                 = f.text_field :city, autofocus: true, autocomplete: "city", placeholder: "例)札幌市"
-            .field
+            .field.error-msg__margin 
               .field__label
                 = f.label :house_number, "番地"
                 %span.form-require
                   必須
               .field__input
                 = f.text_field :house_number, autofocus: true, autocomplete: "house_number", placeholder: "例)青葉1-1-1"
-            .field
+            .field.error-msg__margin 
               .field__label
                 = f.label :building, "建物名"
                 %span.form-any
                   任意
               .field__input
                 = f.text_field :building, autofocus: true, autocomplete: "building", placeholder: "例)柳ビル103"
-            .field
+            .field.error-msg__margin 
               .field__label
                 = f.label :phone_number, "電話番号"
                 %span.form-require
                   必須
               .field__input
                 = f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "例)09012345678"
-            .actions
+            .actions.error-msg__margin 
               = f.submit "登録する"
   .footer
     %P @FURIMA

@@ -1,0 +1,36 @@
+- breadcrumb :mypage
+
+.background-mypage
+  .flex-box
+    .left-box
+      =render "cards_left_box"
+    .right-box
+      .user-mypage
+        .mypage-card-contents
+          .user-card
+            .user-card__head
+              %h2 支払い方法
+            .user-card__main
+              .card-list
+                .card-list__head
+                  %h3.card-list__head__logo
+                    クレジットカード一覧
+                .card-list__main
+                  - if @default_card_information.present?
+                    .card-list__main__info
+                      .card-list__main__info__brand
+                        = icon("fab", "#{@card_image}")
+                      .card-list__main__info__num
+                        = "************" + @default_card_information.last4
+                      .card-list__main__info__num
+                        = "#{@card_month}" + " / " + "#{@card_year}"
+                      .card-list__main__info__delete
+                        = link_to '削除する', delete_card_index_path, method: :post, class: "card-list__main__info__delete__btn"
+                  - else
+                    .card-list__main__new
+                      = link_to new_card_path, class: "card-list__main__new__btn" do
+                        %i.fas.fa-credit-card
+                        クレジットカードを追加する
+              .user-card__main__card-help
+                %span 支払い方法について
+                %i.fas.fa-chevron-right
