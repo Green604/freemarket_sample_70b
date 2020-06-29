@@ -198,6 +198,10 @@ $(function() {
 
       var add_selected = $('select[name=sort_order]').children()[sort]
       $(add_selected).attr('selected', true)
+
+      var $this = $(this)
+      var $option = $this.find('option:selected');
+      $('.label').text($option.text());
     }
   });
 });
