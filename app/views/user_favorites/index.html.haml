@@ -13,7 +13,7 @@
             - if @items.present?
               .user-mypage__images
                 - @items.last(5).each do |item|
-                  = link_to "/items/#{item.id}", method: :get, class:"item-list" do
+                  = link_to item_path(item.id), method: :get, class:"item-list" do
                     .item-list__box
                       .item-list__box--image
                         = image_tag item.images.first.image.url, class: "image"
