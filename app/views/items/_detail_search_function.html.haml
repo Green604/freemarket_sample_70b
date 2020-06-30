@@ -2,8 +2,6 @@
   .contents
     = search_form_for(@q,url: detail_search_result_items_path) do |f|
       .detail_search
-        .detail_search__title
-          %h3 詳細検索
         .detail_search__group
           .detail_search__group--label
             = fa_icon "search"
@@ -13,15 +11,11 @@
           .detail_search__group--label
             = fa_icon "search"
             %span カテゴリーを検索する
-            %p トップカテゴリー
-            = f.collection_select :parent_category_id_in, Category.where(ancestry: nil), :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
-            %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
-            %p ミドルカテゴリー
-            = f.collection_select :child_category_id_in, @child_category, :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
-            %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
-            %p ボトムカテゴリー
-            = f.collection_select :category_id_in, @grandchild_category, :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
-            %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+        .category-section__pulldown
+          .category-select
+            = f.collection_select :parent_category_id, Category.where(ancestry: nil), :id, :name, { prompt: "選択してください" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+            %svg.category-svg{"aria-hidden": "true", fill: "888888", "fill-rule": "evenodd", height: "24", view: "0 0 24 24", width: "24"}
+              %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
 
         .detail_search__group
           .detail_search__group--label

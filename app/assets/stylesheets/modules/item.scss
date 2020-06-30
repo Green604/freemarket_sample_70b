@@ -484,15 +484,6 @@
         span {
           font-weight: bold;
         }
-        &__title {
-          h3 {
-            width: 100%;
-            text-align: center;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 40px;
-          }
-        }
         &__group {
           margin-top: 40px;
           input, select {
@@ -500,6 +491,11 @@
             height: 48px;
             padding: 8px 16px;
             margin-top: 8px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            color: #222;
+            font-size: 16px;
           }
           &--forms {
             display: flex;
@@ -511,6 +507,42 @@
               text-align: center;
               line-height: 48px;
               margin-top: 8px;
+            }
+          }
+        }
+        .category-section {
+          &__pulldown {
+            align-items: center;
+            width: 100%;
+            margin-top: 16px;
+            .category-select {
+              @include xxx-select;
+              select {
+                @include select;
+              }
+              .category-svg {
+                @include svg;
+              }
+            }
+            .category-select-child {
+              margin-top: 12px;
+              @include xxx-select;
+              select {
+                @include select;
+              }
+              .childCategory-svg {
+                @include svg;
+              }
+            }
+            .category-select-grandchild {
+              margin-top: 12px;
+              @include xxx-select;
+              select {
+                @include select;
+              }
+              .grandChildCategory-svg {
+                @include svg;
+              }
             }
           }
         }

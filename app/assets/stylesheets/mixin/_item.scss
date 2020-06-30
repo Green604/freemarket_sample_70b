@@ -8,3 +8,30 @@
   text-decoration: none;
   color: $sky_blue;
 }
+
+@mixin select {
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  height: 48px;
+  line-height: 1.5;
+  padding: 0 16px;
+  width: 100%;
+}
+
+@mixin svg {
+  margin: auto;
+  pointer-events: none;
+  position: absolute;
+  right: 16px;
+  top: 0;
+}
+
+@mixin xxx-select {
+  display: inline-block;
+  position: relative;
+}
