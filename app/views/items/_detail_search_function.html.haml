@@ -1,0 +1,109 @@
+.container
+  .contents
+    = search_form_for(@q,url: detail_search_result_items_path) do |f|
+      .detail_search
+        .detail_search__title
+          %h3 詳細検索
+        .detail_search__group
+          .detail_search__group--label
+            = fa_icon "search"
+            %span キーワードを追加する
+          = f.search_field :name_cont, placeholder: "例）値下げ"
+        .detail_search__group
+          .detail_search__group--label
+            = fa_icon "search"
+            %span カテゴリーを検索する
+            %p トップカテゴリー
+            = f.collection_select :parent_category_id_in, Category.where(ancestry: nil), :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+            %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+            %p ミドルカテゴリー
+            = f.collection_select :child_category_id_in, @child_category, :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+            %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+            %p ボトムカテゴリー
+            = f.collection_select :category_id_in, @grandchild_category, :id, :name, { prompt: "---" } ,{class: 'category-select-wrapper__box--select', id: 'parent_category'}
+            %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-down
+
+        .detail_search__group
+          .detail_search__group--label
+            = fa_icon "search"
+            %span ブランドを検索する
+          = f.search_field :brand_name_cont, placeholder: "例）ナイキ"
+        .detail_search__group
+          .detail_search__group--label
+            = fa_icon "search"
+            %span 価格
+          .detail_search__group--forms
+            = f.search_field :price_gteq, placeholder: "¥ Min", class: "select-half"
+            %p 〜
+            = f.search_field :price_lteq, placeholder: "¥ Max", class: "select-half"
+        .detail_search__group-middle
+          .detail_search__group-middle--label
+            = fa_icon "search"
+            %span 商品の状態
+          .detail_search__group-middle--checkbox
+            %label
+              %input{type: "checkbox"}
+              = 'すべて'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :condition_in, {multiple: true, class: "detail_condition detail_checkbox"}, '0', nil
+              = '未使用に近い'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :condition_in, {multiple: true, class: "detail_condition detail_checkbox"}, '1', nil
+              = '目立った傷や汚れなし'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :condition_in, {multiple: true, class: "detail_condition detail_checkbox"}, '2', nil
+              = '送料込み(出品者負担)'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :condition_in, {multiple: true, class: "detail_condition detail_checkbox"}, '3', nil
+              = 'やや傷や汚れあり'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :condition_in, {multiple: true, class: "detail_condition detail_checkbox"}, '4', nil
+              = '傷や汚れあり'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :condition_in, {multiple: true, class: "detail_condition detail_checkbox"}, '5', nil
+              = '全体的に状態が悪い'
+
+        .detail_search__group-middle
+          .detail_search__group-middle--label
+            = fa_icon "search"
+            %span 配送料の負担
+          .detail_search__group-middle--checkbox
+            %label
+              %input{type: "checkbox"}
+              = 'すべて'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :shipping_shipping_fee_in, {multiple: true, class: "detail_condition detail_checkbox"}, '送料込み（出品者負担）', nil
+              = '送料込み（出品者負担）'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :shipping_shipping_fee_in, {multiple: true, class: "detail_condition detail_checkbox"}, '着払い（購入者負担）', nil
+              = '着払い（購入者負担）'
+
+        .detail_search__group-middle
+          .detail_search__group-middle--label
+            = fa_icon "search"
+            %span 販売状況
+          .detail_search__group-middle--checkbox
+            %label
+              %input{type: "checkbox"}
+              = 'すべて'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :selling_status_status_in, {multiple: true, class: "detail_condition detail_checkbox"}, '出品中', nil
+              = '出品中'
+          .detail_search__group-middle--checkbox
+            %label
+              = f.check_box :selling_status_status_in, {multiple: true, class: "detail_condition detail_checkbox"}, '売却済み', nil
+              = '売却済み'
+
+        .detail_search__btns
+          .detail_search__btn--grey
+            = link_to "クリア", "",type: "button"
+          = f.submit "完了"

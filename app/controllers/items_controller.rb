@@ -61,9 +61,13 @@ class ItemsController < ApplicationController
   end
 
   def search
+    @search_item = Item.ransack(params[:q])
+    @items = @search_item.result.page(params[:page])
+    @grandchild_category = Category.where('ancestry LIKE(?)',"%/%")
+    @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
+
     @items = Item.d_search(params[:keyword])
 
-    # 並び替え機能で使用
     @keyword = params[:keyword]
     # orderメソッドへ代入する値を条件分岐
     # params[:sort].nil? ? sort  = "created_at DESC" : sort = params[:sort]をリファクタリング
@@ -76,16 +80,24 @@ class ItemsController < ApplicationController
       @items = Item.order(sort)
     end
     @items = @items.page(params[:page]).per(8)
+
   end
 
-  def detail_search
+  # 最終的に消去
+  # def detail_search
+  #   @search_item = Item.ransack(params[:q])
+  #   @items = @search_item.result.page(params[:page])
+  #   @grandchild_category = Category.where('ancestry LIKE(?)',"%/%")
+  #   @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
+  # end
+
+  def detail_search_result
     @search_item = Item.ransack(params[:q])
     @items = @search_item.result.page(params[:page])
     @grandchild_category = Category.where('ancestry LIKE(?)',"%/%")
     @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
-  end
 
-  def detail_search_result
+    @search = params[:q]
     @search_item = Item.ransack(params[:q])
     @items = @search_item.result.page(params[:page])
     @items = @items.page(params[:page]).per(8)

@@ -315,6 +315,13 @@
 // 検索結果一覧ページ
 .background {
   background-color: $background_light_gray;
+  position: relative;
+  .container {
+    display: none;
+    position: absolute;
+    top: 112px;
+    left: 51px;
+  }
   .search-container {
     width: 700px;
     padding-top: 40px;
@@ -322,7 +329,7 @@
     &__header {
       &--tabs {
         display: flex;
-        .tab {
+        .search-tab {
           width: 350px;
           height: 72px;
           padding-top: 38px;
@@ -354,9 +361,9 @@
             z-index: 2;
           }
           .select::-ms-expand {
-            display: none; 
+            display: none;
           }
-          .action {
+          .search-action {
             position: absolute;
             top: 0px;
             left: 0px;
@@ -368,7 +375,7 @@
             height: 71px;
           }
         }
-        .tab-2 {
+        .search-tab-2 {
           border-left: none;
           .fas {
             transform: rotate( 0deg );
@@ -493,6 +500,18 @@
             height: 48px;
             padding: 8px 16px;
             margin-top: 8px;
+          }
+          &--forms {
+            display: flex;
+            .select-half {
+              width: 46%;
+            }
+            p {
+              width: 50px;
+              text-align: center;
+              line-height: 48px;
+              margin-top: 8px;
+            }
           }
         }
         &__group-middle {

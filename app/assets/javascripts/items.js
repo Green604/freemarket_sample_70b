@@ -199,9 +199,15 @@ $(function() {
       var add_selected = $('select[name=sort_order]').children()[sort]
       $(add_selected).attr('selected', true)
 
-      var $this = $(this)
+      var $this = $('select[name=sort_order]')
       var $option = $this.find('option:selected');
       $('.label').text($option.text());
     }
+  });
+});
+// 詳細検索表示・非表示
+$(function () {
+  $('.search-action').click(function () {
+      $('.container').toggle();
   });
 });
