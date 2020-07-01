@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :items do
 
     resources :favorites, only: [:create, :destroy, :index]
+    resources :comments, only: [:create]
 
     collection do
       get 'get_category_children', defaults: { format: 'json' }
@@ -32,8 +33,6 @@ Rails.application.routes.draw do
       get 'detail_search'
       get 'detail_search_result'
     end
-
-    resources :comments, only: :create
 
     resources :purchase, only: [:index] do
       member do
