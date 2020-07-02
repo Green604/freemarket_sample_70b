@@ -28,7 +28,7 @@
               .item-list__box--favorite
                 %i.far.fa-heart.LikesIcon-fa-heart
                 = item.favorites.count
+      .display-box
+        = render "detail_search_function"
     .search-container__footer
       = paginate(@items)
-
-  = render "detail_search_function"

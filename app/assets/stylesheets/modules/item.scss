@@ -315,14 +315,6 @@
 // 検索結果一覧ページ
 .background {
   background-color: $background_light_gray;
-  position: relative;
-  .container {
-    display: none;
-    position: absolute;
-    top: 112px;
-    left: 51px;
-    box-shadow: 0px 0px 2px 2px #ccc;
-  }
   .search-container {
     width: 700px;
     padding-top: 40px;
@@ -398,6 +390,7 @@
       }
     }
     &__main {
+      position: relative;
       .search-result {
         display: flex;
         justify-content: space-around;
@@ -475,116 +468,121 @@
 
 // 詳細検索ページ
 .background {
-  .container {
-    width: 700px;
-    padding: 40px 64px;
-    margin: 0 auto;
-    background-color: $white;
-    .contents {
-      .detail_search {
-        span {
-          font-weight: bold;
-        }
-        &__group {
-          margin-top: 40px;
-          input, select {
-            width: 100%;
-            height: 48px;
-            padding: 8px 16px;
-            margin-top: 8px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            color: #222;
-            font-size: 16px;
+  .display-box {
+    .container {
+      display: none;
+      position: absolute;
+      top: -89px;
+      left: 0px;
+      box-shadow: 0px 0px 2px 2px #ccc;
+      padding: 40px 64px;
+      background-color: $white;
+      .contents {
+        .detail_search {
+          span {
+            font-weight: bold;
           }
-          &--forms {
-            display: flex;
-            .select-half {
-              width: 46%;
-            }
-            p {
-              width: 50px;
-              text-align: center;
-              line-height: 48px;
+          &__group {
+            margin-top: 40px;
+            input, select {
+              width: 100%;
+              height: 48px;
+              padding: 8px 16px;
               margin-top: 8px;
+              background-color: #fff;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              color: #222;
+              font-size: 16px;
             }
-          }
-        }
-        .category-section {
-          &__pulldown {
-            align-items: center;
-            width: 100%;
-            margin-top: 16px;
-            .category-select {
-              @include xxx-select;
-              select {
-                @include select;
-              }
-              .category-svg {
-                @include svg;
-              }
-            }
-            .category-select-child {
-              margin-top: 12px;
-              @include xxx-select;
-              select {
-                @include select;
-              }
-              .childCategory-svg {
-                @include svg;
-              }
-            }
-            .category-select-grandchild {
-              margin-top: 12px;
-              @include xxx-select;
-              select {
-                @include select;
-              }
-              .grandChildCategory-svg {
-                @include svg;
-              }
-            }
-          }
-        }
-        &__group-middle {
-          margin-top: 40px;
-          &--checkbox {
-            display: inline-block;
-            width: 49%;
-            label {
+            &--forms {
               display: flex;
-              line-height: 36px;
-              input {
-                height: 20px;
-                width: 20px;
+              .select-half {
+                width: 46%;
+              }
+              p {
+                width: 50px;
+                text-align: center;
+                line-height: 48px;
                 margin-top: 8px;
-                margin-right: 8px;
               }
             }
           }
-        }
-        &__btns {
-          padding-top: 40px;
-          display: flex;
-          justify-content: space-between;
-          a {
-            display: inline-block;
-            text-decoration: none;
-            border-radius: 4px;
-            text-align: center;
-            line-height: 50px;
-            width: 255px;
-            background-color: #AAAAAA;
-            color: $white;
+          .category-section {
+            &__pulldown {
+              align-items: center;
+              width: 100%;
+              margin-top: 16px;
+              .category-select {
+                @include xxx-select;
+                select {
+                  @include select;
+                }
+                .category-svg {
+                  @include svg;
+                }
+              }
+              .category-select-child {
+                margin-top: 12px;
+                @include xxx-select;
+                select {
+                  @include select;
+                }
+                .childCategory-svg {
+                  @include svg;
+                }
+              }
+              .category-select-grandchild {
+                margin-top: 12px;
+                @include xxx-select;
+                select {
+                  @include select;
+                }
+                .grandChildCategory-svg {
+                  @include svg;
+                }
+              }
+            }
           }
-          input {
-            border: none;
-            border-radius: 4px;
-            height: 50px;
-            width: 255px;
-            background-color: $sky_blue;
-            color: $white;
+          &__group-middle {
+            margin-top: 40px;
+            &--checkbox {
+              display: inline-block;
+              width: 49%;
+              label {
+                display: flex;
+                line-height: 36px;
+                input {
+                  height: 20px;
+                  width: 20px;
+                  margin-top: 8px;
+                  margin-right: 8px;
+                }
+              }
+            }
+          }
+          &__btns {
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            a {
+              display: inline-block;
+              text-decoration: none;
+              border-radius: 4px;
+              text-align: center;
+              line-height: 50px;
+              width: 255px;
+              background-color: #AAAAAA;
+              color: $white;
+            }
+            input {
+              border: none;
+              border-radius: 4px;
+              height: 50px;
+              width: 255px;
+              background-color: $sky_blue;
+              color: $white;
+            }
           }
         }
       }
