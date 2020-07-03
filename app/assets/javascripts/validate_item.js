@@ -1,20 +1,15 @@
 $(function(){
-  var itemValidate = function() {
-    lastInputName = $('.js-file_group:first').children().attr('name');
-    console.log("2ばんめ");
     $('#new_item').validate( {
       ignore: [],
-      // 画像フォームは複数あるので、フォームの数分エラーメッセージが表示されてしまうので
-      // grouop化してbalidateされた場合単一のメッセージを表示するように設定
       rules: {
         // 画像フォールのreruiredの設定を他の４つのフォームが空だったらrewuiredをonに、一つでも値がはいっていたらoffになるように設定
         // 各フォームに同様の設定を施しています
         "item[images_attributes][0][image]": {
           required: function(){
-                      if ($("#preview-box")[0]){
-                        return false
-                      } else {
+                      if ($(".preview-box").length == 0 && $(".js-file_group").length < 2){
                         return true
+                      } else {
+                        return false
                       }
                     }
         }, 
@@ -105,10 +100,14 @@ $(function(){
         }
       }
     })
-  }
-
   $('#new_item').on('blur', '#item_name, #item_description, #parent_category, #child_category, #grandchild_category, #item_condition, #item_shipping_attributes_shipping_fee, #item_shipping_attributes_shippingway_id, #item_shipping_attributes_shippingarea_id, #item_shipping_attributes_shipping_day, #item_price, .hidden-field', function() { 
-    itemValidate(); 
     $(this).valid();
   });
+  // 画像フォームはblurイベントだと発火しないのでchangeイベントに設定
+  $('#new_item').on('change', '.hidden-field', function() { 
+    $(this).valid();
+  });
+
+
+
 })
