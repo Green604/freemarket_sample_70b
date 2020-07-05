@@ -18,6 +18,7 @@ $(function(){
                         </div>`;
     $('.category-section__pulldown').append(childSelectHtml);
   }
+
   function appendGrandchidrenBox(insertHTML){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<div class='category-select-grandchild'>
@@ -33,11 +34,12 @@ $(function(){
   }
 
   $(window).on('load',function(){
-    //new.html.hamlの場合
     if(document.URL.match('new')) {
       $('#parent_category').on('change', function(){
         var parentCategory = $(this).val(); 
-        if (parentCategory != "---"){ 
+        if ($('div').hasClass('category-select-child')){ 
+          $('.category-select-child').remove();
+          $('.category-select-grandchild').remove();
           $.ajax({
             url: 'get_category_children',
             type: 'GET',
@@ -45,8 +47,6 @@ $(function(){
             dataType: 'json'
           })
           .done(function(children){
-            $('#children_wrapper').remove(); 
-            $('#grandchildren_wrapper').remove();
             var insertHTML = '';
             children.forEach(function(child){
               insertHTML += appendOption(child);
@@ -56,14 +56,30 @@ $(function(){
           .fail(function(){
             alert('カテゴリー取得に失敗しました');
           })
-        }else{
-          $('#children_wrapper').remove(); 
-          $('#grandchildren_wrapper').remove();
+        } else {
+          $.ajax({
+            url: 'get_category_children',
+            type: 'GET',
+            data: { parent_id: parentCategory }, 
+            dataType: 'json'
+          })
+          .done(function(children){
+            var insertHTML = '';
+            children.forEach(function(child){
+              insertHTML += appendOption(child);
+            });
+            appendChidrenBox(insertHTML);
+          })
+          .fail(function(){
+            alert('カテゴリー取得に失敗しました');
+          })
         }
       });
+      
       $('.category-section__pulldown').on('change', '#child_category', function(){
         var childId = $('#child_category option:selected').data('category'); 
-        if (childId != "---"){ 
+        if ($('div').hasClass('category-select-grandchild')){ 
+          $('.category-select-grandchild').remove();
           $.ajax({
             url: 'get_category_grandchildren',
             type: 'GET',
@@ -72,7 +88,6 @@ $(function(){
           })
           .done(function(grandchildren){
             if (grandchildren.length != 0) {
-              $('#grandchildren_wrapper').remove(); 
               var insertHTML = '';
               grandchildren.forEach(function(grandchild){
                 insertHTML += appendOption(grandchild);
@@ -83,38 +98,29 @@ $(function(){
           .fail(function(){
             alert('カテゴリー取得に失敗しました');
           })
-        }else{
-          $('#grandchildren_wrapper').remove(); 
+        } else {
+          $.ajax({
+            url: 'get_category_grandchildren',
+            type: 'GET',
+            data: { child_id: childId }, 
+            dataType: 'json'
+          })
+          .done(function(grandchildren){
+            if (grandchildren.length != 0) {
+              var insertHTML = '';
+              grandchildren.forEach(function(grandchild){
+                insertHTML += appendOption(grandchild);
+              });
+              appendGrandchidrenBox(insertHTML);
+            }
+          })
+          .fail(function(){
+            alert('カテゴリー取得に失敗しました');
+          })
         }
       });
-
-  $('#parent_category').on('change', function(){
-    var parentCategory = $(this).val(); 
-    if (parentCategory != "---"){ 
-      $.ajax({
-        url: 'get_category_children',
-        type: 'GET',
-        data: { parent_id: parentCategory }, 
-        dataType: 'json'
-      })
-      .done(function(children){
-        $('#children_wrapper').remove(); 
-        $('#grandchildren_wrapper').remove();
-        var insertHTML = '';
-        children.forEach(function(child){
-          insertHTML += appendOption(child);
-        });
-        appendChidrenBox(insertHTML);
-      })
-      .fail(function(){
-        alert('カテゴリー取得に失敗しました');
-      })
-    }else{
-      $('#children_wrapper').remove(); 
-      $('#grandchildren_wrapper').remove();
     }
-
-    //edit.html.hamlの場合は。。。
+    //edit.html.hamlの場合
     if(document.URL.match('edit')) {
       $('#parent_category').on('change', function(){
         //親カテゴリーの名前を取得
@@ -173,7 +179,7 @@ $(function(){
           .fail(function(){
             alert('カテゴリー取得に失敗しました');
           })
-        }else{
+        } else {
           $('#grandchildren_wrapper').remove(); 
         }
       });
