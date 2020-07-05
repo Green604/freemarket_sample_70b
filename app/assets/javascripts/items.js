@@ -80,6 +80,19 @@ $(function() {
 
     if (window.location.href.match(/\/items\/\d+\/edit/)){
       $('.hidden-content').append(buildFileField(count));
+      // 追加したフォームにバリデーション設定
+      $(`input[name="item[images_attributes][${count}][image]"]`).rules('add', {
+        required: function(){
+          if ($(".preview-box").length !== 0){
+            return false
+          } else {
+            return true
+          }
+        },
+        messages: {
+          required: "画像がありません"
+      }
+    });
       if (lowerRow == 0) { 
         $('.addlabel-content').remove();
       } else { 
@@ -124,11 +137,24 @@ $(function() {
       $('.hidden-destroy').hide();
       // fileIndexの先頭の数字を使ってinputを作る  
       $('.hidden-content').append(buildFileField(fileIndex[0]));
+      // 追加したフォームにバリデーション設定
+      $(`input[name="item[images_attributes][${fileIndex[0]}][image]"]`).rules('add', {
+        required: function(){
+          if ($(".preview-box").length !== 0){
+            return false
+          } else {
+            return true
+          }
+        },
+        messages: {
+          required: "画像がありません"
+      }
+    });
+
       fileIndex.shift();
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
       $('.js-file_group').hide();
-
       //inputタグのidの数値のみ取得
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       
