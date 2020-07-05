@@ -83,7 +83,7 @@
                     = render partial: 'favorites/favorite', locals: { item: @item}
                   - if user_signed_in?
                     %p
-                      = link_to 'お気に入り一覧ページ', "/items/#{@item.id}/favorites", class: "favorites-lists"
+                      = link_to 'お気に入り一覧ページ', user_favorites_users_path, class: "favorites-lists"
             %ul.optional
               %li.optionalBtn
                 = link_to '#' do
