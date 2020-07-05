@@ -7,11 +7,11 @@
             = @item.name
           .itemBox__body
             .item-main-image
-              =image_tag @image.image.url, size: "620x350", class: "main-image"
+              =image_tag @image.image.url, size: "500x350", class: "main-image"
             %ul
               - @item.images.first(3).each.with_index do |image, index|
                 %li
-                  = image_tag image.image.url, size: "207x100", class: "sub-image"
+                  = image_tag image.image.url, size: "166x100", class: "sub-image"
           .itemBox__price
             %span
               = "¥#{@item.price}"
@@ -34,11 +34,11 @@
                   %th
                     カテゴリー
                   %td
-                    = link_to "#{@category.name}", '#'
+                    = link_to "#{@category.name}", parents_category_path(@category)
                     %br
-                    = link_to "#{@category_child.name}", '#'
+                    = link_to "#{@category_child.name}", children_category_path(@category_child)
                     %br
-                    = link_to "#{@item.category.name}", '#'
+                    = link_to "#{@item.category.name}", grand_children_category_path(@category_grand_child)
                 %tr
                   %th
                     ブランド
@@ -150,6 +150,6 @@
         %li.right
           = link_to '後ろの商品＞', item_path(@next_item) if @next_item
       .relatedItems
-        = link_to "#{@category_child.name}をもっと見る"
+        = link_to "#{@category.name}をもっと見る", parents_category_path(@category)
         .productLists
           
