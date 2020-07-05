@@ -18,6 +18,7 @@ class ItemsController < ApplicationController
   def show
     @category = Category.find(@item.parent_category_id)
     @category_child = Category.find(@item.child_category_id)
+    @category_grand_child = Category.find(@item.category_id)
     @comment = Comment.new
     @comments = @item.comments.includes(:user).order("created_at DESC")
     @favorite = Favorite.new 

@@ -39,7 +39,7 @@
         .account-page__inner--box--user-form
           -# 作成したフォームビルダーを設定↓
           = form_for(@shipping_address, url: shipping_addresses_path, builder: WithErrorFormBuilder ) do |f| 
-          -# エラーメッセージファイルを出品ページでも使うので共通化、ファイル場所変更したのでそれに合わせて変更
+            -# エラーメッセージファイルを出品ページでも使うので共通化、ファイル場所変更したのでそれに合わせて変更
             = render "layouts/error_messages", resource: @shipping_address
             .field
               .field__label
