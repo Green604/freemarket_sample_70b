@@ -18,7 +18,7 @@ class CardController < ApplicationController
       @card = Payment.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       #@cardインスタンス変数にpaymentsテーブルの各カラムに入れたい情報を代入
       if @card.save
-        redirect_to action: "show"
+        redirect_to controller: :cards, action: "index"
       else
         redirect_to action: "new"
       end
@@ -34,7 +34,7 @@ class CardController < ApplicationController
       customer.delete #payjpサーバーのデータ削除
       card.delete #DBのデータ削除
     end
-      redirect_to action: "new"
+      redirect_to controller: :cards, action: "index"
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
