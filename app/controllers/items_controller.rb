@@ -92,15 +92,16 @@ class ItemsController < ApplicationController
   # end
 
   def detail_search_result
+    sort = params[:sort] || "created_at DESC"
     @search_item = Item.ransack(params[:q])
-    @items = @search_item.result.page(params[:page])
+    @items = @search_item.result.page(params[:page]).order(sort)
     @grandchild_category = Category.where('ancestry LIKE(?)',"%/%")
     @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
 
     @search = params[:q]
-    @search_item = Item.ransack(params[:q])
-    @items = @search_item.result.page(params[:page])
-    @items = @items.page(params[:page]).per(8)
+    # @search_item = Item.ransack(params[:q])
+    # # @items = @search_item.result.page(params[:page])
+    # # @items = @items.page(params[:page]).per(8)
   end
 
   def destroy
