@@ -84,6 +84,9 @@
   height: 12px;
   border-radius: 50%;
 }
+@mixin form-error {
+  border: $error_msg 1px solid;
+}
 
 // ユーザーマイページで使用
 @mixin user-mypage__header {

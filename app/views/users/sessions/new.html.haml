@@ -19,9 +19,10 @@
       .login-page__inner--title
         %P アカウントをお持ちでない方はこちら
         = link_to "新規会員登録", new_user_registration_path, class: 'actions'
+      = render 'layouts/notifications'
       .login-page__inner--box
         .login-page__inner--box--user-form
-          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = form_for(resource, as: resource_name, url: session_path(resource_name), builder: WithErrorFormBuilder) do |f|
             .field
               .field__label
                 = f.label :email, "メールアドレス"

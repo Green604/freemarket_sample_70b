@@ -69,20 +69,28 @@
               }
             }
             &__input {
-              margin-bottom: 24px;
               input {
                 @include user-input (#ccc);
+              }
+              input.form-invalid {
+                @include form-error;
               }
               select {
                 @include user-select;
                 width: 27%;
               }
+              select.form-invalid {
+                @include form-error;
+              }
+              
             }
             &__input-half {
-              margin-bottom: 32px;
               input {
                 @include user-input (#ccc);
-                width: 47%;
+                width: calc(50% - 16px);
+              }
+              input.form-invalid {
+                @include form-error;
               }
             }
           }
@@ -91,6 +99,10 @@
               @include user-submit ($sky_blue);
             }
           }
+        }
+        // フォーム直下にメッセージを出すために、フォームの上にmargin掛けました
+        .error-msg__margin {
+          margin-top: 24px;
         }
       }
     }
@@ -132,6 +144,9 @@
               input {
                 @include user-input (#ccc);
               }
+              input.form-invalid {
+                @include form-error;
+              }
             }
           }
           .actions {
@@ -157,6 +172,25 @@
       @include user-login__header ($background_light_gray);
     }
   }
+}
+
+// エラーメッセージ
+p.form-invalid {
+  color: $error_msg;
+}
+.field_with_errors {
+  width: inherit;
+  input, textarea, select {
+    border-color: $error_msg !important;
+  }
+}
+.errors {
+  display: inline;
+  color: $error_msg;
+}
+#error_explanation{
+  color: $error_msg;
+  padding: 20px 0 20px;
 }
 
 // ユーザーマイページ
@@ -297,25 +331,27 @@
           }
         }
         &__images {
-          @include user-mypage__images-container;
-          padding: 20px;
-          align-items: center;
-          margin-bottom: 1px;
-          display: flex;
           .item-list {
             text-decoration: none;
             color: $black;
             &__box {
-              margin: 0 16px;
-              font-size: 16px;
+              width: 100%;
+              background-color: $white;
+              display: flex;
+              padding: 16px;
+              margin-bottom: 1px;
               &--image {
                 .image {
-                  height: 100px;
-                  width: 100px;
+                  height: 48px;
+                  width: 48px;
                 }
               }
               &--name {
-                margin: 4px 0;
+                margin: 0 20px;
+                max-width: 500px;
+              }
+              &--price {
+                max-width: 100px;
               }
             }
           }
@@ -347,29 +383,4 @@
       }
     }
   }
-
-  // 最終的に他のscssに書かれる予定で今はコメントアウト
-  // .footer-sell-btn {
-  //   position: fixed;
-  //   bottom: 32px;
-  //   right: 32px;
-  //   .sell-btn {
-  //     display: inline-block;
-  //     height: 120px;
-  //     width: 120px;
-  //     background-color: $sky_blue;
-  //     text-align: center;
-  //     color: $white;
-  //     text-decoration: none;
-  //     font-size: 18px;
-  //     font-weight: bold;
-  //     border-radius: 4px;
-  //     padding-top: 15px;
-  //   }
-  // }
-  // .footer-camera-icon {
-  //   position: fixed;
-  //   bottom: 47px;
-  //   right: 65px;
-  // }
 }

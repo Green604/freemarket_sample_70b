@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # patch '/brand/:id/index', to: 'brand#index'
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :items do
 
     resources :favorites, only: [:create, :destroy, :index]
+    resources :comments, only: [:create]
 
     collection do
       get 'get_category_children', defaults: { format: 'json' }
@@ -30,8 +33,6 @@ Rails.application.routes.draw do
       get 'detail_search'
       get 'detail_search_result'
     end
-
-    resources :comments, only: :create
 
     resources :purchase, only: [:index] do
       member do
@@ -51,12 +52,22 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/brand/:id/index', to: 'brand#index', as: 'brand'
+
   resources :users, only: :show do
 
     collection do
       get 'logouts', to: 'logouts#index'
       get 'cards', to: 'cards#index'
+      get 'user_favorites', to: 'user_favorites#index'
     end
   end
 
+  resources :category, only: :new do
+    member do
+      get 'parents', to: 'category#parents'
+      get 'children', to: 'category#children'
+      get 'grand_children', to: 'category#grand_children'
+    end
+  end
 end

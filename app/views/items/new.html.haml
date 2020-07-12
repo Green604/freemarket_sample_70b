@@ -20,7 +20,10 @@
     .container
       .exhibition
         .exhibition-form
-          = form_with model: @item, local: true do |f|
+          -# jsのバリデーションが何かしらの不具合で発動しない場合
+          -# 通常のモデルバリデーションでメッセージが表示されるように設定
+          = render 'layouts/error_messages', resource: @item
+          = form_with model: @item, id: 'new_item', builder: WithErrorFormBuilder, local: true do |f|
             = hidden_field_tag :user_id, current_user.id
             %section.image
               .image-flame
@@ -29,14 +32,14 @@
                     .label-group
                       = f.label :image, '出品画像'
                       %span.label-group__required 必須
-                  %p.image-box__limit 最大5枚までアップロードできます
+                  %p.image-box__limit 最大10枚までアップロードできます
                   .image-box__upload
                     .image-container
                       .image-capsule
                         .image-folder#image-box
                           #previews
                             .prev-content
-                            .label-content  
+                            .label-content
                               %label{for: "item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
                                 %pre.label_box__text-visible 
                                   %svg.image-upload-svg{width: "24", height: "24", fill: "#222222", "fill-rule": "evenodd", viewbox: "0 0 24 24", "area-hidden": "true"}
@@ -45,10 +48,6 @@
                               = f.fields_for :images do |image|
                                 .js-file_group{"data-index": "#{image.index}" }
                                   = image.file_field :image, class: 'hidden-field'
-                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][1][image]", id: "item_images_attributes_1_image" }
-                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][2][image]", id: "item_images_attributes_2_image" }
-                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image" }
-                                  %input{class:"hidden-field", type: "file", name: "item[images_attributes][4][image]", id: "item_images_attributes_4_image" }
             %hr.border
 
             %section.description
@@ -96,7 +95,9 @@
                       %span.label-group__required 任意
                   .brand-section__input
                     .input-group
-                      = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
+                      -# = f.text_field :brand_id, autocomplete: "off", placeholder: "例）シャネル"
+                      = text_field_tag :input, "", placeholder: "例）シャネル"
+
               .condition
                 .condition-section
                   .condition-section__name

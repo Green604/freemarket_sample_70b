@@ -10,11 +10,15 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @parents = Category.all.order("id ASC").limit(13)
+    @chanel = Item.all.where(brand_id: 4407)
+    @nike = Item.all.where(brand_id: 6810)
+    @louisvuitton = Item.all.where(brand_id: 11180)
   end
 
   def show
     @category = Category.find(@item.parent_category_id)
     @category_child = Category.find(@item.child_category_id)
+    @category_grand_child = Category.find(@item.category_id)
     @comment = Comment.new
     @comments = @item.comments.includes(:user).order("created_at DESC")
     @favorite = Favorite.new 
@@ -31,30 +35,61 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    if @item.save!
-      selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
-      seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
-      if selling_status.save && seller.save
-        redirect_to item_path (@item.id)
-      else
-        flash.now[:alert] = 'エラーが発生しました。'
-        render :new
+    # 出品ページからparamsで受け取った入力ワードが既にbrandテーブルにあるか検索
+    @brand = Brand.find_by(name: "#{params[:input]}")  
+    begin
+      ActiveRecord::Base.transaction do   
+        if @item.save!
+          # ① 既にbrand名が存在すれば@itemデータのbrand_id部分を更新して保存
+          if @brand
+            @item.update!(brand_id: @brand.id)
+          else
+            # ②-1 ない場合でかつ入力フォームが空じゃない限りは
+            unless "#{params[:input]}".blank?
+              # ②-2 まずbrandテーブルに新規で保存
+              brand = Brand.new(name: "#{params[:input]}")
+              if brand.save!
+                # ③-3 上で保存したばかりのbrand_idを@itemで入れて更新、保存
+                @item.update!(brand_id: brand.id)
+              end
+            end
+          end
+          selling_status = SellingStatus.new(item_id: @item.id, seller_id: params[:user_id], status: "出品中")
+          seller = Seller.new(item_id: @item.id, user_id: params[:user_id])
+          selling_status.save!
+          seller.save!
+        end
       end
-    else
-      flash.now[:alert] = '入力されていない項目があります。'
+      redirect_to item_path (@item.id)
+    rescue
+      flash.now[:alert] = 'エラーが発生しました。'
       render :new
     end
   end
-
   
   def edit
-
   end
 
   def update
-    if @item.update(item_params)
+    @brand = Brand.find_by(name: "#{params[:input]}")
+    begin
+      ActiveRecord::Base.transaction do
+        @item.update!(item_params)
+        if @brand
+          @item.update!(brand_id: @brand.id)
+        else
+          if "#{params[:input]}".blank?
+            @item.update!(brand_id: nil)
+          else
+            brand = Brand.new(name: "#{params[:input]}")
+            if brand.save!
+              @item.update!(brand_id: brand.id)
+            end
+          end
+        end
+      end
       redirect_to root_path
-    else
+    rescue
       flash.now[:alert] = 'エラーが発生しました。'
       render :edit
     end
@@ -115,7 +150,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, :price, :condition, :brand_id, :parent_category_id, :child_category_id, :category_id, :shipping_id, images_attributes: [:image, :_destroy, :id], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id], brands_attributes: [:name, :_destroy, :id])
+    params.require(:item).permit(:name, :description, :price, :condition, :parent_category_id, :child_category_id, :category_id, :shipping_id, images_attributes: [:image, :_destroy, :id], shipping_attributes: [:shipping_day, :shipping_fee, :shippingway_id, :shippingarea_id], brands_attributes: [:name, :_destroy, :id])
   end
 
   def move_to_index
