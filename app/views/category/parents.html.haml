@@ -1,6 +1,7 @@
+- breadcrumb :parent_category
 - @items.each do |item|
   = link_to "/items/#{item.id}", method: :get, class:"itemList" do
-    %li.itemList__box
+    .itemList__box
       .itemList__box--image
         = image_tag item.images.first.image.url, class: "image"
       .itemList__box--name
