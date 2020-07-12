@@ -83,14 +83,6 @@ class ItemsController < ApplicationController
 
   end
 
-  # 最終的に消去
-  # def detail_search
-  #   @search_item = Item.ransack(params[:q])
-  #   @items = @search_item.result.page(params[:page])
-  #   @grandchild_category = Category.where('ancestry LIKE(?)',"%/%")
-  #   @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
-  # end
-
   def detail_search_result
     sort = params[:sort] || "created_at DESC"
     @search_item = Item.ransack(params[:q])
@@ -99,9 +91,6 @@ class ItemsController < ApplicationController
     @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
 
     @search = params[:q]
-    # @search_item = Item.ransack(params[:q])
-    # # @items = @search_item.result.page(params[:page])
-    # # @items = @items.page(params[:page]).per(8)
   end
 
   def destroy

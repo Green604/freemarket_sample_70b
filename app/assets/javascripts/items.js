@@ -155,6 +155,7 @@ $(function() {
     // 選択したoptionタグのvalue属性を取得する
     var this_value = $(this).val();
     // value属性の値により、ページ遷移先の分岐
+    // URLが"&sort=price+asc"など、それぞれ決められている。
     if (this_value == "price_asc") {
       html = "&sort=price+asc"
     } else if (this_value == "price_desc") {
@@ -183,7 +184,7 @@ $(function() {
       if ($('select option[selected=selected]')) {
         $('select option:first').prop('selected', false);
       }
-
+      //並び替え表示の項目を選択した後の挙動
       var selected_option = location['href'].match(/&sort=*.+/)[0].replace('&sort=', '');
 
       if(selected_option == "price+asc") {
@@ -195,10 +196,10 @@ $(function() {
       } else if (selected_option == "created_at+desc") {
         var sort = 4
       }
-
+      //選択した項目にselectedを付与する
       var add_selected = $('select[name=sort_order]').children()[sort]
       $(add_selected).attr('selected', true)
-
+      // selectedのvalueを取得する、テキストvalueの値に変更する
       var $this = $('select[name=sort_order]')
       var $option = $this.find('option:selected');
       $('.label').text($option.text());
