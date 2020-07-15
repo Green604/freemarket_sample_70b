@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
 
   def set_parents
     @parents2 = Category.where(ancestry: nil)
-    @brand1 = Brand.find_by(id: 4408)
-    @brand2 = Brand.find_by(id: 6811)
-    @brand3 = Brand.find_by(id: 11181)
-    @brand4 = Brand.find_by(id: 372)
-    @brand5 = Brand.find_by(id: 3287)
+    @brand1 = Brand.find_by(id: 4358)
+    @brand2 = Brand.find_by(id: 6739)
+    @brand3 = Brand.find_by(id: 11079)
+    @brand4 = Brand.find_by(id: 366)
+    @brand5 = Brand.find_by(id: 3258)
 
   end
 
