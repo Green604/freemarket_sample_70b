@@ -1,19 +1,7 @@
 .background
   .search-container
-    = render "search_function_top_contents"
-
-    - if @keyword == ""
-      %h2.search-container__header--keyword
-        検索結果
-    - else
-      %h2.search-container__header--keyword
-        %span
-          #{@keyword}
-        の検索結果
-
     %p.search-container__header--number
       #{@items.length}件表示
-
     .search-container__main
       %ul.search-result
         - @items.each do|item|
@@ -28,7 +16,5 @@
               .item-list__box--favorite
                 %i.far.fa-heart.LikesIcon-fa-heart
                 = item.favorites.count
-      .display-box
-        = render "detail_search_function"
     .search-container__footer
       = paginate(@items)

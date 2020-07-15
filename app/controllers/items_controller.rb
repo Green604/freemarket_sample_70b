@@ -96,19 +96,36 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.d_search(params[:keyword])
-  end
-
-  def detail_search
     @search_item = Item.ransack(params[:q])
     @items = @search_item.result.page(params[:page])
     @grandchild_category = Category.where('ancestry LIKE(?)',"%/%")
     @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
+
+    @items = Item.d_search(params[:keyword])
+
+    @keyword = params[:keyword]
+    # orderメソッドへ代入する値を条件分岐
+    # params[:sort].nil? ? sort  = "created_at DESC" : sort = params[:sort]をリファクタリング
+    sort = params[:sort] || "created_at DESC"
+    # 入力された値をLIKE句により各カラムと一致したものを抽出する。
+    @items = Item.where('name LIKE(?) OR description LIKE(?)', "%#{@keyword}%", "%#{@keyword}%").order(sort)
+    @count = @items.count
+    # 検索結果が"0"だった場合、全ての商品を表示させる
+    if @count == 0
+      @items = Item.order(sort)
+    end
+    @items = @items.page(params[:page]).per(8)
+
   end
 
   def detail_search_result
+    sort = params[:sort] || "created_at DESC"
     @search_item = Item.ransack(params[:q])
-    @items = @search_item.result.page(params[:page])
+    @items = @search_item.result.page(params[:page]).order(sort)
+    @grandchild_category = Category.where('ancestry LIKE(?)',"%/%")
+    @child_category = Category.where.not('ancestry LIKE(?)',"%/%").where.not(ancestry: nil)
+
+    @search = params[:q]
   end
 
   def destroy

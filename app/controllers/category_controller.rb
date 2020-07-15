@@ -1,5 +1,6 @@
 class CategoryController < ApplicationController
 
+  
   def new
     @children = Category.find(params[:parent_id]).children
     respond_to do |format|
@@ -9,15 +10,15 @@ class CategoryController < ApplicationController
   end
 
   def parents
-    @items = Item.all.where(parent_category_id: params[:id])
+    @items = Item.all.where(parent_category_id: params[:id]).page(params[:page]).per(4)
   end
 
   def children
-    @items = Item.all.where(child_category_id: params[:id])
+    @items = Item.all.where(child_category_id: params[:id]).page(params[:page]).per(4)
   end
 
   def grand_children
-    @items = Item.all.where(category_id: params[:id])
+    @items = Item.all.where(category_id: params[:id]).page(params[:page]).per(4)
   end
 
   private
