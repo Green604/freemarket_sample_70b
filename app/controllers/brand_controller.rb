@@ -1,7 +1,7 @@
 class BrandController < ApplicationController
 
   def index
-    @items = Item.where(brand_id: params[:id])
+    @items = Item.where(brand_id: params[:id]).page(params[:page]).per(4)
   end
 
   private

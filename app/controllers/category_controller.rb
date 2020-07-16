@@ -10,7 +10,7 @@ class CategoryController < ApplicationController
   end
 
   def parents
-    @items = Item.all.where(parent_category_id: params[:id]).page(params[:page]).per(4)
+    @items = Item.all.where(parent_category_id: params[:id])ç
   end
 
   def children
