@@ -119,7 +119,7 @@
     ピックアップブランド
     .itemBox
       .itemHeader
-        アップル
+        ブランド1
       %ul.itemLists
         - @apple.last(4).each do |item|
           = link_to item_path(item.id), method: :get, class:"item" do
@@ -140,7 +140,7 @@
     ピックアップブランド
     .itemBox
       .itemHeader
-        ナイキ
+        ブランド2
       %ul.itemLists
         - @nike.last(4).each do |item|
           = link_to item_path(item.id), method: :get, class:"item" do
@@ -161,7 +161,7 @@
     ピックアップブランド
     .itemBox
       .itemHeader
-        ルイ　ヴィトン
+        ブランド3
       %ul.itemLists
         - @louisvuitton.last(4).each do |item|
           = link_to item_path(item.id), method: :get, class:"item" do
