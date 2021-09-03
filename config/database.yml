@@ -47,10 +47,19 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+#AWSで使用する環境、須永がherokuでデプロイする為に一旦コメントアウト
+# production:
+#   <<: *default
+#   database: freemarket_sample_70b_production
+#   username: root
+#   password: <%= ENV['DATABASE_PASSWORD'] %>
+#   socket: /var/lib/mysql/mysql.sock
+
+
+#須永がherokuでデプロイする為に追加した環境
 production:
   <<: *default
-  database: freemarket_sample_70b_production
-  username: root
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /var/lib/mysql/mysql.sock
-
+  adapter: postgresql
+  encoding: unicode
+  pool: 5

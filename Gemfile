@@ -47,6 +47,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
+  #herokuでのデプロイで追記
+  gem 'sqlite3'
 end
 
 group :development do
@@ -73,6 +75,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
   gem 'unicorn', '5.4.1'
+    #herokuでのデプロイで追記
+  gem 'pg'
 end
 
 gem "haml"
@@ -99,3 +103,4 @@ gem 'font-awesome-rails'
 gem "gretel"
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'mini_racer'
