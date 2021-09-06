@@ -102,7 +102,7 @@
           = link_to item_path(item.id), method: :get, class:"item" do
             %li.itemList__box
               .itemList__box--image
-                = image_tag item.images.first.image.url, class: "image"
+                -# = image_tag item.images.first.image.url, class: "image"
               .itemList__box--body
                 .itemList__box--body--name
                   = item.name
