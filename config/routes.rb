@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     post 'shipping_addresses', to: 'users/registrations#create_shipping_address'
   end
 
-  root "items#index"
+  root to: "items#index"
 
   resources :items do
 
