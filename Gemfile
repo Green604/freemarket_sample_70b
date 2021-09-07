@@ -47,7 +47,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  #herokuでのデプロイで追記
   gem 'sqlite3'
 end
 
@@ -75,7 +74,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
   gem 'unicorn', '5.4.1'
-    #herokuでのデプロイで追記
   gem 'pg'
 end
 
