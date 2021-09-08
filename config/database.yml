@@ -53,7 +53,7 @@ production:
   database: freemarket_sample_70b_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /var/lib/mysql/mysql.sock
+  # socket: /var/lib/mysql/mysql.sock
   adapter: postgresql
   encoding: unicode
   pool: 5
